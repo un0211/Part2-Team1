@@ -1,0 +1,86 @@
+@import url("reset.css");
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui,
+    Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR",
+    "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+    sans-serif;
+}
+
+body {
+  margin: 0;
+  background-color: #ffffff;
+}
+
+a {
+  text-decoration: none;
+}
+
+#root {
+  margin: 0 auto;
+}
+
+/* 컬러 팔레트 */
+:root {
+  --primary-color: #9935ff;
+  --error-red: #dc3a3a;
+  --black: #000000;
+  --white: #ffffff;
+  --surface: #f6f8ff;
+
+  /* button */
+  --enabled-btn: #9935ff;
+  --disabled-btn: #cccccc;
+  --hover-btn: #861dee;
+  --pressed-btn: #6e0ad1;
+
+  /* rollin-paper background color */
+  --rolling-bg-purple: #ecd9ff;
+  --rolling-bg-orange: #ffe2ad;
+  --rolling-bg-blue: #b1e4ff;
+  --rolling-bg-green: #d0f5c3;
+
+  --gray900: #181818;
+  --gray800: #2b2b2b;
+  --gray700: #3a3a3a;
+  --gray600: #4a4a4a;
+  --gray500: #555555;
+  --gray400: #999999;
+  --gray300: #cccccc;
+  --gray200: #eeeeee;
+  --gray100: #f6f6f6;
+
+  --purple900: #5603a7;
+  --purple800: #6e0ad1;
+  --purple700: #861dee;
+  --purple600: #9935ff;
+  --purple500: #ab57ff;
+  --purple400: #c894fd;
+  --purple300: #dcb9ff;
+  --purple200: #ecd9ff;
+  --purple100: #f8f0ff;
+
+  --green500: #2ba600;
+  --green400: #60cf37;
+  --green300: #9be282;
+  --green200: #d0f5c3;
+  --green100: #e4fbdc;
+
+  --blue500: #00a2fe;
+  --blue400: #34b9ff;
+  --blue300: #7cd2ff;
+  --blue200: #b1e4ff;
+  --blue100: #e2f5ff;
+
+  --orange500: #ff8832;
+  --orange400: #ffc583;
+  --orange300: #ffc583;
+  --orange200: #ffe2ad;
+  --orange100: #fff0d6;
+
+  /* font-weight */
+  --bold: 700;
+  --regular: 400;
+}
