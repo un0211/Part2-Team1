@@ -1,55 +1,67 @@
 .main {
   width: 1200px;
+  @media screen and (max-width: 1249px) {
+    /*~보다 작은 화면에 적용*/
+    width: 100%;
+    padding: 0 24px;
+  }
   margin: 60px auto;
   display: flex;
   flex-direction: column;
   gap: 30px;
-  .control-gap {
-    gap: 152px;
-  }
+
   .section {
     display: flex;
-    // gap: 152px;
-    padding: 60px 40px 80px 60px;
+    padding: 60px 0 60px;
     background-color: var(--surface);
     border-radius: 16px;
-
-    .content-container {
+    position: relative;
+    .rowReverse {
+      flex-direction: row-reverse;
+    }
+    .img-content-container {
+      width: 100%;
       display: flex;
-      flex-direction: column;
-      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: space-between;
 
-      .emphasis {
-        border-radius: 50px;
-        font-weight: var(--bold);
-        font-size: 14px;
-        //line-height: 20px;
-        background-color: var(--primary-color);
-        color: var(--white);
-        width: 80px;
-        height: 32px;
+      .marginLeft {
+        margin-left: 60px;
+      }
+      .content-container {
         display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-bottom: 8px;
-      }
-      .title {
-        font-weight: var(--bold);
-        font-size: 24px;
-        line-height: 36px;
-        white-space: pre-line;
-      }
-      .description {
-        font-weight: var(--regular);
-        font-size: 18px;
-        color: var(--gray500);
+        flex-direction: column;
+        gap: 8px;
+
+        .emphasis {
+          border-radius: 50px;
+          font-weight: var(--bold);
+          font-size: 14px;
+          //line-height: 20px;
+          background-color: var(--primary-color);
+          color: var(--white);
+          width: 80px;
+          height: 32px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-bottom: 8px;
+        }
+        .title {
+          font-weight: var(--bold);
+          font-size: 24px;
+          line-height: 36px;
+          white-space: pre-line;
+        }
+        .description {
+          font-weight: var(--regular);
+          font-size: 18px;
+          color: var(--gray500);
+        }
       }
     }
-    .order {
-      order: 1;
-    }
-    .second {
-      order: 2;
+    .flexEnd {
+      justify-content: flex-end;
     }
   }
 }
