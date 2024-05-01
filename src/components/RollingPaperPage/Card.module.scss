@@ -1,0 +1,38 @@
+.rolling-card {
+  width: 384px;
+  height: 280px;
+  border-radius: 16px;
+  background-color: var(--white);
+}
+
+.rolling-card-first {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .add-button {
+    width: 56px;
+    height: 56px;
+    padding: 16px;
+    border-radius: 100px;
+    background-color: var(--gray500);
+
+    &:disabled {
+      background-color: var(--gray300);
+    }
+
+    &:hover {
+      background-color: var(--gray600);
+    }
+
+    &:focus,
+    &:active {
+      background-color: var(--gray700);
+    }
+
+    img {
+      width: 24px;
+      height: 24px;
+    }
+  }
+}
