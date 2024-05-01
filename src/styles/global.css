@@ -84,3 +84,87 @@ a {
   --bold: 700;
   --regular: 400;
 }
+
+.font_28_bold {
+  font-size: 28px;
+  font-weight: var(--bold);
+  line-height: 1.5;
+}
+
+.font_24_bold {
+  font-size: 24px;
+  font-weight: var(--bold);
+  line-height: 1.5;
+}
+
+.font_24_regular {
+  font-size: 24px;
+  font-weight: var(--regular);
+  line-height: 1.5;
+}
+
+.font_20_bold {
+  font-size: 20px;
+  font-weight: var(--bold);
+  line-height: 1.5;
+}
+
+.font_20_regular {
+  font-size: 20px;
+  font-weight: var(--regular);
+  line-height: 1.5;
+}
+
+.font_18_bold {
+  font-size: 18px;
+  font-weight: var(--bold);
+  line-height: 1.5;
+}
+
+.font_18_regular {
+  font-size: 18px;
+  font-weight: var(--regular);
+  line-height: 1.5;
+}
+
+.font_16_bold {
+  font-size: 16px;
+  font-weight: var(--bold);
+  line-height: 26px;
+}
+
+.font_16_regular {
+  font-size: 16px;
+  font-weight: var(--regular);
+  line-height: 26px;
+}
+
+.font_15_bold {
+  font-size: 15px;
+  font-weight: var(--bold);
+  line-height: 1.5;
+}
+
+.font_15_regular {
+  font-size: 15px;
+  font-weight: var(--regular);
+  line-height: 1.5;
+}
+
+.font_14_bold {
+  font-size: 14px;
+  font-weight: var(--bold);
+  line-height: 1.5;
+}
+
+.font_14_regular {
+  font-size: 14px;
+  font-weight: var(--regular);
+  line-height: 1.5;
+}
+
+.font_12_regular {
+  font-size: 12px;
+  font-weight: var(--regular);
+  line-height: 1.5;
+}
