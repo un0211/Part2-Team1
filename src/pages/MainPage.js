@@ -2,10 +2,25 @@ import style from "./MainPage.module.scss";
 import rollingExample from "assets/images/rolling_example.svg";
 import reactionExample from "assets/images/reaction_example.png";
 
-function Section({ imgSrc, point, title, className, imgClassName }) {
+function Section({
+  imgSrc,
+  point,
+  title,
+  className,
+  imgClassName,
+  controlGap,
+}) {
   return (
-    <section className={style.section}>
-      <div className={`${style["content-container"]} ${className}`}>
+    <section
+      className={`${style.section} ${
+        style[controlGap] ? style[controlGap] : ""
+      }`}
+    >
+      <div
+        className={`${style["content-container"]} ${
+          style[className] ? style[className] : ""
+        }`}
+      >
         <div className={style.emphasis}>{point}</div>
         <h2 className={style.title}>{title}</h2>
         <p className={style.description}>로그인 없이 자유롭게 만들어요.</p>
@@ -13,7 +28,7 @@ function Section({ imgSrc, point, title, className, imgClassName }) {
       <img
         src={imgSrc}
         alt="롤링페이퍼 예시"
-        className={`${style[imgClassName]}`}
+        className={`${style[imgClassName] ? style[imgClassName] : ""}`}
       />
     </section>
   );
@@ -23,6 +38,7 @@ export default function MainPage() {
   return (
     <main className={style.main}>
       <Section
+        controlGap={"control-gap"}
         imgSrc={rollingExample}
         point={"Point. 01"}
         title={`누구나 손쉽게, 온라인
