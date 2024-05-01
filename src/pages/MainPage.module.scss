@@ -1,6 +1,9 @@
 .main {
   width: 1200px;
   margin: 60px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
 
   .section {
     display: flex;
@@ -39,6 +42,12 @@
         font-size: 18px;
         color: var(--gray500);
       }
+    }
+    .order {
+      order: 1;
+    }
+    .second {
+      order: 2;
     }
   }
 }
