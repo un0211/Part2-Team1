@@ -1,11 +1,45 @@
-.rolling-card {
-  width: 384px;
+article.card {
+  padding: 24px;
+}
+
+.card {
+  width: 100%;
   height: 280px;
   border-radius: 16px;
   background-color: var(--white);
+
+  header {
+    height: 76px;
+    display: flex;
+    gap: 14px;
+
+    .profile {
+      width: 56px;
+      height: 56px;
+      border-radius: 100px;
+      border: 1px solid var(--gray200);
+    }
+  }
+
+  .divider {
+    width: 100%;
+    height: 1px;
+    background-color: var(--gray200);
+  }
+
+  main {
+    width: 100%;
+    height: 106px;
+    margin: 16px 0;
+    color: var(--gray600);
+  }
+
+  footer {
+    color: var(--gray400);
+  }
 }
 
-.rolling-card-first {
+.card-first {
   display: flex;
   justify-content: center;
   align-items: center;
