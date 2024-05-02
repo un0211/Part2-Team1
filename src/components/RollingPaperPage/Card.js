@@ -13,6 +13,10 @@ function Card({ message }) {
     setIsOpenModal(true);
   };
 
+  const handleCloseClick = () => {
+    setIsOpenModal(false);
+  };
+
   return (
     <>
       <article className={style.card} onClick={handleCardClick}>
@@ -35,7 +39,13 @@ function Card({ message }) {
           {formatDateWithDot(createdAt)}
         </footer>
       </article>
-      {isOpenModal && <CardModal message={message} isOpen={isOpenModal} />}
+      {isOpenModal && (
+        <CardModal
+          message={message}
+          isOpen={isOpenModal}
+          onRequestClose={handleCloseClick}
+        />
+      )}
     </>
   );
 }

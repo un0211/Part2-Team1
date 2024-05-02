@@ -1,7 +1,8 @@
 import Modal from "react-modal";
 import style from "./CardModal.module.scss";
+import { formatDateWithDot } from "utils/rollingPaperPage";
 
-export default function CardModal({ isOpen, message }) {
+export default function CardModal({ isOpen, message, onRequestClose }) {
   const { content, createdAt, profileImageURL, relationship, sender } = message;
 
   const modalStyle = {
@@ -25,14 +26,18 @@ export default function CardModal({ isOpen, message }) {
     },
   };
   return (
-    <Modal isOpen={isOpen} style={modalStyle}>
+    <Modal
+      isOpen={isOpen}
+      style={modalStyle}
+      onRequestClose={() => onRequestClose(true)}
+    >
       <div className={style["profile-container"]}>
         <img src={profileImageURL} className={style.profile} />
         <div>
           <h3>From. {sender}</h3>
           <p>{relationship}</p>
         </div>
-        <p>{createdAt}</p>
+        <p>{formatDateWithDot(createdAt)}</p>
       </div>
       <p>{content}</p>
     </Modal>
