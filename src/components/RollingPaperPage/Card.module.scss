@@ -19,6 +19,34 @@ article.card {
       border-radius: 100px;
       border: 1px solid var(--gray200);
     }
+
+    .badge {
+      width: fit-content;
+      height: fit-content;
+      margin-top: 6px;
+      padding: 0 8px;
+      border-radius: 4px;
+
+      &.acquaintance {
+        background-color: var(--orange100);
+        color: var(--orange500);
+      }
+
+      &.friend {
+        background-color: var(--blue100);
+        color: var(--blue500);
+      }
+
+      &.coworker {
+        background-color: var(--purple100);
+        color: var(--purple600);
+      }
+
+      &.family {
+        background-color: var(--green100);
+        color: var(--green500);
+      }
+    }
   }
 
   .divider {

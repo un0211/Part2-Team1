@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import PlusIcon from "assets/icons/plus.svg";
 import style from "./Card.module.scss";
 import { formatDateWithDot } from "utils/rollingPaperPage";
+import { RELATIONSHIPS } from "constants/rollingPaperPage";
 
 function Card({ message }) {
   const { content, createdAt, profileImageURL, relationship, sender } = message;
@@ -18,7 +19,13 @@ function Card({ message }) {
           <h2 className="font-20">
             From. <span className="font-20-bold">{sender}</span>
           </h2>
-          <p>{relationship}</p>
+          <p
+            className={`${style.badge} ${
+              style[RELATIONSHIPS[relationship]]
+            } font-14`}
+          >
+            {relationship}
+          </p>
         </div>
       </header>
       <div className={style.divider}></div>
