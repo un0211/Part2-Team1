@@ -85,85 +85,85 @@ a {
   --regular: 400;
 }
 
-.font_28_bold {
+.font-28-bold {
   font-size: 28px;
   font-weight: var(--bold);
   line-height: 1.5;
 }
 
-.font_24_bold {
+.font-24-bold {
   font-size: 24px;
   font-weight: var(--bold);
   line-height: 1.5;
 }
 
-.font_24_regular {
+.font-24 {
   font-size: 24px;
   font-weight: var(--regular);
   line-height: 1.5;
 }
 
-.font_20_bold {
+.font-20-bold {
   font-size: 20px;
   font-weight: var(--bold);
   line-height: 1.5;
 }
 
-.font_20_regular {
+.font-20 {
   font-size: 20px;
   font-weight: var(--regular);
   line-height: 1.5;
 }
 
-.font_18_bold {
+.font-18-bold {
   font-size: 18px;
   font-weight: var(--bold);
   line-height: 1.5;
 }
 
-.font_18_regular {
+.font-18 {
   font-size: 18px;
   font-weight: var(--regular);
   line-height: 1.5;
 }
 
-.font_16_bold {
+.font-16-bold {
   font-size: 16px;
   font-weight: var(--bold);
   line-height: 26px;
 }
 
-.font_16_regular {
+.font-16 {
   font-size: 16px;
   font-weight: var(--regular);
   line-height: 26px;
 }
 
-.font_15_bold {
+.font-15-bold {
   font-size: 15px;
   font-weight: var(--bold);
   line-height: 1.5;
 }
 
-.font_15_regular {
+.font-15 {
   font-size: 15px;
   font-weight: var(--regular);
   line-height: 1.5;
 }
 
-.font_14_bold {
+.font-14-bold {
   font-size: 14px;
   font-weight: var(--bold);
   line-height: 1.5;
 }
 
-.font_14_regular {
+.font-14 {
   font-size: 14px;
   font-weight: var(--regular);
   line-height: 1.5;
 }
 
-.font_12_regular {
+.font-12 {
   font-size: 12px;
   font-weight: var(--regular);
   line-height: 1.5;

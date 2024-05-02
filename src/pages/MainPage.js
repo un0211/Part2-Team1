@@ -1,8 +1,7 @@
 import style from "./MainPage.module.scss";
 import rollingExample from "assets/images/rolling_example.png";
 import reactionExample from "assets/images/reaction_example.png";
-import Button from "components/common/Button";
-import { Link } from "react-router-dom";
+import LinkButton from "components/common/LinkButton";
 
 function Section({
   imgSrc,
@@ -19,6 +18,7 @@ function Section({
           style[rowReverse] ? style[rowReverse] : ""
         } ${style[controlFlex] ? style[controlFlex] : ""}`}
       >
+        {/* 여기 너비 주기 */}
         <div
           className={`${style["content-container"]} ${
             style[controlMargin] ? style[controlMargin] : ""
@@ -52,9 +52,10 @@ export default function MainPage() {
         rowReverse={"rowReverse"}
         controlFlex={"flexEnd"}
       />
-      <Link to="/list" className={style.button}>
+      {/* <Link to="/list" className={style.button}>
         <Button>{"구경해보기"}</Button>
-      </Link>
+      </Link> */}
+      <LinkButton text={"구경해보기"} url={"/link"} />
     </main>
   );
 }
