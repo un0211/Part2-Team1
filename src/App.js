@@ -14,6 +14,7 @@ function App() {
           <Route index element={<>post</>} />
           <Route path=":postId">
             <Route index element={<RollingPaperPage />} />
+            <Route path="edit" element={<RollingPaperPage />} />
             <Route path="message" element={<>message</>} />
           </Route>
         </Route>
