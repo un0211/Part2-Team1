@@ -1,4 +1,5 @@
 import Header from "components/common/Header";
+import MainPage from "pages/MainPage";
 import NotFoundPage from "pages/NotFoundPage";
 import RollingPaperPage from "pages/RollingPaperPage";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -8,7 +9,7 @@ function App() {
     <BrowserRouter>
       <Header />
       <Routes>
-        <Route path="/" element={<>main</>} />
+        <Route path="/" element={<MainPage />} />
         <Route path="list" element={<>list</>} />
         <Route path="post">
           <Route index element={<>post</>} />

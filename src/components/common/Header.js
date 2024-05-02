@@ -10,7 +10,7 @@ export default function Header() {
       <div className={style["logo-button-container"]}>
         <Link to="/" className={style["logo-container"]}>
           <img src={logo} className={style.logo} alt="로고" />
-          <h1 className={style["logo-text"]}>Rol1ing</h1>
+          <h1 className={style["logo-text"]}>Ro1ling</h1>
         </Link>
         {(location.pathname === "/" || location.pathname === "/list") && (
           <Link to="/post">
