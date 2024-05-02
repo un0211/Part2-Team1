@@ -28,7 +28,13 @@ function Section({
           <h2 className={style.title}>{title}</h2>
           <p className={style.description}>로그인 없이 자유롭게 만들어요.</p>
         </div>
-        <img src={imgSrc} alt="롤링페이퍼 예시" className={style.exampleImg} />
+        <div className={style.imgWrapper}>
+          <img
+            src={imgSrc}
+            alt="롤링페이퍼 예시"
+            className={style.exampleImg}
+          />
+        </div>
       </div>
     </section>
   );
@@ -52,9 +58,6 @@ export default function MainPage() {
         rowReverse={"rowReverse"}
         controlFlex={"flexEnd"}
       />
-      {/* <Link to="/list" className={style.button}>
-        <Button>{"구경해보기"}</Button>
-      </Link> */}
       <LinkButton text={"구경해보기"} url={"/link"} />
     </main>
   );
