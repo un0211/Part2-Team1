@@ -1,0 +1,64 @@
+@mixin btn-large {
+  padding: 14px 24px;
+  height: 56px;
+}
+
+@mixin btn-small {
+  padding: 7px 16px;
+  height: 40px;
+}
+
+@mixin btn-basic {
+  background-color: var(--enabled-btn);
+  border-radius: 12px;
+  border: none;
+
+  text-align: center;
+  color: var(--white);
+
+  &:hover {
+    background-color: var(--hover-btn);
+  }
+
+  &:focus,
+  &:active {
+    background-color: var(--pressed-btn);
+  }
+
+  &:disabled {
+    background-color: var(--disabled-btn);
+  }
+}
+
+.button {
+  @include btn-basic;
+
+  &.align-center {
+    margin: 0 auto;
+  }
+
+  /* size */
+  &.full {
+    @include btn-large;
+    width: 100%;
+  }
+
+  &.width-280 {
+    @include btn-large;
+    width: 280px;
+
+    @media screen and (max-width: 768px) {
+      width: 100%;
+    }
+  }
+
+  &.width-120 {
+    @include btn-small;
+    width: 120px;
+  }
+
+  &.width-92 {
+    @include btn-small;
+    width: 92px;
+  }
+}

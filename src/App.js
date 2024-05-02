@@ -1,4 +1,5 @@
 import Header from "components/common/Header";
+import ListPage from 'pages/ListPage/ListPage';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
@@ -6,7 +7,7 @@ function App() {
     <BrowserRouter>
       <Header />
       <Routes>
-        <Route />
+      <Route path="/ListPage" element={<ListPage />}></Route>
       </Routes>
     </BrowserRouter>
   );
