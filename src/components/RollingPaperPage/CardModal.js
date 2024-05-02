@@ -26,11 +26,7 @@ export default function CardModal({ isOpen, message, onRequestClose }) {
     },
   };
   return (
-    <Modal
-      isOpen={isOpen}
-      style={modalStyle}
-      onRequestClose={() => onRequestClose(true)}
-    >
+    <Modal isOpen={isOpen} style={modalStyle} onRequestClose={onRequestClose}>
       <div className={style["profile-container"]}>
         <img src={profileImageURL} className={style.profile} />
         <div>
