@@ -1,0 +1,12 @@
+.button {
+  background-color: var(--enabled-btn);
+  padding: 14px 24px;
+  border-radius: 12px;
+  border: none;
+  width: 280px;
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
+  //   margin: 0 auto; 이 부분은 버튼을 감싸는 Link 태그에 스타일 주기
+  color: var(--white);
+}

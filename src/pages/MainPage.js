@@ -1,6 +1,8 @@
 import style from "./MainPage.module.scss";
 import rollingExample from "assets/images/rolling_example.png";
 import reactionExample from "assets/images/reaction_example.png";
+import Button from "components/common/Button";
+import { Link } from "react-router-dom";
 
 function Section({
   imgSrc,
@@ -26,7 +28,7 @@ function Section({
           <h2 className={style.title}>{title}</h2>
           <p className={style.description}>로그인 없이 자유롭게 만들어요.</p>
         </div>
-        <img src={imgSrc} alt="롤링페이퍼 예시" />
+        <img src={imgSrc} alt="롤링페이퍼 예시" className={style.exampleImg} />
       </div>
     </section>
   );
@@ -50,6 +52,9 @@ export default function MainPage() {
         rowReverse={"rowReverse"}
         controlFlex={"flexEnd"}
       />
+      <Link to="/list" className={style.button}>
+        <Button>{"구경해보기"}</Button>
+      </Link>
     </main>
   );
 }
