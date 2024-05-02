@@ -15,17 +15,15 @@ function Card({ message }) {
           alt="프로필 이미지"
         />
         <div>
-          <h2 className="font_20_regular">
-            From. <span className="font_20_bold">{sender}</span>
+          <h2 className="font-20">
+            From. <span className="font-20-bold">{sender}</span>
           </h2>
           <p>{relationship}</p>
         </div>
       </header>
       <div className={style.divider}></div>
-      <main className="font_18_regular">{content}</main>
-      <footer className="font_12_regular">
-        {formatDateWithDot(createdAt)}
-      </footer>
+      <main className="font-18">{content}</main>
+      <footer className="font-12">{formatDateWithDot(createdAt)}</footer>
     </article>
   );
 }
