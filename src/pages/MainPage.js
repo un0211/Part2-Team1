@@ -28,13 +28,7 @@ function Section({
           <h2 className={style.title}>{title}</h2>
           <p className={style.description}>로그인 없이 자유롭게 만들어요.</p>
         </div>
-        <div className={style.imgWrapper}>
-          <img
-            src={imgSrc}
-            alt="롤링페이퍼 예시"
-            className={style.exampleImg}
-          />
-        </div>
+        <img src={imgSrc} alt="롤링페이퍼 예시" className={style.exampleImg} />
       </div>
     </section>
   );
