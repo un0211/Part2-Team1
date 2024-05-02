@@ -1,0 +1,30 @@
+.page-main {
+  background-color: var(--rolling-bg-purple);
+}
+
+.card-section {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  @media screen and (max-width: 1248px) {
+    margin: 0 24px;
+  }
+  padding-top: 113px;
+
+  height: 1500px;
+}
+
+.button-wrapper {
+  position: absolute;
+  top: 63px;
+  right: 0px;
+}
+
+.card-list {
+  width: 100%;
+
+  display: grid;
+  gap: 28px 24px;
+  grid-template-columns: repeat(3, 1fr);
+}
