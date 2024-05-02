@@ -1,0 +1,9 @@
+.wrapper{
+  width: 100%;
+  background-color: var(--gray300) ;
+  //캐러셀 버튼 색상 변경 실패이슈로..캐러셀 버튼 확인용 배경색
+  .buttonWrapper{
+    width: 244px;
+    margin: 64px auto;
+  }
+}
