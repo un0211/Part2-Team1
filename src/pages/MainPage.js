@@ -52,7 +52,7 @@ export default function MainPage() {
         rowReverse={"rowReverse"}
         controlFlex={"flexEnd"}
       />
-      <LinkButton text={"구경해보기"} url={"/link"} />
+      <LinkButton text={"구경해보기"} url={"list"} />
     </main>
   );
 }
