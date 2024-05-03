@@ -3,9 +3,11 @@ import PlusIcon from "assets/icons/plus.svg";
 import style from "./Card.module.scss";
 import { formatDateWithDot } from "utils/rollingPaperPage";
 import SenderInfo from "./SenderInfo";
+import { FONT_CLASS_NAME } from "constants/rollingPaperPage";
 
 function Card({ message }) {
-  const { content, createdAt, profileImageURL, relationship, sender } = message;
+  const { content, createdAt, profileImageURL, relationship, sender, font } =
+    message;
 
   return (
     <article className={style.card}>
@@ -17,7 +19,7 @@ function Card({ message }) {
         />
       </header>
       <div className={style.divider}></div>
-      <main className="font-18">{content}</main>
+      <main className={`font-18 ${FONT_CLASS_NAME[font]}`}>{content}</main>
       <footer className="font-12">{formatDateWithDot(createdAt)}</footer>
     </article>
   );

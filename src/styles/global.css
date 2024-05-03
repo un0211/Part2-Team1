@@ -1,4 +1,11 @@
 @import url("reset.css");
+
+@font-face {
+  font-family: "Handletter";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/naverfont_05@1.0/Handletter.woff")
+    format("woff");
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -167,4 +174,20 @@ a {
   font-size: 12px;
   font-weight: var(--regular);
   line-height: 1.5;
+}
+
+.font-pretendard {
+  font-family: "Pretendard";
+}
+
+.font-noto-sans {
+  font-family: "Noto Sans KR";
+}
+
+.font-nanum-myeongjo {
+  font-family: "Nanum Myeongjo";
+}
+
+.font-nanum-handletter {
+  font-family: "Handletter";
 }

@@ -1,3 +1,9 @@
+import {
+  NOTO_SANS,
+  PRETENDARD,
+  NANUM_MYEONGJO,
+  NANUM_HANDLETTER,
+} from "constants";
 import { ACQUAINTANCE, FRIEND, COWORKER, FAMILY } from "constants";
 
 export const MESSAGE = "messages";
@@ -13,4 +19,11 @@ export const RELATIONSHIPS = {
   [FRIEND]: "friend",
   [COWORKER]: "coworker",
   [FAMILY]: "family",
+};
+
+export const FONT_CLASS_NAME = {
+  [NOTO_SANS]: "font-noto-sans",
+  [PRETENDARD]: "font-pretendard",
+  [NANUM_MYEONGJO]: "font-nanum-myeongjo",
+  [NANUM_HANDLETTER]: "font-nanum-handletter",
 };
