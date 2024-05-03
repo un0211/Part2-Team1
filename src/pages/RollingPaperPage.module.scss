@@ -1,5 +1,19 @@
 .page-main {
-  background-color: var(--rolling-bg-purple);
+  &.beige {
+    background-color: var(--rolling-bg-orange);
+  }
+
+  &.blue {
+    background-color: var(--rolling-bg-blue);
+  }
+
+  &.purple {
+    background-color: var(--rolling-bg-purple);
+  }
+
+  &.green {
+    background-color: var(--rolling-bg-green);
+  }
 }
 
 .card-section {

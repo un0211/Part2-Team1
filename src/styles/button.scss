@@ -1,16 +1,17 @@
 @mixin btn-large {
   padding: 14px 24px;
   height: 56px;
+  border-radius: 12px;
 }
 
 @mixin btn-small {
   padding: 7px 16px;
   height: 40px;
+  border-radius: 6px;
 }
 
 @mixin btn-basic {
   background-color: var(--enabled-btn);
-  border-radius: 12px;
   border: none;
 
   text-align: center;
@@ -61,4 +62,8 @@
     @include btn-small;
     width: 92px;
   }
+}
+
+a.button {
+  display: inline-block;
 }
