@@ -1,7 +1,7 @@
 import style from "./MainPage.module.scss";
 import rollingExample from "assets/images/rolling_example.png";
 import reactionExample from "assets/images/reaction_example.png";
-import LinkButton from "components/common/LinkButton";
+import { Link } from "react-router-dom";
 
 function Section({
   imgSrc,
@@ -52,7 +52,9 @@ export default function MainPage() {
         rowReverse={"rowReverse"}
         controlFlex={"flexEnd"}
       />
-      <LinkButton text={"구경해보기"} url={"list"} />
+      <Link to="/list" className="button width-280 align-center font-18">
+        구경해보기
+      </Link>
     </main>
   );
 }

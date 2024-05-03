@@ -4,7 +4,6 @@ import Nav from "components/RollingPaperPage/Nav";
 import style from "./RollingPaperPage.module.scss";
 import Card, { FirstCard } from "components/RollingPaperPage/Card";
 import { useCallback, useEffect, useState } from "react";
-import LinkButton from "components/common/LinkButton";
 
 function RollingPaperPage() {
   const { postId } = useParams();
@@ -49,9 +48,13 @@ function ButtonList({ isEdit }) {
   return (
     <div className={style["button-wrapper"]}>
       {isEdit ? (
-        <>{/* TODO: 서영님 edit page의 버튼 */}</>
+        <button className={"button width-92 align-center font-16"}>
+          삭제하기
+        </button>
       ) : (
-        <LinkButton text={"수정하기"} url={"edit"} />
+        <Link to="edit" className={"button width-92 align-center font-16"}>
+          수정하기
+        </Link>
       )}
     </div>
   );
