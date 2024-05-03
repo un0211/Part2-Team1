@@ -78,11 +78,8 @@ function ButtonList({ isEdit }) {
           삭제하기
         </button>
       ) : (
-<<<<<<< HEAD
-        <Link to="edit" className={"button width-92 align-center font-16"}>
-=======
+        // <Link to="edit" className={"button width-92 align-center font-16"}>
         <Link to="edit" className="button width-92 font-16">
->>>>>>> develop
           수정하기
         </Link>
       )}
