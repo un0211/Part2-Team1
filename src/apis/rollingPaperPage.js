@@ -9,7 +9,6 @@ export async function getPost(postId) {
     throw new Error("롤링 페이퍼를 불러오는 데 실패했습니다.");
   }
   const body = await response.json();
-  console.log(body); //
   return body;
 }
 
@@ -21,7 +20,6 @@ async function getPostInfo(postId, type, offset = 0, limit = 12) {
     throw new Error(`${POST_INFO_TYPE[type]} 불러오는 데 실패했습니다.`);
   }
   const body = await response.json();
-  console.log(body); //
   return body;
 }
 
