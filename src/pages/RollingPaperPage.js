@@ -1,5 +1,5 @@
 import { useParams, useLocation, Link } from "react-router-dom";
-import { getMessage } from "apis/rollingPaperPage";
+import { getMessage, getPost } from "apis/rollingPaperPage";
 import Nav from "components/RollingPaperPage/Nav";
 import style from "./RollingPaperPage.module.scss";
 import Card, { FirstCard } from "components/RollingPaperPage/Card";
@@ -8,6 +8,11 @@ import { useCallback, useEffect, useState } from "react";
 function RollingPaperPage() {
   const { postId } = useParams();
 
+  const [postInfo, setPostInfo] = useState({
+    name: "",
+    backgroundColor: "",
+    backgroundImageURL: null,
+  });
   const [messages, setMessages] = useState([]);
   const [loadingError, setLoadingError] = useState(null);
 
@@ -15,26 +20,39 @@ function RollingPaperPage() {
   const isEdit = location.pathname.includes("/edit");
 
   const handleLoad = useCallback(async () => {
-    let result;
+    let postResult;
+    let messageResult;
     try {
       setLoadingError(null);
-      result = await getMessage(postId);
+      postResult = await getPost(postId);
+      messageResult = await getMessage(postId);
     } catch (e) {
       setLoadingError(e);
       return;
     }
 
-    const { results: newMessages } = result;
+    const { name, backgroundColor, backgroundImageURL } = postResult;
+    setPostInfo({
+      name,
+      backgroundColor,
+      backgroundImageURL,
+    });
+
+    const { results: newMessages } = messageResult;
     setMessages(newMessages);
-  }, [postId, setMessages]);
+  }, [postId]);
 
   useEffect(() => {
     handleLoad();
   }, [handleLoad]);
 
   return (
-    <main className={style["page-main"]}>
-      <Nav />
+    <main
+      className={`${style[postInfo.backgroundColor]} ${
+        postInfo.backgroundImageURL ? style[postInfo.backgroundImageURL] : ""
+      } ${style["page-main"]}`}
+    >
+      <Nav postInfo={postInfo} />
       <section className={style["card-section"]}>
         <ButtonList isEdit={isEdit} />
         <CardList isEdit={isEdit} messages={messages} />
