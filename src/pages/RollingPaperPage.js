@@ -76,7 +76,7 @@ function ButtonList({ isEdit }) {
       {isEdit ? (
         <>{/* TODO: 서영님 edit page의 버튼 */}</>
       ) : (
-        <Link to="edit" className={style.button}>
+        <Link to="edit" className="button width-92 font-16">
           수정하기
         </Link>
       )}
