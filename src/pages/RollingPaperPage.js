@@ -6,8 +6,10 @@ import Card, { FirstCard } from "components/RollingPaperPage/Card";
 import { useCallback, useEffect, useState } from "react";
 
 function RollingPaperPage() {
+  // NOTE - id 받아오는 작업
   const { postId } = useParams();
 
+  // NOTE - post, message, reaction, error 정보 관리
   const [postInfo, setPostInfo] = useState({
     name: "",
     backgroundColor: "",
@@ -16,9 +18,11 @@ function RollingPaperPage() {
   const [messages, setMessages] = useState([]);
   const [loadingError, setLoadingError] = useState(null);
 
+  // NOTE - edit 모드 여부 확인
   const location = useLocation();
   const isEdit = location.pathname.includes("/edit");
 
+  // NOTE - post, message, reaction 값 받아오는 함수
   const handleLoad = useCallback(async () => {
     let postResult;
     let messageResult;
@@ -62,6 +66,10 @@ function RollingPaperPage() {
   );
 }
 
+// NOTE
+/* - 기본모드: 수정하기 버튼
+ * - 수정모드: 수정완료, 전체삭제 버튼
+ */
 function ButtonList({ isEdit }) {
   return (
     <div className={style["button-wrapper"]}>
@@ -76,6 +84,7 @@ function ButtonList({ isEdit }) {
   );
 }
 
+// NOTE - 기본 모드에서만 메세지 추가 카드가 보인다.
 function CardList({ isEdit, messages }) {
   return (
     <ol className={style["card-list"]}>
