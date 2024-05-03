@@ -35,7 +35,6 @@ function Section({
             className={style.exampleImg}
           />
         </div>
-
       </div>
     </section>
   );
@@ -59,12 +58,6 @@ export default function MainPage() {
         rowReverse={"rowReverse"}
         controlFlex={"flexEnd"}
       />
-<<<<<<< HEAD
-=======
-      {/* <Link to="/list" className={style.button}>
-        <Button>{"구경해보기"}</Button>
-      </Link> */}
->>>>>>> e7bb3b5d9d936850888dc55b2a380e0138b96d6d
       <LinkButton text={"구경해보기"} url={"/link"} />
     </main>
   );
