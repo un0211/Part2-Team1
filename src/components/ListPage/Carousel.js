@@ -3,6 +3,8 @@ import Slider from 'react-slick';
 import styles from './Carousel.module.scss';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import image_prev from '../../assets/images/arrow_prev.png'
+import image_next from '../../assets/images/arrow_next.png'
 
 
 function NextArrow(props) {
@@ -13,15 +15,29 @@ function NextArrow(props) {
       style={{
         ...styles,
         display: 'block',
-        background: 'gray',
+        // background: 'gray',
         width: '40px',
         height: '40px',
-        right: '0px',
+        right: '-1140px',
+        top: '-150px',
         borderRadius: '50%',
+        position: 'relative',
       }}
       
       onClick={onClick}
-    />
+      
+    >
+      <img
+        src={image_next}
+        alt="Next Arrow"
+        style={{
+          width: '60px', // 이미지를 컨테이너에 꽉 차게 설정
+          height: '60px', // 이미지를 컨테이너에 꽉 차게 설정
+          borderRadius: '50%', // 원형 이미지로 설정
+          objectFit: 'cover', // 이미지를 비율 유지하며 가운데 정렬
+        }}
+      />
+    </div>
   );
 }
 
@@ -33,14 +49,27 @@ function PrevArrow(props) {
       style={{
         ...styles,
         display: 'block',
-        background: 'gray',
+        // background: 'gray',
         width: '40px',
         height: '40px',
-        left: '-20px',
+        left: '-30px',
+        top: '150px',
         borderRadius: '50%',
+        position: 'relative',
       }}
       onClick={onClick}
-    />
+    >
+      <img
+        src={image_prev}
+        alt="Previous Arrow"
+        style={{
+          width: '60px', // 이미지를 컨테이너에 꽉 차게 설정
+          height: '60px', // 이미지를 컨테이너에 꽉 차게 설정
+          borderRadius: '50%', // 원형 이미지로 설정
+          objectFit: 'cover', // 이미지를 비율 유지하며 가운데 정렬
+        }}
+      />
+    </div>
   );
 }
 
@@ -110,7 +139,6 @@ export default class Carousel extends Component {
       dots: false,
       infinite: false,
       autoplay: true,
-      arrows: true,
       autoplaySpeed: 5000,
       slidesToShow: 4,
       slidesToScroll: 2,
