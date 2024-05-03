@@ -7,6 +7,7 @@ article.card {
   height: 280px;
   border-radius: 16px;
   background-color: var(--white);
+  position: relative;
 
   header {
     height: 76px;
@@ -57,13 +58,21 @@ article.card {
 
   main {
     width: 100%;
-    height: 106px;
     margin: 16px 0;
+
     color: var(--gray600);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
   }
 
   footer {
     color: var(--gray400);
+    position: absolute;
+    bottom: 24px;
+    left: 24px;
   }
 }
 
