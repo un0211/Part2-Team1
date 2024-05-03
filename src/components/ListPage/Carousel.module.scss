@@ -1,15 +1,16 @@
 .pa_container {
-  width: 1160px;
-  border: solid 1px red;
+  width: 1190px;
+
   margin: 0 auto;
   text-align: left;
   position: relative;
+  // overflow: hidden;
   h1 {
     color: #000000;
     font-weight: 700;
     line-height: 2;
     font-size: 28px;
-    margin-top: 50px;
+    padding-top: 50px;
   }  
   p {
     color: #555;
@@ -52,16 +53,11 @@
 .slick-slide div {
   cursor: pointer;
 }
-.slick-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.slick-prev {
-  left: 0;
-}
-
-.slick-next {
-  right: 0;
-}
+.slick-prev::before,
+  .slick-next::before {
+    opacity: 0;
+    display: none;
+  }
+  .slick-slide div {
+    cursor: pointer;
+  }

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Carousel from "../../components/ListPage/Carousel";
+import Carousel from "../components/ListPage/Carousel";
 import "./ListPage.module.scss";
 import styles from './ListPage.module.scss';
 import "styles/global.css";
@@ -12,7 +12,7 @@ function ListPage() {
       <Carousel title="인기 롤링 페이퍼🔥" />
       <Carousel title="최근에 만든 롤링 페이퍼⭐" />
       <div className={styles.buttonWrapper}>
-        <LinkButton className={styles.customButton}text="나도 만들어 보기" url="/Create"></LinkButton>
+        <LinkButton className={styles.customButton}text="나도 만들어 보기" url="/post"></LinkButton>
       </div>
     </div>
   );
