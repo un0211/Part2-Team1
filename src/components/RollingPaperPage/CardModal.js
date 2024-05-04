@@ -4,6 +4,7 @@ import SenderInfo from "./SenderInfo";
 import { FONT_CLASS_NAME } from "constants/rollingPaperPage";
 import { formatDateWithDot } from "utils/rollingPaperPage";
 
+
 export default function CardModal({ isOpen, message, onModalClose }) {
   const { content, createdAt, profileImageURL, relationship, sender, font } =
     message;
@@ -31,7 +32,7 @@ export default function CardModal({ isOpen, message, onModalClose }) {
   };
   return (
     <Modal isOpen={isOpen} style={modalStyle} onRequestClose={onModalClose}>
-      <header className={style["profile-container"]}>
+     <header className={style["profile-container"]}>
         <SenderInfo
           profileImageURL={profileImageURL}
           relationship={relationship}
