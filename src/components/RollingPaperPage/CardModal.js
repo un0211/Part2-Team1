@@ -1,10 +1,9 @@
 import Modal from "react-modal";
 import style from "./CardModal.module.scss";
-import { formatDateWithDot } from "utils/rollingPaperPage";
 import SenderInfo from "./SenderInfo";
 import { FONT_CLASS_NAME } from "constants/rollingPaperPage";
 
-export default function CardModal({ isOpen, message, onRequestClose }) {
+export default function CardModal({ isOpen, message, onModalClose }) {
   const { content, createdAt, profileImageURL, relationship, sender, font } =
     message;
 
@@ -30,7 +29,7 @@ export default function CardModal({ isOpen, message, onRequestClose }) {
     },
   };
   return (
-    <Modal isOpen={isOpen} style={modalStyle} onRequestClose={onRequestClose}>
+    <Modal isOpen={isOpen} style={modalStyle} onRequestClose={onModalClose}>
       <header className={style["profile-container"]}>
         <SenderInfo
           profileImageURL={profileImageURL}
@@ -39,9 +38,19 @@ export default function CardModal({ isOpen, message, onRequestClose }) {
           createdAt={createdAt}
         />
       </header>
-      <main className={`${style.content} font-18 ${FONT_CLASS_NAME[font]}`}>
-        {content}
+      <main className={style["content-wrapper"]}>
+        <p className={`${style.content} font-18 ${FONT_CLASS_NAME[font]}`}>
+          {content}
+        </p>
       </main>
+      <footer className={style["button-wrapper"]}>
+        <button
+          onClick={onModalClose}
+          className={`${style["close-button"]} button width-120 font-16`}
+        >
+          확인
+        </button>
+      </footer>
     </Modal>
   );
 }

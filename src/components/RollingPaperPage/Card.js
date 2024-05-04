@@ -40,7 +40,7 @@ function Card({ message }) {
         <CardModal
           message={message}
           isOpen={isOpenModal}
-          onRequestClose={handleCloseClick}
+          onModalClose={handleCloseClick}
         />
       )}
     </>
