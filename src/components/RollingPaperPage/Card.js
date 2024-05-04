@@ -25,7 +25,7 @@ function Card({ message }) {
   return (
     <>
       <article className={style.card} onClick={handleCardClick}>
-        <header>
+        <header className={style.header}>
           <SenderInfo
             profileImageURL={profileImageURL}
             relationship={relationship}

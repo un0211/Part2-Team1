@@ -1,9 +1,11 @@
 import Modal from "react-modal";
 import style from "./CardModal.module.scss";
 import { formatDateWithDot } from "utils/rollingPaperPage";
+import SenderInfo from "./SenderInfo";
 
 export default function CardModal({ isOpen, message, onRequestClose }) {
-  const { content, createdAt, profileImageURL, relationship, sender } = message;
+  const { content, createdAt, profileImageURL, relationship, sender, font } =
+    message;
 
   const modalStyle = {
     overlay: {
@@ -23,19 +25,20 @@ export default function CardModal({ isOpen, message, onRequestClose }) {
       left: "50%",
       transform: "translate(-50%, -50%)",
       borderRadius: "16px",
+      padding: "40px",
     },
   };
   return (
     <Modal isOpen={isOpen} style={modalStyle} onRequestClose={onRequestClose}>
-      <div className={style["profile-container"]}>
-        <img src={profileImageURL} className={style.profile} />
-        <div>
-          <h3>From. {sender}</h3>
-          <p>{relationship}</p>
-        </div>
-        <p>{formatDateWithDot(createdAt)}</p>
-      </div>
-      <p>{content}</p>
+      <header className={style["profile-container"]}>
+        <SenderInfo
+          profileImageURL={profileImageURL}
+          relationship={relationship}
+          sender={sender}
+          createdAt={createdAt}
+        />
+      </header>
+      <main>{content}</main>
     </Modal>
   );
 }
