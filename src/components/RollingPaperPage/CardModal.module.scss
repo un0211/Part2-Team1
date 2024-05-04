@@ -2,4 +2,29 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-bottom: 1px solid var(--gray200);
+  padding-bottom: 16px;
+}
+
+.content {
+  margin-top: 16px;
+  height: 240px;
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    background: inherit;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background-color: var(--gray300);
+
+    &:hover {
+      background-color: var(--gray400);
+    }
+  }
+  &::-webkit-scrollbar-track {
+    background: inherit;
+  }
 }

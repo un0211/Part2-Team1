@@ -2,6 +2,7 @@ import Modal from "react-modal";
 import style from "./CardModal.module.scss";
 import { formatDateWithDot } from "utils/rollingPaperPage";
 import SenderInfo from "./SenderInfo";
+import { FONT_CLASS_NAME } from "constants/rollingPaperPage";
 
 export default function CardModal({ isOpen, message, onRequestClose }) {
   const { content, createdAt, profileImageURL, relationship, sender, font } =
@@ -38,7 +39,9 @@ export default function CardModal({ isOpen, message, onRequestClose }) {
           createdAt={createdAt}
         />
       </header>
-      <main>{content}</main>
+      <main className={`${style.content} font-18 ${FONT_CLASS_NAME[font]}`}>
+        {content}
+      </main>
     </Modal>
   );
 }
