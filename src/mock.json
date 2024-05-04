@@ -4,7 +4,7 @@
     "name": "서영",
     "createdAt": 1625340973562,
     "updatedAt": 1625340973562,
-    "postsNumber": 20,
+    "postCount": 20,
     "emoji": 300
   },
   {
@@ -12,7 +12,7 @@
     "name": "세민",
     "createdAt": 1625184428289,
     "updatedAt": 1625184428289,
-    "postsNumber": 50,
+    "postCount": 50,
     "emoji": 68
   },
   {
@@ -20,7 +20,7 @@
     "name": "혜원",
     "createdAt": 1625330203116,
     "updatedAt": 1625330203116,
-    "postsNumber": 70,
+    "postCount": 70,
     "emoji": 2
   },
   {
@@ -28,7 +28,7 @@
     "name": "익재",
     "createdAt": 1625028045602,
     "updatedAt": 1625028045602,
-    "postsNumber": 25,
+    "postCount": 25,
     "emoji": 89
   },
   {
@@ -36,7 +36,7 @@
     "name": "서하",
     "createdAt": 1625308116667,
     "updatedAt": 1625308116667,
-    "postsNumber": 30,
+    "postCount": 30,
     "emoji": 36
   },
   {
@@ -44,7 +44,7 @@
     "name": "가은",
     "createdAt": 1624613250969,
     "updatedAt": 1624613250969,
-    "postsNumber": 65,
+    "postCount": 65,
     "emoji": 93
   },
   {
@@ -52,7 +52,7 @@
     "name": "민주",
     "createdAt": 1624889538305,
     "updatedAt": 1624889538305,
-    "postsNumber": 15,
+    "postCount": 15,
     "emoji": 25
   },
   {
@@ -60,7 +60,7 @@
     "name": "민지",
     "createdAt": 1625233200164,
     "updatedAt": 1625233200164,
-    "postsNumber": 90,
+    "postCount": 90,
     "emoji": 292.6
   },
   {
@@ -68,7 +68,7 @@
     "name": "지호",
     "createdAt": 1624998701293,
     "updatedAt": 1624998701293,
-    "postsNumber": 50,
+    "postCount": 50,
     "emoji": 321
   },
   {
@@ -76,7 +76,7 @@
     "name": "주용",
     "createdAt": 1624685150667,
     "updatedAt": 1624685150667,
-    "postsNumber": 43,
+    "postCount": 43,
     "emoji": 57
   },
   {
@@ -84,7 +84,7 @@
     "name": "동혁",
     "createdAt": 1625334567466,
     "updatedAt": 1625334567466,
-    "postsNumber": 52,
+    "postCount": 52,
     "emoji": 7
   },
   {
@@ -92,7 +92,7 @@
     "name": "동현",
     "createdAt": 1624725579386,
     "updatedAt": 1624725579386,
-    "postsNumber": 46,
+    "postCount": 46,
     "emoji": 14
   },
   {
@@ -100,7 +100,7 @@
     "name": "지운",
     "createdAt": 1625138235656,
     "updatedAt": 1625138235656,
-    "postsNumber": 75,
+    "postCount": 75,
     "emoji": 4
   },
   {
@@ -108,7 +108,7 @@
     "name": "란",
     "createdAt": 1624881277160,
     "updatedAt": 1624881277160,
-    "postsNumber": 26,
+    "postCount": 26,
     "emoji": 19
   },
   {
@@ -116,7 +116,7 @@
     "name": "유정",
     "createdAt": 1625433571061,
     "updatedAt": 1625433571061,
-    "postsNumber": 77,
+    "postCount": 77,
     "emoji": 25
   },
   {
@@ -124,7 +124,7 @@
     "name": "지원",
     "createdAt": 1624602034639,
     "updatedAt": 1624602034639,
-    "postsNumber": 24,
+    "postCount": 24,
     "emoji": 62
   },
   {
@@ -132,7 +132,7 @@
     "name": "경민",
     "createdAt": 1625171694068,
     "updatedAt": 1625171694068,
-    "postsNumber": 16,
+    "postCount": 16,
     "emoji": 18
   },
   {
@@ -140,7 +140,7 @@
     "name": "하정",
     "createdAt": 1625254300792,
     "updatedAt": 1625254300792,
-    "postsNumber": 16,
+    "postCount": 16,
     "emoji": 110
   },
   {
@@ -148,7 +148,7 @@
     "name": "고은",
     "createdAt": 1625353806439,
     "updatedAt": 1625353806439,
-    "postsNumber": 33,
+    "postCount": 33,
     "emoji": 2
   }
 

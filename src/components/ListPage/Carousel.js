@@ -15,7 +15,6 @@ function NextArrow(props) {
       style={{
         ...styles,
         display: 'block',
-        // background: 'gray',
         width: '40px',
         height: '40px',
         right: '-1140px',
@@ -31,10 +30,10 @@ function NextArrow(props) {
         src={image_next}
         alt="Next Arrow"
         style={{
-          width: '60px', // 이미지를 컨테이너에 꽉 차게 설정
-          height: '60px', // 이미지를 컨테이너에 꽉 차게 설정
-          borderRadius: '50%', // 원형 이미지로 설정
-          objectFit: 'cover', // 이미지를 비율 유지하며 가운데 정렬
+          width: '60px',
+          height: '60px',
+          borderRadius: '50%',
+          objectFit: 'cover',
         }}
       />
     </div>
@@ -49,7 +48,6 @@ function PrevArrow(props) {
       style={{
         ...styles,
         display: 'block',
-        // background: 'gray',
         width: '40px',
         height: '40px',
         left: '-30px',
@@ -63,10 +61,10 @@ function PrevArrow(props) {
         src={image_prev}
         alt="Previous Arrow"
         style={{
-          width: '60px', // 이미지를 컨테이너에 꽉 차게 설정
-          height: '60px', // 이미지를 컨테이너에 꽉 차게 설정
-          borderRadius: '50%', // 원형 이미지로 설정
-          objectFit: 'cover', // 이미지를 비율 유지하며 가운데 정렬
+          width: '60px',
+          height: '60px',
+          borderRadius: '50%',
+          objectFit: 'cover',
         }}
       />
     </div>
@@ -79,55 +77,55 @@ export default class Carousel extends Component {
       {
         id: 1,
         name: 'Sowon',
-        people: 30,
+        postCount: 30,
         emoji: '000',
       },
       {
         id: 2,
         name: 'Sowon',
-        people: 30,
+        postCount: 30,
         emoji: '111',
       },
       {
         id: 3,
         name: 'Sowon ',
-        people: 30,
+        postCount: 30,
         emoji: '222',
       },
       {
         id: 4,
         name: 'Sowon ',
-        people: 30,
+        postCount: 30,
         emoji: '333',
       },
       {
         id: 5,
         name: 'Sowon ',
-        people: 30,
+        postCount: 30,
         emoji: '444',
       },
       {
         id: 6,
         name: 'Sowon ',
-        people: 30,
+        postCount: 30,
         emoji: '555',
       },
       {
         id: 7,
         name: 'Sowon ',
-        people: 30,
+        postCount: 30,
         emoji: '666',
       },
       {
         id: 8,
         name: 'Sowon ',
-        people: 30,
+        postCount: 30,
         emoji: '777',
       },
       {
         id: 9,
         name: 'Sowon ',
-        people: 30,
+        postCount: 30,
         emoji: '888',
       },
     ],
@@ -155,8 +153,8 @@ export default class Carousel extends Component {
               <div className={styles.slide_img}>
                 <img src={item.imgSrc} />
               </div>
-              <h3>To. {item.name}</h3>
-              <p>{item.people}명이 작성했어요!</p>
+              <h3 className={`font-24-bold`}>To. {item.name}</h3>
+              <p><span className='font-16-bold'>{item.postCount}</span>명이 작성했어요!</p>
               <div>
                 <span>{item.emoji}</span>
               </div>
