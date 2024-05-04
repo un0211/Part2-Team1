@@ -8,13 +8,6 @@ article.card {
   border-radius: 16px;
   background-color: var(--white);
   position: relative;
-  // NOTE pointer 추가
-  cursor: pointer;
-
-  // NOTE
-  .header {
-    margin-bottom: 16px;
-  }
 
   .divider {
     width: 100%;

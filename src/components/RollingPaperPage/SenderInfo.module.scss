@@ -1,10 +1,7 @@
 .sender-info {
-  // NOTE height가 아닌 다른 요소에 margin을 주어 간격 조정으로 변경
-  // Card.module.scss
-  //height: 76px;
+  height: 76px;
   display: flex;
   gap: 14px;
-  position: relative;
 
   .profile-image {
     width: 56px;
@@ -12,6 +9,7 @@
     border-radius: 100px;
     border: 1px solid var(--gray200);
   }
+
   .badge {
     width: fit-content;
     height: fit-content;
@@ -39,7 +37,4 @@
       color: var(--green500);
     }
   }
-}
-.createdAt {
-  color: var(--gray400);
 }
