@@ -54,6 +54,7 @@ function PrevArrow(props) {
         top: '150px',
         borderRadius: '50%',
         position: 'relative',
+        zIndex: '3',
       }}
       onClick={onClick}
     >
