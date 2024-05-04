@@ -74,8 +74,11 @@ function ButtonList({ isEdit }) {
   return (
     <div className={style["button-wrapper"]}>
       {isEdit ? (
-        <>{/* TODO: 서영님 edit page의 버튼 */}</>
+        <button className={"button width-92 align-center font-16"}>
+          삭제하기
+        </button>
       ) : (
+        // <Link to="edit" className={"button width-92 align-center font-16"}>
         <Link to="edit" className="button width-92 font-16">
           수정하기
         </Link>
