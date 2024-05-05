@@ -74,9 +74,7 @@ function ButtonList({ isEdit }) {
   return (
     <div className={style["button-wrapper"]}>
       {isEdit ? (
-        <button className={"button width-92 align-center font-16"}>
-          삭제하기
-        </button>
+        <button className={"button width-92 font-16"}>삭제하기</button>
       ) : (
         <Link to="edit" className="button width-92 font-16">
           수정하기
@@ -97,7 +95,7 @@ function CardList({ isEdit, messages }) {
       )}
       {messages.map((message) => (
         <li key={message.id}>
-          <Card message={message} />
+          <Card message={message} isEdit={isEdit} />
         </li>
       ))}
     </ol>

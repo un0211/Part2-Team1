@@ -73,3 +73,9 @@ article.card {
     }
   }
 }
+
+.cursor {
+  cursor: default;
+  // NOTE - 이 속성으로도 클릭 막을 수 있음
+  //pointer-events: none;
+}
