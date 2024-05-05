@@ -1,5 +1,6 @@
 import { RELATIONSHIPS } from "constants/rollingPaperPage";
 import style from "./SenderInfo.module.scss";
+import { formatDateWithDot } from "utils/rollingPaperPage";
 
 function SenderInfo({ profileImageURL, relationship, sender }) {
   return (
