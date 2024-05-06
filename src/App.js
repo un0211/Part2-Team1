@@ -2,6 +2,7 @@ import Header from "components/common/Header";
 import MainPage from "pages/MainPage";
 import NotFoundPage from "pages/NotFoundPage";
 import RollingPaperPage from "pages/RollingPaperPage";
+import CreateRollingPage from "pages/CreateRollingPage";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
         <Route path="/" element={<MainPage />} />
         <Route path="list" element={<>list</>} />
         <Route path="post">
+          <Route index element={<CreateRollingPage />} />
           <Route index element={<>post</>} />
           <Route path=":postId">
             <Route index element={<RollingPaperPage />} />
