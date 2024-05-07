@@ -66,7 +66,11 @@ function Card({ message, isEdit, onCheck, isChecked }) {
           )}
         </header>
         <div className={styles.divider}></div>
-        <main className={`font-18 ${FONT_CLASS_NAME[font]}`}>{content}</main>
+        <main
+          className={`font-18 ${FONT_CLASS_NAME[font]} ${styles["media-15"]}`}
+        >
+          {content}
+        </main>
         <footer className="font-12">{formatDateWithDot(createdAt)}</footer>
       </article>
       {isOpenModal && (
