@@ -1,0 +1,230 @@
+@import url("reset.css");
+
+// 변수 정의
+$primary-color: #9935ff;
+$error-red: #dc3a3a;
+$black: #000000;
+$white: #ffffff;
+$surface: #f6f8ff;
+
+$enabled-btn: #9935ff;
+$disabled-btn: #cccccc;
+$hover-btn: #861dee;
+$pressed-btn: #6e0ad1;
+
+$gray900: #181818;
+$gray800: #2b2b2b;
+$gray700: #3a3a3a;
+$gray600: #4a4a4a;
+$gray500: #555555;
+$gray400: #999999;
+$gray300: #cccccc;
+$gray200: #eeeeee;
+$gray100: #f6f6f6;
+
+$font-bold: 700;
+$font-regular: 400;
+
+// mixin 정의
+@mixin font-style($size, $weight) {
+  font-size: $size;
+  font-weight: $weight;
+}
+
+// SCSS 코드
+.message-form {
+  width: 320px;
+  margin: 0 auto;
+}
+
+.message-form__title {
+  @include font-style(24px, $font-bold);
+  margin-bottom: 12px;
+  margin-top: 50px;
+  display: block;
+}
+
+.message-form__sender {
+  input {
+    cursor: auto;
+    width: 100%;
+  }
+}
+
+.message-form__name-input {
+  width: 720px; 
+}
+
+
+.message-form__inputs {
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  width: 320px;
+  height: 50px;
+  border: 1px solid $gray300;
+  border-radius: 8px;
+  padding: 12px 16px 12px 16px;
+  @include font-style(16px, $font-regular);
+  line-height: 26px;
+  letter-spacing: -0.01em;
+  appearance: none;
+  padding: 12px 16px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.message-form__content {
+  position: relative; 
+}
+
+.message-form__text-editor {
+  min-height: 200px; 
+  border: 1px solid $gray300; 
+  border-radius: 8px; 
+  padding: 8px; 
+  min-height: 300px;
+}
+
+.message-form__text-editor-wrapper {
+  position: relative; 
+  z-index: 1; 
+}
+
+.message-form__inputs::placeholder {
+  @include font-style(16, Regular);
+  line-height: 26px;
+  letter-spacing: -0.01em;
+}
+
+.message-form__drop-down-menu-box {
+  z-index: 2;
+  position: absolute;
+  width: 320px;
+  top: 60px;
+  left: 0;
+  border: 1px solid $gray300;
+  border-radius: 8px;
+  background-color: $white;
+  display: none;
+}
+
+.message-form__arrow-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.message-form__drop-down-menu-box--active {
+  display: block;
+}
+
+.message-form__drop-down-menu {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+
+  height: 50px;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.message-form__drop-down-menu:hover {
+  background-color: $gray100;
+}
+
+.message-form__profile-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.message-form__profile-options-title {
+  @include font-style(16, Regular);
+  line-height: 26px;
+  letter-spacing: -0.01em;
+}
+
+.message-form__profile-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  height: 122px;
+  margin-left: 32px;
+}
+
+.message-form__profile--preview {
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+  border-radius: 100px;
+}
+
+.message-form__profile-preview-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+}
+.message-form__text-area {
+  width: 100%;
+  height: 308px;
+  padding: 16px 16px;
+  border-radius: 8px;
+  border: 1px solid $gray300;
+  resize: none;
+}
+
+.message-form__text-area::placeholder {
+  @include font-style(16, Regular);
+  line-height: 26px;
+  letter-spacing: -0.01em;
+  color: $gray900;
+}
+
+/* 버튼 상태에 따른 스타일 */
+.message-form__submit {
+  width: 100%;
+  height: 56px;
+  padding: 14px 24px 14px 24px;
+  border-radius: 12px;
+  margin: 0 auto;
+  margin-top: 206px;
+  margin-bottom: 24px;
+  border: none;
+  color: $white;
+  @include font-style(18px, $font-bold);
+
+  background-color: var(--enabled-btn);
+
+  &:disabled {
+    background-color: var(--disabled-btn);
+    cursor: not-allowed;
+  }
+  
+  &:hover {
+    background-color: var(--hover-btn);
+  }
+  
+  &:active {
+    background-color: var(--pressed-btn);
+  }
+}
+
+@media (min-width: 767px) {
+  .message-form {
+    width: 717px;
+  }
+  .message-form__profile--preview {
+    width: 56px;
+    height: 56px;
+  }
+  .message-form__profile-preview-container {
+    gap: 4px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .message-form {
+    width: 720px;
+  }
+}
