@@ -7,9 +7,16 @@ import { FONT_CLASS_NAME } from "constants/rollingPaperPage";
 import CardModal from "./CardModal";
 import { useState } from "react";
 
-function Card({ message, isEdit }) {
-  const { content, createdAt, profileImageURL, relationship, sender, font } =
-    message;
+function Card({ message, isEdit, onCheck, isChecked }) {
+  const {
+    content,
+    createdAt,
+    profileImageURL,
+    relationship,
+    sender,
+    font,
+    id,
+  } = message;
   const [isOpenModal, setIsOpenModal] = useState(false);
 
   // NOTE - 모달창 띄우는 함수
@@ -25,10 +32,17 @@ function Card({ message, isEdit }) {
     setIsOpenModal(false);
   };
 
+  // NOTE -
+  const handleCheckId = (e) => {
+    onCheck(e.target.id, e.target.checked);
+  };
+
   return (
     <>
       <article
-        className={`${style.card} ${isEdit ? style.cursor : ""}`}
+        className={`${style.card} ${isEdit ? style.cursor : ""} ${
+          isChecked ? style["checked-card"] : ""
+        }`}
         onClick={handleCardClick}
       >
         <header className={style.header}>
@@ -37,6 +51,19 @@ function Card({ message, isEdit }) {
             relationship={relationship}
             sender={sender}
           />
+          {/* // NOTE - checkbox */}
+          {isEdit && (
+            <div>
+              <input
+                id={id}
+                className={style.checkbox}
+                type="checkbox"
+                onChange={handleCheckId}
+                checked={isChecked}
+              />
+              <label htmlFor={id} className={style["checkbox-label"]}></label>
+            </div>
+          )}
         </header>
         <div className={style.divider}></div>
         <main className={`font-18 ${FONT_CLASS_NAME[font]}`}>{content}</main>
