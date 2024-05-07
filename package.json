@@ -9,7 +9,11 @@
     "draft-js": "^0.11.7",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+<<<<<<< HEAD
     "react-draft-wysiwyg": "^1.15.0",
+=======
+    "react-modal": "^3.16.1",
+>>>>>>> bf76547f3442932b45d91a42caabd711ba81ad24
     "react-router-dom": "^6.23.0",
     "react-scripts": "5.0.1",
     "sass": "^1.75.0",

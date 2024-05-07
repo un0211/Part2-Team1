@@ -7,18 +7,13 @@ article.card {
   height: 280px;
   border-radius: 16px;
   background-color: var(--white);
+  position: relative;
+  // NOTE pointer 추가
+  cursor: pointer;
 
-  header {
-    height: 76px;
-    display: flex;
-    gap: 14px;
-
-    .profile {
-      width: 56px;
-      height: 56px;
-      border-radius: 100px;
-      border: 1px solid var(--gray200);
-    }
+  // NOTE
+  .header {
+    margin-bottom: 16px;
   }
 
   .divider {
@@ -29,13 +24,21 @@ article.card {
 
   main {
     width: 100%;
-    height: 106px;
     margin: 16px 0;
+
     color: var(--gray600);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
   }
 
   footer {
     color: var(--gray400);
+    position: absolute;
+    bottom: 24px;
+    left: 24px;
   }
 }
 
@@ -69,4 +72,10 @@ article.card {
       height: 24px;
     }
   }
+}
+
+.cursor {
+  cursor: default;
+  // NOTE - 이 속성으로도 클릭 막을 수 있음
+  //pointer-events: none;
 }
