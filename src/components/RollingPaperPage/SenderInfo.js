@@ -1,12 +1,11 @@
 import { RELATIONSHIPS } from "constants/rollingPaperPage";
-import style from "./SenderInfo.module.scss";
-import { formatDateWithDot } from "utils/rollingPaperPage";
+import styles from "./SenderInfo.module.scss";
 
 function SenderInfo({ profileImageURL, relationship, sender }) {
   return (
-    <div className={style["sender-info"]}>
+    <div className={styles["sender-info"]}>
       <img
-        className={style["profile-image"]}
+        className={styles["profile-image"]}
         src={profileImageURL}
         alt="프로필 이미지"
       />
@@ -15,8 +14,8 @@ function SenderInfo({ profileImageURL, relationship, sender }) {
           From. <span className="font-20-bold">{sender}</span>
         </h2>
         <p
-          className={`${style.badge} ${
-            style[RELATIONSHIPS[relationship]]
+          className={`${styles.badge} ${
+            styles[RELATIONSHIPS[relationship]]
           } font-14`}
         >
           {relationship}
