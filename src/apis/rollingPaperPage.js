@@ -30,3 +30,15 @@ export async function getMessage(postId, offset = 0, limit = 12) {
 export async function getReaction(postId, offset = 0, limit = 3) {
   return await getPostInfo(postId, REACTION, offset, limit);
 }
+
+// NOTE - 메세지 삭제
+export async function delMessage(messageId) {
+  const response = fetch(`${TEAM_BASE_URL}/message/${messageId}`, {
+    method: "DELETE",
+  });
+  if (!response.ok) {
+    throw new Error("데이터를 삭제하는데 실패했습니다");
+  }
+  const body = await response.json();
+  return body;
+}
