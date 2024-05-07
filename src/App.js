@@ -3,7 +3,10 @@ import MainPage from "pages/MainPage";
 import NotFoundPage from "pages/NotFoundPage";
 import RollingPaperPage from "pages/RollingPaperPage";
 import CreateRollingPage from "pages/CreateRollingPage";
+import Modal from "react-modal";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+
+Modal.setAppElement("#root");
 
 function App() {
   return (
