@@ -26,8 +26,9 @@ function RollingPaperPage() {
   const [deleteMessageIds, setDeleteMessageIds] = useState([]);
 
   const handleCheck = (id, isChecked) => {
+    // NOTE - type of id -> String
+    // NOTE - input의 id 속성에  Number 타입을 속성값으로 주면 자동으로 String으로 형변환됨
     const numberId = Number(id);
-    // NOTE - id는 String이고, deleteMessageIds 배열 요소는 Number
     if (isChecked) {
       setDeleteMessageIds((prev) => [...prev, numberId]);
     } else {
@@ -37,7 +38,6 @@ function RollingPaperPage() {
 
   const handleCheckAll = (e) => {
     if (e.target.checked) {
-      // NOTE - messages 객체의 id 속성이 Number임 !
       setDeleteMessageIds(messages.map((item) => item.id));
     } else {
       setDeleteMessageIds([]);
@@ -94,14 +94,16 @@ function RollingPaperPage() {
     >
       <Nav postInfo={postInfo} />
       <section className={style["card-section"]}>
-        {isEdit && (
-          <SelectAll
-            onCheckAll={handleCheckAll}
-            deleteMessageIds={deleteMessageIds}
-            messages={messages}
-          />
-        )}
-        <ButtonList isEdit={isEdit} />
+        <div className={style["checkbox-button-container"]}>
+          {isEdit && (
+            <SelectAll
+              onCheckAll={handleCheckAll}
+              deleteMessageIds={deleteMessageIds}
+              messages={messages}
+            />
+          )}
+          <ButtonList isEdit={isEdit} />
+        </div>
         <CardList
           isEdit={isEdit}
           messages={messages}

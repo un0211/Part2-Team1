@@ -19,6 +19,8 @@ function Card({ message, isEdit, onCheck, isChecked }) {
   } = message;
   const [isOpenModal, setIsOpenModal] = useState(false);
 
+  //console.log(">>>>>>>>>>>>>> " + typeof id);
+
   // NOTE - 모달창 띄우는 함수
   const handleCardClick = () => {
     // NOTE - /edit 에서는 클릭하지 못하도록 처리
