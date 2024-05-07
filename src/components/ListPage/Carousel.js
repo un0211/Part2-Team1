@@ -1,12 +1,10 @@
-import React, { Component } from 'react';
-import Slider from 'react-slick';
-import styles from './Carousel.module.scss';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import image_prev from '../../assets/images/arrow_prev.png'
-import image_next from '../../assets/images/arrow_next.png'
-
-
+import React, { Component } from "react";
+import Slider from "react-slick";
+import styles from "./Carousel.module.scss";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import image_prev from "assets/images/arrow_prev.png"
+import image_next from "assets/images/arrow_next.png"
 function NextArrow(props) {
   const { className, styles, onClick } = props;
   return (
@@ -14,13 +12,13 @@ function NextArrow(props) {
       className={className}
       style={{
         ...styles,
-        display: 'block',
-        width: '40px',
-        height: '40px',
-        right: '-1140px',
-        top: '-150px',
-        borderRadius: '50%',
-        position: 'relative',
+        display: "block",
+        width: "40px",
+        height: "40px",
+        right: "-1140px",
+        top: "-150px",
+        borderRadius: "50%",
+        position: "relative",
       }}
       
       onClick={onClick}
@@ -30,16 +28,15 @@ function NextArrow(props) {
         src={image_next}
         alt="Next Arrow"
         style={{
-          width: '60px',
-          height: '60px',
-          borderRadius: '50%',
-          objectFit: 'cover',
+          width: "60px",
+          height: "60px",
+          borderRadius: "50%",
+          objectFit: "cover",
         }}
       />
     </div>
   );
 }
-
 function PrevArrow(props) {
   const { className, styles, onClick } = props;
   return (
@@ -47,14 +44,14 @@ function PrevArrow(props) {
       className={className}
       style={{
         ...styles,
-        display: 'block',
-        width: '40px',
-        height: '40px',
-        left: '-30px',
-        top: '150px',
-        borderRadius: '50%',
-        position: 'relative',
-        zIndex: '3',
+        display: "block",
+        width: "40px",
+        height: "40px",
+        left: "-30px",
+        top: "150px",
+        borderRadius: "50%",
+        position: "relative",
+        zIndex: "3",
       }}
       onClick={onClick}
     >
@@ -62,72 +59,71 @@ function PrevArrow(props) {
         src={image_prev}
         alt="Previous Arrow"
         style={{
-          width: '60px',
-          height: '60px',
-          borderRadius: '50%',
-          objectFit: 'cover',
+          width: "60px",
+          height: "60px",
+          borderRadius: "50%",
+          objectFit: "cover",
         }}
       />
     </div>
   );
 }
-
 export default class Carousel extends Component {
   state = {
     slideItems: [
       {
         id: 1,
-        name: 'Sowon',
+        name: "Sowon",
         postCount: 30,
-        emoji: '000',
+        emoji: "000",
       },
       {
         id: 2,
-        name: 'Sowon',
+        name: "Sowon",
         postCount: 30,
-        emoji: '111',
+        emoji: "111",
       },
       {
         id: 3,
-        name: 'Sowon ',
+        name: "Sowon ",
         postCount: 30,
-        emoji: '222',
+        emoji: "222",
       },
       {
         id: 4,
-        name: 'Sowon ',
+        name: "Sowon ",
         postCount: 30,
-        emoji: '333',
+        emoji: "333",
       },
       {
         id: 5,
-        name: 'Sowon ',
+        name: "Sowon ",
         postCount: 30,
-        emoji: '444',
+        emoji: "444",
       },
       {
         id: 6,
-        name: 'Sowon ',
+        name: "Sowon ",
         postCount: 30,
-        emoji: '555',
+        emoji: "555",
       },
       {
         id: 7,
-        name: 'Sowon ',
+        name: "Sowon ",
         postCount: 30,
-        emoji: '666',
+        emoji: "666",
       },
       {
         id: 8,
-        name: 'Sowon ',
+        name: "Sowon ",
         postCount: 30,
-        emoji: '777',
+        emoji: "777",
       },
       {
         id: 9,
-        name: 'Sowon ',
+        name: "Sowon ",
         postCount: 30,
-        emoji: '888',
+        emoji: "888",
       },
     ],
   };
@@ -155,7 +151,7 @@ export default class Carousel extends Component {
                 <img src={item.imgSrc} />
               </div>
               <h3 className={`font-24-bold`}>To. {item.name}</h3>
-              <p><span className='font-16-bold'>{item.postCount}</span>명이 작성했어요!</p>
+              <p><span className="font-16-bold">{item.postCount}</span>명이 작성했어요!</p>
               <div>
                 <span>{item.emoji}</span>
               </div>
