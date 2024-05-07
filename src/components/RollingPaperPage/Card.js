@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import PlusIcon from "assets/icons/plus.svg";
-import style from "./Card.module.scss";
+import styles from "./Card.module.scss";
 import { formatDateWithDot } from "utils/rollingPaperPage";
 import SenderInfo from "./SenderInfo";
 import { FONT_CLASS_NAME } from "constants/rollingPaperPage";
@@ -40,12 +40,12 @@ function Card({ message, isEdit, onCheck, isChecked }) {
   return (
     <>
       <article
-        className={`${style.card} ${isEdit ? style.cursor : ""} ${
-          isChecked ? style["checked-card"] : ""
+        className={`${styles.card} ${isEdit ? styles.cursor : ""} ${
+          isChecked ? styles["checked-card"] : ""
         }`}
         onClick={handleCardClick}
       >
-        <header className={style.header}>
+        <header className={styles.header}>
           <SenderInfo
             profileImageURL={profileImageURL}
             relationship={relationship}
@@ -56,16 +56,16 @@ function Card({ message, isEdit, onCheck, isChecked }) {
             <div>
               <input
                 id={id}
-                className={style.checkbox}
+                className={styles.checkbox}
                 type="checkbox"
                 onChange={handleCheckId}
                 checked={isChecked}
               />
-              <label htmlFor={id} className={style["checkbox-label"]}></label>
+              <label htmlFor={id} className={styles["checkbox-label"]}></label>
             </div>
           )}
         </header>
-        <div className={style.divider}></div>
+        <div className={styles.divider}></div>
         <main className={`font-18 ${FONT_CLASS_NAME[font]}`}>{content}</main>
         <footer className="font-12">{formatDateWithDot(createdAt)}</footer>
       </article>
@@ -82,9 +82,9 @@ function Card({ message, isEdit, onCheck, isChecked }) {
 
 export function FirstCard() {
   return (
-    <div className={`${style.card} ${style["card-first"]}`}>
+    <div className={`${styles.card} ${styles["card-first"]}`}>
       <Link to="message">
-        <div className={style["add-button"]}>
+        <div className={styles["add-button"]}>
           <img src={PlusIcon} alt="메세지 추가" />
         </div>
       </Link>

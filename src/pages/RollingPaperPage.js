@@ -1,7 +1,7 @@
 import { useParams, useLocation, Link } from "react-router-dom";
 import { delMessage, getMessage, getPost } from "apis/rollingPaperPage";
 import Nav from "components/RollingPaperPage/Nav";
-import style from "./RollingPaperPage.module.scss";
+import styles from "./RollingPaperPage.module.scss";
 import Card, { FirstCard } from "components/RollingPaperPage/Card";
 import { useCallback, useEffect, useState } from "react";
 
@@ -88,12 +88,12 @@ function RollingPaperPage() {
 
   return (
     <main
-      className={`${style[postInfo.backgroundColor]} ${
-        postInfo.backgroundImageURL ? style[postInfo.backgroundImageURL] : ""
-      } ${style["page-main"]}`}
+      className={`${styles[postInfo.backgroundColor]} ${
+        postInfo.backgroundImageURL ? styles[postInfo.backgroundImageURL] : ""
+      } ${styles["page-main"]}`}
     >
       <Nav postInfo={postInfo} />
-      <section className={style["card-section"]}>
+      <section className={styles["card-section"]}>
         {isEdit && (
           <SelectAll
             onCheckAll={handleCheckAll}
@@ -120,7 +120,7 @@ function RollingPaperPage() {
  */
 function ButtonList({ isEdit }) {
   return (
-    <div className={style["button-wrapper"]}>
+    <div className={styles["button-wrapper"]}>
       {isEdit ? (
         <button className="button width-92 font-16">삭제하기</button>
       ) : (
@@ -135,7 +135,7 @@ function ButtonList({ isEdit }) {
 // NOTE - 기본 모드에서만 메세지 추가 카드가 보인다.
 function CardList({ isEdit, messages, onCheck, deleteMessageIds }) {
   return (
-    <ol className={style["card-list"]}>
+    <ol className={styles["card-list"]}>
       {!isEdit && (
         <li>
           <FirstCard />
@@ -157,7 +157,7 @@ function CardList({ isEdit, messages, onCheck, deleteMessageIds }) {
 
 function SelectAll({ onCheckAll, deleteMessageIds, messages }) {
   return (
-    <div className={style["select-all-container"]}>
+    <div className={styles["select-all-container"]}>
       <input
         type="checkbox"
         id="selectAll"
