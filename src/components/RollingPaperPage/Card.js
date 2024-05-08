@@ -41,7 +41,7 @@ function Card({ message, isEdit, onCheck, isChecked }) {
     <>
       <article
         className={`${styles.card} ${isEdit ? styles.cursor : ""} ${
-          isChecked ? styles["checked-card"] : ""
+          isEdit && isChecked ? styles["checked-card"] : ""
         }`}
         onClick={handleCardClick}
       >
