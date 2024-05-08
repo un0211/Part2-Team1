@@ -47,37 +47,8 @@ function RollingPaperPage() {
     }
   };
 
-  // NOTE - 메세지 삭제하는 함수
-  const handleDeleteMessage = async () => {
-    const confirmation = window.confirm(
-      `${deleteMessageIds.length}개의 메세지를 삭제하시겠습니까?`
-    );
-    if (!confirmation) {
-      return;
-    }
-    // NOTE -Promise 병렬 처리 : 여러 개의 비동기 작업을 동시에 처리
-    try {
-      await Promise.all(
-        deleteMessageIds.map(async (messageId) => {
-          await delMessage(messageId);
-        })
-      );
-    } catch (e) {
-      setLoadingError(e);
-      return;
-    }
-    // NOTE - 삭제 후 처리되면 삭제한 메세지 제외한 메시지 목록 업데이트
-    setMessages((prev) =>
-      prev.filter((message) => !deleteMessageIds.includes(message.id))
-    );
-    // NOTE - 삭제 후, 삭제할 메세지 배열 초기화
-    setDeleteMessageIds([]);
-    // NOTE - 삭제 후, 페이지 이동
-    navigate(`/post/${postId}`);
-  };
-
   // NOTE - post, message, reaction 값 받아오는 함수
-  const handleLoad = useCallback(async () => {
+  const handleLoad = async () => {
     let postResult;
     let messageResult;
     try {
@@ -98,11 +69,38 @@ function RollingPaperPage() {
 
     const { results: newMessages } = messageResult;
     setMessages(newMessages);
-  }, [postId]);
+  };
+
+  // NOTE - 메세지 삭제하는 함수
+  const handleDeleteMessage = async () => {
+    const confirmation = window.confirm(
+      `${deleteMessageIds.length}개의 메세지를 삭제하시겠습니까?`
+    );
+    if (!confirmation) {
+      return;
+    }
+    // NOTE -Promise 병렬 처리 : 여러 개의 비동기 작업을 동시에 처리
+    try {
+      await Promise.all(
+        deleteMessageIds.map(async (messageId) => {
+          await delMessage(messageId);
+        })
+      );
+    } catch (e) {
+      setLoadingError(e);
+      return;
+    }
+    // NOTE - 삭제 후 데이터 다시 받아오는 작업
+    handleLoad();
+    // NOTE - 삭제 후, 삭제할 메세지 배열 초기화
+    setDeleteMessageIds([]);
+    // NOTE - 삭제 후, 페이지 이동
+    navigate(`/post/${postId}`);
+  };
 
   useEffect(() => {
     handleLoad();
-  }, [handleLoad]);
+  }, []);
 
   useEffect(() => {
     console.log("useEffect: " + deleteMessageIds);
