@@ -11,6 +11,14 @@ article.card {
   // NOTE pointer 추가
   cursor: pointer;
 
+  @media screen and (max-width: 1248px) {
+    height: 284px;
+  }
+
+  @media screen and (max-width: 768px) {
+    height: 230px;
+  }
+
   // NOTE
   .header {
     margin-bottom: 16px;
@@ -35,6 +43,10 @@ article.card {
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
+
+    @media screen and (max-width: 768px) {
+      -webkit-line-clamp: 2;
+    }
   }
 
   footer {

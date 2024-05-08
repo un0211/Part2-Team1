@@ -13,7 +13,7 @@ function RollingPaperPage() {
   const [postInfo, setPostInfo] = useState({
     name: "",
     backgroundColor: "",
-    backgroundImageURL: null,
+    style: null,
   });
   const [messages, setMessages] = useState([]);
   const [loadingError, setLoadingError] = useState(null);
@@ -64,7 +64,9 @@ function RollingPaperPage() {
     setPostInfo({
       name,
       backgroundColor,
-      backgroundImageURL,
+      style: backgroundImageURL
+        ? { backgroundImage: `url(${backgroundImageURL})` }
+        : null,
     });
 
     const { results: newMessages } = messageResult;
@@ -111,9 +113,8 @@ function RollingPaperPage() {
 
   return (
     <main
-      className={`${styles[postInfo.backgroundColor]} ${
-        postInfo.backgroundImageURL ? styles[postInfo.backgroundImageURL] : ""
-      } ${styles["page-main"]}`}
+      className={`${styles[postInfo.backgroundColor]} ${styles["page-main"]}`}
+      style={postInfo.style ?? {}}
     >
       <Nav postInfo={postInfo} />
       <section className={styles["card-section"]}>
