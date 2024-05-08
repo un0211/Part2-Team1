@@ -10,14 +10,13 @@ function SenderInfo({ profileImageURL, relationship, sender }) {
         alt="프로필 이미지"
       />
       <div>
-        <h2 className={`font-20 ${styles["media-18"]}`}>
-          From.{" "}
-          <span className={`font-20-bold ${styles["media-16"]}`}>{sender}</span>
+        <h2 className="font-20-20-18">
+          From. <span className="font-20-20-16-bold">{sender}</span>
         </h2>
         <p
           className={`${styles.badge} ${
             styles[RELATIONSHIPS[relationship]]
-          } font-14`}
+          } font-14-14-14`}
         >
           {relationship}
         </p>

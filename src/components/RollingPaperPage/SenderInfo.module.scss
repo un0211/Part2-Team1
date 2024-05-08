@@ -38,17 +38,4 @@
       color: var(--green500);
     }
   }
-
-  // NOTE - 폰트 media query 적용
-  .media-18 {
-    @media screen and (max-width: 768px) {
-      font-size: 18px;
-    }
-  }
-  .media-16 {
-    @media screen and (max-width: 768px) {
-      font-size: 16px;
-      line-height: 26px;
-    }
-  }
 }
