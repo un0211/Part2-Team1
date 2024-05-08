@@ -8,7 +8,7 @@ import CustomDropdown from "../components/CreateMessage/CustomDropdown";
 import profile1 from "../assets/images/img_profile_01.svg";
 import profile2 from "../assets/images/img_profile_02.svg";
 import profile3 from "../assets/images/img_profile_03.svg";
-import plus from "../assets/icons/ic_plus.svg";
+import plus from "../assets/icons/plus.svg";
 import ImageUpload from "../components/CreateMessage/ImageUpload";
 
 export default function PostFromPage() {

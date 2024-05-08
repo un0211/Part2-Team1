@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import PlusIcon from "assets/icons/plus.svg";
 import styles from "./Card.module.scss";
-
 import { formatDateWithDot } from "utils/rollingPaperPage";
 import SenderInfo from "./SenderInfo";
 import { FONT_CLASS_NAME } from "constants/rollingPaperPage";
