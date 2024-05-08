@@ -103,8 +103,11 @@ function RollingPaperPage() {
   }, []);
 
   useEffect(() => {
-    console.log("useEffect: " + deleteMessageIds);
-  }, [deleteMessageIds]);
+    // NOTE - 페이지 이동할 때 deleteMessageIds를 초기화
+    return () => {
+      setDeleteMessageIds([]);
+    };
+  }, [location.pathname]);
 
   return (
     <main
