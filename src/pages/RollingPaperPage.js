@@ -46,10 +46,6 @@ function RollingPaperPage() {
 
   // NOTE - 메세지 삭제하는 함수
   const handleDeleteMessage = async () => {
-    if (deleteMessageIds.length === 0) {
-      alert("삭제할 메세지를 선택해주세요.");
-      return;
-    }
     // NOTE -Promise 병렬 처리 : 여러 개의 비동기 작업을 동시에 처리
     try {
       await Promise.all(
@@ -117,7 +113,11 @@ function RollingPaperPage() {
               messages={messages}
             />
           )}
-          <ButtonList isEdit={isEdit} onDeleteMessages={handleDeleteMessage} />
+          <ButtonList
+            isEdit={isEdit}
+            onDeleteMessages={handleDeleteMessage}
+            deleteMessageIds={deleteMessageIds}
+          />
         </div>
         <CardList
           isEdit={isEdit}
@@ -135,11 +135,15 @@ function RollingPaperPage() {
 /* - 기본모드: 수정하기 버튼
  * - 수정모드: 수정완료, 전체삭제 버튼
  */
-function ButtonList({ isEdit, onDeleteMessages }) {
+function ButtonList({ isEdit, onDeleteMessages, deleteMessageIds }) {
   return (
     <div className={styles["button-wrapper"]}>
       {isEdit ? (
-        <button className="button width-92 font-16" onClick={onDeleteMessages}>
+        <button
+          className="button width-92 font-16"
+          onClick={onDeleteMessages}
+          disabled={!deleteMessageIds.length}
+        >
           삭제하기
         </button>
       ) : (
