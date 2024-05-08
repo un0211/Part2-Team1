@@ -118,13 +118,14 @@ function RollingPaperPage() {
     >
       <Nav postInfo={postInfo} />
       <section className={styles["card-section"]}>
-        <div className={styles["checkbox-button-container"]}>
+        <div className={styles["button-list-container"]}>
           <ButtonList
             isEdit={isEdit}
             onDeleteMessages={handleDeleteMessage}
             deleteMessageIds={deleteMessageIds}
             messages={messages}
             onCheckAll={handleCheckAll}
+            navigate={navigate}
           />
         </div>
         <CardList
@@ -149,12 +150,22 @@ function ButtonList({
   deleteMessageIds,
   onCheckAll,
   messages,
+  navigate,
 }) {
+  // NOTE - 뒤로가기
+  const handleGoBack = () => {
+    navigate(-1);
+  };
   return (
     <>
-      {/* TODO 뒤로가기 버튼 */}
+      <button
+        onClick={handleGoBack}
+        className={`font-20-20-20 ${styles["go-back-button"]}`}
+      >
+        ← 뒤로가기
+      </button>
       {isEdit ? (
-        <>
+        <div className={styles["checkbox-button-container"]}>
           <SelectAll
             onCheckAll={onCheckAll}
             deleteMessageIds={deleteMessageIds}
@@ -167,7 +178,7 @@ function ButtonList({
           >
             삭제하기
           </button>
-        </>
+        </div>
       ) : (
         <Link to="edit" className="button width-92 font-16">
           수정하기

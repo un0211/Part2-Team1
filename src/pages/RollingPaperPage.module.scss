@@ -70,9 +70,17 @@
   }
 }
 
-.checkbox-button-container {
+.button-list-container {
   margin-bottom: 15px;
   display: flex;
-  justify-content: flex-end;
-  gap: 20px;
+  justify-content: space-between;
+
+  .go-back-button {
+    background: none;
+  }
+
+  .checkbox-button-container {
+    display: flex;
+    gap: 20px;
+  }
 }
