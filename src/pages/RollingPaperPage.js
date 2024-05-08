@@ -44,14 +44,29 @@ function RollingPaperPage() {
     }
   };
 
+  // NOTE - 메세지 삭제하는 함수
   const handleDeleteMessage = async () => {
-    let deleteResult;
-    try {
-      deleteResult = await delMessage(deleteMessageIds);
-    } catch (e) {
-      setLoadingError(null);
+    if (deleteMessageIds.length === 0) {
+      alert("삭제할 메세지를 선택해주세요.");
       return;
     }
+    // NOTE -Promise 병렬 처리 : 여러 개의 비동기 작업을 동시에 처리
+    try {
+      await Promise.all(
+        deleteMessageIds.map(async (messageId) => {
+          await delMessage(messageId);
+        })
+      );
+    } catch (e) {
+      setLoadingError(e);
+      return;
+    }
+    // NOTE - 삭제 후 처리되면 삭제한 메세지 제외한 메시지 목록 업데이트
+    setMessages((prev) =>
+      prev.filter((message) => !deleteMessageIds.includes(message.id))
+    );
+    // NOTE - 삭제 후, 삭제할 메세지 배열 초기화
+    setDeleteMessageIds([]);
   };
 
   // NOTE - post, message, reaction 값 받아오는 함수
@@ -82,10 +97,6 @@ function RollingPaperPage() {
     handleLoad();
   }, [handleLoad]);
 
-  useEffect(() => {
-    console.log("useEffect: " + deleteMessageIds);
-  }, [deleteMessageIds]);
-
   return (
     <main
       className={`${style[postInfo.backgroundColor]} ${
@@ -102,7 +113,7 @@ function RollingPaperPage() {
               messages={messages}
             />
           )}
-          <ButtonList isEdit={isEdit} />
+          <ButtonList isEdit={isEdit} onDeleteMessages={handleDeleteMessage} />
         </div>
         <CardList
           isEdit={isEdit}
@@ -120,11 +131,13 @@ function RollingPaperPage() {
 /* - 기본모드: 수정하기 버튼
  * - 수정모드: 수정완료, 전체삭제 버튼
  */
-function ButtonList({ isEdit }) {
+function ButtonList({ isEdit, onDeleteMessages }) {
   return (
     <div className={style["button-wrapper"]}>
       {isEdit ? (
-        <button className="button width-92 font-16">삭제하기</button>
+        <button className="button width-92 font-16" onClick={onDeleteMessages}>
+          삭제하기
+        </button>
       ) : (
         <Link to="edit" className="button width-92 font-16">
           수정하기

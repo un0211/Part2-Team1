@@ -33,12 +33,13 @@ export async function getReaction(postId, offset = 0, limit = 3) {
 
 // NOTE - 메세지 삭제
 export async function delMessage(messageId) {
-  const response = fetch(`${TEAM_BASE_URL}/message/${messageId}`, {
+  const response = await fetch(`${TEAM_BASE_URL}messages/${messageId}/`, {
     method: "DELETE",
   });
   if (!response.ok) {
-    throw new Error("데이터를 삭제하는데 실패했습니다");
+    throw new Error("메세지를 삭제하는 데 실패했습니다");
   }
-  const body = await response.json();
-  return body;
+  // NOTE - status code 204 : 서버에서 요청 성공 but 응답으로 본문 (response body)을 반환하지 않음 -> 그럼 여기서 이렇게 코드를 끝내나 ..?
+  // const body = await response.json();
+  // return body;
 }
