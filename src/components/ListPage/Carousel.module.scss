@@ -4,6 +4,7 @@
   margin: 0 auto;
   text-align: left;
   position: relative;
+  // overflow: hidden;
   h1 {
     color: #000000;
     font-weight: 700;
@@ -52,4 +53,17 @@
 }
 .slick-slide div {
   cursor: pointer;
+}
+.slick-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.slick-prev {
+  left: 0;
+}
+
+.slick-next {
+  right: 0;
 }
