@@ -44,16 +44,6 @@
   position: absolute;
   top: 63px;
   right: 0px;
-
-  @media screen and (max-width: 1248px) {
-    // TODO: 버튼을 여러개로 바꾸면서 디자인 어떻게 할지 고민
-    top: 43px;
-  }
-
-  @media screen and (max-width: 768px) {
-    // TODO: 버튼을 여러개로 바꾸면서 디자인 어떻게 할지 고민
-    top: 30px;
-  }
 }
 
 .card-list {
