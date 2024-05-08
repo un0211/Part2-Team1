@@ -106,17 +106,12 @@ function RollingPaperPage() {
       <Nav postInfo={postInfo} />
       <section className={styles["card-section"]}>
         <div className={styles["checkbox-button-container"]}>
-          {isEdit && (
-            <SelectAll
-              onCheckAll={handleCheckAll}
-              deleteMessageIds={deleteMessageIds}
-              messages={messages}
-            />
-          )}
           <ButtonList
             isEdit={isEdit}
             onDeleteMessages={handleDeleteMessage}
             deleteMessageIds={deleteMessageIds}
+            messages={messages}
+            onCheckAll={handleCheckAll}
           />
         </div>
         <CardList
@@ -135,23 +130,37 @@ function RollingPaperPage() {
 /* - 기본모드: 수정하기 버튼
  * - 수정모드: 수정완료, 전체삭제 버튼
  */
-function ButtonList({ isEdit, onDeleteMessages, deleteMessageIds }) {
+function ButtonList({
+  isEdit,
+  onDeleteMessages,
+  deleteMessageIds,
+  onCheckAll,
+  messages,
+}) {
   return (
-    <div className={styles["button-wrapper"]}>
+    <>
+      {/* TODO 뒤로가기 버튼 */}
       {isEdit ? (
-        <button
-          className="button width-92 font-16"
-          onClick={onDeleteMessages}
-          disabled={!deleteMessageIds.length}
-        >
-          삭제하기
-        </button>
+        <>
+          <SelectAll
+            onCheckAll={onCheckAll}
+            deleteMessageIds={deleteMessageIds}
+            messages={messages}
+          />
+          <button
+            className="button width-92 font-16"
+            onClick={onDeleteMessages}
+            disabled={!deleteMessageIds.length}
+          >
+            삭제하기
+          </button>
+        </>
       ) : (
         <Link to="edit" className="button width-92 font-16">
           수정하기
         </Link>
       )}
-    </div>
+    </>
   );
 }
 
