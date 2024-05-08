@@ -19,7 +19,6 @@
 
   &:hover {
     background-color: var(--hover-btn);
-    cursor: pointer;
   }
 
   &:focus,
@@ -29,7 +28,6 @@
 
   &:disabled {
     background-color: var(--disabled-btn);
-    cursor: default;
   }
 }
 

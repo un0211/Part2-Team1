@@ -1,4 +1,4 @@
-import { useParams, useLocation, Link } from "react-router-dom";
+import { useParams, useLocation, Link, useNavigate } from "react-router-dom";
 import { delMessage, getMessage, getPost } from "apis/rollingPaperPage";
 import Nav from "components/RollingPaperPage/Nav";
 import styles from "./RollingPaperPage.module.scss";
@@ -21,6 +21,9 @@ function RollingPaperPage() {
   // NOTE - edit 모드 여부 확인
   const location = useLocation();
   const isEdit = location.pathname.includes("/edit");
+
+  // NOTE - 페이지 이동
+  const navigate = useNavigate();
 
   // NOTE - 삭제할 메세지 id 목록
   const [deleteMessageIds, setDeleteMessageIds] = useState([]);
@@ -69,6 +72,8 @@ function RollingPaperPage() {
     );
     // NOTE - 삭제 후, 삭제할 메세지 배열 초기화
     setDeleteMessageIds([]);
+    // NOTE - 삭제 후, 페이지 이동
+    navigate(`/post/${postId}`);
   };
 
   // NOTE - post, message, reaction 값 받아오는 함수
