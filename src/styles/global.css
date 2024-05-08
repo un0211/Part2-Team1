@@ -36,6 +36,7 @@ a {
   --black: #000000;
   --white: #ffffff;
   --surface: #f6f8ff;
+  --shadow: #00000014;
 
   /* button */
   --enabled-btn: #9935ff;

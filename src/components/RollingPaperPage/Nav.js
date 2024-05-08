@@ -1,7 +1,7 @@
 import styles from "./Nav.module.scss";
 import arrowDownIcon from "assets/icons/arrow_down.svg";
 import addEmojiIcon from "assets/icons/add_emoji.svg";
-import shareIcon from "assets/icons/share.svg";
+import DropDown from "./DropDown";
 
 function Nav({ postInfo }) {
   const { name, messageCount, messageProfiles } = postInfo;
@@ -42,9 +42,7 @@ function Buttons() {
         <p>추가</p>
       </button>
       <div className={styles.divider}></div>
-      <button type="button">
-        <img src={shareIcon} alt="공유" />
-      </button>
+      <DropDown />
     </div>
   );
 }

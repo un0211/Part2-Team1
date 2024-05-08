@@ -1,3 +1,5 @@
+@import "styles/button";
+
 .nav {
   height: 68px;
   background-color: var(--white);
@@ -10,6 +12,7 @@
     max-width: 1200px;
     width: 100%;
 
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -50,6 +53,10 @@
   align-items: center;
   gap: 13px;
 
+  * {
+    color: var(--gray900);
+  }
+
   .add-emoji {
     display: flex;
     align-items: center;
@@ -78,21 +85,8 @@
 }
 
 button {
-  background-color: var(--white);
+  @include btn-white;
   border-radius: 6px;
-
-  &:hover {
-    background-color: var(--gray100);
-  }
-
-  &:focus,
-  &:active {
-    background-color: var(--gray200);
-  }
-
-  &:disabled {
-    background-color: var(--disabled-btn);
-  }
 
   img {
     width: 24px;
