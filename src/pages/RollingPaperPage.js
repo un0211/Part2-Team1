@@ -1,4 +1,4 @@
-import { useParams, useLocation, Link } from "react-router-dom";
+import { useParams, useLocation, Link, useNavigate } from "react-router-dom";
 import { delMessage, getMessage, getPost } from "apis/rollingPaperPage";
 import Nav from "components/RollingPaperPage/Nav";
 import styles from "./RollingPaperPage.module.scss";
@@ -22,12 +22,16 @@ function RollingPaperPage() {
   const location = useLocation();
   const isEdit = location.pathname.includes("/edit");
 
+  // NOTE - 페이지 이동
+  const navigate = useNavigate();
+
   // NOTE - 삭제할 메세지 id 목록
   const [deleteMessageIds, setDeleteMessageIds] = useState([]);
 
   const handleCheck = (id, isChecked) => {
+    // NOTE - type of id -> String
+    // NOTE - input의 id 속성에  Number 타입을 속성값으로 주면 자동으로 String으로 형변환됨
     const numberId = Number(id);
-    // NOTE - id는 String이고, deleteMessageIds 배열 요소는 Number
     if (isChecked) {
       setDeleteMessageIds((prev) => [...prev, numberId]);
     } else {
@@ -37,25 +41,14 @@ function RollingPaperPage() {
 
   const handleCheckAll = (e) => {
     if (e.target.checked) {
-      // NOTE - messages 객체의 id 속성이 Number임 !
       setDeleteMessageIds(messages.map((item) => item.id));
     } else {
       setDeleteMessageIds([]);
     }
   };
 
-  const handleDeleteMessage = async () => {
-    let deleteResult;
-    try {
-      deleteResult = await delMessage(deleteMessageIds);
-    } catch (e) {
-      setLoadingError(null);
-      return;
-    }
-  };
-
   // NOTE - post, message, reaction 값 받아오는 함수
-  const handleLoad = useCallback(async () => {
+  const handleLoad = async () => {
     let postResult;
     let messageResult;
     try {
@@ -78,15 +71,45 @@ function RollingPaperPage() {
 
     const { results: newMessages } = messageResult;
     setMessages(newMessages);
-  }, [postId]);
+  };
+
+  // NOTE - 메세지 삭제하는 함수
+  const handleDeleteMessage = async () => {
+    const confirmation = window.confirm(
+      `${deleteMessageIds.length}개의 메세지를 삭제하시겠습니까?`
+    );
+    if (!confirmation) {
+      return;
+    }
+    // NOTE -Promise 병렬 처리 : 여러 개의 비동기 작업을 동시에 처리
+    try {
+      await Promise.all(
+        deleteMessageIds.map(async (messageId) => {
+          await delMessage(messageId);
+        })
+      );
+    } catch (e) {
+      setLoadingError(e);
+      return;
+    }
+    // NOTE - 삭제 후 데이터 다시 받아오는 작업
+    handleLoad();
+    // NOTE - 삭제 후, 삭제할 메세지 배열 초기화
+    setDeleteMessageIds([]);
+    // NOTE - 삭제 후, 페이지 이동
+    navigate(`/post/${postId}`);
+  };
 
   useEffect(() => {
     handleLoad();
-  }, [handleLoad]);
+  }, []);
 
   useEffect(() => {
-    console.log("useEffect: " + deleteMessageIds);
-  }, [deleteMessageIds]);
+    // NOTE - 페이지 이동할 때 deleteMessageIds를 초기화
+    return () => {
+      setDeleteMessageIds([]);
+    };
+  }, [location.pathname]);
 
   return (
     <main
@@ -95,14 +118,15 @@ function RollingPaperPage() {
     >
       <Nav postInfo={postInfo} />
       <section className={styles["card-section"]}>
-        {isEdit && (
-          <SelectAll
-            onCheckAll={handleCheckAll}
+        <div className={styles["checkbox-button-container"]}>
+          <ButtonList
+            isEdit={isEdit}
+            onDeleteMessages={handleDeleteMessage}
             deleteMessageIds={deleteMessageIds}
             messages={messages}
+            onCheckAll={handleCheckAll}
           />
-        )}
-        <ButtonList isEdit={isEdit} />
+        </div>
         <CardList
           isEdit={isEdit}
           messages={messages}
@@ -119,17 +143,37 @@ function RollingPaperPage() {
 /* - 기본모드: 수정하기 버튼
  * - 수정모드: 수정완료, 전체삭제 버튼
  */
-function ButtonList({ isEdit }) {
+function ButtonList({
+  isEdit,
+  onDeleteMessages,
+  deleteMessageIds,
+  onCheckAll,
+  messages,
+}) {
   return (
-    <div className={styles["button-wrapper"]}>
+    <>
+      {/* TODO 뒤로가기 버튼 */}
       {isEdit ? (
-        <button className="button width-92 font-16">삭제하기</button>
+        <>
+          <SelectAll
+            onCheckAll={onCheckAll}
+            deleteMessageIds={deleteMessageIds}
+            messages={messages}
+          />
+          <button
+            className="button width-92 font-16"
+            onClick={onDeleteMessages}
+            disabled={!deleteMessageIds.length}
+          >
+            삭제하기
+          </button>
+        </>
       ) : (
         <Link to="edit" className="button width-92 font-16">
           수정하기
         </Link>
       )}
-    </div>
+    </>
   );
 }
 
