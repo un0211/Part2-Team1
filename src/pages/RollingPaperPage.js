@@ -46,6 +46,12 @@ function RollingPaperPage() {
 
   // NOTE - 메세지 삭제하는 함수
   const handleDeleteMessage = async () => {
+    const confirmation = window.confirm(
+      `${deleteMessageIds.length}개의 메세지를 삭제하시겠습니까?`
+    );
+    if (!confirmation) {
+      return;
+    }
     // NOTE -Promise 병렬 처리 : 여러 개의 비동기 작업을 동시에 처리
     try {
       await Promise.all(
