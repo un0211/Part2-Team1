@@ -1,47 +1,72 @@
-.profiles{
-  width: 90px;
-  height: 28px;
+.profiles {
   position: relative;
   display: flex;
-  margin-top: 12px;
-  margin-bottom: 12px;
+  height: 28px; // NOTE - 프로필 사진이 없는 경우 때문에 추가
 
-  .profile{
+  .profile {
+    img {
+      border: 1px solid var(--white);
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+    }
+  }
+
+  .profile:nth-child(n + 2) {
     position: absolute;
-    border: 1px solid var(--white);
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    margin-right: 10px;
   }
-  .profile:nth-child(1) {
-    top: 0;
-    left: 0;
-  }
-  
+
   .profile:nth-child(2) {
     top: 0;
-    left: 15px;
+    left: 16px;
   }
 
   .profile:nth-child(3) {
     top: 0;
-    left: 30px;
+    left: 32px;
   }
-  .extra-profile{
+
+  .extra-profile {
     position: absolute;
-    border: 1px solid var(--white);
-    height: 25px;
-    border-radius: 40%;
     top: 0;
-    left: 45px;
-    padding: 5px 7px;
+    left: 48px;
+
+    border-radius: 30px;
+    border: 1px solid var(--white);
     background-color: var(--white);
+    color: var(--gray500);
+    padding: 5px 6px;
     text-align: center;
   }
 
-  .message-count{
-    text-decoration: none;
+  .message-count {
     color: var(--gray700);
+  }
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.list {
+  .profiles {
+    margin: 12px 0;
+  }
+}
+
+.post {
+  display: flex;
+  gap: 16px;
+
+  .profiles {
+    width: 76px;
+
+    .extra-profile {
+      border: 1px solid var(--gray-bolder);
+    }
+  }
+
+  .message-count {
+    font-size: 18px;
   }
 }

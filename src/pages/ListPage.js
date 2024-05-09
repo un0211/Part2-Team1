@@ -1,18 +1,45 @@
-import React from "react";
-import Carousel from "../components/ListPage/Carousel";
-import "./ListPage.module.scss";
-import styles from "./ListPage.module.scss";
-import "styles/global.css";
-import "styles/button.scss";
-import LinkButton from "components/common/LinkButton";
+import React, { useEffect, useState } from 'react';
+import { getList } from 'apis/ListPage';
+import Carousel from '../components/ListPage/Carousel';
+import './ListPage.module.scss';
+import styles from './ListPage.module.scss';
+import 'styles/global.css';
+import 'styles/button.scss';
+import LinkButton from 'components/common/LinkButton';
 
 function ListPage() {
+  const [bestItems, setBestItems] = useState([]);
+  const [recentItems, setRecentItems] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await getList();
+        const items = response.results;
+        const sortedBest = items.slice().sort((a, b) => b.messageCount - a.messageCount);
+        const sortedRecent = items.slice().sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        setBestItems(sortedBest);
+        setRecentItems(sortedRecent);
+      } catch (error) {
+        console.error('Error fetching slide items:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <div className={styles.wrapper}>
-      <Carousel title="인기 롤링 페이퍼🔥" />
-      <Carousel title="최근에 만든 롤링 페이퍼⭐" />
-      <div className={styles[`button-wrapper`]}>
-        <LinkButton className={styles.custom}text="나도 만들어 보기" url="/post"></LinkButton>
+      <div className={styles.track}>
+        <Carousel title="인기 롤링 페이퍼🔥" slideItems={bestItems} />
+        <Carousel title="최근에 만든 롤링 페이퍼⭐" slideItems={recentItems} />
+        <div className={styles[`button-wrapper`]}>
+          <LinkButton
+            className={styles.custom}
+            text="나도 만들어 보기"
+            url="/post"
+          ></LinkButton>
+        </div>
       </div>
     </div>
   );

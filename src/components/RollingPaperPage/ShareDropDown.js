@@ -1,26 +1,26 @@
 import copy from "copy-to-clipboard";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect } from "react";
 import { getKakaoShareSettings } from "utils/rollingPaperPage";
 import { KAKAO_JAVASCRIPT_KEY, SHARE_IMAGE_URL } from "constants";
 import shareIcon from "assets/icons/share.svg";
-import styles from "./DropDown.module.scss";
+import styles from "./ShareDropDown.module.scss";
 
 const KAKAO_BUTTON_NAME = "kakaotalk-sharing-btn";
 
-function DropDown({ name, onURLClick }) {
+function ShareDropDown({
+  name,
+  isDropDownHidden,
+  onShareButtonClick,
+  onKakaoClick,
+  onURLClick,
+}) {
   const domainURL = window.location.origin;
   const currentURL = window.location.href;
-  const [isHidden, setIsHidden] = useState(true);
 
-  const handleDropDownClick = (e) => {
-    setIsHidden((isHidden) => !isHidden);
-  };
-
-  const handleURLClick = () => {
+  const handleURLClick = useCallback(() => {
     copy(currentURL);
     onURLClick();
-    setIsHidden(true);
-  };
+  }, [currentURL, onURLClick]);
 
   const createKakaoButton = useCallback(() => {
     if (window.Kakao) {
@@ -49,18 +49,18 @@ function DropDown({ name, onURLClick }) {
   useEffect(() => {
     const kakaoButton = document.querySelector(`#${KAKAO_BUTTON_NAME}`);
     kakaoButton.addEventListener("click", () => {
-      setIsHidden(true);
+      onKakaoClick();
     });
-  }, []);
+  }, [onKakaoClick]);
 
   return (
     <div className={styles["drop-down"]}>
-      <button type="button" onClick={handleDropDownClick}>
+      <button type="button" onClick={onShareButtonClick}>
         <img src={shareIcon} alt="공유" />
       </button>
       <ul
         className={`${styles.menus} font-16-16-16 ${
-          isHidden ? styles.hidden : ""
+          isDropDownHidden ? styles.hidden : ""
         } `}
       >
         <li id={KAKAO_BUTTON_NAME} className={styles.menu}>
@@ -74,4 +74,4 @@ function DropDown({ name, onURLClick }) {
   );
 }
 
-export default DropDown;
+export default ShareDropDown;

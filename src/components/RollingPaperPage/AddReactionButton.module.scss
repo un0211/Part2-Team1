@@ -1,0 +1,29 @@
+.add-emoji-container {
+  position: relative;
+}
+
+.add-emoji {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  p {
+    font-size: 16px;
+    line-height: 1.5;
+
+    @media screen and (max-width: 768px) {
+      display: none;
+    }
+  }
+}
+
+em-emoji-picker {
+  position: absolute;
+  top: 46px;
+  right: 0px;
+  background-color: black;
+}
+
+.hidden {
+  display: none;
+}

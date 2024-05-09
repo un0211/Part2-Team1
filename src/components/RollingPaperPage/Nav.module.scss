@@ -85,21 +85,6 @@
     color: var(--gray900);
   }
 
-  .add-emoji {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-
-    p {
-      font-size: 16px;
-      line-height: 1.5;
-
-      @media screen and (max-width: 768px) {
-        display: none;
-      }
-    }
-  }
-
   button {
     padding: 6px 16px;
     border: 1px solid var(--gray300);

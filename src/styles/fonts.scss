@@ -42,6 +42,10 @@ $regular: 400;
   }
 }
 
+.font-18-18-18 {
+  @include font(18px);
+}
+
 .font-18-18-15 {
   @include font(18px);
   @media screen and (max-width: 768px) {
@@ -51,6 +55,13 @@ $regular: 400;
 
 .font-16-16-16 {
   @include font(16px);
+}
+
+.font-16-16-14 {
+  @include font(16px);
+  @media screen and (max-width: 768px) {
+    @include size(14px);
+  }
 }
 
 .font-14-14-14 {

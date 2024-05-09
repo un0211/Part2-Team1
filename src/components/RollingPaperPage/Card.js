@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { Link } from "react-router-dom";
 import { formatDateWithDot } from "utils/rollingPaperPage";
 import { FONT_CLASS_NAME } from "constants/rollingPaperPage";
@@ -20,22 +20,25 @@ function Card({ message, isEdit, onCheck, isChecked }) {
   const [isOpenModal, setIsOpenModal] = useState(false);
 
   // NOTE - 모달창 띄우는 함수
-  const handleCardClick = () => {
+  const handleCardClick = useCallback(() => {
     // NOTE - /edit 에서는 클릭하지 못하도록 처리
     if (!isEdit) {
       setIsOpenModal(true);
     }
-  };
+  }, [isEdit]);
 
   // NOTE - 모달창 닫는 함수
-  const handleCloseClick = () => {
+  const handleCloseClick = useCallback(() => {
     setIsOpenModal(false);
-  };
+  }, []);
 
   // NOTE -
-  const handleCheckId = (e) => {
-    onCheck(e.target.id, e.target.checked);
-  };
+  const handleCheckId = useCallback(
+    (e) => {
+      onCheck(e.target.id, e.target.checked);
+    },
+    [onCheck]
+  );
 
   return (
     <>
