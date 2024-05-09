@@ -43,6 +43,10 @@ $regular: 400;
   }
 }
 
+.font-16-16-16 {
+  @include font(16px);
+}
+
 .font-14-14-14 {
   @include font(14px);
 }
