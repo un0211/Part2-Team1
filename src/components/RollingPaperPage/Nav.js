@@ -15,7 +15,7 @@ function Nav({ postInfo }) {
           <div className={styles.divider}></div>
           <div className={styles.tools}>
             <Emojis />
-            <Buttons />
+            <Buttons name={name} />
           </div>
         </div>
       </div>
@@ -34,7 +34,7 @@ function Emojis() {
   );
 }
 
-function Buttons() {
+function Buttons({ name }) {
   return (
     <div className={styles.buttons}>
       <button type="button" className={styles["add-emoji"]}>
@@ -42,7 +42,7 @@ function Buttons() {
         <p>추가</p>
       </button>
       <div className={styles.divider}></div>
-      <DropDown />
+      <DropDown name={name} />
     </div>
   );
 }

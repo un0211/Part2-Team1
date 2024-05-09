@@ -1,4 +1,6 @@
 export const TEAM_BASE_URL = "https://rolling-api.vercel.app/6-1/";
+// NOTE - 카카오톡에 등록한 앱의 JavaScript Key
+export const KAKAO_JAVASCRIPT_KEY = "9fb684e1300bd15ee0ae8a44bb82caf4";
 
 export const ACQUAINTANCE = "지인";
 export const FRIEND = "친구";
