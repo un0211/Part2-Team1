@@ -1,0 +1,49 @@
+.profiles{
+  width: 90px;
+  height: 28px;
+  position: relative;
+  display: flex;
+  margin-top: 12px;
+  margin-bottom: 12px;
+
+  .profile{
+    position: absolute;
+    border: 1px solid var(--white);
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  .profile:nth-child(1) {
+    top: 0;
+    left: 0;
+  }
+  
+  .profile:nth-child(2) {
+    top: 0;
+    left: 15px;
+  }
+
+  .profile:nth-child(3) {
+    top: 0;
+    left: 30px;
+  }
+  .extra-profile{
+    position: absolute;
+    border: 1px solid var(--white);
+    // width: 25px;
+    height: 25px;
+    border-radius: 40%;
+    top: 0;
+    left: 45px;
+    // border-radius: 50%;
+    padding: 5px 7px;
+    background-color: var(--white);
+    text-align: center;
+  }
+
+  .message-count{
+    text-decoration: none;
+    color: var(--gray700);
+  }
+}
