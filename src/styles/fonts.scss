@@ -18,6 +18,10 @@ $regular: 400;
 /* NOTE - 반응형 폰트 정의
  * font-{PC}-{태블릿}-{모바일} 로 명명, 내림차순 정렬
  */
+.font-20-20-20 {
+  @include font(20px);
+}
+
 .font-20-20-18 {
   @include font(20px);
   @media screen and (max-width: 768px) {
@@ -37,6 +41,10 @@ $regular: 400;
   @media screen and (max-width: 768px) {
     @include size(15px);
   }
+}
+
+.font-16-16-16 {
+  @include font(16px);
 }
 
 .font-14-14-14 {
