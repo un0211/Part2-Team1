@@ -1,17 +1,24 @@
 @import url("reset.css");
+
+@font-face {
+  font-family: "Handletter";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/naverfont_05@1.0/Handletter.woff")
+    format("woff");
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui,
-    Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR",
-    "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
-    sans-serif;
 }
 
 body {
   margin: 0;
   background-color: #ffffff;
+  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui,
+    Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR",
+    "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+    sans-serif;
 }
 
 a {
@@ -29,6 +36,7 @@ a {
   --black: #000000;
   --white: #ffffff;
   --surface: #f6f8ff;
+  --shadow: #00000014;
 
   /* button */
   --enabled-btn: #9935ff;
@@ -167,4 +175,20 @@ a {
   font-size: 12px;
   font-weight: var(--regular);
   line-height: 1.5;
+}
+
+.font-pretendard {
+  font-family: "Pretendard";
+}
+
+.font-noto-sans {
+  font-family: "Noto Sans KR";
+}
+
+.font-nanum-myeongjo {
+  font-family: "Nanum Myeongjo";
+}
+
+.font-nanum-handletter {
+  font-family: "Handletter";
 }

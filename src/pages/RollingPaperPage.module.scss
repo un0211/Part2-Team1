@@ -1,24 +1,42 @@
 .page-main {
-  background-color: var(--rolling-bg-purple);
+  @media screen and (max-width: 768px) {
+    min-width: 360px;
+  }
+
+  &.beige {
+    background-color: var(--rolling-bg-orange);
+  }
+
+  &.blue {
+    background-color: var(--rolling-bg-blue);
+  }
+
+  &.purple {
+    background-color: var(--rolling-bg-purple);
+  }
+
+  &.green {
+    background-color: var(--rolling-bg-green);
+  }
 }
 
 .card-section {
   position: relative;
-  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
+  padding: 63px 0;
+
   @media screen and (max-width: 1248px) {
     margin: 0 24px;
+    padding: 15px 0;
   }
-  padding-top: 113px;
 
-  height: 1500px;
-}
+  @media screen and (max-width: 768px) {
+    margin: 0 20px;
+  }
 
-.button-wrapper {
-  position: absolute;
-  top: 63px;
-  right: 0px;
+  height: fit-content;
+  min-height: 1000px;
 }
 
 .card-list {
@@ -27,4 +45,40 @@
   display: grid;
   gap: 28px 24px;
   grid-template-columns: repeat(3, 1fr);
+
+  @media screen and (max-width: 1248px) {
+    gap: 16px;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.select-all-container {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+
+  input {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+  }
+}
+
+.button-list-container {
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+
+  .go-back-button {
+    background: none;
+  }
+
+  .checkbox-button-container {
+    display: flex;
+    gap: 20px;
+  }
 }

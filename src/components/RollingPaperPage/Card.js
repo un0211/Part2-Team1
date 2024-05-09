@@ -1,40 +1,94 @@
 import { Link } from "react-router-dom";
 import PlusIcon from "assets/icons/plus.svg";
-import style from "./Card.module.scss";
+import styles from "./Card.module.scss";
 import { formatDateWithDot } from "utils/rollingPaperPage";
+import SenderInfo from "./SenderInfo";
+import { FONT_CLASS_NAME } from "constants/rollingPaperPage";
+import CardModal from "./CardModal";
+import { useState } from "react";
 
-function Card({ message }) {
-  const { content, createdAt, profileImageURL, relationship, sender } = message;
+function Card({ message, isEdit, onCheck, isChecked }) {
+  const {
+    content,
+    createdAt,
+    profileImageURL,
+    relationship,
+    sender,
+    font,
+    id,
+  } = message;
+  const [isOpenModal, setIsOpenModal] = useState(false);
+
+  // NOTE - 모달창 띄우는 함수
+  const handleCardClick = () => {
+    // NOTE - /edit 에서는 클릭하지 못하도록 처리
+    if (!isEdit) {
+      setIsOpenModal(true);
+    }
+  };
+
+  // NOTE - 모달창 닫는 함수
+  const handleCloseClick = () => {
+    setIsOpenModal(false);
+  };
+
+  // NOTE -
+  const handleCheckId = (e) => {
+    onCheck(e.target.id, e.target.checked);
+  };
 
   return (
-    <article className={style.card}>
-      <header>
-        <img
-          className={style.profile}
-          src={profileImageURL}
-          alt="프로필 이미지"
+    <>
+      <article
+        className={`${styles.card} ${isEdit ? styles.cursor : ""} ${
+          isChecked ? styles["checked-card"] : ""
+        }`}
+        onClick={handleCardClick}
+      >
+        <header className={styles.header}>
+          <SenderInfo
+            profileImageURL={profileImageURL}
+            relationship={relationship}
+            sender={sender}
+          />
+          {/* // NOTE - checkbox */}
+          {isEdit && (
+            <div>
+              <input
+                id={id}
+                className={styles.checkbox}
+                type="checkbox"
+                onChange={handleCheckId}
+                checked={isChecked}
+              />
+              <label htmlFor={id} className={styles["checkbox-label"]}></label>
+            </div>
+          )}
+        </header>
+        <div className={styles.divider}></div>
+        <main className={`font-18-18-15 ${FONT_CLASS_NAME[font]}`}>
+          {content}
+        </main>
+        <footer className="font-12-12-12">
+          {formatDateWithDot(createdAt)}
+        </footer>
+      </article>
+      {isOpenModal && (
+        <CardModal
+          message={message}
+          isOpen={isOpenModal}
+          onModalClose={handleCloseClick}
         />
-        <div>
-          <h2 className="font_20_regular">
-            From. <span className="font_20_bold">{sender}</span>
-          </h2>
-          <p>{relationship}</p>
-        </div>
-      </header>
-      <div className={style.divider}></div>
-      <main className="font_18_regular">{content}</main>
-      <footer className="font_12_regular">
-        {formatDateWithDot(createdAt)}
-      </footer>
-    </article>
+      )}
+    </>
   );
 }
 
 export function FirstCard() {
   return (
-    <div className={`${style.card} ${style["card-first"]}`}>
+    <div className={`${styles.card} ${styles["card-first"]}`}>
       <Link to="message">
-        <div className={style["add-button"]}>
+        <div className={styles["add-button"]}>
           <img src={PlusIcon} alt="메세지 추가" />
         </div>
       </Link>
