@@ -9,7 +9,6 @@ import ProfileSelect from "components/CreateMessage/ProfileSelect";
 import {
   FONT_CLASS_NAME,
   MEMBER_CLASS_NAME,
-  PROFILES,
   DEFUALT_PROFILE
 
 } from "constants/postMessagePage";
