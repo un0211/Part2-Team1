@@ -21,7 +21,7 @@ function CardList({ slideItems }) {
   } = slideItems;
 
   const cardStyle = {
-    backgroundColor: backgroundColor,
+    backgroundColor: `var(--${backgroundColor}200)`,
     backgroundImage: `url(${backgroundImageURL})`,
   };
   console.log(slideItems);
