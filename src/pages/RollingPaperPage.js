@@ -1,9 +1,14 @@
 import { useParams, useLocation, Link, useNavigate } from "react-router-dom";
-import { delMessage, getMessage, getPost } from "apis/rollingPaperPage";
+import {
+  delMessage,
+  delPaper,
+  getMessage,
+  getPost,
+} from "apis/rollingPaperPage";
 import Nav from "components/RollingPaperPage/Nav";
 import styles from "./RollingPaperPage.module.scss";
 import Card, { FirstCard } from "components/RollingPaperPage/Card";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 function RollingPaperPage() {
   // NOTE - id 받아오는 작업
@@ -83,6 +88,7 @@ function RollingPaperPage() {
     }
     // NOTE -Promise 병렬 처리 : 여러 개의 비동기 작업을 동시에 처리
     try {
+      setLoadingError(null);
       await Promise.all(
         deleteMessageIds.map(async (messageId) => {
           await delMessage(messageId);
@@ -98,6 +104,26 @@ function RollingPaperPage() {
     setDeleteMessageIds([]);
     // NOTE - 삭제 후, 페이지 이동
     navigate(`/post/${postId}`);
+  };
+
+  // NOTE - 롤링페이퍼 삭제하는 함수
+  const handleDeletePaper = async () => {
+    const confirmation = window.confirm(
+      `주의: ${postInfo.name}님의 롤링페이퍼를 삭제하시겠습니까?`
+    );
+    if (!confirmation) {
+      return;
+    }
+    try {
+      setLoadingError(null);
+      await delPaper(postId);
+    } catch (e) {
+      setLoadingError(e);
+      return;
+    }
+
+    // NOTE - 삭제 후, 페이지 이동
+    navigate("/list");
   };
 
   useEffect(() => {
@@ -126,6 +152,7 @@ function RollingPaperPage() {
             messages={messages}
             onCheckAll={handleCheckAll}
             navigate={navigate}
+            onDeletePaper={handleDeletePaper}
           />
         </div>
         <CardList
@@ -151,6 +178,7 @@ function ButtonList({
   onCheckAll,
   messages,
   navigate,
+  onDeletePaper,
 }) {
   // NOTE - 뒤로가기
   const handleGoBack = () => {
@@ -164,26 +192,31 @@ function ButtonList({
       >
         ← 뒤로가기
       </button>
-      {isEdit ? (
-        <div className={styles["checkbox-button-container"]}>
-          <SelectAll
-            onCheckAll={onCheckAll}
-            deleteMessageIds={deleteMessageIds}
-            messages={messages}
-          />
-          <button
-            className="button width-92 font-16"
-            onClick={onDeleteMessages}
-            disabled={!deleteMessageIds.length}
-          >
-            삭제하기
-          </button>
-        </div>
-      ) : (
-        <Link to="edit" className="button width-92 font-16">
-          수정하기
-        </Link>
-      )}
+      <div className={styles["checkbox-button-container"]}>
+        {isEdit ? (
+          <>
+            <SelectAll
+              onCheckAll={onCheckAll}
+              deleteMessageIds={deleteMessageIds}
+              messages={messages}
+            />
+            <button
+              className="button width-92 font-16"
+              onClick={onDeleteMessages}
+              disabled={!deleteMessageIds.length}
+            >
+              삭제하기
+            </button>
+          </>
+        ) : (
+          <>
+            <button onClick={onDeletePaper}>페이지 삭제</button>
+            <Link to="edit" className="button width-92 font-16">
+              수정하기
+            </Link>
+          </>
+        )}
+      </div>
     </>
   );
 }
