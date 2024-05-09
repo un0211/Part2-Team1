@@ -47,6 +47,18 @@
   }
 }
 
+@mixin btn-red {
+  background-color: var(--error-red);
+
+  &:hover {
+    background-color: #c43131;
+  }
+
+  &:active {
+    background-color: #b02e2e;
+  }
+}
+
 .button {
   @include btn-basic;
 

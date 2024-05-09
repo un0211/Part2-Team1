@@ -119,7 +119,7 @@ function RollingPaperPage() {
   // NOTE - 롤링페이퍼 삭제하는 함수
   const handleDeletePaper = async () => {
     const confirmation = window.confirm(
-      `주의: ${postInfo.name}님의 롤링페이퍼를 삭제하시겠습니까?`
+      `${postInfo.name}님의 롤링페이퍼를 삭제하시겠습니까?`
     );
     if (!confirmation) {
       return;
@@ -220,7 +220,13 @@ function ButtonList({
           </>
         ) : (
           <>
-            <button onClick={onDeletePaper}>페이지 삭제</button>
+            <button
+              type="button"
+              onClick={onDeletePaper}
+              className={`font-16-16-16 ${styles["delete-paper-button"]}`}
+            >
+              페이지 삭제
+            </button>
             <Link to="edit" className="button width-92 font-16">
               수정하기
             </Link>
