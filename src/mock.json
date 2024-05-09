@@ -1,155 +1,377 @@
 [
   {
-    "id": 1,
-    "name": "서영",
-    "createdAt": 1625340973562,
-    "updatedAt": 1625340973562,
-    "postCount": 20,
-    "emoji": 300
-  },
-  {
-    "id": 2,
-    "name": "세민",
-    "createdAt": 1625184428289,
-    "updatedAt": 1625184428289,
-    "postCount": 50,
-    "emoji": 68
-  },
-  {
-    "id": 3,
-    "name": "혜원",
-    "createdAt": 1625330203116,
-    "updatedAt": 1625330203116,
-    "postCount": 70,
-    "emoji": 2
-  },
-  {
-    "id": 4,
-    "name": "익재",
-    "createdAt": 1625028045602,
-    "updatedAt": 1625028045602,
-    "postCount": 25,
-    "emoji": 89
-  },
-  {
-    "id": 5,
-    "name": "서하",
-    "createdAt": 1625308116667,
-    "updatedAt": 1625308116667,
-    "postCount": 30,
-    "emoji": 36
-  },
-  {
-    "id": 6,
-    "name": "가은",
-    "createdAt": 1624613250969,
-    "updatedAt": 1624613250969,
-    "postCount": 65,
-    "emoji": 93
-  },
-  {
-    "id": 7,
-    "name": "민주",
-    "createdAt": 1624889538305,
-    "updatedAt": 1624889538305,
-    "postCount": 15,
-    "emoji": 25
-  },
-  {
-    "id": 8,
-    "name": "민지",
-    "createdAt": 1625233200164,
-    "updatedAt": 1625233200164,
-    "postCount": 90,
-    "emoji": 292.6
-  },
-  {
-    "id": 9,
-    "name": "지호",
-    "createdAt": 1624998701293,
-    "updatedAt": 1624998701293,
-    "postCount": 50,
-    "emoji": 321
-  },
-  {
-    "id": 10,
-    "name": "주용",
-    "createdAt": 1624685150667,
-    "updatedAt": 1624685150667,
-    "postCount": 43,
-    "emoji": 57
-  },
-  {
-    "id": 11,
-    "name": "동혁",
-    "createdAt": 1625334567466,
-    "updatedAt": 1625334567466,
-    "postCount": 52,
-    "emoji": 7
-  },
-  {
-    "id": 12,
-    "name": "동현",
-    "createdAt": 1624725579386,
-    "updatedAt": 1624725579386,
-    "postCount": 46,
-    "emoji": 14
-  },
-  {
-    "id": 13,
-    "name": "지운",
-    "createdAt": 1625138235656,
-    "updatedAt": 1625138235656,
-    "postCount": 75,
-    "emoji": 4
-  },
-  {
-    "id": 14,
-    "name": "란",
-    "createdAt": 1624881277160,
-    "updatedAt": 1624881277160,
-    "postCount": 26,
-    "emoji": 19
-  },
-  {
-    "id": 15,
-    "name": "유정",
-    "createdAt": 1625433571061,
-    "updatedAt": 1625433571061,
-    "postCount": 77,
-    "emoji": 25
-  },
-  {
-    "id": 16,
-    "name": "지원",
-    "createdAt": 1624602034639,
-    "updatedAt": 1624602034639,
-    "postCount": 24,
-    "emoji": 62
-  },
-  {
-    "id": 17,
-    "name": "경민",
-    "createdAt": 1625171694068,
-    "updatedAt": 1625171694068,
-    "postCount": 16,
-    "emoji": 18
-  },
-  {
-    "id": 18,
-    "name": "하정",
-    "createdAt": 1625254300792,
-    "updatedAt": 1625254300792,
-    "postCount": 16,
-    "emoji": 110
-  },
-  {
-    "id": 19,
-    "name": "고은",
-    "createdAt": 1625353806439,
-    "updatedAt": 1625353806439,
-    "postCount": 33,
-    "emoji": 2
-  }
-
+    "count": 5,
+    "next": "https://rolling-api.vercel.app/0-3/recipients/?limit=3&offset=4&sort=like",
+    "previous": "https://rolling-api.vercel.app/0-3/recipients/?limit=3&sort=like",
+    "results": [
+      {
+        "id": 14,
+        "name": "이윤수",
+        "backgroundColor": "purple",
+        "backgroundImageURL": null,
+        "createdAt": "2023-11-01T08:01:30.234149Z",
+        "messageCount": 0,
+        "recentMessages": [],
+        "reactionCount": 0,
+        "topReactions": []
+      },
+      {
+        "id": 11,
+        "name": "손동욱",
+        "backgroundColor": "purple",
+        "backgroundImageURL": null,
+        "createdAt": "2023-10-31T09:58:37.631384Z",
+        "messageCount": 6,
+        "recentMessages": [
+          {
+            "id": 28,
+            "recipientId": 11,
+            "sender": "test user2",
+            "profileImageURL": "https://fastly.picsum.photos/id/311/200/200.jpg?hmac=CHiYGYQ3Xpesshw5eYWH7U0Kyl9zMTZLQuRDU4OtyH8",
+            "relationship": "지인",
+            "content": "테스트 목적의 메세지3",
+            "font": "나눔명조",
+            "createdAt": "2023-10-31T09:58:47.272896Z"
+          },
+          {
+            "id": 27,
+            "recipientId": 11,
+            "sender": "test user2",
+            "profileImageURL": "https://fastly.picsum.photos/id/311/200/200.jpg?hmac=CHiYGYQ3Xpesshw5eYWH7U0Kyl9zMTZLQuRDU4OtyH8",
+            "relationship": "지인",
+            "content": "테스트 목적의 메세지3",
+            "font": "나눔명조",
+            "createdAt": "2023-10-31T09:58:46.889479Z"
+          },
+          {
+            "id": 26,
+            "recipientId": 11,
+            "sender": "test user3",
+            "profileImageURL": "https://fastly.picsum.photos/id/311/200/200.jpg?hmac=CHiYGYQ3Xpesshw5eYWH7U0Kyl9zMTZLQuRDU4OtyH8",
+            "relationship": "지인",
+            "content": "테스트 목적의 메세지3",
+            "font": "나눔명조",
+            "createdAt": "2023-10-31T09:58:46.889479Z"
+          }
+        ],
+        "reactionCount": 23,
+        "topReactions": [
+          {
+            "id": 24,
+            "emoji": "😀",
+            "count": 15
+          },
+          {
+            "id": 25,
+            "emoji": "🥹",
+            "count": 8
+          },
+          {
+            "id": 25,
+            "emoji": "🤭",
+            "count": 4
+          }
+        ]
+      }
+    ]},
+    {
+      "count": 5,
+      "next": "https://rolling-api.vercel.app/0-3/recipients/?limit=3&offset=4&sort=like",
+      "previous": "https://rolling-api.vercel.app/0-3/recipients/?limit=3&sort=like",
+      "results": [
+        {
+          "id": 14,
+          "name": "이윤수",
+          "backgroundColor": "purple",
+          "backgroundImageURL": null,
+          "createdAt": "2023-11-01T08:01:30.234149Z",
+          "messageCount": 0,
+          "recentMessages": [],
+          "reactionCount": 0,
+          "topReactions": []
+        },
+        {
+          "id": 11,
+          "name": "손동욱",
+          "backgroundColor": "purple",
+          "backgroundImageURL": null,
+          "createdAt": "2023-10-31T09:58:37.631384Z",
+          "messageCount": 6,
+          "recentMessages": [
+            {
+              "id": 28,
+              "recipientId": 11,
+              "sender": "test user2",
+              "profileImageURL": "https://fastly.picsum.photos/id/311/200/200.jpg?hmac=CHiYGYQ3Xpesshw5eYWH7U0Kyl9zMTZLQuRDU4OtyH8",
+              "relationship": "지인",
+              "content": "테스트 목적의 메세지3",
+              "font": "나눔명조",
+              "createdAt": "2023-10-31T09:58:47.272896Z"
+            },
+            {
+              "id": 27,
+              "recipientId": 11,
+              "sender": "test user2",
+              "profileImageURL": "https://fastly.picsum.photos/id/311/200/200.jpg?hmac=CHiYGYQ3Xpesshw5eYWH7U0Kyl9zMTZLQuRDU4OtyH8",
+              "relationship": "지인",
+              "content": "테스트 목적의 메세지3",
+              "font": "나눔명조",
+              "createdAt": "2023-10-31T09:58:46.889479Z"
+            },
+            {
+              "id": 26,
+              "recipientId": 11,
+              "sender": "test user3",
+              "profileImageURL": "https://fastly.picsum.photos/id/311/200/200.jpg?hmac=CHiYGYQ3Xpesshw5eYWH7U0Kyl9zMTZLQuRDU4OtyH8",
+              "relationship": "지인",
+              "content": "테스트 목적의 메세지3",
+              "font": "나눔명조",
+              "createdAt": "2023-10-31T09:58:46.889479Z"
+            }
+          ],
+          "reactionCount": 23,
+          "topReactions": [
+            {
+              "id": 24,
+              "emoji": "😀",
+              "count": 15
+            },
+            {
+              "id": 25,
+              "emoji": "🥹",
+              "count": 8
+            },
+            {
+              "id": 25,
+              "emoji": "🤭",
+              "count": 4
+            }
+          ]
+        }
+      ]},
+      {
+        "count": 5,
+        "next": "https://rolling-api.vercel.app/0-3/recipients/?limit=3&offset=4&sort=like",
+        "previous": "https://rolling-api.vercel.app/0-3/recipients/?limit=3&sort=like",
+        "results": [
+          {
+            "id": 14,
+            "name": "이윤수",
+            "backgroundColor": "purple",
+            "backgroundImageURL": null,
+            "createdAt": "2023-11-01T08:01:30.234149Z",
+            "messageCount": 0,
+            "recentMessages": [],
+            "reactionCount": 0,
+            "topReactions": []
+          },
+          {
+            "id": 11,
+            "name": "손동욱",
+            "backgroundColor": "purple",
+            "backgroundImageURL": null,
+            "createdAt": "2023-10-31T09:58:37.631384Z",
+            "messageCount": 6,
+            "recentMessages": [
+              {
+                "id": 28,
+                "recipientId": 11,
+                "sender": "test user2",
+                "profileImageURL": "https://fastly.picsum.photos/id/311/200/200.jpg?hmac=CHiYGYQ3Xpesshw5eYWH7U0Kyl9zMTZLQuRDU4OtyH8",
+                "relationship": "지인",
+                "content": "테스트 목적의 메세지3",
+                "font": "나눔명조",
+                "createdAt": "2023-10-31T09:58:47.272896Z"
+              },
+              {
+                "id": 27,
+                "recipientId": 11,
+                "sender": "test user2",
+                "profileImageURL": "https://fastly.picsum.photos/id/311/200/200.jpg?hmac=CHiYGYQ3Xpesshw5eYWH7U0Kyl9zMTZLQuRDU4OtyH8",
+                "relationship": "지인",
+                "content": "테스트 목적의 메세지3",
+                "font": "나눔명조",
+                "createdAt": "2023-10-31T09:58:46.889479Z"
+              },
+              {
+                "id": 26,
+                "recipientId": 11,
+                "sender": "test user3",
+                "profileImageURL": "https://fastly.picsum.photos/id/311/200/200.jpg?hmac=CHiYGYQ3Xpesshw5eYWH7U0Kyl9zMTZLQuRDU4OtyH8",
+                "relationship": "지인",
+                "content": "테스트 목적의 메세지3",
+                "font": "나눔명조",
+                "createdAt": "2023-10-31T09:58:46.889479Z"
+              }
+            ],
+            "reactionCount": 23,
+            "topReactions": [
+              {
+                "id": 24,
+                "emoji": "😀",
+                "count": 15
+              },
+              {
+                "id": 25,
+                "emoji": "🥹",
+                "count": 8
+              },
+              {
+                "id": 25,
+                "emoji": "🤭",
+                "count": 4
+              }
+            ]
+          }
+        ]},
+        {
+          "count": 5,
+          "next": "https://rolling-api.vercel.app/0-3/recipients/?limit=3&offset=4&sort=like",
+          "previous": "https://rolling-api.vercel.app/0-3/recipients/?limit=3&sort=like",
+          "results": [
+            {
+              "id": 14,
+              "name": "이윤수",
+              "backgroundColor": "purple",
+              "backgroundImageURL": null,
+              "createdAt": "2023-11-01T08:01:30.234149Z",
+              "messageCount": 0,
+              "recentMessages": [],
+              "reactionCount": 0,
+              "topReactions": []
+            },
+            {
+              "id": 11,
+              "name": "손동욱",
+              "backgroundColor": "purple",
+              "backgroundImageURL": null,
+              "createdAt": "2023-10-31T09:58:37.631384Z",
+              "messageCount": 6,
+              "recentMessages": [
+                {
+                  "id": 28,
+                  "recipientId": 11,
+                  "sender": "test user2",
+                  "profileImageURL": "https://fastly.picsum.photos/id/311/200/200.jpg?hmac=CHiYGYQ3Xpesshw5eYWH7U0Kyl9zMTZLQuRDU4OtyH8",
+                  "relationship": "지인",
+                  "content": "테스트 목적의 메세지3",
+                  "font": "나눔명조",
+                  "createdAt": "2023-10-31T09:58:47.272896Z"
+                },
+                {
+                  "id": 27,
+                  "recipientId": 11,
+                  "sender": "test user2",
+                  "profileImageURL": "https://fastly.picsum.photos/id/311/200/200.jpg?hmac=CHiYGYQ3Xpesshw5eYWH7U0Kyl9zMTZLQuRDU4OtyH8",
+                  "relationship": "지인",
+                  "content": "테스트 목적의 메세지3",
+                  "font": "나눔명조",
+                  "createdAt": "2023-10-31T09:58:46.889479Z"
+                },
+                {
+                  "id": 26,
+                  "recipientId": 11,
+                  "sender": "test user3",
+                  "profileImageURL": "https://fastly.picsum.photos/id/311/200/200.jpg?hmac=CHiYGYQ3Xpesshw5eYWH7U0Kyl9zMTZLQuRDU4OtyH8",
+                  "relationship": "지인",
+                  "content": "테스트 목적의 메세지3",
+                  "font": "나눔명조",
+                  "createdAt": "2023-10-31T09:58:46.889479Z"
+                }
+              ],
+              "reactionCount": 23,
+              "topReactions": [
+                {
+                  "id": 24,
+                  "emoji": "😀",
+                  "count": 15
+                },
+                {
+                  "id": 25,
+                  "emoji": "🥹",
+                  "count": 8
+                },
+                {
+                  "id": 25,
+                  "emoji": "🤭",
+                  "count": 4
+                }
+              ]
+            }
+          ]},
+          {
+            "count": 5,
+            "next": "https://rolling-api.vercel.app/0-3/recipients/?limit=3&offset=4&sort=like",
+            "previous": "https://rolling-api.vercel.app/0-3/recipients/?limit=3&sort=like",
+            "results": [
+              {
+                "id": 14,
+                "name": "이윤수",
+                "backgroundColor": "purple",
+                "backgroundImageURL": null,
+                "createdAt": "2023-11-01T08:01:30.234149Z",
+                "messageCount": 0,
+                "recentMessages": [],
+                "reactionCount": 0,
+                "topReactions": []
+              },
+              {
+                "id": 11,
+                "name": "손동욱",
+                "backgroundColor": "purple",
+                "backgroundImageURL": null,
+                "createdAt": "2023-10-31T09:58:37.631384Z",
+                "messageCount": 6,
+                "recentMessages": [
+                  {
+                    "id": 28,
+                    "recipientId": 11,
+                    "sender": "test user2",
+                    "profileImageURL": "https://fastly.picsum.photos/id/311/200/200.jpg?hmac=CHiYGYQ3Xpesshw5eYWH7U0Kyl9zMTZLQuRDU4OtyH8",
+                    "relationship": "지인",
+                    "content": "테스트 목적의 메세지3",
+                    "font": "나눔명조",
+                    "createdAt": "2023-10-31T09:58:47.272896Z"
+                  },
+                  {
+                    "id": 27,
+                    "recipientId": 11,
+                    "sender": "test user2",
+                    "profileImageURL": "https://fastly.picsum.photos/id/311/200/200.jpg?hmac=CHiYGYQ3Xpesshw5eYWH7U0Kyl9zMTZLQuRDU4OtyH8",
+                    "relationship": "지인",
+                    "content": "테스트 목적의 메세지3",
+                    "font": "나눔명조",
+                    "createdAt": "2023-10-31T09:58:46.889479Z"
+                  },
+                  {
+                    "id": 26,
+                    "recipientId": 11,
+                    "sender": "test user3",
+                    "profileImageURL": "https://fastly.picsum.photos/id/311/200/200.jpg?hmac=CHiYGYQ3Xpesshw5eYWH7U0Kyl9zMTZLQuRDU4OtyH8",
+                    "relationship": "지인",
+                    "content": "테스트 목적의 메세지3",
+                    "font": "나눔명조",
+                    "createdAt": "2023-10-31T09:58:46.889479Z"
+                  }
+                ],
+                "reactionCount": 23,
+                "topReactions": [
+                  {
+                    "id": 24,
+                    "emoji": "😀",
+                    "count": 15
+                  },
+                  {
+                    "id": 25,
+                    "emoji": "🥹",
+                    "count": 8
+                  },
+                  {
+                    "id": 25,
+                    "emoji": "🤭",
+                    "count": 4
+                  }
+                ]
+              }
+            ]}
 ]
