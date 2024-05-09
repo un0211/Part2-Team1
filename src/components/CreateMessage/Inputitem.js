@@ -1,8 +1,7 @@
 import React from "react";
 import styled, { css } from "styled-components";
 
-// input과 textarea의 스타일이 대부분 중복되기 때문에 styled-components의 css 헬퍼 함수를 사용해 공통 스타일을 정의했어요.
-// `${}`로 정의된 스타일을 삽입하면 여러 styled component 내에서 코드를 재사용할 수 있어요.
+
 const inputStyle = css`
   padding: 16px 24px;
   background-color: ${({ theme }) => theme.colors.gray[1]};

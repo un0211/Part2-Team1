@@ -1,0 +1,24 @@
+import {
+  ACQUAINTANCE,
+  FRIEND,
+  COWORKER,
+  FAMILY,
+  NOTO_SANS,
+  PRETENDARD,
+  NANUM_MYEONGJO,
+  NANUM_HANDLETTER,
+} from "constants";
+
+export const MEMBER_CLASS_NAME = {
+  [ACQUAINTANCE]: 1,
+  [FRIEND]: 2,
+  [COWORKER]: 3,
+  [FAMILY]: 4,
+};
+
+export const FONT_CLASS_NAME = {
+  [NOTO_SANS]: 1,
+  [PRETENDARD]: 2,
+  [NANUM_MYEONGJO]: 3,
+  [NANUM_HANDLETTER]: 4,
+};

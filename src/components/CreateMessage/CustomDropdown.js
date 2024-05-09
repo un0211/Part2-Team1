@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import ArrowIcon from "../../assets/icons/arrow_down.svg";
+import ArrowIcon from "assets/icons/arrow_down.svg";
+import styles from "styles/PostMessagePage.module.scss";
 
 export default function CustomDropdown({ props }) {
-  // useState를 컴포넌트의 최상위 레벨에서 호출
-  const [selected, setSelected] = useState(props && props.length ? props[0].text : "No items available");
+  const [selected, setSelected] = useState(props && props.length ? props[0] : "No items available");
   const [active, setActive] = useState(false);
 
-  // props가 없거나 비어있는 경우를 먼저 처리
   if (!props || props.length === 0) {
     return <p>{selected}</p>;
   }
@@ -21,23 +20,21 @@ export default function CustomDropdown({ props }) {
   };
 
   return (
-    <div className="message-form__inputs" onClick={handleToggle}>
+    <div className={styles["message-form__inputs"]} onClick={handleToggle}>
       {selected}
       <img
-        className="message-form__arrow-icon"
+        className={styles["message-form__arrow-icon"]}
         alt="아래 방향 화살표 아이콘"
         src={ArrowIcon}
       />
       <div
-        className={`message-form__drop-down-menu-box ${
-          active ? "message-form__drop-down-menu-box--active" : ""
-        }`}
+        className={`${styles["message-form__drop-down-menu-box"]} ${active ? styles["message-form__drop-down-menu-box--active"] : ""}`}
         onClick={handleChange}
       >
-        {props.map((item) => {
+        {props.map((item, index) => {
           return (
-            <div className="message-form__drop-down-menu" key={item.id}>
-              {item.text}
+            <div className={styles["message-form__drop-down-menu"]} key={index}>
+              {item}
             </div>
           );
         })}
