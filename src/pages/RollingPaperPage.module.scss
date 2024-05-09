@@ -1,3 +1,5 @@
+@import "styles/button";
+
 .page-main {
   @media screen and (max-width: 768px) {
     min-width: 360px;
@@ -72,6 +74,12 @@
   margin-bottom: 15px;
   display: flex;
   justify-content: space-between;
+
+  .delete-paper-button {
+    @include btn-red;
+    @include btn-small;
+    color: var(--white);
+  }
 
   .go-back-button {
     background: none;

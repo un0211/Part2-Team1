@@ -47,6 +47,22 @@
   }
 }
 
+@mixin btn-red {
+  background-color: var(--error-red);
+
+  &:hover {
+    background-color: #c43131;
+  }
+
+  &:active {
+    background-color: #b02e2e;
+  }
+
+  &:disabled {
+    background-color: var(--disabled-btn);
+  }
+}
+
 .button {
   @include btn-basic;
 

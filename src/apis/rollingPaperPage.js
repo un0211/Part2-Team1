@@ -39,7 +39,15 @@ export async function delMessage(messageId) {
   if (!response.ok) {
     throw new Error("메세지를 삭제하는 데 실패했습니다");
   }
-  // NOTE - status code 204 : 서버에서 요청 성공 but 응답으로 본문 (response body)을 반환하지 않음 -> 그럼 여기서 이렇게 코드를 끝내나 ..?
-  // const body = await response.json();
-  // return body;
+  // TODO - 리팩토링
+}
+
+// NOTE - 롤링페이퍼 삭제
+export async function delPaper(postId) {
+  const response = await fetch(`${TEAM_BASE_URL}recipients/${postId}/`, {
+    method: "DELETE",
+  });
+  if (!response.ok) {
+    throw new Error("롤링페이퍼를 삭제하는 데 실패했습니다");
+  }
 }
