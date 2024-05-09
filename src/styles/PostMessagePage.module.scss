@@ -73,11 +73,10 @@
     border-radius: 8px;
     padding: 8px;
     min-height: 300px;
-  }
-
-  &-text-editor-wrapper {
-    position: relative;
-    z-index: 1;
+    &--wrapper {
+      position: relative;
+      z-index: 1;
+    }
   }
 
   &-inputs::placeholder {
@@ -86,66 +85,64 @@
     letter-spacing: -0.01em;
   }
 
-  &-drop-down-menu-box {
-    z-index: 2;
-    position: absolute;
-    width: 320px;
-    top: 60px;
-    left: 0;
-    border: 1px solid var(--gray300);
-    border-radius: 8px;
-    background-color: var(--white);
-    display: none;
-  }
   &-arrow-icon {
     width: 16px;
     height: 16px;
   }
-  &-drop-down-menu-box--active {
-    display: block;
-  }
+
   &-drop-down-menu {
     display: flex;
     align-items: center;
     padding: 12px 16px;
-
     height: 50px;
     cursor: pointer;
     z-index: 1;
-  }
+    &:hover {
+      background-color: var(--gray100);
+    }
 
-  &-drop-down-menu:hover {
-    background-color: var(--gray100);
+    &-box {
+      z-index: 2;
+      position: absolute;
+      width: 320px;
+      top: 60px;
+      left: 0;
+      border: 1px solid var(--gray300);
+      border-radius: 8px;
+      background-color: var(--white);
+      display: none;
+      &-active {
+        display: block;
+      }
+    }
   }
-
   &-profile-container {
     display: flex;
     justify-content: space-between;
-  }
+    &-options-title {
+      @include font-style(16, Regular);
+      line-height: 26px;
+      letter-spacing: -0.01em;
+    }
+    &-options {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      height: 122px;
+      margin-left: 32px;
+    }
 
-  &-profile-options-title {
-    @include font-style(16, Regular);
-    line-height: 26px;
-    letter-spacing: -0.01em;
-  }
-  &-profile-options {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    height: 122px;
-    margin-left: 32px;
-  }
-  &-profile-preview {
-    width: 40px;
-    height: 40px;
-    overflow: hidden;
-    border-radius: 100px;
-  }
-
-  &-profile-preview-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2px;
+    &-preview {
+      width: 40px;
+      height: 40px;
+      overflow: hidden;
+      border-radius: 100px;
+      &--container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2px;
+      }
+    }
   }
 
   &-text-area {
@@ -155,13 +152,12 @@
     border-radius: 8px;
     border: 1px solid var(--gray300);
     resize: none;
-  }
-
-  &-text-area::placeholder {
-    @include font-style(16, Regular);
-    line-height: 26px;
-    letter-spacing: -0.01em;
-    color: var(--gray900);
+    &::placeholder {
+      @include font-style(16, Regular);
+      line-height: 26px;
+      letter-spacing: -0.01em;
+      color: var(--gray900);
+    }
   }
 
   &-submit {
