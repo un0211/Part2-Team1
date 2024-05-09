@@ -13,10 +13,8 @@ export default function Header() {
           <h1 className={styles["logo-text"]}>Ro1ling</h1>
         </Link>
         {(location.pathname === "/" || location.pathname === "/list") && (
-          <Link to="/post">
-            <button className={styles["post-button"]}>
-              롤링 페이퍼 만들기
-            </button>
+          <Link to="/post" className={styles["post-button"]}>
+            롤링 페이퍼 만들기
           </Link>
         )}
       </div>
