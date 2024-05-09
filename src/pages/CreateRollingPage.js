@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import style from "./CreateRollingPage.module.scss";
+import styles from "./CreateRollingPage.module.scss";
 
 function CreateRollingPage() {
   const inputRef = useRef(null);
@@ -40,7 +40,7 @@ function CreateRollingPage() {
     if (error) {
       return (
         <input
-          className={style.inputToNameError}
+          className={styles.inputToNameError}
           placeholder="값을 입력해 주세요"
           ref={errorInputRef}
           type="text"
@@ -53,7 +53,7 @@ function CreateRollingPage() {
     } else {
       return (
         <input
-          className={style.inputToName}
+          className={styles.inputToName}
           placeholder="받는 사람 이름을 입력해주세요"
           ref={inputRef}
           type="text"
@@ -82,28 +82,28 @@ function CreateRollingPage() {
   }, [error]);
 
   return (
-    <main className={style.main}>
-      <section className={style.inputSection}>
-        <span className={style.inputTitle}>To.</span>
+    <main className={styles.main}>
+      <section className={styles.inputSection}>
+        <span className={styles.inputTitle}>To.</span>
         {renderInput(error)}
       </section>
 
-      <section className={style.backgroubdImageSection}>
-        <span className={style.backgroundImageTitle}>
+      <section className={styles.backgroundImageSection}>
+        <span className={styles.backgroundImageTitle}>
           배경화면을 선택해주세요.
         </span>
-        <span className={style.backgroundImageSubTitle}>
+        <span className={styles.backgroundImageSubTitle}>
           컬러를 선택하거나,이미지를 선택할 수 있습니다.
         </span>
-        <div className={style.buttonSection}>
+        <div className={styles.buttonSection}>
           <button
-            className={`${style.optionButton} ${selectOption === "color" ? style.color : ""}`}
+            className={`${styles.optionButton} ${selectOption === "color" ? styles.color : ""}`}
             onClick={() => handleSelectOption("color")}
           >
             컬러
           </button>
           <button
-            className={`${style.optionButton} ${selectOption === "image" ? style.image : ""}`}
+            className={`${styles.optionButton} ${selectOption === "image" ? styles.image : ""}`}
             onClick={() => handleSelectOption("image")}
           >
             이미지
@@ -111,14 +111,14 @@ function CreateRollingPage() {
         </div>
 
         {selectOption === "color" ? (
-          <div className={style.colorRollingSection}>
-            <div className={style.firstColor}></div>
-            <div className={style.secondColor}></div>
-            <div className={style.thirdColor}></div>
-            <div className={style.fourColor}></div>
+          <div className={styles.colorRollingSection}>
+            <div className={styles.firstColor}></div>
+            <div className={styles.secondColor}></div>
+            <div className={styles.thirdColor}></div>
+            <div className={styles.fourColor}></div>
           </div>
         ) : (
-          <div className={style.imageRollingSection}>
+          <div className={styles.imageRollingSection}>
             <div>이미지1</div>
             <div>이미지2</div>
             <div>이미지3</div>
@@ -127,8 +127,8 @@ function CreateRollingPage() {
         )}
       </section>
 
-      <section className={style.createRollingPage}>
-        <button className={style.createRollingPageButton}>생성하기</button>
+      <section className={styles.createRollingPage}>
+        <button className={styles.createRollingPageButton}>생성하기</button>
       </section>
     </main>
   );
