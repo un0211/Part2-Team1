@@ -19,6 +19,8 @@ function RollingPaperPage() {
     name: "",
     backgroundColor: "",
     style: null,
+    messageCount: 0,
+    messageProfiles: [],
   });
   const [messages, setMessages] = useState([]);
   const [loadingError, setLoadingError] = useState(null);
@@ -65,13 +67,21 @@ function RollingPaperPage() {
       return;
     }
 
-    const { name, backgroundColor, backgroundImageURL } = postResult;
+    const {
+      name,
+      backgroundColor,
+      backgroundImageURL,
+      messageCount,
+      recentMessages,
+    } = postResult;
     setPostInfo({
       name,
       backgroundColor,
       style: backgroundImageURL
         ? { backgroundImage: `url(${backgroundImageURL})` }
         : null,
+      messageCount,
+      messageProfiles: recentMessages.map((message) => message.profileImageURL),
     });
 
     const { results: newMessages } = messageResult;

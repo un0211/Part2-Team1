@@ -31,6 +31,22 @@
   }
 }
 
+@mixin btn-white {
+  background-color: var(--white);
+
+  &:hover {
+    background-color: var(--gray100);
+  }
+
+  &:active {
+    background-color: var(--gray200);
+  }
+
+  &:disabled {
+    background-color: var(--disabled-btn);
+  }
+}
+
 .button {
   @include btn-basic;
 

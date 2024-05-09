@@ -18,6 +18,13 @@ $regular: 400;
 /* NOTE - 반응형 폰트 정의
  * font-{PC}-{태블릿}-{모바일} 로 명명, 내림차순 정렬
  */
+.font-28-28-18-bold {
+  @include font(28px, $bold);
+  @media screen and (max-width: 768px) {
+    @include size(18px);
+  }
+}
+
 .font-20-20-20 {
   @include font(20px);
 }
