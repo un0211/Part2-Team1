@@ -1,0 +1,52 @@
+.container {
+  width: 1190px;
+  margin: 0 auto;
+  text-align: left;
+  position: relative;
+
+  h1 {
+    color: #000000;
+    font-weight: 700;
+    line-height: 2;
+    font-size: 28px;
+    padding-top: 50px;
+  }  
+
+  p {
+    color: #555;
+  }
+
+  .slide_item {
+      width: 275px !important;
+      height: 260px;
+      margin-right: 20px;
+      padding: 30px 24px;
+      border-radius: 16px;
+      border: 1px solid black;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+
+      h3 {
+        margin-top: 10px;
+      }
+
+      p {
+        margin-top: 5px;
+        font-size: 14px;
+        color: #555;
+      }
+
+      div {
+        margin-top: 15px;
+
+        span {
+          font-weight: bold;
+          color: #333;
+        }
+      }
+    }
+    
+    .slide_item:last-child{
+      margin-right: 0;
+    }
+}
