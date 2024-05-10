@@ -1,6 +1,8 @@
-import { useParams, useLocation, Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useParams, useLocation, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 import {
   delMessage,
   delPaper,
@@ -8,10 +10,10 @@ import {
   getPost,
 } from "apis/rollingPaperPage";
 import { TOAST_DEFAULT_SETTING } from "constants/rollingPaperPage";
+import ButtonList from "components/RollingPaperPage/ButtonList";
+import Card, { FirstCard } from "components/RollingPaperPage/Card";
 import Nav from "components/RollingPaperPage/Nav";
 import styles from "./RollingPaperPage.module.scss";
-import Card, { FirstCard } from "components/RollingPaperPage/Card";
-import { useEffect, useState } from "react";
 
 function RollingPaperPage() {
   // NOTE - id 받아오는 작업
@@ -27,6 +29,8 @@ function RollingPaperPage() {
   });
   const [messages, setMessages] = useState([]);
   const [loadingError, setLoadingError] = useState(null);
+  // NOTE - 삭제할 메세지 id 목록
+  const [deleteMessageIds, setDeleteMessageIds] = useState([]);
 
   // NOTE - edit 모드 여부 확인
   const location = useLocation();
@@ -35,9 +39,7 @@ function RollingPaperPage() {
   // NOTE - 페이지 이동
   const navigate = useNavigate();
 
-  // NOTE - 삭제할 메세지 id 목록
-  const [deleteMessageIds, setDeleteMessageIds] = useState([]);
-
+  // NOTE - 토스트 메세지 출력
   const notifyURLCopy = () =>
     toast.success("URL이 복사 되었습니다.", TOAST_DEFAULT_SETTING);
 
@@ -160,17 +162,15 @@ function RollingPaperPage() {
     >
       <Nav postInfo={postInfo} onURLClick={notifyURLCopy} />
       <section className={styles["card-section"]}>
-        <div className={styles["button-list-container"]}>
-          <ButtonList
-            isEdit={isEdit}
-            onDeleteMessages={handleDeleteMessage}
-            deleteMessageIds={deleteMessageIds}
-            messages={messages}
-            onCheckAll={handleCheckAll}
-            navigate={navigate}
-            onDeletePaper={handleDeletePaper}
-          />
-        </div>
+        <ButtonList
+          isEdit={isEdit}
+          onDeleteMessages={handleDeleteMessage}
+          deleteMessageIds={deleteMessageIds}
+          messages={messages}
+          onCheckAll={handleCheckAll}
+          navigate={navigate}
+          onDeletePaper={handleDeletePaper}
+        />
         <CardList
           isEdit={isEdit}
           messages={messages}
@@ -181,66 +181,6 @@ function RollingPaperPage() {
         <ToastContainer />
       </section>
     </main>
-  );
-}
-
-// NOTE
-/* - 기본모드: 수정하기 버튼
- * - 수정모드: 수정완료, 전체삭제 버튼
- */
-function ButtonList({
-  isEdit,
-  onDeleteMessages,
-  deleteMessageIds,
-  onCheckAll,
-  messages,
-  navigate,
-  onDeletePaper,
-}) {
-  // NOTE - 뒤로가기
-  const handleGoBack = () => {
-    navigate(-1);
-  };
-  return (
-    <>
-      <button
-        onClick={handleGoBack}
-        className={`font-20-20-20 ${styles["go-back-button"]}`}
-      >
-        ← 뒤로가기
-      </button>
-      <div className={styles["checkbox-button-container"]}>
-        {isEdit ? (
-          <>
-            <SelectAll
-              onCheckAll={onCheckAll}
-              deleteMessageIds={deleteMessageIds}
-              messages={messages}
-            />
-            <button
-              className="button width-92 font-16"
-              onClick={onDeleteMessages}
-              disabled={!deleteMessageIds.length}
-            >
-              삭제하기
-            </button>
-          </>
-        ) : (
-          <>
-            <button
-              type="button"
-              onClick={onDeletePaper}
-              className={`font-16-16-16 ${styles["delete-paper-button"]}`}
-            >
-              페이지 삭제
-            </button>
-            <Link to="edit" className="button width-92 font-16">
-              수정하기
-            </Link>
-          </>
-        )}
-      </div>
-    </>
   );
 }
 
@@ -264,22 +204,6 @@ function CardList({ isEdit, messages, onCheck, deleteMessageIds }) {
         </li>
       ))}
     </ol>
-  );
-}
-
-function SelectAll({ onCheckAll, deleteMessageIds, messages }) {
-  return (
-    <div className={styles["select-all-container"]}>
-      <input
-        type="checkbox"
-        id="selectAll"
-        onChange={onCheckAll}
-        checked={deleteMessageIds.length === messages.length}
-      />
-      <label className="font-20" htmlFor="selectAll">
-        전체 선택
-      </label>
-    </div>
   );
 }
 
