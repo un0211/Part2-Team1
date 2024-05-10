@@ -97,6 +97,7 @@
         text-align: center;
         border: 1px solid var(--white);
         color: var(--gray900);
+        cursor: pointer;
 
         &.color,
         &.image {
@@ -153,6 +154,7 @@
       text-align: center;
       border: 1px solid var(--primary-color);
       background-color: var(--primary-color);
+      cursor: pointer;
     }
   }
 }
