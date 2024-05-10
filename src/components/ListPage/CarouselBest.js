@@ -8,14 +8,15 @@ import image_prev from "assets/icons/arrow_prev.png";
 import image_next from "assets/icons/arrow_next.png";
 import CardList from "./CardList";
 
-function Carousel({ title }) {
+function CarouselBest({ title }) {
   const [slideItems, setSlideItems] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await getList();
-        setSlideItems(response.results); 
+        const sortedItems = response.results.sort((a, b) => b.messageCount - a.messageCount);
+        setSlideItems(sortedItems); 
       } catch (error) {
         console.error("Error fetching slide items:", error);
       }
@@ -111,4 +112,4 @@ function PrevArrow(props) {
   );
 }
 
-export default Carousel;
+export default CarouselBest;

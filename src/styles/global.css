@@ -46,7 +46,7 @@ a {
 
   /* rollin-paper background color */
   --rolling-bg-purple: #ecd9ff;
-  --rolling-bg-orange: #ffe2ad;
+  --rolling-bg-beige: #ffe2ad;
   --rolling-bg-blue: #b1e4ff;
   --rolling-bg-green: #d0f5c3;
 
@@ -82,11 +82,11 @@ a {
   --blue200: #b1e4ff;
   --blue100: #e2f5ff;
 
-  --orange500: #ff8832;
-  --orange400: #ffc583;
-  --orange300: #ffc583;
-  --orange200: #ffe2ad;
-  --orange100: #fff0d6;
+  --beige500: #ff8832;
+  --beige400: #ffc583;
+  --beige300: #ffc583;
+  --beige200: #ffe2ad;
+  --beige100: #fff0d6;
 
   /* font-weight */
   --bold: 700;
