@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
+import copy from "copy-to-clipboard";
 import { getKakaoShareSettings } from "utils/rollingPaperPage";
 import { KAKAO_JAVASCRIPT_KEY, SHARE_IMAGE_URL } from "constants";
 import styles from "./DropDown.module.scss";
@@ -15,7 +16,8 @@ function DropDown({ name }) {
     setIsHidden((isHidden) => !isHidden);
   };
 
-  const handleMenuClick = () => {
+  const handleURLClick = () => {
+    copy(currentURL);
     setIsHidden(true);
   };
 
@@ -63,7 +65,7 @@ function DropDown({ name }) {
         <li id={KAKAO_BUTTON_NAME} className={styles.menu}>
           카카오톡 공유
         </li>
-        <li className={styles.menu} onClick={() => handleMenuClick()}>
+        <li className={styles.menu} onClick={() => handleURLClick()}>
           URL 공유
         </li>
       </ul>
