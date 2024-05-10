@@ -35,7 +35,7 @@ function ButtonList({
               messages={messages}
             />
             <button
-              className="button width-92 font-16"
+              className="button width-92 font-16-16-16"
               onClick={onDeleteMessages}
               disabled={!deleteMessageIds.length}
             >
@@ -51,7 +51,7 @@ function ButtonList({
             >
               페이지 삭제
             </button>
-            <Link to="edit" className="button width-92 font-16">
+            <Link to="edit" className="button width-92 font-16-16-16">
               수정하기
             </Link>
           </>
@@ -70,7 +70,7 @@ function SelectAll({ onCheckAll, deleteMessageIds, messages }) {
         onChange={onCheckAll}
         checked={deleteMessageIds.length === messages.length}
       />
-      <label className="font-20" htmlFor="selectAll">
+      <label className="font-20-20-18" htmlFor="selectAll">
         전체 선택
       </label>
     </div>
