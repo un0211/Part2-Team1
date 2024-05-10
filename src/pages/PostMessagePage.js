@@ -1,43 +1,37 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { EditorState } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import styles from "styles/PostMessagePage.module.scss";
-import basicProfile from "assets/images/profile_basic.svg";
 import CustomDropdown from "components/CreateMessage/CustomDropdown";
-import profile1 from "assets/images/profile_01.svg";
-import profile2 from "assets/images/profile_02.svg";
-import profile3 from "assets/images/profile_03.svg";
-import plus from "assets/icons/plus.svg";
+import ProfileOptions from "components/CreateMessage/ProfileSelect";
 import { MEMBER_CLASS_NAME, FONT_CLASS_NAME } from "constants/postMessagePage";
 
-export default function PostFromPage() {
+export default function PostMessageForm() {
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
-  const [selectedProfile, setSelectedProfile] = useState(basicProfile);
+  const [setPostImg] = useState([]);
+  const [previewImg, setPreviewImg] = useState("");
+  const profileOptionsRef = useRef(null);
 
   const handleEditorChange = (state) => {
     setEditorState(state);
   };
 
-  const handleProfileClick = (profile) => {
-    if (profile === plus) {
-      document.getElementById("fileInput").click();
-    } else {
-      setSelectedProfile(profile);
-    }
+  const handleFileChange = (event) => {
+    let fileArr = event.target.files;
+    setPostImg(Array.from(fileArr));
+
+    let fileRead = new FileReader();
+    fileRead.onload = function () {
+      setPreviewImg(fileRead.result);
+    };
+
+    fileRead.readAsDataURL(fileArr[0]);
   };
 
-  const profiles = [
-    profile1,
-    profile2,
-    profile3,
-    profile1,
-    profile2,
-    profile3,
-    profile1,
-    profile2,
-    profile3,
-  ];
+  const handleSubmit = () => {
+   
+  };
 
   return (
     <div className={styles["message-form"]}>
@@ -52,34 +46,20 @@ export default function PostFromPage() {
         />
       </div>
 
-      <div className={styles["message-form-profile"]}>
-        <span className={styles["message-form-title"]}>프로필 이미지</span>
-        <div className={styles["message-form-profile-container"]}>
-          <img src={selectedProfile} alt="프로필 이미지 미리보기" />
-          <div className={styles["message-form-profile-options"]}>
-            <span className={styles["message-form-profile-options-title"]}>
-              프로필 이미지를 선택해주세요!
-            </span>
-            <div className={styles["message-form-profile-preview-container"]}>
-              {profiles.map((profile, i) => (
-                <img
-                  key={i}
-                  className={styles["message-form-profile-preview"]}
-                  src={profile}
-                  alt={`프로필 이미지 ${i + 1}`}
-                  onClick={() => handleProfileClick(profile)}
-                />
-              ))}
-              <img
-                className={styles["message-form-profile-preview"]}
-                src={plus}
-                alt="프로필 이미지 추가"
-                onClick={() => handleProfileClick(plus)}
-              />
-            </div>
-          </div>
+      <ProfileOptions ref={profileOptionsRef} /> 
+
+      <input
+        type="file"
+        id="fileInput"
+        onChange={handleFileChange}
+        style={{ display: "none" }}
+      />
+
+      {previewImg && (
+        <div className="image-upload-container">
+          <img src={previewImg} alt="Preview" />
         </div>
-      </div>
+      )}
 
       <div className={styles["message-form-relationship"]}>
         <label htmlFor="select" className={styles["message-form-title"]}>
@@ -106,7 +86,7 @@ export default function PostFromPage() {
         <span className={styles["message-form-title"]}>폰트 선택</span>
         <CustomDropdown props={Object.keys(FONT_CLASS_NAME)} />
       </div>
-      <button className={styles["message-form-submit"]}>생성하기</button>
+      <button className={styles["message-form-submit"]} onClick={handleSubmit}>생성하기</button>
     </div>
   );
 }
