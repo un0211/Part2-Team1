@@ -1,9 +1,9 @@
-import { useCallback, useEffect, useState } from "react";
 import copy from "copy-to-clipboard";
+import { useCallback, useEffect, useState } from "react";
 import { getKakaoShareSettings } from "utils/rollingPaperPage";
 import { KAKAO_JAVASCRIPT_KEY, SHARE_IMAGE_URL } from "constants";
-import styles from "./DropDown.module.scss";
 import shareIcon from "assets/icons/share.svg";
+import styles from "./DropDown.module.scss";
 
 const KAKAO_BUTTON_NAME = "kakaotalk-sharing-btn";
 

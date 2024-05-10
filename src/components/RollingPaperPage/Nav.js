@@ -1,7 +1,7 @@
-import styles from "./Nav.module.scss";
+import DropDown from "./DropDown";
 import arrowDownIcon from "assets/icons/arrow_down.svg";
 import addEmojiIcon from "assets/icons/add_emoji.svg";
-import DropDown from "./DropDown";
+import styles from "./Nav.module.scss";
 
 function Nav({ postInfo, onURLClick }) {
   const { name, messageCount, messageProfiles } = postInfo;
