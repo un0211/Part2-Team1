@@ -11,8 +11,8 @@ function Nav({ postInfo, onURLClick }) {
       <div className={styles.contents}>
         <div className={`${styles.name} font-28-28-18-bold`}>To. {name}</div>
         <div className={styles["post-info"]}>
-          <>{messageCount}명이 작성했어요</>
-          <div className={styles.divider}></div>
+          <div className={styles["PC-only"]}>{messageCount}명이 작성했어요</div>
+          <div className={`${styles.divider} ${styles["PC-only"]}`}></div>
           <div className={styles.tools}>
             <Emojis />
             <Buttons name={name} onURLClick={onURLClick} />
