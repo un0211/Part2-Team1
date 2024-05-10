@@ -11,6 +11,7 @@ function Section({
   controlMargin,
   controlFlex,
   description,
+  imgMarginTop,
 }) {
   return (
     <section className={`${styles.section}`}>
@@ -29,7 +30,13 @@ function Section({
           <h2 className={`${styles.title} font-24-24-18-bold`}>{title}</h2>
           <p className={`${styles.description} font-18-18-15`}>{description}</p>
         </div>
-        <img src={imgSrc} alt="롤링페이퍼 예시" className={styles.exampleImg} />
+        <img
+          src={imgSrc}
+          alt="롤링페이퍼 예시"
+          className={`${styles.exampleImg} ${
+            imgMarginTop ? styles["img-margin-top"] : ""
+          }`}
+        />
       </div>
     </section>
   );
@@ -54,8 +61,12 @@ export default function MainPage() {
         rowReverse={"rowReverse"}
         controlFlex={"flexEnd"}
         description={"롤링 페이퍼에 이모지를 추가할 수 있어요."}
+        imgMarginTop={"img-margin-top"}
       />
-      <Link to="/list" className="button width-280 align-center font-18">
+      <Link
+        to="/list"
+        className={`button width-280 align-center font-18 ${styles["list-button"]}`}
+      >
         구경해보기
       </Link>
     </main>
