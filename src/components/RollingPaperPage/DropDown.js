@@ -7,7 +7,7 @@ import shareIcon from "assets/icons/share.svg";
 
 const KAKAO_BUTTON_NAME = "kakaotalk-sharing-btn";
 
-function DropDown({ name }) {
+function DropDown({ name, onURLClick }) {
   const domainURL = window.location.origin;
   const currentURL = window.location.href;
   const [isHidden, setIsHidden] = useState(true);
@@ -18,6 +18,7 @@ function DropDown({ name }) {
 
   const handleURLClick = () => {
     copy(currentURL);
+    onURLClick();
     setIsHidden(true);
   };
 

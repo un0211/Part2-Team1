@@ -1,10 +1,13 @@
 import { useParams, useLocation, Link, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
   delMessage,
   delPaper,
   getMessage,
   getPost,
 } from "apis/rollingPaperPage";
+import { TOAST_DEFAULT_SETTING } from "constants/rollingPaperPage";
 import Nav from "components/RollingPaperPage/Nav";
 import styles from "./RollingPaperPage.module.scss";
 import Card, { FirstCard } from "components/RollingPaperPage/Card";
@@ -34,6 +37,9 @@ function RollingPaperPage() {
 
   // NOTE - 삭제할 메세지 id 목록
   const [deleteMessageIds, setDeleteMessageIds] = useState([]);
+
+  const notifyURLCopy = () =>
+    toast.success("URL이 복사 되었습니다.", TOAST_DEFAULT_SETTING);
 
   const handleCheck = (id, isChecked) => {
     // NOTE - type of id -> String
@@ -152,7 +158,7 @@ function RollingPaperPage() {
       className={`${styles[postInfo.backgroundColor]} ${styles["page-main"]}`}
       style={postInfo.style ?? {}}
     >
-      <Nav postInfo={postInfo} />
+      <Nav postInfo={postInfo} onURLClick={notifyURLCopy} />
       <section className={styles["card-section"]}>
         <div className={styles["button-list-container"]}>
           <ButtonList
@@ -172,6 +178,7 @@ function RollingPaperPage() {
           deleteMessageIds={deleteMessageIds}
         />
         {loadingError?.message ? <p>{loadingError.message}</p> : ""}
+        <ToastContainer />
       </section>
     </main>
   );

@@ -27,3 +27,14 @@ export const FONT_CLASS_NAME = {
   [NANUM_MYEONGJO]: "font-nanum-myeongjo",
   [NANUM_HANDLETTER]: "font-nanum-handletter",
 };
+
+export const TOAST_DEFAULT_SETTING = {
+  position: "bottom-center",
+  autoClose: 5000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+  theme: "dark",
+};
