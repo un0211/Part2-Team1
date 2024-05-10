@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styles from "./ButtonList.module.scss";
 
 // NOTE
@@ -15,23 +15,16 @@ function ButtonList({
   onDeletePaper,
   postId,
 }) {
-  const location = useLocation();
   // NOTE - 뒤로가기
   const handleGoBack = () => {
-    if (location.pathname === `/post/${postId}`) {
-      navigate("/list");
-    } else if (location.pathname === `/post/${postId}/edit`) {
-      navigate(`/post/${postId}`);
-    }
+    navigate(isEdit ? `/post/${postId}` : "/list");
   };
   return (
     <div className={styles["button-list-container"]}>
       <button
         onClick={handleGoBack}
         className={`font-20-20-20 ${styles["go-back-button"]}`}
-      >
-        ← 뒤로가기
-      </button>
+      ></button>
       <div className={styles["checkbox-button-container"]}>
         {isEdit ? (
           <>
