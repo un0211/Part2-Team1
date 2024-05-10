@@ -170,6 +170,7 @@ function RollingPaperPage() {
           onCheckAll={handleCheckAll}
           navigate={navigate}
           onDeletePaper={handleDeletePaper}
+          postId={postId}
         />
         <CardList
           isEdit={isEdit}
