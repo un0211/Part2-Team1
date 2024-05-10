@@ -3,7 +3,7 @@ import arrowDownIcon from "assets/icons/arrow_down.svg";
 import addEmojiIcon from "assets/icons/add_emoji.svg";
 import DropDown from "./DropDown";
 
-function Nav({ postInfo }) {
+function Nav({ postInfo, onURLClick }) {
   const { name, messageCount, messageProfiles } = postInfo;
 
   return (
@@ -15,7 +15,7 @@ function Nav({ postInfo }) {
           <div className={styles.divider}></div>
           <div className={styles.tools}>
             <Emojis />
-            <Buttons />
+            <Buttons name={name} onURLClick={onURLClick} />
           </div>
         </div>
       </div>
@@ -34,7 +34,7 @@ function Emojis() {
   );
 }
 
-function Buttons() {
+function Buttons({ name, onURLClick }) {
   return (
     <div className={styles.buttons}>
       <button type="button" className={styles["add-emoji"]}>
@@ -42,7 +42,7 @@ function Buttons() {
         <p>추가</p>
       </button>
       <div className={styles.divider}></div>
-      <DropDown />
+      <DropDown name={name} onURLClick={onURLClick} />
     </div>
   );
 }
