@@ -1,16 +1,17 @@
 @mixin btn-large {
   padding: 14px 24px;
   height: 56px;
+  border-radius: 12px;
 }
 
 @mixin btn-small {
   padding: 7px 16px;
   height: 40px;
+  border-radius: 6px;
 }
 
 @mixin btn-basic {
   background-color: var(--enabled-btn);
-  border-radius: 12px;
   border: none;
 
   text-align: center;
@@ -23,6 +24,38 @@
   &:focus,
   &:active {
     background-color: var(--pressed-btn);
+  }
+
+  &:disabled {
+    background-color: var(--disabled-btn);
+  }
+}
+
+@mixin btn-white {
+  background-color: var(--white);
+
+  &:hover {
+    background-color: var(--gray100);
+  }
+
+  &:active {
+    background-color: var(--gray200);
+  }
+
+  &:disabled {
+    background-color: var(--disabled-btn);
+  }
+}
+
+@mixin btn-red {
+  background-color: var(--error-red);
+
+  &:hover {
+    background-color: #c43131;
+  }
+
+  &:active {
+    background-color: #b02e2e;
   }
 
   &:disabled {
@@ -61,4 +94,8 @@
     @include btn-small;
     width: 92px;
   }
+}
+
+a.button {
+  display: inline-block;
 }
