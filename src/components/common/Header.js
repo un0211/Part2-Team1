@@ -17,3 +17,7 @@ export default function Header() {
             롤링 페이퍼 만들기
           </Link>
         )}
+      </div>
+    </header>
+  );
+}
