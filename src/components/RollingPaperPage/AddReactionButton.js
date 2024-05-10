@@ -15,9 +15,9 @@ function AddEmojiButton() {
     setIsPickerHidden((prevIsOpen) => !prevIsOpen);
   };
 
-  const handleEmojiClick = ({ id: emojiId }) => {
+  const handleEmojiClick = ({ native }) => {
     postReaction(postId, {
-      emoji: emojiId,
+      emoji: native,
       type: "increase",
     });
   };
@@ -30,7 +30,7 @@ function AddEmojiButton() {
         onClick={handleButtonClick}
       >
         <img src={addEmojiIcon} alt="반응 추가" />
-        <p>추가</p>
+        <p>{isPickerHidden ? "추가" : "닫기"}</p>
       </button>
       <div className={isPickerHidden ? styles.hidden : ""}>
         <Picker
