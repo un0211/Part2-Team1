@@ -33,7 +33,6 @@ function CardList({ slideItems }) {
         />
         <TopReaction
         topReactions={topReactions}
-        reactionCount={reactionCount}
         />
       </Link>
     </div>

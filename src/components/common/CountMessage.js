@@ -16,7 +16,7 @@ function CountMessage({ recentMessages, messageCount }) {
             />
           ))
         ) : (
-          <div>No recent messages</div>
+          <div> </div>
         )}
       {messageCount > 3 && <div className={styles["extra-profile"]}> +{messageCount - 3}</div>}
       </div>
