@@ -1,6 +1,6 @@
+import AddEmojiButton from "./AddReactionButton";
 import DropDown from "./DropDown";
 import arrowDownIcon from "assets/icons/arrow_down.svg";
-import addEmojiIcon from "assets/icons/add_emoji.svg";
 import styles from "./Nav.module.scss";
 
 function Nav({ postInfo, onURLClick }) {
@@ -37,10 +37,7 @@ function Emojis() {
 function Buttons({ name, onURLClick }) {
   return (
     <div className={styles.buttons}>
-      <button type="button" className={styles["add-emoji"]}>
-        <img src={addEmojiIcon} alt="반응 추가" />
-        <p>추가</p>
-      </button>
+      <AddEmojiButton />
       <div className={styles.divider}></div>
       <DropDown name={name} onURLClick={onURLClick} />
     </div>
