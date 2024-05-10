@@ -1,4 +1,4 @@
-import styles from './CountMessage.module.scss';
+import styles from "./CountMessage.module.scss";
 
 function CountMessage({ recentMessages, messageCount }) {
 
@@ -18,9 +18,9 @@ function CountMessage({ recentMessages, messageCount }) {
         ) : (
           <div>No recent messages</div>
         )}
-      {messageCount > 3 && <div className={styles['extra-profile']}> +{messageCount - 3}</div>}
+      {messageCount > 3 && <div className={styles["extra-profile"]}> +{messageCount - 3}</div>}
       </div>
-      <div className={styles['message-count']}>{messageCount}명이 작성했어요!</div>
+      <div className={styles["message-count"]}>{messageCount}명이 작성했어요!</div>
     </div>
   );
 }
