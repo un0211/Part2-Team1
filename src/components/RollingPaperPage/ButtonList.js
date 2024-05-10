@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import styles from "./ButtonList.module.scss";
+import back from "assets/icons/back.svg";
+import editDelete from "assets/icons/edit_delete.svg";
 
 // NOTE
 /* - 기본모드: 목록으로 | 페이지 삭제, 수정하기
@@ -21,10 +23,13 @@ function ButtonList({
   };
   return (
     <div className={styles["button-list-container"]}>
-      <button
-        onClick={handleGoBack}
-        className={`font-20-20-20 ${styles["go-back-button"]}`}
-      ></button>
+      <button onClick={handleGoBack}>
+        <img
+          src={isEdit ? editDelete : back}
+          className={styles["go-back-button"]}
+          alt={"뒤로가기"}
+        />
+      </button>
       <div className={styles["checkbox-button-container"]}>
         {isEdit ? (
           <>
