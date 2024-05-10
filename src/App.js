@@ -3,6 +3,7 @@ import MainPage from "pages/MainPage";
 import NotFoundPage from "pages/NotFoundPage";
 import RollingPaperPage from "pages/RollingPaperPage";
 import PostMessagePage from "pages/PostMessagePage";
+import CreateRollingPage from "pages/CreateRollingPage";
 import Modal from "react-modal";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
@@ -16,6 +17,7 @@ function App() {
         <Route path="/" element={<MainPage />} />
         <Route path="list" element={<>list</>} />
         <Route path="post">
+          <Route index element={<CreateRollingPage />} />
           <Route index element={<>post</>} />
           <Route path=":postId">
             <Route index element={<RollingPaperPage />} />

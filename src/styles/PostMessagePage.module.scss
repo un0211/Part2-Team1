@@ -80,7 +80,7 @@
   }
 
   &-inputs::placeholder {
-    @include font-style(16, Regular);
+    @include font-style(16, --regular);
     line-height: 26px;
     letter-spacing: -0.01em;
   }
@@ -120,7 +120,7 @@
     display: flex;
     justify-content: space-between;
     &-options-title {
-      @include font-style(16, Regular);
+      @include font-style(16, --regular);
       line-height: 26px;
       letter-spacing: -0.01em;
     }
@@ -153,7 +153,7 @@
     border: 1px solid var(--gray300);
     resize: none;
     &::placeholder {
-      @include font-style(16, Regular);
+      @include font-style(16, --regular);
       line-height: 26px;
       letter-spacing: -0.01em;
       color: var(--gray900);

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import PlusIcon from "assets/icons/plus.svg";
+import PlusIcon from "assets/icons/big_plus.svg";
 import styles from "./Card.module.scss";
 import { formatDateWithDot } from "utils/rollingPaperPage";
 import SenderInfo from "./SenderInfo";

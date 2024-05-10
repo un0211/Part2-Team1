@@ -1,0 +1,98 @@
+@import "styles/button";
+
+.nav {
+  height: 68px;
+  background-color: var(--white);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .contents {
+    max-width: 1200px;
+    width: 100%;
+
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .name {
+      width: 227px;
+      height: 42px;
+      color: var(--gray800);
+    }
+
+    .post-info {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+
+      .tools {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+    }
+  }
+}
+
+.emojis {
+  display: flex;
+  align-items: center;
+
+  .more-emoji-button {
+    margin-left: 2px;
+    width: 36px;
+    height: 36px;
+  }
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+
+  * {
+    color: var(--gray900);
+  }
+
+  .add-emoji {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
+    p {
+      font-size: 16px;
+      line-height: 1.5;
+
+      @media screen and (max-width: 768px) {
+        display: none;
+      }
+    }
+  }
+
+  button {
+    padding: 6px 16px;
+    border: 1px solid var(--gray300);
+  }
+}
+
+.divider {
+  width: 1px;
+  height: 28px;
+  background-color: var(--gray200);
+}
+
+button {
+  @include btn-white;
+  border-radius: 6px;
+
+  img {
+    width: 24px;
+    height: 24px;
+  }
+}

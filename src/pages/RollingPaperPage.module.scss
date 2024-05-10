@@ -1,3 +1,5 @@
+@import "styles/button";
+
 .page-main {
   @media screen and (max-width: 768px) {
     min-width: 360px;
@@ -24,26 +26,19 @@
   position: relative;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 113px 0;
+  padding: 63px 0;
 
   @media screen and (max-width: 1248px) {
     margin: 0 24px;
-    padding: 93px 0;
+    padding: 15px 0;
   }
 
   @media screen and (max-width: 768px) {
     margin: 0 20px;
-    padding: 80px 0;
   }
 
   height: fit-content;
   min-height: 1000px;
-}
-
-.button-wrapper {
-  position: absolute;
-  top: 63px;
-  right: 0px;
 }
 
 .card-list {
@@ -65,13 +60,33 @@
 
 .select-all-container {
   display: flex;
-  gap: 20px;
+  gap: 10px;
   align-items: center;
-  margin-bottom: 20px;
 
   input {
     width: 30px;
     height: 30px;
     cursor: pointer;
+  }
+}
+
+.button-list-container {
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+
+  .delete-paper-button {
+    @include btn-red;
+    @include btn-small;
+    color: var(--white);
+  }
+
+  .go-back-button {
+    background: none;
+  }
+
+  .checkbox-button-container {
+    display: flex;
+    gap: 20px;
   }
 }

@@ -33,12 +33,21 @@ export async function getReaction(postId, offset = 0, limit = 3) {
 
 // NOTE - 메세지 삭제
 export async function delMessage(messageId) {
-  const response = fetch(`${TEAM_BASE_URL}/message/${messageId}`, {
+  const response = await fetch(`${TEAM_BASE_URL}messages/${messageId}/`, {
     method: "DELETE",
   });
   if (!response.ok) {
-    throw new Error("데이터를 삭제하는데 실패했습니다");
+    throw new Error("메세지를 삭제하는 데 실패했습니다");
   }
-  const body = await response.json();
-  return body;
+  // TODO - 리팩토링
+}
+
+// NOTE - 롤링페이퍼 삭제
+export async function delPaper(postId) {
+  const response = await fetch(`${TEAM_BASE_URL}recipients/${postId}/`, {
+    method: "DELETE",
+  });
+  if (!response.ok) {
+    throw new Error("롤링페이퍼를 삭제하는 데 실패했습니다");
+  }
 }
