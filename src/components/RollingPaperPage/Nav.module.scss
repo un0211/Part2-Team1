@@ -11,25 +11,46 @@
   justify-content: center;
   align-items: center;
 
+  @media screen and (max-width: 1248px) {
+    padding: 0 24px;
+  }
+
+  @media screen and (max-width: 768px) {
+    height: fit-content;
+  }
+
   .contents {
     max-width: 1200px;
     width: 100%;
 
-    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    @media screen and (max-width: 768px) {
+      display: block;
+    }
 
     .name {
       width: 227px;
       height: 42px;
       color: var(--gray800);
+
+      @media screen and (max-width: 768px) {
+        height: 52px;
+        display: flex;
+        align-items: center;
+      }
     }
 
     .post-info {
       display: flex;
       align-items: center;
       gap: 28px;
+
+      @media screen and (max-width: 768px) {
+        height: 52px;
+      }
 
       .tools {
         display: flex;
@@ -56,6 +77,10 @@
   align-items: center;
   gap: 13px;
 
+  @media screen and (max-width: 768px) {
+    gap: 15px;
+  }
+
   * {
     color: var(--gray900);
   }
@@ -78,6 +103,15 @@
   button {
     padding: 6px 16px;
     border: 1px solid var(--gray300);
+
+    @media screen and (max-width: 768px) {
+      padding: 6px 8px;
+
+      img {
+        width: 20px;
+        height: 20px;
+      }
+    }
   }
 }
 
@@ -94,5 +128,11 @@ button {
   img {
     width: 24px;
     height: 24px;
+  }
+}
+
+.PC-only {
+  @media screen and (max-width: 1248px) {
+    display: none;
   }
 }
