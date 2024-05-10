@@ -7,8 +7,6 @@ import TopReaction from 'components/common/TopReaction';
 
 function CardList({ slideItems }) {
 
-  if (!slideItems || !slideItems.recentMessages || slideItems.recentMessages.length === 0) return null;
-
   const {
     id,
     name,
@@ -30,12 +28,13 @@ function CardList({ slideItems }) {
       <Link to={`/post/${id}`} className={styles.CardList}>
         <h3 className={`font-24-bold`}>To. {name}</h3>
         <CountMessage
-        id={id}
         recentMessages={recentMessages}
-        reactionCount={reactionCount}
         messageCount={messageCount}
         />
-        <TopReaction topReactions={topReactions} />
+        <TopReaction
+        topReactions={topReactions}
+        reactionCount={reactionCount}
+        />
       </Link>
     </div>
   );

@@ -1,6 +1,6 @@
 import styles from './CountMessage.module.scss';
 
-function CountMessage({ id, recentMessages, reactionCount, messageCount }) {
+function CountMessage({ recentMessages, messageCount }) {
 
 
   return (
