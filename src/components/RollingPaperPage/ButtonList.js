@@ -2,6 +2,9 @@ import { Link } from "react-router-dom";
 import styles from "./ButtonList.module.scss";
 import back from "assets/icons/back.svg";
 import editDelete from "assets/icons/edit_delete.svg";
+import trash from "assets/icons/trash.svg";
+import edit from "assets/icons/edit.svg";
+import { useMediaQuery } from "react-responsive";
 
 // NOTE
 /* - 기본모드: 목록으로 | 페이지 삭제, 수정하기
@@ -17,6 +20,7 @@ function ButtonList({
   onDeletePaper,
   postId,
 }) {
+  const isMobile = useMediaQuery({ maxWidth: 768 });
   // NOTE - 뒤로가기
   const handleGoBack = () => {
     navigate(isEdit ? `/post/${postId}` : "/list");
@@ -43,7 +47,7 @@ function ButtonList({
               onClick={onDeleteMessages}
               disabled={!deleteMessageIds.length}
             >
-              삭제하기
+              {isMobile ? <img src={trash} alt="삭제아이콘" /> : "삭제하기"}
             </button>
           </>
         ) : (
@@ -56,7 +60,11 @@ function ButtonList({
               페이지 삭제
             </button>
             <Link to="edit" className="button width-92 font-16-16-14">
-              수정하기
+              {isMobile ? (
+                <img src={edit} className={styles["edit-button"]} />
+              ) : (
+                "수정하기"
+              )}
             </Link>
           </>
         )}
