@@ -18,7 +18,7 @@ export default function CustomDropdown({ props }) {
   };
 
   const handleToggle = () => {
-    setActive(!active);
+    setActive((prevActive) => !prevActive);
   };
 
   return (
