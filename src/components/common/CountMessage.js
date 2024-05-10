@@ -1,26 +1,27 @@
 import styles from "./CountMessage.module.scss";
 
-function CountMessage({ recentMessages, messageCount }) {
-
-
+function CountMessage({ messageProfiles, messageCount, page }) {
   return (
-    <div>
+    <div className={styles[page]}>
       <div className={styles.profiles}>
-        {recentMessages && recentMessages.length > 0 ? (
-          recentMessages.map((message) => (
+        {messageProfiles &&
+          messageProfiles.map((profileImageURL) => (
             <img
-              key={message.id}
               className={styles.profile}
-              src={message.profileImageURL}
+              src={profileImageURL}
               alt={`프로필 이미지`}
             />
-          ))
-        ) : (
-          <div>No recent messages</div>
+          ))}
+        {messageCount > 3 && (
+          <div className={`${styles["extra-profile"]} font-12-12-12`}>
+            {" "}
+            +{messageCount - 3}
+          </div>
         )}
-      {messageCount > 3 && <div className={styles["extra-profile"]}> +{messageCount - 3}</div>}
       </div>
-      <div className={styles["message-count"]}>{messageCount}명이 작성했어요!</div>
+      <div className={`${styles["message-count"]} font-16-16-14`}>
+        <span className={styles.bold}>{messageCount}</span>명이 작성했어요!
+      </div>
     </div>
   );
 }
