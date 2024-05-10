@@ -60,9 +60,6 @@
 
         .emphasis {
           border-radius: 50px;
-          font-weight: var(--bold);
-          font-size: 14px;
-          //line-height: 20px;
           background-color: var(--primary-color);
           color: var(--white);
           width: 80px;
@@ -73,9 +70,6 @@
           margin-bottom: 8px;
         }
         .title {
-          font-weight: var(--bold);
-          font-size: 24px;
-          line-height: 36px;
           white-space: pre-line;
 
           @media screen and (max-width: 768px) {
@@ -83,8 +77,6 @@
           }
         }
         .description {
-          font-weight: var(--regular);
-          font-size: 18px;
           color: var(--gray500);
         }
       }

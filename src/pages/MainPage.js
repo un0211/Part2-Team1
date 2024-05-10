@@ -10,6 +10,7 @@ function Section({
   rowReverse,
   controlMargin,
   controlFlex,
+  description,
 }) {
   return (
     <section className={`${styles.section}`}>
@@ -24,9 +25,9 @@ function Section({
             styles[controlMargin] ? styles[controlMargin] : ""
           }`}
         >
-          <div className={styles.emphasis}>{point}</div>
-          <h2 className={styles.title}>{title}</h2>
-          <p className={styles.description}>로그인 없이 자유롭게 만들어요.</p>
+          <div className={`${styles.emphasis} font-14-14-14-bold`}>{point}</div>
+          <h2 className={`${styles.title} font-24-24-18-bold`}>{title}</h2>
+          <p className={`${styles.description} font-18-18-15`}>{description}</p>
         </div>
         <img src={imgSrc} alt="롤링페이퍼 예시" className={styles.exampleImg} />
       </div>
@@ -43,6 +44,7 @@ export default function MainPage() {
         title={`누구나 손쉽게, 온라인
            롤링 페이퍼를 만들 수 있어요`}
         controlMargin={"marginLeft"}
+        description={"로그인 없이 자유롭게 만들어요."}
       />
       <Section
         imgSrc={reactionExample}
@@ -51,6 +53,7 @@ export default function MainPage() {
            표현해보세요`}
         rowReverse={"rowReverse"}
         controlFlex={"flexEnd"}
+        description={"롤링 페이퍼에 이모지를 추가할 수 있어요."}
       />
       <Link to="/list" className="button width-280 align-center font-18">
         구경해보기
