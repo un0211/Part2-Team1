@@ -1,15 +1,25 @@
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
 
+import { postReaction } from "apis/rollingPaperPage";
 import addEmojiIcon from "assets/icons/add_emoji.svg";
 import styles from "./AddReactionButton.module.scss";
 
 function AddEmojiButton() {
+  const { postId } = useParams();
   const [isPickerHidden, setIsPickerHidden] = useState(true);
 
   const handleButtonClick = () => {
     setIsPickerHidden((prevIsOpen) => !prevIsOpen);
+  };
+
+  const handleEmojiClick = ({ id: emojiId }) => {
+    postReaction(postId, {
+      emoji: emojiId,
+      type: "increase",
+    });
   };
 
   return (
@@ -29,7 +39,7 @@ function AddEmojiButton() {
           set="native"
           searchPosition="sticky"
           skinTonePosition="search"
-          onEmojiSelect={console.log}
+          onEmojiSelect={handleEmojiClick}
         />
       </div>
     </div>
