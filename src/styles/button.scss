@@ -1,11 +1,15 @@
 @mixin btn-large {
-  padding: 14px 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 56px;
   border-radius: 12px;
 }
 
 @mixin btn-small {
-  padding: 7px 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 40px;
   border-radius: 6px;
 }
@@ -94,6 +98,9 @@
   &.width-92 {
     @include btn-small;
     width: 92px;
+    @media screen and (max-width: 768px) {
+      width: 80px;
+    }
   }
 }
 

@@ -35,7 +35,7 @@ function ButtonList({
               messages={messages}
             />
             <button
-              className="button width-92 font-16-16-16"
+              className="button width-92 font-16-16-14"
               onClick={onDeleteMessages}
               disabled={!deleteMessageIds.length}
             >
@@ -47,11 +47,11 @@ function ButtonList({
             <button
               type="button"
               onClick={onDeletePaper}
-              className={`font-16-16-16 ${styles["delete-paper-button"]}`}
+              className={`font-16-16-14 ${styles["delete-paper-button"]}`}
             >
               페이지 삭제
             </button>
-            <Link to="edit" className="button width-92 font-16-16-16">
+            <Link to="edit" className="button width-92 font-16-16-14">
               수정하기
             </Link>
           </>

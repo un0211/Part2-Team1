@@ -37,9 +37,17 @@
     .post-button {
       @include btn-white;
       color: var(--gray900);
-      padding: 8px 16px 8px 16px;
+      width: 157px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       border-radius: 6px;
       border: 1px solid var(--disabled-btn);
+      @media screen and (max-width: 768px) {
+        width: 142px;
+        min-width: 142px;
+      }
     }
   }
 }

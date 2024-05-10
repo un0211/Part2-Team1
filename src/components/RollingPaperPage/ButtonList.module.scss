@@ -21,6 +21,10 @@
     @include btn-red;
     @include btn-small;
     color: var(--white);
+    width: 100px;
+    @media screen and (max-width: 768px) {
+      width: 90px;
+    }
   }
 
   .go-back-button {
