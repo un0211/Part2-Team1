@@ -2,17 +2,16 @@ import logo from "assets/icons/logo.svg";
 import styles from "./Header.module.scss";
 import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useMediaQuery } from "react-responsive";
 
 export default function Header() {
   const location = useLocation();
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
+  const isMobile = useMediaQuery({ maxWidth: 768 });
 
   useEffect(() => {
     const handleResize = () => {
-      if (
-        window.innerWidth <= 768 &&
-        !["/", "/list"].includes(location.pathname)
-      ) {
+      if (isMobile && !["/", "/list"].includes(location.pathname)) {
         setIsHeaderVisible(false);
       } else {
         setIsHeaderVisible(true);
@@ -26,7 +25,7 @@ export default function Header() {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, [location.pathname]);
+  }, [isMobile, location.pathname]);
 
   return (
     <header
