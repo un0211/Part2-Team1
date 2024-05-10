@@ -6,14 +6,14 @@ import addEmojiIcon from "assets/icons/add_emoji.svg";
 import styles from "./AddReactionButton.module.scss";
 
 function AddEmojiButton() {
-  const [isPickerOpen, setIsPickerOpen] = useState(false);
+  const [isPickerHidden, setIsPickerHidden] = useState(true);
 
   const handleButtonClick = () => {
-    setIsPickerOpen((prevIsOpen) => !prevIsOpen);
+    setIsPickerHidden((prevIsOpen) => !prevIsOpen);
   };
 
   return (
-    <>
+    <div className={styles["add-emoji-container"]}>
       <button
         type="button"
         className={styles["add-emoji"]}
@@ -22,8 +22,17 @@ function AddEmojiButton() {
         <img src={addEmojiIcon} alt="반응 추가" />
         <p>추가</p>
       </button>
-      {isPickerOpen && <Picker data={data} />}
-    </>
+      <div className={isPickerHidden ? styles.hidden : ""}>
+        <Picker
+          data={data}
+          theme="light"
+          set="native"
+          searchPosition="sticky"
+          skinTonePosition="search"
+          onEmojiSelect={console.log}
+        />
+      </div>
+    </div>
   );
 }
 

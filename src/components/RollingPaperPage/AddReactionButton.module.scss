@@ -1,3 +1,7 @@
+.add-emoji-container {
+  position: relative;
+}
+
 .add-emoji {
   display: flex;
   align-items: center;
@@ -11,4 +15,15 @@
       display: none;
     }
   }
+}
+
+em-emoji-picker {
+  position: absolute;
+  top: 46px;
+  right: 0px;
+  background-color: black;
+}
+
+.hidden {
+  display: none;
 }
