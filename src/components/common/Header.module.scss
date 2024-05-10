@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+@import "styles/button";
 
 .header {
   width: 100%;
@@ -34,11 +35,11 @@
     }
 
     .post-button {
+      @include btn-white;
+      color: var(--gray900);
       padding: 8px 16px 8px 16px;
       border-radius: 6px;
       border: 1px solid var(--disabled-btn);
-      background-color: var(--white);
-      color: var(--gray900);
     }
   }
 }
