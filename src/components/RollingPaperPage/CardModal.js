@@ -29,6 +29,12 @@ export default function CardModal({ isOpen, message, onModalClose }) {
       padding: "40px",
     },
   };
+  if (window.matchMedia("(max-width: 768px)").matches) {
+    modalStyle.content.width = "320px";
+    modalStyle.content.height = "230px";
+    modalStyle.content.padding = "30px";
+  }
+
   return (
     <Modal isOpen={isOpen} style={modalStyle} onRequestClose={onModalClose}>
       <header className={styles["profile-container"]}>
@@ -37,19 +43,21 @@ export default function CardModal({ isOpen, message, onModalClose }) {
           relationship={relationship}
           sender={sender}
         />
-        <p className={`${styles.createdAt} font-14`}>
+        <p className={`${styles.createdAt} font-14-14-14`}>
           {formatDateWithDot(createdAt)}
         </p>
       </header>
       <main className={styles["content-wrapper"]}>
-        <p className={`${styles.content} font-18 ${FONT_CLASS_NAME[font]}`}>
+        <p
+          className={`${styles.content} font-18-18-18 ${FONT_CLASS_NAME[font]}`}
+        >
           {content}
         </p>
       </main>
       <footer className={styles["button-wrapper"]}>
         <button
           onClick={onModalClose}
-          className={`${styles["close-button"]} button width-120 font-16`}
+          className={`${styles["close-button"]} button width-120 font-16-16-16`}
         >
           확인
         </button>
