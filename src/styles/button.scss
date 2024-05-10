@@ -67,7 +67,8 @@
   @include btn-basic;
 
   &.align-center {
-    margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   /* size */
@@ -80,7 +81,7 @@
     @include btn-large;
     width: 280px;
 
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 1248px) {
       width: 100%;
     }
   }
