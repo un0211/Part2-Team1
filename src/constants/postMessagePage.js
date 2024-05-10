@@ -65,29 +65,3 @@ export const PROFILES = [
     alt: "프로필 이미지",
   },
 ];
-
-export const getFormData = ({
-  id,
-  senderInputRef,
-  profileImageURL,
-  relationship,
-  contentTextareaRef,
-  font,
-}) => {
-  const defaultProfileImageURL = PROFILES[0].src;
-  const defaultRelationship = Object.keys(MEMBER_CLASS_NAME)[0];
-  const defaultFont = Object.keys(FONT_CLASS_NAME)[0];
-
-  const selectedProfileImageURL = profileImageURL || defaultProfileImageURL;
-  const selectedRelationship = relationship || defaultRelationship;
-  const selectedFont = font || defaultFont;
-
-  return {
-    recipientId: id,
-    sender: senderInputRef?.current,
-    profileImageURL: selectedProfileImageURL,
-    relationship: selectedRelationship,
-    content: contentTextareaRef?.current,
-    font: selectedFont,
-  };
-};
