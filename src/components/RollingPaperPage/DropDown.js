@@ -41,6 +41,13 @@ function DropDown({ name }) {
     createKakaoButton();
   }, [createKakaoButton]);
 
+  useEffect(() => {
+    const kakaoButton = document.querySelector(`#${KAKAO_BUTTON_NAME}`);
+    kakaoButton.addEventListener("click", () => {
+      setIsHidden(true);
+    });
+  }, []);
+
   return (
     <div className={styles["drop-down"]}>
       <button type="button" onClick={handleDropDownClick}>
