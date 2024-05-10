@@ -3,7 +3,6 @@ import { getKakaoShareSettings } from "utils/rollingPaperPage";
 import { KAKAO_JAVASCRIPT_KEY } from "constants";
 import styles from "./DropDown.module.scss";
 import shareIcon from "assets/icons/share.svg";
-import PreviewImg from "assets/images/paper_preview.png";
 
 const KAKAO_BUTTON_NAME = "kakaotalk-sharing-btn";
 
@@ -30,7 +29,7 @@ function DropDown({ name }) {
         getKakaoShareSettings({
           buttonName: `#${KAKAO_BUTTON_NAME}`,
           name,
-          imgURL: PreviewImg,
+          imgURL: "https://ifh.cc/g/k8zYH3.jpg",
           domainURL: window.location.origin,
           currentURL: window.location.href,
         })
