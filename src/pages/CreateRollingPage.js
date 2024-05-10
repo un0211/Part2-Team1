@@ -4,7 +4,6 @@ import styles from "./CreateRollingPage.module.scss";
 function CreateRollingPage() {
   const inputRef = useRef(null);
   useEffect(() => {
-    // 초기 렌더링 시, input에 캐럿 위치하기 위헤 포커스
     inputRef.current.focus();
   }, []);
 
@@ -12,6 +11,8 @@ function CreateRollingPage() {
   const [error, setError] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const [selectOption, setSelectOption] = useState("color");
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedColor, setSelectedColor] = useState("first");
 
   const handleSelectOption = (option) => {
     setSelectOption(option);
@@ -19,21 +20,27 @@ function CreateRollingPage() {
   const handleChange = (e) => {
     const inputValue = e.target.value;
     setInputValue(inputValue);
-    // 입력된 텍스트가 있는 경우 에러 상태를 false로 변경
     if (inputValue.trim() !== "") {
       setError(false);
     }
   };
 
   const handleBlur = () => {
-    setIsFocused(false); // 포커스 뻐져나갔으므로 상태 변경
+    setIsFocused(false);
 
-    // 값이 비어있으면 에러 상태 변경
     if (inputValue.trim() === "") {
       setError(true);
     } else {
       setError(false);
     }
+  };
+
+  const handleImageUpload = (imageName) => {
+    setSelectedImage(imageName);
+  };
+
+  const handleColorSelect = (color) => {
+    setSelectedColor(color);
   };
 
   const renderInput = (error) => {
@@ -75,7 +82,6 @@ function CreateRollingPage() {
 
   const errorInputRef = useRef(null);
   useEffect(() => {
-    // 에러 발생할 경우, 에러 input에 캐럿 위치하기 위해 포커스
     if (error) {
       errorInputRef.current.focus();
     }
@@ -112,17 +118,60 @@ function CreateRollingPage() {
 
         {selectOption === "color" ? (
           <div className={styles.colorRollingSection}>
-            <div className={styles.firstColor}></div>
-            <div className={styles.secondColor}></div>
-            <div className={styles.thirdColor}></div>
-            <div className={styles.fourColor}></div>
+            <button
+              type="button"
+              className={`${styles.firstColor} ${selectedColor === "first" ? styles.active : ""}`}
+              onClick={() => handleColorSelect("first")}
+            ></button>
+
+            <button
+              type="button"
+              className={`${styles.secondColor} ${selectedColor === "second" ? styles.active : ""}`}
+              onClick={() => handleColorSelect("second")}
+            ></button>
+
+            <button
+              type="button"
+              className={`${styles.thirdColor} ${selectedColor === "third" ? styles.active : ""}`}
+              onClick={() => handleColorSelect("third")}
+            ></button>
+
+            <button
+              type="button"
+              className={`${styles.fourColor} ${selectedColor === "fourth" ? styles.active : ""}`}
+              onClick={() => handleColorSelect("fourth")}
+            ></button>
           </div>
         ) : (
           <div className={styles.imageRollingSection}>
-            <div>이미지1</div>
-            <div>이미지2</div>
-            <div>이미지3</div>
-            <div>이미지4</div>
+            <button
+              className={`${styles.firstImage} ${selectedImage === "image1.jpg" ? styles.active : ""}`}
+              type="button"
+              onClick={() => handleImageUpload("image1.jpg")}
+            >
+              <img src="" />
+            </button>
+            <button
+              className={`${styles.secondImage} ${selectedImage === "image2.jpg" ? styles.active : ""}`}
+              type="button"
+              onClick={() => handleImageUpload("image2.jpg")}
+            >
+              이미지1
+            </button>
+            <button
+              className={`${styles.thirdImage} ${selectedImage === "image3.jpg" ? styles.active : ""}`}
+              type="button"
+              onClick={() => handleImageUpload("image3.jpg")}
+            >
+              이미지2
+            </button>
+            <button
+              className={`${styles.fourImage} ${selectedImage === "image4.jpg" ? styles.active : ""}`}
+              type="button"
+              onClick={() => handleImageUpload("image4.jpg")}
+            >
+              이미지3
+            </button>
           </div>
         )}
       </section>

@@ -117,11 +117,16 @@
     .firstColor,
     .secondColor,
     .thirdColor,
-    .fourColor {
+    .fourColor,
+    .firstImage,
+    .secondImage,
+    .thirdImage,
+    .fourImage {
       width: 150px;
       height: 150px;
       border-radius: 16px;
       border: 1px solid var(--white);
+      cursor: pointer;
     }
     .firstColor {
       background-color: var(--rolling-bg-orange);
@@ -150,4 +155,11 @@
       background-color: var(--primary-color);
     }
   }
+}
+
+.active {
+  background-image: url("/assets/images/Enabled.png");
+  background-repeat: no-repeat;
+  background-size: 44px;
+  background-position: center;
 }
