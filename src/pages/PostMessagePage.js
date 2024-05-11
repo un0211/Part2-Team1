@@ -11,6 +11,7 @@ export default function PostMessageForm() {
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
   const [setPostImg] = useState([]);
   const [previewImg, setPreviewImg] = useState("");
+  const [nameInputError, setNameInputError] = useState(false);
   const profileOptionsRef = useRef(null);
 
   const handleEditorChange = (state) => {
@@ -30,6 +31,13 @@ export default function PostMessageForm() {
   };
 
   const handleSubmit = () => {
+    // NOTE 추가된 부분: 'From.' Input 에러 상태 처리
+    const nameInputValue = document.getElementById("nameInput").value;
+    if (!nameInputValue.trim()) {
+      setNameInputError(true);
+      return;
+    }
+    setNameInputError(false);
    
   };
 
@@ -40,10 +48,11 @@ export default function PostMessageForm() {
           From.
         </label>
         <input
-          className={`${styles["message-form-inputs"]} ${styles["message-form-name-input"]}`}
+          className={`${styles["message-form-inputs"]} ${styles["message-form-name-input"]} ${nameInputError ? styles["error"] : ""}`} // 변경된 부분
           id="nameInput"
           placeholder="이름을 입력해 주세요."
         />
+        {nameInputError && <p className={styles["error-message"]}>값을 입력해 주세요.</p>}
       </div>
 
       <ProfileOptions ref={profileOptionsRef} /> 
