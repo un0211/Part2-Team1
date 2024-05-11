@@ -11,7 +11,6 @@ function CardList({ slideItems }) {
     name,
     backgroundColor,
     backgroundImageURL,
-    reactionCount,
     topReactions,
     messageCount,
     recentMessages,
