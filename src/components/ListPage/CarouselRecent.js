@@ -8,14 +8,15 @@ import image_prev from "assets/icons/arrow_prev.png";
 import image_next from "assets/icons/arrow_next.png";
 import CardList from "./CardList";
 
-function Carousel({ title }) {
+function CarouselRecent({ title }) {
   const [slideItems, setSlideItems] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await getList();
-        setSlideItems(response.results); 
+        const sortedItems = response.results.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        setSlideItems(sortedItems); 
       } catch (error) {
         console.error("Error fetching slide items:", error);
       }
@@ -24,6 +25,7 @@ function Carousel({ title }) {
     fetchData();
   }, []);
 
+
   const settings = {
     dots: false,
     infinite: false,
@@ -31,14 +33,15 @@ function Carousel({ title }) {
     autoplaySpeed: 5000,
     slidesToShow: 4,
     slidesToScroll: 2,
-    nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />,
+    draggable: true,
+    nextArrow: slideItems.length > 4 ? <NextArrow /> : null,
+    prevArrow: slideItems.length > 4 ? <PrevArrow /> : null,
   };
 
   return (
     <div className={styles.container}>
       <h1>{title}</h1>
-      <Slider {...settings}>
+      <Slider {...settings} className={styles.slider}>
         {slideItems?.map((item) => (
           <CardList key={item.id} slideItems={item} />
         ))}
@@ -48,16 +51,16 @@ function Carousel({ title }) {
 }
 
 function NextArrow(props) {
-  const { className, styles, onClick } = props;
+  const { custom, styles, onClick } = props;
   return (
     <div
-      className={className}
+      className={custom}
       style={{
         ...styles,
         display: "block",
         width: "40px",
         height: "40px",
-        right: "-1140px",
+        right: "-1130px",
         top: "-150px",
         borderRadius: "50%",
         position: "relative",
@@ -80,10 +83,10 @@ function NextArrow(props) {
   );
 }
 function PrevArrow(props) {
-  const { className, styles, onClick } = props;
+  const { custom, styles, onClick } = props;
   return (
     <div
-      className={className}
+      className={custom}
       style={{
         ...styles,
         display: "block",
@@ -111,4 +114,4 @@ function PrevArrow(props) {
   );
 }
 
-export default Carousel;
+export default CarouselRecent;

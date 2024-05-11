@@ -1,19 +1,27 @@
 import styles from "./TopReaction.module.scss";
 
-function TopReaction({topReactions, reactionCount }) {
+function TopReaction({ topReactions }) {
 
   return (
-    <div className={styles[`reaction-box`]}>
-      {reactionCount && reactionCount.length > 0 ?(
-        topReactions.map((id) => (
-          <div key={topReactions} className="reaction">
-            <span>
-            {topReactions.emoji} {topReactions.count}
-            </span>
+    <div className={styles["reaction-box"]}>
+      {topReactions && topReactions.length > 0 ?(
+        topReactions.map((reaction) => (
+          <div key={reaction.id} className="reaction">
+            <div className={styles["emoji-box"]}>
+              <div className={styles["show-reaction"]}>
+                <div className='emoji'>
+                  {reaction.emoji}
+                </div>
+                <div className='count'>
+                  {reaction.count}
+                </div>
+              </div>
+            </div>
           </div>
         ))
       ) : (
-        <div className="reaction"><span>❌ 00</span> <span>❌ 00</span> </div>
+        <div className="reaction">
+        </div>
       )}
     </div>
   );

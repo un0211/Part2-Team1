@@ -4,12 +4,18 @@ width: 227px;
 height: 53px;
 margin-top: 43px;
 padding-top: 17px;
+display: flex;
+gap: 8px;
 
-  
-  span{
-    height: 36px;
-    margin: 8px, 12px;
+  .emoji-box{
+    color: var(--white);
     border-radius: 32px;
     background-color: rgba(0, 0, 0, 0.54);
   }
+
+    .show-reaction{
+      padding: 8px 12px;
+      display: flex;
+      gap: 2px;
+    }
 }
