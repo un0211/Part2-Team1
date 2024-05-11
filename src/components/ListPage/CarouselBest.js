@@ -10,6 +10,7 @@ import CardList from "./CardList";
 
 function CarouselBest({ title }) {
   const [slideItems, setSlideItems] = useState([]);
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -33,8 +34,9 @@ function CarouselBest({ title }) {
     slidesToShow: 4,
     slidesToScroll: 2,
     draggable: true,
-    nextArrow: slideItems.length > 4 ? <NextArrow /> : null,
-    prevArrow: slideItems.length > 4 ? <PrevArrow /> : null,
+    nextArrow: <NextArrow currentSlide={currentSlide} />,
+    prevArrow: <PrevArrow currentSlide={currentSlide} />,
+    afterChange: (index) => setCurrentSlide(index)
   };
 
   return (
@@ -50,7 +52,23 @@ function CarouselBest({ title }) {
 }
 
 function NextArrow(props) {
-  const { custom, styles, onClick } = props;
+  const { custom, styles, onClick, currentSlide } = props;
+  const [slideItems, setSlideItems] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await getList();
+        const sortedItems = response.results;
+        setSlideItems(sortedItems); 
+      } catch (error) {
+        console.error("Error fetching slide items:", error);
+      }
+    };
+  
+    fetchData();
+  }, []);
+
   return (
     <div
       className={custom}
@@ -63,7 +81,8 @@ function NextArrow(props) {
         top: "-150px",
         borderRadius: "50%",
         position: "relative",
-      }}
+        visibility: (slideItems.length > 4) && (currentSlide + 4 < slideItems.length) ? "visible" : "hidden",
+      }}  
       
       onClick={onClick}
       
@@ -82,7 +101,8 @@ function NextArrow(props) {
   );
 }
 function PrevArrow(props) {
-  const { custom, styles, onClick } = props;
+  const { custom, styles, onClick, currentSlide } = props;
+
   return (
     <div
       className={custom}
@@ -96,8 +116,11 @@ function PrevArrow(props) {
         borderRadius: "50%",
         position: "relative",
         zIndex: "3",
+        visibility: currentSlide === 0 ? "hidden" : "visible"
       }}
-      onClick={onClick}
+      onClick={() => {
+        if (currentSlide !== 0) onClick();
+      }}
     >
       <img
         src={image_prev}
