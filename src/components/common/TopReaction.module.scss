@@ -1,0 +1,15 @@
+.reaction-box{
+border-top: 1px solid var(--black, rgba(0, 0, 0, 0.12));
+width: 227px;
+height: 53px;
+margin-top: 43px;
+padding-top: 17px;
+
+  
+  span{
+    height: 36px;
+    margin: 8px, 12px;
+    border-radius: 32px;
+    background-color: rgba(0, 0, 0, 0.54);
+  }
+}

@@ -1,5 +1,7 @@
 import AddEmojiButton from "./AddReactionButton";
+import CountMessage from "components/common/CountMessage";
 import DropDown from "./DropDown";
+import { POST_PAGE } from "constants";
 import arrowDownIcon from "assets/icons/arrow_down.svg";
 import styles from "./Nav.module.scss";
 
@@ -11,7 +13,13 @@ function Nav({ postInfo, onURLClick }) {
       <div className={styles.contents}>
         <div className={`${styles.name} font-28-28-18-bold`}>To. {name}</div>
         <div className={styles["post-info"]}>
-          <div className={styles["PC-only"]}>{messageCount}명이 작성했어요</div>
+          <div className={styles["PC-only"]}>
+            <CountMessage
+              messageCount={messageCount}
+              messageProfiles={messageProfiles}
+              page={POST_PAGE}
+            />
+          </div>
           <div className={`${styles.divider} ${styles["PC-only"]}`}></div>
           <div className={styles.tools}>
             <Emojis />
