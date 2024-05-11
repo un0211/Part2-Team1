@@ -10,10 +10,12 @@ import LinkButton from "components/common/LinkButton";
 function ListPage() {
   return (
     <div className={styles.wrapper}>
-      <CarouselBest title="인기 롤링 페이퍼🔥" />
-      <CarouselRecent title="최근에 만든 롤링 페이퍼⭐" />
+      <div className={styles.track}>
+        <CarouselBest title="인기 롤링 페이퍼🔥" />
+        <CarouselRecent title="최근에 만든 롤링 페이퍼⭐" />
       <div className={styles[`button-wrapper`]}>
         <LinkButton className={styles.custom}text="나도 만들어 보기" url="/post"></LinkButton>
+      </div>
       </div>
     </div>
   );

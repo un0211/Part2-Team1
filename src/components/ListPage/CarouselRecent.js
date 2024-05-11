@@ -33,14 +33,15 @@ function CarouselRecent({ title }) {
     autoplaySpeed: 5000,
     slidesToShow: 4,
     slidesToScroll: 2,
-    nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />,
+    draggable: true,
+    nextArrow: slideItems.length > 4 ? <NextArrow /> : null,
+    prevArrow: slideItems.length > 4 ? <PrevArrow /> : null,
   };
 
   return (
     <div className={styles.container}>
       <h1>{title}</h1>
-      <Slider {...settings} className={styles.slideer}>
+      <Slider {...settings} className={styles.slider}>
         {slideItems?.map((item) => (
           <CardList key={item.id} slideItems={item} />
         ))}
@@ -50,16 +51,16 @@ function CarouselRecent({ title }) {
 }
 
 function NextArrow(props) {
-  const { className, styles, onClick } = props;
+  const { custom, styles, onClick } = props;
   return (
     <div
-      className={className}
+      className={custom}
       style={{
         ...styles,
         display: "block",
         width: "40px",
         height: "40px",
-        right: "-1150px",
+        right: "-1130px",
         top: "-150px",
         borderRadius: "50%",
         position: "relative",
@@ -82,16 +83,16 @@ function NextArrow(props) {
   );
 }
 function PrevArrow(props) {
-  const { className, styles, onClick } = props;
+  const { custom, styles, onClick } = props;
   return (
     <div
-      className={className}
+      className={custom}
       style={{
         ...styles,
         display: "block",
         width: "40px",
         height: "40px",
-        left: "-20px",
+        left: "-30px",
         top: "150px",
         borderRadius: "50%",
         position: "relative",

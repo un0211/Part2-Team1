@@ -35,15 +35,14 @@ function CarouselBest({ title }) {
     draggable: true,
     nextArrow: slideItems.length > 4 ? <NextArrow /> : null,
     prevArrow: slideItems.length > 4 ? <PrevArrow /> : null,
-    // afterChange: (currentSlide) => handleAfterChange(currentSlide),
   };
 
   return (
     <div className={styles.container}>
       <h1>{title}</h1>
-      <Slider {...settings} className={styles.slideer}>
+      <Slider {...settings} className={styles.slider}>
         {slideItems?.map((item) => (
-          <CardList key={item.id} slideItems={item} />
+          <CardList key={item.id} slideItems={item}/>
         ))}
       </Slider>
     </div>
@@ -60,7 +59,7 @@ function NextArrow(props) {
         display: "block",
         width: "40px",
         height: "40px",
-        right: "-1150px",
+        right: "-1130px",
         top: "-150px",
         borderRadius: "50%",
         position: "relative",
@@ -92,7 +91,7 @@ function PrevArrow(props) {
         display: "block",
         width: "40px",
         height: "40px",
-        left: "-20px",
+        left: "-30px",
         top: "150px",
         borderRadius: "50%",
         position: "relative",
