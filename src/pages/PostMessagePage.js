@@ -12,6 +12,7 @@ export default function PostMessageForm() {
   const [setPostImg] = useState([]);
   const [previewImg, setPreviewImg] = useState("");
   const [nameInputError, setNameInputError] = useState(false);
+  const [relationship, setRelationship] = useState(null);
   const profileOptionsRef = useRef(null);
 
   const handleEditorChange = (state) => {
@@ -29,7 +30,7 @@ export default function PostMessageForm() {
 
     fileRead.readAsDataURL(fileArr[0]);
   };
-
+  
   const handleSubmit = () => {
     // NOTE 추가된 부분: 'From.' Input 에러 상태 처리
     const nameInputValue = document.getElementById("nameInput").value;
@@ -38,7 +39,16 @@ export default function PostMessageForm() {
       return;
     }
     setNameInputError(false);
-   
+
+    // if (!previewImg) {
+    //   setPreviewImg(defaultProfileImage);
+    // }
+
+    // NOTE 상대와의 관계가 선택되었는지 확인
+    if (!relationship) { 
+      alert("상대와의 관계를 선택해주세요.");
+      return;
+    }
   };
 
   return (
@@ -48,14 +58,18 @@ export default function PostMessageForm() {
           From.
         </label>
         <input
-          className={`${styles["message-form-inputs"]} ${styles["message-form-name-input"]} ${nameInputError ? styles["error"] : ""}`} // 변경된 부분
+          className={`${styles["message-form-inputs"]} ${
+            styles["message-form-name-input"]
+          } ${nameInputError ? styles["error"] : ""}`}
           id="nameInput"
           placeholder="이름을 입력해 주세요."
         />
-        {nameInputError && <p className={styles["error-message"]}>값을 입력해 주세요.</p>}
+        {nameInputError && (
+          <p className={styles["error-message"]}>값을 입력해 주세요.</p>
+        )}
       </div>
 
-      <ProfileOptions ref={profileOptionsRef} /> 
+      <ProfileOptions ref={profileOptionsRef} />
 
       <input
         type="file"
@@ -70,11 +84,20 @@ export default function PostMessageForm() {
         </div>
       )}
 
+      {/* {!previewImg && (
+        <div className="image-upload-container">
+          <img src={defaultProfileImage} alt="Default" />
+        </div>
+      )} */}
+
       <div className={styles["message-form-relationship"]}>
         <label htmlFor="select" className={styles["message-form-title"]}>
           상대와의 관계
         </label>
-        <CustomDropdown props={Object.keys(MEMBER_CLASS_NAME)} />
+        <CustomDropdown
+          props={Object.keys(MEMBER_CLASS_NAME)}
+          onSelect={(value) => setRelationship(value)}
+        />
       </div>
 
       <div className={styles["message-form-content"]}>
@@ -95,7 +118,9 @@ export default function PostMessageForm() {
         <span className={styles["message-form-title"]}>폰트 선택</span>
         <CustomDropdown props={Object.keys(FONT_CLASS_NAME)} />
       </div>
-      <button className={styles["message-form-submit"]} onClick={handleSubmit}>생성하기</button>
+      <button className={styles["message-form-submit"]} onClick={handleSubmit}>
+        생성하기
+      </button>
     </div>
   );
 }

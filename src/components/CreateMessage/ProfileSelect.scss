@@ -23,7 +23,7 @@
   }
   
   &-profile-options-title {
-    @include font-style(14,--regular );
+    @include font-style(14px, var(--regular));
     line-height: 26px;
     color: var(--gray500);
   }
