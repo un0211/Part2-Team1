@@ -7,6 +7,8 @@ import "styles/global.css";
 import "styles/button.scss";
 import LinkButton from "components/common/LinkButton";
 
+//useeffecty
+
 function ListPage() {
   return (
     <div className={styles.wrapper}>

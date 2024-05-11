@@ -34,7 +34,7 @@ function CarouselBest({ title }) {
     slidesToShow: 4,
     slidesToScroll: 2,
     draggable: true,
-    nextArrow: <NextArrow currentSlide={currentSlide} />,
+    nextArrow: <NextArrow currentSlide={currentSlide} slideItems={slideItems}/>,
     prevArrow: <PrevArrow currentSlide={currentSlide} />,
     afterChange: (index) => setCurrentSlide(index)
   };
@@ -51,23 +51,7 @@ function CarouselBest({ title }) {
   );
 }
 
-function NextArrow(props) {
-  const { custom, styles, onClick, currentSlide } = props;
-  const [slideItems, setSlideItems] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await getList();
-        const sortedItems = response.results;
-        setSlideItems(sortedItems); 
-      } catch (error) {
-        console.error("Error fetching slide items:", error);
-      }
-    };
-  
-    fetchData();
-  }, []);
+function NextArrow({ custom, styles, onClick, currentSlide, slideItems }) {
 
   return (
     <div
