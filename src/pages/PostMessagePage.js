@@ -1,126 +1,105 @@
-import React, { useState, useRef } from "react";
+// PostMessageForm.js
+import React, { useState } from "react";
 import { EditorState } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
+import { stateToHTML } from "draft-js-export-html";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import styles from "styles/PostMessagePage.module.scss";
 import CustomDropdown from "components/CreateMessage/CustomDropdown";
-import ProfileOptions from "components/CreateMessage/ProfileSelect";
-import { MEMBER_CLASS_NAME, FONT_CLASS_NAME } from "constants/postMessagePage";
+import ProfileSelect from "components/CreateMessage/ProfileSelect";
+import { FONT_CLASS_NAME, MEMBER_CLASS_NAME } from "constants/postMessagePage";
 
 export default function PostMessageForm() {
-  const [editorState, setEditorState] = useState(EditorState.createEmpty());
-  const [setPostImg] = useState([]);
-  const [previewImg, setPreviewImg] = useState("");
-  const [nameInputError, setNameInputError] = useState(false);
+  const [senderValue, setSenderValue] = useState("");
   const [relationship, setRelationship] = useState(null);
-  const profileOptionsRef = useRef(null);
+  const [editorState, setEditorState] = useState(EditorState.createEmpty());
+  const [selectedFont, setSelectedFont] = useState(null);
+  const [selectedProfile, setSelectedProfile] = useState(null);
+
+  const handleNameChange = (e) => {
+    setSenderValue(e.target.value);
+  };
 
   const handleEditorChange = (state) => {
     setEditorState(state);
   };
 
-  const handleFileChange = (event) => {
-    let fileArr = event.target.files;
-    setPostImg(Array.from(fileArr));
-
-    let fileRead = new FileReader();
-    fileRead.onload = function () {
-      setPreviewImg(fileRead.result);
-    };
-
-    fileRead.readAsDataURL(fileArr[0]);
+  const handleProfileSelect = (profile) => {
+    setSelectedProfile(profile);
   };
-  
-  const handleSubmit = () => {
-    // NOTE 추가된 부분: 'From.' Input 에러 상태 처리
-    const nameInputValue = document.getElementById("nameInput").value;
-    if (!nameInputValue.trim()) {
-      setNameInputError(true);
-      return;
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+    formData.append("sender", senderValue);
+    formData.append("relationship", relationship);
+    formData.append("content", stateToHTML(editorState.getCurrentContent()));
+    formData.append("font", selectedFont);
+
+    if (selectedProfile) {
+      formData.append("profileImage", selectedProfile.src);
+      formData.append("profileImageName", selectedProfile.filename);
     }
-    setNameInputError(false);
 
-    // if (!previewImg) {
-    //   setPreviewImg(defaultProfileImage);
-    // }
-
-    // NOTE 상대와의 관계가 선택되었는지 확인
-    if (!relationship) { 
-      alert("상대와의 관계를 선택해주세요.");
-      return;
+    for (var entries of formData.entries()) {
+      console.log("key: " + entries[0]);
+      console.log("value: " + entries[1]);
     }
   };
 
   return (
-    <div className={styles["message-form"]}>
-      <div className={styles["message-form-sender"]}>
-        <label htmlFor="nameInput" className={styles["message-form-title"]}>
-          From.
-        </label>
-        <input
-          className={`${styles["message-form-inputs"]} ${
-            styles["message-form-name-input"]
-          } ${nameInputError ? styles["error"] : ""}`}
-          id="nameInput"
-          placeholder="이름을 입력해 주세요."
-        />
-        {nameInputError && (
-          <p className={styles["error-message"]}>값을 입력해 주세요.</p>
-        )}
-      </div>
-
-      <ProfileOptions ref={profileOptionsRef} />
-
-      <input
-        type="file"
-        id="fileInput"
-        onChange={handleFileChange}
-        style={{ display: "none" }}
-      />
-
-      {previewImg && (
-        <div className="image-upload-container">
-          <img src={previewImg} alt="Preview" />
+    <form onSubmit={handleSubmit}>
+      <div className={styles["message-form"]}>
+        <div className={styles["message-form-sender"]}>
+          <label htmlFor="nameInput" className={styles["message-form-title"]}>
+            From.
+          </label>
+          <input
+            onChange={handleNameChange}
+            className={`${styles["message-form-inputs"]} ${styles["message-form-name-input"]}`}
+            id="nameInput"
+            placeholder="이름을 입력해 주세요."
+          />
         </div>
-      )}
 
-      {/* {!previewImg && (
-        <div className="image-upload-container">
-          <img src={defaultProfileImage} alt="Default" />
+        <ProfileSelect onProfileSelect={handleProfileSelect} />
+
+        <div className={styles["message-form-relationship"]}>
+          <label htmlFor="select" className={styles["message-form-title"]}>
+            상대와의 관계
+          </label>
+          <CustomDropdown
+            props={Object.keys(MEMBER_CLASS_NAME)}
+            onSelect={(value) => setRelationship(value)}
+          />
         </div>
-      )} */}
+        <div className={styles["message-form-content"]}>
+          <label htmlFor="textarea" className={styles["message-form-title"]}>
+            내용을 입력해 주세요
+          </label>
+          <Editor
+            editorState={editorState}
+            onEditorStateChange={handleEditorChange}
+            wrapperClassName={styles["message-form-text-editor-wrapper"]}
+            editorClassName={styles["message-form-text-editor"]}
+            toolbar={{
+              options: ["inline", "textAlign", "emoji", "remove", "history"],
+            }}
+          />
+        </div>
 
-      <div className={styles["message-form-relationship"]}>
-        <label htmlFor="select" className={styles["message-form-title"]}>
-          상대와의 관계
-        </label>
-        <CustomDropdown
-          props={Object.keys(MEMBER_CLASS_NAME)}
-          onSelect={(value) => setRelationship(value)}
-        />
+        <div className={styles["message-form-font"]}>
+          <span className={styles["message-form-title"]}>폰트 선택</span>
+          <CustomDropdown
+            props={Object.keys(FONT_CLASS_NAME)}
+            onSelect={(value) => setSelectedFont(value)}
+          />
+        </div>
       </div>
-
-      <div className={styles["message-form-content"]}>
-        <label htmlFor="textarea" className={styles["message-form-title"]}>
-          내용을 입력해 주세요
-        </label>
-        <Editor
-          editorState={editorState}
-          onEditorStateChange={handleEditorChange}
-          wrapperClassName={styles["message-form-text-editor-wrapper"]}
-          editorClassName={styles["message-form-text-editor"]}
-          toolbar={{
-            options: ["inline", "textAlign", "emoji", "remove", "history"],
-          }}
-        />
-      </div>
-      <div className={styles["message-form-font"]}>
-        <span className={styles["message-form-title"]}>폰트 선택</span>
-        <CustomDropdown props={Object.keys(FONT_CLASS_NAME)} />
-      </div>
-      <button className={styles["message-form-submit"]} onClick={handleSubmit}>
+      <button className={styles["message-form-submit"]} type="submit">
         생성하기
       </button>
-    </div>
+    </form>
   );
 }

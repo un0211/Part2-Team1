@@ -1,16 +1,14 @@
-import React, { useState, forwardRef } from "react";
+// ProfileSelect.js
+import React, { useState } from "react";
 import "./ProfileSelect.scss";
 import { PROFILES } from "constants/postMessagePage";
 
-const ProfileSelect = forwardRef((_, profileOptionsRef) => {
-  const [selectedImg, setSelectedImg] = useState(PROFILES[0].src);
+const ProfileSelect = ({ onProfileSelect }) => {
+  const [selectedImg, setSelectedImg] = useState(PROFILES[0]);
 
-  const handleProfileClick = (e) => {
-    const profile = e.target.src;
-    if (profile) {
-      profileOptionsRef.current.value = profile;
-      setSelectedImg(profile);
-    }
+  const handleProfileClick = (profile) => {
+    setSelectedImg(profile);
+    onProfileSelect(profile);
   };
 
   return (
@@ -19,24 +17,21 @@ const ProfileSelect = forwardRef((_, profileOptionsRef) => {
       <div className="message-form-profile-container">
         <img
           className="message-form-profile-selected"
-          src={selectedImg}
+          src={selectedImg.src}
           alt="선택된 프로필 이미지"
         />
         <div className="message-form-profile-options">
           <p className="message-form-profile-options-title">
             프로필 이미지를 선택해주세요!
           </p>
-          <div
-            className="message-form-profile-preview-container"
-            onClick={handleProfileClick}
-          >
+          <div className="message-form-profile-preview-container">
             {PROFILES.map((profile, i) => (
               <img
                 key={i}
                 className="message-form-profile-preview"
                 src={profile.src}
                 alt={profile.alt}
-                ref={profileOptionsRef}
+                onClick={() => handleProfileClick(profile)}
               />
             ))}
           </div>
@@ -44,6 +39,6 @@ const ProfileSelect = forwardRef((_, profileOptionsRef) => {
       </div>
     </div>
   );
-});
+};
 
 export default ProfileSelect;
