@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 import {
   delMessage,
   delPaper,
@@ -13,8 +14,6 @@ import ButtonList from "components/RollingPaperPage/ButtonList";
 import Card, { FirstCard } from "components/RollingPaperPage/Card";
 import Nav from "components/RollingPaperPage/Nav";
 import styles from "./RollingPaperPage.module.scss";
-import ProfileSelect from "components/CreateMessage/ProfileSelect";
-
 
 function RollingPaperPage() {
   // NOTE - id 받아오는 작업
@@ -39,7 +38,6 @@ function RollingPaperPage() {
 
   // NOTE - 페이지 이동
   const navigate = useNavigate();
-
 
   // NOTE - 토스트 메세지 출력
   const notifyURLCopy = () =>
@@ -172,6 +170,7 @@ function RollingPaperPage() {
           onCheckAll={handleCheckAll}
           navigate={navigate}
           onDeletePaper={handleDeletePaper}
+          postId={postId}
         />
         <CardList
           isEdit={isEdit}
