@@ -24,7 +24,6 @@ $regular: 400;
     @include size(18px);
   }
 }
-
 .font-20-20-20 {
   @include font(20px);
 }
@@ -56,6 +55,10 @@ $regular: 400;
 
 .font-14-14-14 {
   @include font(14px);
+}
+
+.font-14-14-14-bold {
+  @include font(14px, $bold);
 }
 
 .font-12-12-12 {

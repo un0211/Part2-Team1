@@ -58,35 +58,3 @@
   }
 }
 
-.select-all-container {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-
-  input {
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
-  }
-}
-
-.button-list-container {
-  margin-bottom: 15px;
-  display: flex;
-  justify-content: space-between;
-
-  .delete-paper-button {
-    @include btn-red;
-    @include btn-small;
-    color: var(--white);
-  }
-
-  .go-back-button {
-    background: none;
-  }
-
-  .checkbox-button-container {
-    display: flex;
-    gap: 20px;
-  }
-}

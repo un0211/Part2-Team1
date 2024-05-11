@@ -1,8 +1,8 @@
 import Modal from "react-modal";
-import styles from "./CardModal.module.scss";
-import SenderInfo from "./SenderInfo";
-import { FONT_CLASS_NAME } from "constants/rollingPaperPage";
 import { formatDateWithDot } from "utils/rollingPaperPage";
+import { FONT_CLASS_NAME } from "constants/rollingPaperPage";
+import SenderInfo from "./SenderInfo";
+import styles from "./CardModal.module.scss";
 
 export default function CardModal({ isOpen, message, onModalClose }) {
   const { content, createdAt, profileImageURL, relationship, sender, font } =

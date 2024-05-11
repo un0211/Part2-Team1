@@ -1,11 +1,17 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
+<<<<<<< HEAD
 import PlusIcon from "assets/icons/big_plus.svg";
 import styles from "./Card.module.scss";
+=======
+
+>>>>>>> develop
 import { formatDateWithDot } from "utils/rollingPaperPage";
-import SenderInfo from "./SenderInfo";
 import { FONT_CLASS_NAME } from "constants/rollingPaperPage";
 import CardModal from "./CardModal";
-import { useState } from "react";
+import SenderInfo from "./SenderInfo";
+import PlusIcon from "assets/icons/plus.svg";
+import styles from "./Card.module.scss";
 
 function Card({ message, isEdit, onCheck, isChecked }) {
   const {

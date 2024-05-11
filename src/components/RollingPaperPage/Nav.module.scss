@@ -11,19 +11,49 @@
   justify-content: center;
   align-items: center;
 
+<<<<<<< HEAD
+=======
+  @media screen and (max-width: 1248px) {
+    padding: 0 24px;
+  }
+
+  @media screen and (max-width: 768px) {
+    height: fit-content;
+  }
+
+>>>>>>> develop
   .contents {
     max-width: 1200px;
     width: 100%;
 
+<<<<<<< HEAD
     position: relative;
+=======
+>>>>>>> develop
     display: flex;
     justify-content: space-between;
     align-items: center;
 
+<<<<<<< HEAD
+=======
+    @media screen and (max-width: 768px) {
+      display: block;
+    }
+
+>>>>>>> develop
     .name {
       width: 227px;
       height: 42px;
       color: var(--gray800);
+<<<<<<< HEAD
+=======
+
+      @media screen and (max-width: 768px) {
+        height: 52px;
+        display: flex;
+        align-items: center;
+      }
+>>>>>>> develop
     }
 
     .post-info {
@@ -31,6 +61,13 @@
       align-items: center;
       gap: 28px;
 
+<<<<<<< HEAD
+=======
+      @media screen and (max-width: 768px) {
+        height: 52px;
+      }
+
+>>>>>>> develop
       .tools {
         display: flex;
         align-items: center;
@@ -56,6 +93,13 @@
   align-items: center;
   gap: 13px;
 
+<<<<<<< HEAD
+=======
+  @media screen and (max-width: 768px) {
+    gap: 15px;
+  }
+
+>>>>>>> develop
   * {
     color: var(--gray900);
   }
@@ -78,6 +122,18 @@
   button {
     padding: 6px 16px;
     border: 1px solid var(--gray300);
+<<<<<<< HEAD
+=======
+
+    @media screen and (max-width: 768px) {
+      padding: 6px 8px;
+
+      img {
+        width: 20px;
+        height: 20px;
+      }
+    }
+>>>>>>> develop
   }
 }
 
@@ -96,3 +152,12 @@ button {
     height: 24px;
   }
 }
+<<<<<<< HEAD
+=======
+
+.PC-only {
+  @media screen and (max-width: 1248px) {
+    display: none;
+  }
+}
+>>>>>>> develop
