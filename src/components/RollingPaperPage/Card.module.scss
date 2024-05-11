@@ -68,8 +68,11 @@ article.card {
   &:hover {
     transform: scale(1);
     transition-duration: 0s;
+    img {
+      transition: all 0.5s;
+      transform: rotate(180deg);
+    }
   }
-  box-shadow: none;
 
   .add-button {
     width: 56px;
