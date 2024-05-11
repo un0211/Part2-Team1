@@ -3,11 +3,11 @@ import { useCallback, useEffect, useState } from "react";
 import { getKakaoShareSettings } from "utils/rollingPaperPage";
 import { KAKAO_JAVASCRIPT_KEY, SHARE_IMAGE_URL } from "constants";
 import shareIcon from "assets/icons/share.svg";
-import styles from "./DropDown.module.scss";
+import styles from "./ShareDropDown.module.scss";
 
 const KAKAO_BUTTON_NAME = "kakaotalk-sharing-btn";
 
-function DropDown({ name, onURLClick }) {
+function ShareDropDown({ name, onURLClick }) {
   const domainURL = window.location.origin;
   const currentURL = window.location.href;
   const [isHidden, setIsHidden] = useState(true);
@@ -74,4 +74,4 @@ function DropDown({ name, onURLClick }) {
   );
 }
 
-export default DropDown;
+export default ShareDropDown;

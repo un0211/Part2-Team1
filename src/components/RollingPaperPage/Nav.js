@@ -1,6 +1,6 @@
 import AddEmojiButton from "./AddReactionButton";
 import CountMessage from "components/common/CountMessage";
-import DropDown from "./DropDown";
+import ShareDropDown from "./ShareDropDown";
 import { POST_PAGE } from "constants";
 import arrowDownIcon from "assets/icons/arrow_down.svg";
 import styles from "./Nav.module.scss";
@@ -47,7 +47,7 @@ function Buttons({ name, onURLClick }) {
     <div className={styles.buttons}>
       <AddEmojiButton />
       <div className={styles.divider}></div>
-      <DropDown name={name} onURLClick={onURLClick} />
+      <ShareDropDown name={name} onURLClick={onURLClick} />
     </div>
   );
 }
