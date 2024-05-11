@@ -40,7 +40,7 @@ function CarouselRecent({ title }) {
   return (
     <div className={styles.container}>
       <h1>{title}</h1>
-      <Slider {...settings}>
+      <Slider {...settings} className={styles.slideer}>
         {slideItems?.map((item) => (
           <CardList key={item.id} slideItems={item} />
         ))}
@@ -59,7 +59,7 @@ function NextArrow(props) {
         display: "block",
         width: "40px",
         height: "40px",
-        right: "-1140px",
+        right: "-1150px",
         top: "-150px",
         borderRadius: "50%",
         position: "relative",
@@ -91,7 +91,7 @@ function PrevArrow(props) {
         display: "block",
         width: "40px",
         height: "40px",
-        left: "-30px",
+        left: "-20px",
         top: "150px",
         borderRadius: "50%",
         position: "relative",

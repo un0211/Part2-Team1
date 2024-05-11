@@ -32,14 +32,16 @@ function CarouselBest({ title }) {
     autoplaySpeed: 5000,
     slidesToShow: 4,
     slidesToScroll: 2,
-    nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />,
+    draggable: true,
+    nextArrow: slideItems.length > 4 ? <NextArrow /> : null,
+    prevArrow: slideItems.length > 4 ? <PrevArrow /> : null,
+    // afterChange: (currentSlide) => handleAfterChange(currentSlide),
   };
 
   return (
     <div className={styles.container}>
       <h1>{title}</h1>
-      <Slider {...settings}>
+      <Slider {...settings} className={styles.slideer}>
         {slideItems?.map((item) => (
           <CardList key={item.id} slideItems={item} />
         ))}
@@ -49,16 +51,16 @@ function CarouselBest({ title }) {
 }
 
 function NextArrow(props) {
-  const { className, styles, onClick } = props;
+  const { custom, styles, onClick } = props;
   return (
     <div
-      className={className}
+      className={custom}
       style={{
         ...styles,
         display: "block",
         width: "40px",
         height: "40px",
-        right: "-1140px",
+        right: "-1150px",
         top: "-150px",
         borderRadius: "50%",
         position: "relative",
@@ -81,16 +83,16 @@ function NextArrow(props) {
   );
 }
 function PrevArrow(props) {
-  const { className, styles, onClick } = props;
+  const { custom, styles, onClick } = props;
   return (
     <div
-      className={className}
+      className={custom}
       style={{
         ...styles,
         display: "block",
         width: "40px",
         height: "40px",
-        left: "-30px",
+        left: "-20px",
         top: "150px",
         borderRadius: "50%",
         position: "relative",
