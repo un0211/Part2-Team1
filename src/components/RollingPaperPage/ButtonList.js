@@ -27,7 +27,7 @@ function ButtonList({
   };
   return (
     <div className={styles["button-list-container"]}>
-      <button onClick={handleGoBack}>
+      <button onClick={handleGoBack} className={styles["go-back-button-bg"]}>
         <img
           src={isEdit ? editDelete : back}
           className={styles["go-back-button"]}
