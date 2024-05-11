@@ -13,6 +13,7 @@ article.card {
   position: relative;
   // NOTE pointer 추가
   cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08), 0 2px 5px rgba(0, 0, 0, 0.1);
 
   @media screen and (max-width: 1248px) {
     height: 284px;
@@ -68,6 +69,7 @@ article.card {
     transform: scale(1);
     transition-duration: 0s;
   }
+  box-shadow: none;
 
   .add-button {
     width: 56px;
