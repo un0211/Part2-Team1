@@ -2,11 +2,43 @@
   border-radius: 16px;
   width: 275px;
   height: 260px;
+  color: var(--gray900);
+  .bg-url{
+    background-color: rgba(0, 0, 0, 0.54);
+    
+    h3{
+      color: var(--white);
+    }
+    
+    a{
+      color: var(--white);
+    }
+  }
 
-  color: var(--gray700);
+  .bg-purple{
+    background-image: url("../../assets/images/pattern01.png");
+    background-repeat: no-repeat;
+    background-position: right bottom;
+  }
+  .bg-yellow{
+    background-image: url("../../assets/images/pattern02.png");
+    background-repeat: no-repeat;
+    background-position: right bottom;
+  }
+  .bg-blue{
+    background-image: url("../../assets/images/pattern03.png");
+    background-repeat: no-repeat;
+    background-position: right bottom;
+  }
+  .bg-green{
+    background-image: url("../../assets/images/pattern04.png");
+    background-repeat: no-repeat;
+    background-position: right bottom;
+  }
   a{
     display: block;
     padding: 30px 24px 20px 24px;
+
   }
   h3{
     color: var(--gray900);
