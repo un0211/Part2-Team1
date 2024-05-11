@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { useParams } from "react-router-dom";
 import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
@@ -11,16 +11,19 @@ function AddEmojiButton() {
   const { postId } = useParams();
   const [isPickerHidden, setIsPickerHidden] = useState(true);
 
-  const handleButtonClick = () => {
+  const handleButtonClick = useCallback(() => {
     setIsPickerHidden((prevIsOpen) => !prevIsOpen);
-  };
+  }, []);
 
-  const handleEmojiClick = ({ native }) => {
-    postReaction(postId, {
-      emoji: native,
-      type: "increase",
-    });
-  };
+  const handleEmojiClick = useCallback(
+    ({ native }) => {
+      postReaction(postId, {
+        emoji: native,
+        type: "increase",
+      });
+    },
+    [postId]
+  );
 
   return (
     <div className={styles["add-emoji-container"]}>

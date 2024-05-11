@@ -12,15 +12,15 @@ function ShareDropDown({ name, onURLClick }) {
   const currentURL = window.location.href;
   const [isHidden, setIsHidden] = useState(true);
 
-  const handleDropDownClick = (e) => {
+  const handleDropDownClick = useCallback(() => {
     setIsHidden((isHidden) => !isHidden);
-  };
+  }, []);
 
-  const handleURLClick = () => {
+  const handleURLClick = useCallback(() => {
     copy(currentURL);
     onURLClick();
     setIsHidden(true);
-  };
+  }, [currentURL, onURLClick]);
 
   const createKakaoButton = useCallback(() => {
     if (window.Kakao) {

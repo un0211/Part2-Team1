@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -40,30 +40,40 @@ function RollingPaperPage() {
   const navigate = useNavigate();
 
   // NOTE - 토스트 메세지 출력
-  const notifyURLCopy = () =>
-    toast.success("URL이 복사 되었습니다.", TOAST_DEFAULT_SETTING);
+  const notifyURLCopy = useCallback(
+    () => toast.success("URL이 복사 되었습니다.", TOAST_DEFAULT_SETTING),
+    []
+  );
 
-  const handleCheck = (id, isChecked) => {
-    // NOTE - type of id -> String
-    // NOTE - input의 id 속성에  Number 타입을 속성값으로 주면 자동으로 String으로 형변환됨
-    const numberId = Number(id);
-    if (isChecked) {
-      setDeleteMessageIds((prev) => [...prev, numberId]);
-    } else {
-      setDeleteMessageIds(deleteMessageIds.filter((item) => item !== numberId));
-    }
-  };
+  const handleCheck = useCallback(
+    (id, isChecked) => {
+      // NOTE - type of id -> String
+      // NOTE - input의 id 속성에  Number 타입을 속성값으로 주면 자동으로 String으로 형변환됨
+      const numberId = Number(id);
+      if (isChecked) {
+        setDeleteMessageIds((prev) => [...prev, numberId]);
+      } else {
+        setDeleteMessageIds(
+          deleteMessageIds.filter((item) => item !== numberId)
+        );
+      }
+    },
+    [deleteMessageIds]
+  );
 
-  const handleCheckAll = (e) => {
-    if (e.target.checked) {
-      setDeleteMessageIds(messages.map((item) => item.id));
-    } else {
-      setDeleteMessageIds([]);
-    }
-  };
+  const handleCheckAll = useCallback(
+    (e) => {
+      if (e.target.checked) {
+        setDeleteMessageIds(messages.map((item) => item.id));
+      } else {
+        setDeleteMessageIds([]);
+      }
+    },
+    [messages]
+  );
 
   // NOTE - post, message, reaction 값 받아오는 함수
-  const handleLoad = async () => {
+  const handleLoad = useCallback(async () => {
     let postResult;
     let messageResult;
     try {
@@ -94,10 +104,10 @@ function RollingPaperPage() {
 
     const { results: newMessages } = messageResult;
     setMessages(newMessages);
-  };
+  }, [postId]);
 
   // NOTE - 메세지 삭제하는 함수
-  const handleDeleteMessage = async () => {
+  const handleDeleteMessage = useCallback(async () => {
     const confirmation = window.confirm(
       `${deleteMessageIds.length}개의 메세지를 삭제하시겠습니까?`
     );
@@ -122,10 +132,10 @@ function RollingPaperPage() {
     setDeleteMessageIds([]);
     // NOTE - 삭제 후, 페이지 이동
     navigate(`/post/${postId}`);
-  };
+  }, [deleteMessageIds, handleLoad, navigate, postId]);
 
   // NOTE - 롤링페이퍼 삭제하는 함수
-  const handleDeletePaper = async () => {
+  const handleDeletePaper = useCallback(async () => {
     const confirmation = window.confirm(
       `${postInfo.name}님의 롤링페이퍼를 삭제하시겠습니까?`
     );
@@ -142,11 +152,11 @@ function RollingPaperPage() {
 
     // NOTE - 삭제 후, 페이지 이동
     navigate("/list");
-  };
+  }, [navigate, postId, postInfo.name]);
 
   useEffect(() => {
     handleLoad();
-  }, []);
+  }, [handleLoad]);
 
   useEffect(() => {
     // NOTE - 페이지 이동할 때 deleteMessageIds를 초기화
