@@ -15,6 +15,9 @@
   .content {
     height: 240px;
     overflow: auto;
+    @media screen and (max-width: 768px) {
+      height: 100px;
+    }
 
     &::-webkit-scrollbar {
       width: 8px;
