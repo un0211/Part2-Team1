@@ -13,6 +13,7 @@ import ButtonList from "components/RollingPaperPage/ButtonList";
 import Card, { FirstCard } from "components/RollingPaperPage/Card";
 import Nav from "components/RollingPaperPage/Nav";
 import styles from "./RollingPaperPage.module.scss";
+import ProfileSelect from "components/CreateMessage/ProfileSelect";
 
 
 function RollingPaperPage() {

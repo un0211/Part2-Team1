@@ -1,20 +1,3 @@
-<<<<<<< HEAD
-import { useState } from "react";
-import styles from "./DropDown.module.scss";
-import shareIcon from "assets/icons/share.svg";
-
-function DropDown() {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const handleDropDownClick = (e) => {
-    setIsOpen((isOpen) => !isOpen);
-  };
-
-  const handleMenuClick = () => {
-    setIsOpen(false);
-  };
-
-=======
 import copy from "copy-to-clipboard";
 import { useCallback, useEffect, useState } from "react";
 import { getKakaoShareSettings } from "utils/rollingPaperPage";
@@ -70,24 +53,11 @@ function DropDown({ name, onURLClick }) {
     });
   }, []);
 
->>>>>>> develop
   return (
     <div className={styles["drop-down"]}>
       <button type="button" onClick={handleDropDownClick}>
         <img src={shareIcon} alt="공유" />
       </button>
-<<<<<<< HEAD
-      {isOpen && (
-        <ul className={`${styles.menus} font-16-16-16`}>
-          <li className={styles.menu} onClick={() => handleMenuClick()}>
-            카카오톡 공유
-          </li>
-          <li className={styles.menu} onClick={() => handleMenuClick()}>
-            URL 공유
-          </li>
-        </ul>
-      )}
-=======
       <ul
         className={`${styles.menus} font-16-16-16 ${
           isHidden ? styles.hidden : ""
@@ -100,7 +70,6 @@ function DropDown({ name, onURLClick }) {
           URL 공유
         </li>
       </ul>
->>>>>>> develop
     </div>
   );
 }
