@@ -8,6 +8,8 @@ import styles from "styles/PostMessagePage.module.scss";
 import CustomDropdown from "components/CreateMessage/CustomDropdown";
 import ProfileSelect from "components/CreateMessage/ProfileSelect";
 import { FONT_CLASS_NAME, MEMBER_CLASS_NAME } from "constants/postMessagePage";
+import { useParams } from "react-router-dom";
+import { putMessage } from "apis/postMessagePage";
 
 export default function PostMessageForm() {
   const [senderValue, setSenderValue] = useState("");
@@ -15,6 +17,8 @@ export default function PostMessageForm() {
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
   const [selectedFont, setSelectedFont] = useState(null);
   const [selectedProfile, setSelectedProfile] = useState(null);
+  // NOTE - id 받아오는 작업
+  const { postId } = useParams();
 
   const handleNameChange = (e) => {
     setSenderValue(e.target.value);
@@ -22,31 +26,42 @@ export default function PostMessageForm() {
 
   const handleEditorChange = (state) => {
     setEditorState(state);
-    console.log(state.getCurrentContent().getPlainText('\n'));
+    console.log(state.getCurrentContent().getPlainText("\n"));
   };
 
   const handleProfileSelect = (profile) => {
     setSelectedProfile(profile);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
 
     const formData = new FormData();
+
     formData.append("sender", senderValue);
     formData.append("relationship", relationship);
     formData.append("content", stateToHTML(editorState.getCurrentContent()));
     formData.append("font", selectedFont);
 
+    //{formData}
+    //data : {formData}
+
     if (selectedProfile) {
-      formData.append("profileImage", selectedProfile.src);
-      formData.append("profileImageName", selectedProfile.filename);
+      formData.append("profileImageURL", selectedProfile.src);
     }
 
     for (var entries of formData.entries()) {
       console.log("key: " + entries[0]);
       console.log("value: " + entries[1]);
     }
+
+    await putMessage(postId, formData)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((e) => {
+        console.error(e);
+      });
   };
 
   return (
