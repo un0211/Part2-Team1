@@ -3,48 +3,48 @@
   width: 275px;
   height: 260px;
   color: var(--gray900);
-  .bg-url{
-    background-color: rgba(0, 0, 0, 0.54);
-    border-radius: 16px;
-    h3{
-      color: var(--white);
-    }
-    
-    a{
-      color: var(--white);
-    }
-  }
 
-  .bg-purple{
-    background-image: url("../../assets/images/pattern01.png");
+  .bg-setting {
+    border: 1px solid rgba(0, 0, 0, 0.1);
     background-repeat: no-repeat;
     background-position: right bottom;
     border-radius: 16px;
-  }
-  .bg-yellow{
-    background-image: url("../../assets/images/pattern02.png");
-    background-repeat: no-repeat;
-    background-position: right bottom;
-    border-radius: 16px;
-  }
-  .bg-blue{
-    background-image: url("../../assets/images/pattern03.png");
-    background-repeat: no-repeat;
-    background-position: right bottom;
-    border-radius: 16px;
-  }
-  .bg-green{
-    background-image: url("../../assets/images/pattern04.png");
-    background-repeat: no-repeat;
-    background-position: right bottom;
-    border-radius: 16px;
+
+    &.bg-url{
+      background-color: rgba(0, 0, 0, 0.54);
+      border-radius: 16px;
+  
+      h3{
+        color: var(--white);
+      }
+      
+      a{
+        color: var(--white);
+      }
+    }
+
+    &.bg-purple {
+      background-image: url("../../assets/images/pattern01.png");
+    }
+
+    &.bg-yellow {
+      background-image: url("../../assets/images/pattern02.png");
+    }
+
+    &.bg-blue {
+      background-image: url("../../assets/images/pattern03.png");
+    }
+
+    &.bg-green {
+      background-image: url("../../assets/images/pattern04.png");
+    }
   }
 
   a{
     display: block;
     padding: 30px 24px 20px 24px;
-
   }
+  
   h3{
     color: var(--gray900);
     margin: 0;

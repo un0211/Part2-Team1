@@ -33,7 +33,7 @@ function CardList({ slideItems }) {
                       'bg-blue';
   return (
     <div className={styles["CardList"]} style={cardStyle}>
-      <div className={styles[backgroundClass]}>
+      <div className={`${styles["bg-setting"]} ${styles[backgroundClass]}`}>
         <Link to={`/post/${id}`} className={styles.CardList}>
           <h3 className={`font-24-bold`}>To. {name}</h3>
           <CountMessage
