@@ -82,6 +82,7 @@ export default function CreateRollingPaPer() {
         <input
           id="sender"
           name="sender"
+          type="text"
           placeholder="받는 사람 이름을 입력해 주세요."
           className={styles["sender-input"]}
           onChange={handleName}
