@@ -13,3 +13,11 @@
     gap: 2px;
   }
 }
+
+.post {
+  .emoji-box {
+    @media screen and (max-width: 768px) {
+      padding: 4px 8px;
+    }
+  }
+}

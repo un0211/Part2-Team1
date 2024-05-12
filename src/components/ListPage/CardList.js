@@ -37,7 +37,7 @@ function CardList({ slideItems }) {
           page={LIST_PAGE}
         />
         <div className={styles.divider} />
-        <Reactions reactions={topReactions} />
+        <Reactions reactions={topReactions} page={LIST_PAGE} />
       </Link>
     </div>
   );
