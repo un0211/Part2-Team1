@@ -1,0 +1,23 @@
+.reaction-box {
+  display: flex;
+  gap: 8px;
+
+  .emoji-box {
+    color: var(--white);
+    border-radius: 32px;
+    background-color: var(--emoji-bg);
+    cursor: default;
+
+    padding: 8px 12px;
+    display: flex;
+    gap: 2px;
+  }
+}
+
+.post {
+  .emoji-box {
+    @media screen and (max-width: 768px) {
+      padding: 4px 8px;
+    }
+  }
+}
