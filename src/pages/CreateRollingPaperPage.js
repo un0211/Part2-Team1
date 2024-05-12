@@ -32,9 +32,7 @@ export default function CreateRollingPaPer() {
         </div>
         <BackgroundButton onBgSelect={handleBgSelect} selectedBg={selectedBg} />
         <div className={styles["select-bg-input-container"]}>
-          {BACKGROUND_COLOR.map((color) => (
-            <BackgroundColor color={color} />
-          ))}
+          <BackgroundColor backgrounds={BACKGROUND_COLOR} name="color" />
         </div>
       </section>
       <button className="button full" type="submit">
@@ -71,16 +69,20 @@ function BackgroundButton({ onBgSelect, selectedBg }) {
   );
 }
 
-function BackgroundColor({ color }) {
+function BackgroundColor({ backgrounds, name }) {
   return (
     <>
-      <input
-        type="radio"
-        name="color"
-        id={color}
-        className={styles["select-bg-input"]}
-      />
-      <label htmlFor={color} className={styles[color]}></label>
+      {backgrounds.map((background) => (
+        <>
+          <input
+            type="radio"
+            name={name}
+            id={background}
+            className={styles["select-bg-input"]}
+          />
+          <label htmlFor={background} className={styles[background]}></label>
+        </>
+      ))}
     </>
   );
 }
