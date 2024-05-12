@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import Slider from 'react-slick';
-import styles from './Carousel.module.scss';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import image_prev from 'assets/icons/arrow_prev.png';
-import image_next from 'assets/icons/arrow_next.png';
-import CardList from './CardList';
+import React, { useState } from "react";
+import Slider from "react-slick";
+import styles from "./Carousel.module.scss";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import image_prev from "assets/icons/arrow_prev.png";
+import image_next from "assets/icons/arrow_next.png";
+import CardList from "./CardList";
 
 function Carousel({ title, slideItems }) {
 
@@ -27,7 +27,7 @@ function Carousel({ title, slideItems }) {
 
   return (
     <div className={styles.container}>
-      <h1>{title}</h1>
+      {/* <h1>{title}</h1> */}
       <Slider {...settings} className={styles.slider}>
         {slideItems?.map((item) => (
           <CardList key={item.id} slideItems={item} />
@@ -44,17 +44,17 @@ function NextArrow({ custom, styles, onClick, currentSlide, length }) {
       className={custom}
       style={{
         ...styles,
-        display: 'block',
-        width: '40px',
-        height: '40px',
-        right: '-1130px',
-        top: '-150px',
-        borderRadius: '50%',
-        position: 'relative',
+        display: "block",
+        width: "40px",
+        height: "40px",
+        right: "-1130px",
+        top: "-150px",
+        borderRadius: "50%",
+        position: "relative",
         visibility:
           length > 4 && currentSlide + 4 < length
-            ? 'visible'
-            : 'hidden',
+            ? "visible"
+            : "hidden",
       }}
       onClick={onClick}
     >
@@ -62,10 +62,10 @@ function NextArrow({ custom, styles, onClick, currentSlide, length }) {
         src={image_next}
         alt="Next Arrow"
         style={{
-          width: '60px',
-          height: '60px',
-          borderRadius: '50%',
-          objectFit: 'cover',
+          width: "60px",
+          height: "60px",
+          borderRadius: "50%",
+          objectFit: "cover",
         }}
       />
     </div>
@@ -79,15 +79,15 @@ function PrevArrow(props) {
       className={custom}
       style={{
         ...styles,
-        display: 'block',
-        width: '40px',
-        height: '40px',
-        left: '-30px',
-        top: '150px',
-        borderRadius: '50%',
-        position: 'relative',
-        zIndex: '3',
-        visibility: currentSlide === 0 ? 'hidden' : 'visible',
+        display: "block",
+        width: "40px",
+        height: "40px",
+        left: "-30px",
+        top: "150px",
+        borderRadius: "50%",
+        position: "relative",
+        zIndex: "3",
+        visibility: currentSlide === 0 ? "hidden" : "visible",
       }}
       onClick={() => {
         if (currentSlide !== 0) onClick();
@@ -97,10 +97,10 @@ function PrevArrow(props) {
         src={image_prev}
         alt="Previous Arrow"
         style={{
-          width: '60px',
-          height: '60px',
-          borderRadius: '50%',
-          objectFit: 'cover',
+          width: "60px",
+          height: "60px",
+          borderRadius: "50%",
+          objectFit: "cover",
         }}
       />
     </div>
