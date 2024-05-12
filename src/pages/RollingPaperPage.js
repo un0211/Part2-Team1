@@ -102,7 +102,10 @@ function RollingPaperPage() {
         ? { backgroundImage: `url(${backgroundImageURL})` }
         : null,
       messageCount,
-      messageProfiles: recentMessages.map((message) => message.profileImageURL),
+      messageProfiles: recentMessages.map((message) => ({
+        id: message.id,
+        imgURL: message.profileImageURL,
+      })),
     });
 
     const { results: newMessages } = messageResult;
