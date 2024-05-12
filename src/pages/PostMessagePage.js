@@ -8,7 +8,7 @@ import styles from "styles/PostMessagePage.module.scss";
 import CustomDropdown from "components/CreateMessage/CustomDropdown";
 import ProfileSelect from "components/CreateMessage/ProfileSelect";
 import { FONT_CLASS_NAME, MEMBER_CLASS_NAME } from "constants/postMessagePage";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { putMessage } from "apis/postMessagePage";
 
 export default function PostMessageForm() {
@@ -17,8 +17,10 @@ export default function PostMessageForm() {
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
   const [selectedFont, setSelectedFont] = useState(null);
   const [selectedProfile, setSelectedProfile] = useState(null);
+
   // NOTE - id 받아오는 작업
   const { postId } = useParams();
+  const navigate = useNavigate();
 
   const handleNameChange = (e) => {
     setSenderValue(e.target.value);
@@ -33,35 +35,28 @@ export default function PostMessageForm() {
     setSelectedProfile(profile);
   };
 
-  const handleSubmit = async(e) => {
+  const removePTags = (html) => {
+    return html.replace(/<p>/g, "").replace(/<\/p>/g, "");
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const formData = {
+      team: "6-1",
+      recipientId: postId,
+      sender: senderValue,
+      relationship: relationship,
+      content: removePTags(stateToHTML(editorState.getCurrentContent())),
+      font: selectedFont,
+      profileImageURL: selectedProfile.src,
+    };
 
-    const formData = new FormData();
-
-    formData.append("sender", senderValue);
-    formData.append("relationship", relationship);
-    formData.append("content", stateToHTML(editorState.getCurrentContent()));
-    formData.append("font", selectedFont);
-
-    //{formData}
-    //data : {formData}
-
-    if (selectedProfile) {
-      formData.append("profileImageURL", selectedProfile.src);
+    try {
+      await putMessage(postId, formData);
+      navigate(`/post/${postId}`); // NOTE 페이지 이동
+    } catch (error) {
+      console.error(error);
     }
-
-    for (var entries of formData.entries()) {
-      console.log("key: " + entries[0]);
-      console.log("value: " + entries[1]);
-    }
-
-    await putMessage(postId, formData)
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((e) => {
-        console.error(e);
-      });
   };
 
   return (
