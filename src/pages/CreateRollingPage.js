@@ -13,10 +13,12 @@ function CreateRollingPage() {
   const [selectOption, setSelectOption] = useState("color");
   const [selectedImage, setSelectedImage] = useState(null);
   const [selectedColor, setSelectedColor] = useState("first");
+  const [imageData, setImageData] = useState("");
 
   const handleSelectOption = (option) => {
     setSelectOption(option);
   };
+
   const handleChange = (e) => {
     const inputValue = e.target.value;
     setInputValue(inputValue);
@@ -42,6 +44,21 @@ function CreateRollingPage() {
   const handleColorSelect = (color) => {
     setSelectedColor(color);
   };
+
+  const handleImageInputChange = (e) => {
+    const { files } = e.target;
+    const uploadFile = files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(uploadFile);
+    reader.onloadend = () => {
+      setImageData(reader.result);
+      console.log(imageData);
+    };
+  };
+
+  useEffect(() => {
+    console.log(imageData);
+  }, [imageData]);
 
   const renderInput = (error) => {
     if (error) {
@@ -73,12 +90,9 @@ function CreateRollingPage() {
     }
   };
 
-  useEffect(
-    (error) => {
-      renderInput(error);
-    },
-    [error, isFocused]
-  );
+  useEffect((error) => {
+    renderInput(error);
+  }, []);
 
   const errorInputRef = useRef(null);
   useEffect(() => {
@@ -86,6 +100,11 @@ function CreateRollingPage() {
       errorInputRef.current.focus();
     }
   }, [error]);
+
+  const uploadeInputRef = useRef(null);
+  const onhandleClickInput = () => {
+    uploadeInputRef.current.click();
+  };
 
   return (
     <main className={styles.main}>
@@ -110,9 +129,19 @@ function CreateRollingPage() {
           </button>
           <button
             className={`${styles.optionButton} ${selectOption === "image" ? styles.image : ""}`}
-            onClick={() => handleSelectOption("image")}
+            onClick={() => {
+              handleSelectOption("image");
+              onhandleClickInput();
+            }}
           >
             이미지
+            <input
+              type="file"
+              accept="image/*"
+              className={styles.imageUpload}
+              ref={uploadeInputRef}
+              onChange={handleImageInputChange}
+            />
           </button>
         </div>
 
@@ -149,35 +178,33 @@ function CreateRollingPage() {
               type="button"
               onClick={() => handleImageUpload("image1.jpg")}
             >
-              <img src="" />
+              이미지1
             </button>
             <button
               className={`${styles.secondImage} ${selectedImage === "image2.jpg" ? styles.active : ""}`}
               type="button"
               onClick={() => handleImageUpload("image2.jpg")}
             >
-              이미지1
+              이미지2
             </button>
             <button
               className={`${styles.thirdImage} ${selectedImage === "image3.jpg" ? styles.active : ""}`}
               type="button"
               onClick={() => handleImageUpload("image3.jpg")}
             >
-              이미지2
-            </button>
-            <button
-              className={`${styles.fourImage} ${selectedImage === "image4.jpg" ? styles.active : ""}`}
-              type="button"
-              onClick={() => handleImageUpload("image4.jpg")}
-            >
               이미지3
             </button>
+            <div className={styles.fourImage}>
+              <img src={imageData} alt="이미지4" />
+            </div>
           </div>
         )}
       </section>
 
       <section className={styles.createRollingPage}>
-        <button className={styles.createRollingPageButton}>생성하기</button>
+        <button type="button" className={styles.createRollingPageButton}>
+          생성하기
+        </button>
       </section>
     </main>
   );
