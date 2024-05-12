@@ -38,7 +38,7 @@ export async function getReaction(postId, offset = 0, limit = 8) {
 /* POST */
 // NOTE - 반응 업데이트
 export async function postReaction(postId, data) {
-  fetch(`${postURL(postId)}reactions/`, {
+  await fetch(`${postURL(postId)}reactions/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

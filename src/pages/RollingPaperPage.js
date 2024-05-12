@@ -8,6 +8,7 @@ import {
   delPaper,
   getMessage,
   getPost,
+  getReaction,
 } from "apis/rollingPaperPage";
 import { TOAST_DEFAULT_SETTING } from "constants/rollingPaperPage";
 import ButtonList from "components/RollingPaperPage/ButtonList";
@@ -21,16 +22,16 @@ function RollingPaperPage() {
 
   // NOTE - post, message, reaction, error 정보 관리
   const [postInfo, setPostInfo] = useState({
-    postId,
     name: "",
     backgroundColor: "",
     style: null,
     messageCount: 0,
     messageProfiles: [],
-    topReactions: [],
   });
   const [messages, setMessages] = useState([]);
+  const [reactions, setReactions] = useState([]);
   const [loadingError, setLoadingError] = useState(null);
+  const [reactionLoadingError, setReactionLoadingError] = useState(null);
   // NOTE - 삭제할 메세지 id 목록
   const [deleteMessageIds, setDeleteMessageIds] = useState([]);
   // NOTE - 반응 목록, 이모지 피커, 드롭다운 보여줄지 여부
@@ -78,7 +79,7 @@ function RollingPaperPage() {
     [messages]
   );
 
-  // NOTE - post, message, reaction 값 받아오는 함수
+  // NOTE - post, message 값 받아오는 함수
   const handleLoad = useCallback(async () => {
     let postResult;
     let messageResult;
@@ -97,10 +98,8 @@ function RollingPaperPage() {
       backgroundImageURL,
       messageCount,
       recentMessages,
-      topReactions,
     } = postResult;
     setPostInfo({
-      postId,
       name,
       backgroundColor,
       style: backgroundImageURL
@@ -111,11 +110,26 @@ function RollingPaperPage() {
         id: message.id,
         imgURL: message.profileImageURL,
       })),
-      topReactions,
     });
 
     const { results: newMessages } = messageResult;
     setMessages(newMessages);
+  }, [postId]);
+
+  // NOTE - reaction 값 받아오는 함수
+  const handleReactionLoad = useCallback(async () => {
+    let reactionResult;
+    try {
+      setReactionLoadingError(null);
+      reactionResult = await getReaction(postId);
+    } catch (e) {
+      setReactionLoadingError(e);
+      return;
+    }
+
+    const { results: newReactions } = reactionResult;
+    console.log(newReactions);
+    setReactions(newReactions);
   }, [postId]);
 
   // NOTE - 메세지 삭제하는 함수
@@ -195,7 +209,8 @@ function RollingPaperPage() {
 
   useEffect(() => {
     handleLoad();
-  }, [handleLoad]);
+    handleReactionLoad();
+  }, [handleLoad, handleReactionLoad]);
 
   useEffect(() => {
     // NOTE - 페이지 이동할 때 deleteMessageIds를 초기화
@@ -212,10 +227,13 @@ function RollingPaperPage() {
     >
       <Nav
         postInfo={postInfo}
+        reactions={reactions}
         isReactionHidden={isReactionHidden}
         isPickerHidden={isPickerHidden}
         isDropDownHidden={isDropDownHidden}
+        reactionLoadingError={reactionLoadingError}
         onMoreReactionClick={handleMoreReactionClick}
+        onEmojiClick={() => handleReactionLoad()}
         onEmojiButtonClick={handleEmojiButtonClick}
         onShareButtonClick={handleDropDownClick}
         onKakaoClick={handleDefaultClick}

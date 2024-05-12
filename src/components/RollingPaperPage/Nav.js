@@ -1,26 +1,26 @@
-import { useEffect, useState } from "react";
 import AddEmojiButton from "./AddReactionButton";
 import CountMessage from "components/common/CountMessage";
 import Reactions from "components/common/Reactions";
 import ShareDropDown from "./ShareDropDown";
-import { getReaction } from "apis/rollingPaperPage";
 import { POST_PAGE } from "constants";
 import arrowDownIcon from "assets/icons/arrow_down.svg";
 import styles from "./Nav.module.scss";
 
 function Nav({
   postInfo,
+  reactions,
   isReactionHidden,
   isPickerHidden,
   isDropDownHidden,
+  reactionLoadingError,
   onMoreReactionClick,
+  onEmojiClick,
   onEmojiButtonClick,
   onShareButtonClick,
   onKakaoClick,
   onURLClick,
 }) {
-  const { postId, name, messageCount, messageProfiles, topReactions } =
-    postInfo;
+  const { name, messageCount, messageProfiles } = postInfo;
 
   return (
     <nav className={styles.nav}>
@@ -37,8 +37,8 @@ function Nav({
           <div className={`${styles.divider} ${styles["PC-only"]}`}></div>
           <div className={styles.tools}>
             <Emojis
-              postId={postId}
-              topReactions={topReactions}
+              reactions={reactions}
+              loadingError={reactionLoadingError}
               isReactionHidden={isReactionHidden}
               onMoreReactionClick={onMoreReactionClick}
             />
@@ -46,6 +46,7 @@ function Nav({
               name={name}
               isPickerHidden={isPickerHidden}
               isDropDownHidden={isDropDownHidden}
+              onEmojiClick={onEmojiClick}
               onEmojiButtonClick={onEmojiButtonClick}
               onShareButtonClick={onShareButtonClick}
               onKakaoClick={onKakaoClick}
@@ -59,32 +60,12 @@ function Nav({
 }
 
 function Emojis({
-  postId,
-  topReactions,
+  reactions,
+  loadingError,
   isReactionHidden,
   onMoreReactionClick,
 }) {
-  const [reactions, setReactions] = useState([]);
-  const [loadingError, setLoadingError] = useState(null);
-
-  useEffect(() => {
-    const handleLoad = async () => {
-      let reactionResult;
-      try {
-        setLoadingError(null);
-        reactionResult = await getReaction(postId);
-      } catch (e) {
-        setLoadingError(e);
-        return;
-      }
-
-      const { results: newReactions } = reactionResult;
-      setReactions(newReactions);
-    };
-
-    handleLoad();
-  }, [postId]);
-
+  const topReactions = reactions.length > 3 ? reactions.slice(0, 3) : reactions;
   return (
     <div className={styles.reactions}>
       <Reactions reactions={topReactions} />
@@ -105,6 +86,9 @@ function Emojis({
               <Reactions reactions={reactions.slice(4)} />
             </>
           )}
+          {loadingError?.message && (
+            <p className={styles["max-content"]}>{loadingError.message}</p>
+          )}
         </div>
       )}
     </div>
@@ -115,6 +99,7 @@ function Buttons({
   name,
   isPickerHidden,
   isDropDownHidden,
+  onEmojiClick,
   onEmojiButtonClick,
   onShareButtonClick,
   onKakaoClick,
@@ -124,6 +109,7 @@ function Buttons({
     <div className={styles.buttons}>
       <AddEmojiButton
         isPickerHidden={isPickerHidden}
+        onEmojiClick={onEmojiClick}
         onAddButtonClick={onEmojiButtonClick}
       />
       <div className={styles.divider}></div>
