@@ -5,6 +5,7 @@ import {
   BACKGROUND_IMAGE,
   BACKGROUND_IMAGE_NAME,
 } from "constants/createRollingPaper";
+import { createPaper } from "apis/createRollingPaperPage";
 
 export default function CreateRollingPaPer() {
   const [selectedBg, setSelectedBg] = useState("color");
@@ -48,6 +49,11 @@ export default function CreateRollingPaPer() {
       backgroundColor: backgroundColor,
       backgroundImageURL: backgroundImg,
     };
+    try {
+      await createPaper(data);
+    } catch (e) {
+      return;
+    }
 
     console.log("넘어가는 데이터 확인 : " + data.name);
     console.log("넘어가는 데이터 확인 : " + data.backgroundColor);
