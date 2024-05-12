@@ -1,70 +1,70 @@
 .CardList{
-    @media screen and (max-width: 768px) {
+  @media screen and (max-width: 768px) {
+  width: 208px;
+  height: 232px;
+}
+border-radius: 16px;
+width: 275px;
+height: 260px;
+:hover{
+  opacity: 0.8;
+}
+
+
+.bg-setting {
+  @media screen and (max-width: 768px) {
     width: 208px;
     height: 232px;
   }
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-repeat: no-repeat;
+  background-position: right bottom;
   border-radius: 16px;
-  width: 275px;
-  height: 260px;
-  :hover{
-    opacity: 0.8;
-  }
+  color: var(--gray900);
 
-
-  .bg-setting {
-    @media screen and (max-width: 768px) {
-      width: 208px;
-      height: 232px;
-    }
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    background-repeat: no-repeat;
-    background-position: right bottom;
+  &.bg-url{
+    background-color: rgba(0, 0, 0, 0.54);
     border-radius: 16px;
-    color: var(--gray900);
 
-    &.bg-url{
-      background-color: rgba(0, 0, 0, 0.54);
-      border-radius: 16px;
-  
-      h3{
-        color: var(--white);
-      }
-      
-      a{
-        color: var(--white);
-      }
+    h3{
+      color: var(--white);
     }
-
-    &.bg-purple {
-      background-image: url("../../assets/images/pattern01.png");
-    }
-
-    &.bg-yellow {
-      background-image: url("../../assets/images/pattern02.png");
-    }
-
-    &.bg-blue {
-      background-image: url("../../assets/images/pattern03.png");
-    }
-
-    &.bg-green {
-      background-image: url("../../assets/images/pattern04.png");
+    
+    a{
+      color: var(--white);
     }
   }
 
-  a{
-    display: block;
-    padding: 30px 24px 20px 24px;
+  &.bg-purple {
+    background-image: url("../../assets/images/pattern01.png");
+  }
 
-    .name{
-      @media screen and (max-width: 768px) {
-        font-size: 18px;
-    }
-    }
+  &.bg-yellow {
+    background-image: url("../../assets/images/pattern02.png");
   }
-  
-  h3{
-    color: var(--gray900);
-    margin: 0;
+
+  &.bg-blue {
+    background-image: url("../../assets/images/pattern03.png");
   }
+
+  &.bg-green {
+    background-image: url("../../assets/images/pattern04.png");
+  }
+}
+
+a{
+  display: block;
+  padding: 30px 24px 20px 24px;
+
+  .name{
+    @media screen and (max-width: 768px) {
+      font-size: 18px;
+  }
+  }
+}
+
+h3{
+  color: var(--gray900);
+  margin: 0;
+}
 }
