@@ -6,6 +6,7 @@ import ListPage from "pages/ListPage";
 import CreateRollingPage from "pages/CreateRollingPage";
 import Modal from "react-modal";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import CreateRollingPaPer from "pages/CreateRollingPaperPage";
 
 Modal.setAppElement("#root");
 
@@ -15,10 +16,10 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<MainPage />} />
-        <Route path="list" element={<ListPage/>} />
+        <Route path="list" element={<ListPage />} />
         <Route path="post">
-          <Route index element={<CreateRollingPage />} />
-          <Route index element={<>post</>} />
+          <Route index element={<CreateRollingPaPer />} />
+          <Route path="create" element={<CreateRollingPage />} />
           <Route path=":postId">
             <Route index element={<RollingPaperPage />} />
             <Route path="edit" element={<RollingPaperPage />} />
