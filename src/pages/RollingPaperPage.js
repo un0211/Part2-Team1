@@ -128,7 +128,6 @@ function RollingPaperPage() {
     }
 
     const { results: newReactions } = reactionResult;
-    console.log(newReactions);
     setReactions(newReactions);
   }, [postId]);
 
