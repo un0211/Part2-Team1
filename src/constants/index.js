@@ -16,3 +16,5 @@ export const NANUM_HANDLETTER = "나눔손글씨 손편지체";
 
 export const POST_PAGE = "post";
 export const LIST_PAGE = "list";
+
+export const PC_MIN_WIDTH = 1249;
