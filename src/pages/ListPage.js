@@ -11,21 +11,27 @@ import { Link } from "react-router-dom";
 function ListPage() {
   const [bestItems, setBestItems] = useState([]);
   const [recentItems, setRecentItems] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setIsLoading(true);
         const response = await getList();
         const items = response.results;
-        const sortedBest = items.slice().sort((a, b) => b.messageCount - a.messageCount);
-        const sortedRecent = items.slice().sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        const sortedBest = items
+          .slice()
+          .sort((a, b) => b.messageCount - a.messageCount);
+        const sortedRecent = items
+          .slice()
+          .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
         setBestItems(sortedBest);
         setRecentItems(sortedRecent);
       } catch (error) {
         console.error("Error fetching slide items:", error);
       }
+      setIsLoading(false);
     };
-
     fetchData();
   }, []);
 
@@ -34,7 +40,7 @@ function ListPage() {
       <div className={styles.track}>
         <h1 className={`font-28-bold ${styles["title"]}`}>인기 롤링 페이퍼🔥</h1>
         <div className={styles.carousel}>
-          <Carousel title="인기 롤링 페이퍼🔥" slideItems={bestItems}/>
+          <Carousel slideItems={bestItems} isLoading={isLoading}/>
         </div>
         <div className={styles.empty}></div>
         <div className={`${styles["vertical-scroll"]} ${styles["item-1"]}`}>
@@ -44,7 +50,7 @@ function ListPage() {
         </div>
         <h1 className={`font-28-bold ${styles["title"]}`}>최근에 만든 롤링 페이퍼⭐</h1>
         <div className={styles.carousel}>
-          <Carousel title="최근에 만든 롤링 페이퍼⭐" slideItems={recentItems} className={styles.carousel}/>
+          <Carousel slideItems={recentItems} isLoading={isLoading}/>
         </div>
         <div className={styles.empty}></div>
         <div className={`${styles["vertical-scroll"]} ${styles["item-2"]}`}>
