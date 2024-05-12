@@ -14,6 +14,7 @@ import ButtonList from "components/RollingPaperPage/ButtonList";
 import Card, { FirstCard } from "components/RollingPaperPage/Card";
 import Nav from "components/RollingPaperPage/Nav";
 import styles from "./RollingPaperPage.module.scss";
+import Loading from "components/common/Loading";
 
 function RollingPaperPage() {
   // NOTE - id 받아오는 작업
@@ -29,6 +30,7 @@ function RollingPaperPage() {
   });
   const [messages, setMessages] = useState([]);
   const [loadingError, setLoadingError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   // NOTE - 삭제할 메세지 id 목록
   const [deleteMessageIds, setDeleteMessageIds] = useState([]);
   // NOTE - 이모지 피커, 드롭다운 보여줄지 여부
@@ -80,6 +82,7 @@ function RollingPaperPage() {
     let postResult;
     let messageResult;
     try {
+      setIsLoading(true);
       setLoadingError(null);
       postResult = await getPost(postId);
       messageResult = await getMessage(postId);
@@ -107,7 +110,7 @@ function RollingPaperPage() {
         imgURL: message.profileImageURL,
       })),
     });
-
+    setIsLoading(false);
     const { results: newMessages } = messageResult;
     setMessages(newMessages);
   }, [postId]);
@@ -214,12 +217,17 @@ function RollingPaperPage() {
           onDeletePaper={handleDeletePaper}
           postId={postId}
         />
-        <CardList
-          isEdit={isEdit}
-          messages={messages}
-          onCheck={handleCheck}
-          deleteMessageIds={deleteMessageIds}
-        />
+        {/* // NOTE - 로딩 중 스피너 */}
+        {isLoading ? (
+          <Loading />
+        ) : (
+          <CardList
+            isEdit={isEdit}
+            messages={messages}
+            onCheck={handleCheck}
+            deleteMessageIds={deleteMessageIds}
+          />
+        )}
         {loadingError?.message ? <p>{loadingError.message}</p> : ""}
         <ToastContainer />
       </section>
