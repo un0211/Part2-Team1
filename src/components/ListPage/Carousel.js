@@ -8,9 +8,8 @@ import image_next from "assets/icons/arrow_next.png";
 import CardList from "./CardList";
 import Loading from "components/common/Loading";
 
-function Carousel({ title, slideItems }) {
 
-function Carousel({ title, slideItems, isLoading }) {
+function Carousel({slideItems, isLoading }) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const length = slideItems.length;
 

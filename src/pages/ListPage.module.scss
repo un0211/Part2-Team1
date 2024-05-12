@@ -9,6 +9,11 @@
     .title{
       margin-left: 20px;
       margin-top: 50px;
+      
+      @media screen and (max-width: 768px) {
+          margin-top: 40px;
+          font-size: 20px;
+      }
     }
     
     .vertical-scroll{
@@ -23,10 +28,18 @@
       
       &.item-1{
         top: 60px;
+
+        @media screen and (max-width: 768px) {
+          top: 40px;
+        }
       }
 
       &.item-2{
         top: 450px;
+
+        @media screen and (max-width: 768px) {
+          top: 345px;
+        }
       }
     }
   }
@@ -36,18 +49,34 @@
   .empty{
     height: 300px;
   }
+
   .wrapper .track .vertical-scroll {
     visibility: visible;
   }
+
   .carousel{
     display: none;
+  }
+  .list-button{
+    margin-top: 156px;
   }
 }
 @media screen and (max-width: 768px) {
+  .title{
+    margin-top: 40px;
+    font-size: 20px;
+  }
+  .empty{
+    height: 232px;
+  }
   .wrapper .track .vertical-scroll {
     visibility: visible;
   }
+  
   .carousel{
     display: none;
+  }
+  .link-button{
+    margin-top: 66px;
   }
 }

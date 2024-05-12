@@ -35,7 +35,7 @@ function CardList({ slideItems }) {
     <div className={styles["CardList"]} style={cardStyle}>
       <div className={`${styles["bg-setting"]} ${styles[backgroundClass]}`}>
         <Link to={`/post/${id}`} className={styles["bg-setting"]}>
-          <h3 className={`font-24-bold`}>To. {name}</h3>
+          <h3 className={`font-24-bold ${styles["name"]}`}>To. {name}</h3>
           <CountMessage
             messageProfiles={messageProfiles}
             messageCount={messageCount}
