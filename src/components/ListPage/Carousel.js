@@ -10,6 +10,7 @@ import CardList from './CardList';
 function Carousel({ title, slideItems }) {
 
   const [currentSlide, setCurrentSlide] = useState(0);
+  const length = slideItems.length;
 
   const settings = {
     dots: false,
@@ -19,7 +20,7 @@ function Carousel({ title, slideItems }) {
     slidesToShow: 4,
     slidesToScroll: 2,
     draggable: true,
-    nextArrow: <NextArrow currentSlide={currentSlide} slideItems={slideItems} />,
+    nextArrow: <NextArrow currentSlide={currentSlide} slideItems={slideItems} length={length}/>,
     prevArrow: <PrevArrow currentSlide={currentSlide} />,
     afterChange: (index) => setCurrentSlide(index),
   };
@@ -36,7 +37,8 @@ function Carousel({ title, slideItems }) {
   );
 }
 
-function NextArrow({ custom, styles, onClick, currentSlide, slideItems }) {
+
+function NextArrow({ custom, styles, onClick, currentSlide, length }) {
   return (
     <div
       className={custom}
@@ -50,7 +52,7 @@ function NextArrow({ custom, styles, onClick, currentSlide, slideItems }) {
         borderRadius: '50%',
         position: 'relative',
         visibility:
-          slideItems.length > 4 && currentSlide + 4 < slideItems.length
+          length > 4 && currentSlide + 4 < length
             ? 'visible'
             : 'hidden',
       }}
