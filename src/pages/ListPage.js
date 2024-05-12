@@ -29,8 +29,8 @@ function ListPage() {
       } catch (error) {
         console.error("Error fetching slide items:", error);
       }
+      setIsLoading(false);
     };
-    setIsLoading(false);
     fetchData();
   }, []);
 
