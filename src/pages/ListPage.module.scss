@@ -1,3 +1,5 @@
+@import "styles/animate";
+
 .wrapper{
   width: 100%;
   position: relative;
@@ -42,6 +44,9 @@
         }
       }
     }
+  }
+  .list-button{
+    @include btn-animate;
   }
 }
 
