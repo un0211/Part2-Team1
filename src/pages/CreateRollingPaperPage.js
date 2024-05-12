@@ -1,6 +1,10 @@
 import { useState } from "react";
 import styles from "./CreateRollingPaperPage.module.scss";
-import { BACKGROUND_COLOR } from "constants/createRollingPaper";
+import {
+  BACKGROUND_COLOR,
+  BACKGROUND_IMAGE,
+  BACKGROUND_IMAGE_NAME,
+} from "constants/createRollingPaper";
 
 export default function CreateRollingPaPer() {
   const [selectedBg, setSelectedBg] = useState("color");
@@ -32,7 +36,11 @@ export default function CreateRollingPaPer() {
         </div>
         <BackgroundButton onBgSelect={handleBgSelect} selectedBg={selectedBg} />
         <div className={styles["select-bg-input-container"]}>
-          <BackgroundColor backgrounds={BACKGROUND_COLOR} name="color" />
+          {selectedBg === "color" ? (
+            <Background backgrounds={BACKGROUND_COLOR} name="color" />
+          ) : (
+            <Background backgrounds={BACKGROUND_IMAGE_NAME} name="image" />
+          )}
         </div>
       </section>
       <button className="button full" type="submit">
@@ -69,7 +77,7 @@ function BackgroundButton({ onBgSelect, selectedBg }) {
   );
 }
 
-function BackgroundColor({ backgrounds, name }) {
+function Background({ backgrounds, name }) {
   return (
     <>
       {backgrounds.map((background) => (
@@ -78,9 +86,13 @@ function BackgroundColor({ backgrounds, name }) {
             type="radio"
             name={name}
             id={background}
+            value={name === "color" ? background : BACKGROUND_IMAGE.background}
             className={styles["select-bg-input"]}
           />
-          <label htmlFor={background} className={styles[background]}></label>
+          <label
+            htmlFor={background}
+            className={`${styles[background]} ${styles["select-bg-label"]}`}
+          ></label>
         </>
       ))}
     </>

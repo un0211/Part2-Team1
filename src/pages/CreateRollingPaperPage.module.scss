@@ -41,33 +41,35 @@
       .select-bg-input {
         display: none;
       }
-      .beige {
+      .select-bg-label {
         display: inline-block;
         width: 168px;
         height: 168px;
-        background-color: var(--rolling-bg-beige);
         border-radius: 18px;
+      }
+      .beige {
+        background-color: var(--rolling-bg-beige);
       }
       .purple {
-        display: inline-block;
-        width: 168px;
-        height: 168px;
         background-color: var(--rolling-bg-purple);
-        border-radius: 18px;
       }
       .blue {
-        display: inline-block;
-        width: 168px;
-        height: 168px;
         background-color: var(--rolling-bg-blue);
-        border-radius: 18px;
       }
       .green {
-        display: inline-block;
-        width: 168px;
-        height: 168px;
         background-color: var(--rolling-bg-green);
-        border-radius: 18px;
+      }
+      .first {
+        background-image: var(--first-url);
+      }
+      .second {
+        background-image: var(--second-url);
+      }
+      .third {
+        background-image: var(--third-url);
+      }
+      .fourth {
+        background-image: var(--fourth-url);
       }
     }
   }
