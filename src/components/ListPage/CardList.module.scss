@@ -5,7 +5,7 @@
   color: var(--gray900);
   .bg-url{
     background-color: rgba(0, 0, 0, 0.54);
-    
+    border-radius: 16px;
     h3{
       color: var(--white);
     }
@@ -19,22 +19,27 @@
     background-image: url("../../assets/images/pattern01.png");
     background-repeat: no-repeat;
     background-position: right bottom;
+    border-radius: 16px;
   }
   .bg-yellow{
     background-image: url("../../assets/images/pattern02.png");
     background-repeat: no-repeat;
     background-position: right bottom;
+    border-radius: 16px;
   }
   .bg-blue{
     background-image: url("../../assets/images/pattern03.png");
     background-repeat: no-repeat;
     background-position: right bottom;
+    border-radius: 16px;
   }
   .bg-green{
     background-image: url("../../assets/images/pattern04.png");
     background-repeat: no-repeat;
     background-position: right bottom;
+    border-radius: 16px;
   }
+
   a{
     display: block;
     padding: 30px 24px 20px 24px;
