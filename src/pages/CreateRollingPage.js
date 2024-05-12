@@ -1,47 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./CreateRollingPage.module.scss";
-import { getBackgroundImage } from "../apis/CreateRollingPage";
 
 function CreateRollingPage() {
-  // api 서버에서 백그라운드 이미지 정보 받아오기
-  const [backgroundImage, setBackgroundImage] = useState([]);
-  const [selectedColor, setSelectedColor] = useState("first");
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await getBackgroundImage();
-        setBackgroundImage(response.imageUrls);
-      } catch (error) {
-        console.error("Error fetching slide items:", error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  const handleColorSelect = (color) => {
-    setSelectedColor(color);
-  };
-
-  const renderBackgroundImage = () => {
-    return (
-      <div>
-        {backgroundImage.map((imageUrl, index) => (
-          <img
-            key={index}
-            src={imageUrl}
-            alt=""
-            style={{ width: "100%", height: "auto" }}
-          />
-        ))}
-      </div>
-    );
-  };
-
   const inputRef = useRef(null);
   useEffect(() => {
-    // 초기 렌더링 시, input에 캐럿 위치하기 위헤 포커스
     inputRef.current.focus();
   }, []);
 
@@ -49,29 +11,55 @@ function CreateRollingPage() {
   const [error, setError] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const [selectOption, setSelectOption] = useState("color");
+  const [selectedImage, setSelectedImage] = useState("image1");
+  const [selectedColor, setSelectedColor] = useState("beige");
+  const [imageData, setImageData] = useState("");
+  const [toValue, setToValue] = useState("");
 
   const handleSelectOption = (option) => {
     setSelectOption(option);
   };
+
   const handleChange = (e) => {
     const inputValue = e.target.value;
     setInputValue(inputValue);
-    // 입력된 텍스트가 있는 경우 에러 상태를 false로 변경
     if (inputValue.trim() !== "") {
       setError(false);
     }
   };
 
   const handleBlur = () => {
-    setIsFocused(false); // 포커스 뻐져나갔으므로 상태 변경
+    setIsFocused(false);
 
-    // 값이 비어있으면 에러 상태 변경
     if (inputValue.trim() === "") {
       setError(true);
     } else {
       setError(false);
     }
   };
+
+  const handleImageUpload = (imageName) => {
+    setSelectedImage(imageName);
+  };
+
+  const handleColorSelect = (color) => {
+    setSelectedColor(color);
+  };
+
+  const handleImageInputChange = (e) => {
+    const { files } = e.target;
+    const uploadFile = files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(uploadFile);
+    reader.onloadend = () => {
+      setImageData(reader.result);
+      console.log(imageData);
+    };
+  };
+
+  useEffect(() => {
+    console.log(imageData);
+  }, [imageData]);
 
   const renderInput = (error) => {
     if (error) {
@@ -103,20 +91,20 @@ function CreateRollingPage() {
     }
   };
 
-  useEffect(
-    (error) => {
-      renderInput(error);
-    },
-    [error, isFocused]
-  );
+  useEffect((error) => {
+    renderInput(error);
+  }, []);
 
   const errorInputRef = useRef(null);
   useEffect(() => {
-    // 에러 발생할 경우, 에러 input에 캐럿 위치하기 위해 포커스
     if (error) {
       errorInputRef.current.focus();
     }
   }, [error]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
 
   return (
     <main className={styles.main}>
@@ -141,36 +129,85 @@ function CreateRollingPage() {
           </button>
           <button
             className={`${styles.optionButton} ${selectOption === "image" ? styles.image : ""}`}
-            onClick={() => handleSelectOption("image")}
+            onClick={() => {
+              handleSelectOption("image");
+            }}
           >
             이미지
+            <input
+              className={styles.imageUpload}
+              onChange={handleImageInputChange}
+            />
           </button>
         </div>
 
         {selectOption === "color" ? (
-          <div className={styles.colorRollingSection}>
-            <div
-              className={`${styles.firstColor} ${selectedColor === "first" ? styles.active : ""}`}
-            ></div>
-            <div
-              className={`${styles.secondColor} ${selectedColor === "second" ? styles.active : ""}`}
-            ></div>
-            <div
-              className={`${styles.thirdColor} ${selectedColor === "third" ? styles.active : ""}`}
-            ></div>
-            <div
-              className={`${styles.fourColor} ${selectedColor === "four" ? styles.active : ""}`}
-            ></div>
-          </div>
+          <form className={styles.colorRollingSection}>
+            <button
+              type="button"
+              className={`${styles.firstColor} ${selectedColor === "beige" ? styles.active : ""}`}
+              onClick={() => setSelectedColor("beige")}
+            ></button>
+            <button
+              type="button"
+              className={`${styles.secondColor} ${selectedColor === "blue" ? styles.active : ""}`}
+              onClick={() => setSelectedColor("blue")}
+            ></button>
+            <button
+              type="button"
+              className={`${styles.thirdColor} ${selectedColor === "purple" ? styles.active : ""}`}
+              onClick={() => setSelectedColor("purple")}
+            ></button>
+            <button
+              type="button"
+              className={`${styles.fourColor} ${selectedColor === "green" ? styles.active : ""}`}
+              onClick={() => setSelectedColor("green")}
+            ></button>
+          </form>
         ) : (
-          <div className={styles.imageRollingSection}>
-            {renderBackgroundImage()}
-          </div>
+          <form className={styles.imageRollingSection}>
+            <button
+              type="button"
+              className={`${styles.firstImage} ${selectedImage === "image1.jpg" ? styles.active : ""}`}
+              onClick={() => setSelectedImage("image1.jpg")}
+              style={{
+                backgroundImage: `url(${require("../assets/images/image1.png")})`,
+              }}
+            ></button>
+            <button
+              type="button"
+              className={`${styles.secondImage} ${selectedImage === "image2.jpg" ? styles.active : ""}`}
+              onClick={() => setSelectedImage("image2.jpg")}
+              style={{
+                backgroundImage: `url(${require("../assets/images/image2.png")})`,
+              }}
+            ></button>
+            <button
+              type="button"
+              className={`${styles.thirdImage} ${selectedImage === "image3.jpg" ? styles.active : ""}`}
+              onClick={() => setSelectedImage("image3.jpg")}
+              style={{
+                backgroundImage: `url(${require("../assets/images/image3.png")})`,
+              }}
+            ></button>
+            <button
+              type="button"
+              className={`${styles.fourImage} ${selectedImage === "image4.jpg" ? styles.active : ""}`}
+              onClick={() => setSelectedImage("image4.jpg")}
+              style={{
+                backgroundImage: `url(${require("../assets/images/image4.png")})`,
+              }}
+            ></button>
+          </form>
         )}
       </section>
 
       <section className={styles.createRollingPage}>
-        <button className={styles.createRollingPageButton}>생성하기</button>
+        <form onSubmit={handleSubmit} className={styles.createRollingPage}>
+          <button type="submit" className={styles.createRollingPageButton}>
+            생성하기
+          </button>
+        </form>
       </section>
     </main>
   );

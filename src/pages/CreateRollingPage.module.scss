@@ -1,7 +1,7 @@
 .main {
-  position: absolute;
+  position: center;
   display: flex;
-  margin: 20px 0px 0px 400px;
+  margin: 0 auto;
   flex-direction: column;
   gap: 30px;
   max-width: 720px;
@@ -97,6 +97,11 @@
         text-align: center;
         border: 1px solid var(--white);
         color: var(--gray900);
+        cursor: pointer;
+
+        .imageUpload {
+          display: none;
+        }
 
         &.color,
         &.image {
@@ -117,12 +122,18 @@
     .firstColor,
     .secondColor,
     .thirdColor,
-    .fourColor {
+    .fourColor,
+    .firstImage,
+    .secondImage,
+    .thirdImage,
+    .fourImage {
       width: 150px;
       height: 150px;
       border-radius: 16px;
       border: 1px solid var(--white);
+      cursor: pointer;
     }
+
     .firstColor {
       background-color: var(--rolling-bg-orange);
     }
@@ -148,6 +159,7 @@
       text-align: center;
       border: 1px solid var(--primary-color);
       background-color: var(--primary-color);
+      cursor: pointer;
     }
   }
 }
@@ -159,13 +171,16 @@
   background-position: center;
 }
 
-.imageRollingSection button {
-  position: relative;
-  overflow: hidden;
-}
-
 .imageRollingSection button img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.imageRollingSection button {
+  position: relative;
+  overflow: hidden;
+  width: 150px;
+  height: 150px;
+  padding: 0;
 }
