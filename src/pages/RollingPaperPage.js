@@ -31,6 +31,9 @@ function RollingPaperPage() {
   const [loadingError, setLoadingError] = useState(null);
   // NOTE - 삭제할 메세지 id 목록
   const [deleteMessageIds, setDeleteMessageIds] = useState([]);
+  // NOTE - 이모지 피커, 드롭다운 보여줄지 여부
+  const [isDropDownHidden, setIsDropDownHidden] = useState(true);
+  const [isPickerHidden, setIsPickerHidden] = useState(true);
 
   // NOTE - edit 모드 여부 확인
   const location = useLocation();
@@ -154,6 +157,23 @@ function RollingPaperPage() {
     navigate("/list");
   }, [navigate, postId, postInfo.name]);
 
+  const handleDefaultClick = useCallback(() => {
+    setIsDropDownHidden(true);
+    setIsPickerHidden(true);
+  }, []);
+
+  const handleEmojiButtonClick = useCallback((e) => {
+    e.stopPropagation();
+    setIsDropDownHidden(true);
+    setIsPickerHidden((prevIsHidden) => !prevIsHidden);
+  }, []);
+
+  const handleDropDownClick = useCallback((e) => {
+    e.stopPropagation();
+    setIsPickerHidden(true);
+    setIsDropDownHidden((prevIsHidden) => !prevIsHidden);
+  }, []);
+
   useEffect(() => {
     handleLoad();
   }, [handleLoad]);
@@ -169,8 +189,17 @@ function RollingPaperPage() {
     <main
       className={`${styles[postInfo.backgroundColor]} ${styles["page-main"]}`}
       style={postInfo.style ?? {}}
+      onClick={handleDefaultClick}
     >
-      <Nav postInfo={postInfo} onURLClick={notifyURLCopy} />
+      <Nav
+        postInfo={postInfo}
+        isPickerHidden={isPickerHidden}
+        isDropDownHidden={isDropDownHidden}
+        onEmojiButtonClick={handleEmojiButtonClick}
+        onShareButtonClick={handleDropDownClick}
+        onKakaoClick={handleDefaultClick}
+        onURLClick={notifyURLCopy}
+      />
       <section className={styles["card-section"]}>
         <ButtonList
           isEdit={isEdit}
