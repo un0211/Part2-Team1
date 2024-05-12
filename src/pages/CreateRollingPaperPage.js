@@ -6,11 +6,12 @@ import {
   BACKGROUND_IMAGE_NAME,
 } from "constants/createRollingPaper";
 import { createPaper } from "apis/createRollingPaperPage";
+import { useNavigate } from "react-router-dom";
 
 export default function CreateRollingPaPer() {
   const [selectedBg, setSelectedBg] = useState("color");
   const [isWriteName, setIsWriteName] = useState(true);
-
+  const navigate = useNavigate();
   const [backgroundColor, setBackgroundColor] = useState("beige");
   const [backgroundImg, setBackgroundImg] = useState(null);
   const [name, setName] = useState("");
@@ -53,6 +54,7 @@ export default function CreateRollingPaPer() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    let result;
     const data = {
       team: "6-1",
       name: name,
@@ -60,10 +62,11 @@ export default function CreateRollingPaPer() {
       backgroundImageURL: backgroundImg,
     };
     try {
-      await createPaper(data);
+      result = await createPaper(data);
     } catch (e) {
       return;
     }
+    navigate(`/post/${result.id}`);
 
     console.log("넘어가는 데이터 확인 : " + data.name);
     console.log("넘어가는 데이터 확인 : " + data.backgroundColor);
