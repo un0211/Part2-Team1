@@ -1,9 +1,47 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./CreateRollingPage.module.scss";
+import { getBackgroundImage } from "../apis/CreateRollingPage";
 
 function CreateRollingPage() {
+  // api 서버에서 백그라운드 이미지 정보 받아오기
+  const [backgroundImage, setBackgroundImage] = useState([]);
+  const [selectedColor, setSelectedColor] = useState("first");
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await getBackgroundImage();
+        setBackgroundImage(response.imageUrls);
+      } catch (error) {
+        console.error("Error fetching slide items:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const handleColorSelect = (color) => {
+    setSelectedColor(color);
+  };
+
+  const renderBackgroundImage = () => {
+    return (
+      <div>
+        {backgroundImage.map((imageUrl, index) => (
+          <img
+            key={index}
+            src={imageUrl}
+            alt=""
+            style={{ width: "100%", height: "auto" }}
+          />
+        ))}
+      </div>
+    );
+  };
+
   const inputRef = useRef(null);
   useEffect(() => {
+    // 초기 렌더링 시, input에 캐럿 위치하기 위헤 포커스
     inputRef.current.focus();
   }, []);
 
@@ -11,54 +49,29 @@ function CreateRollingPage() {
   const [error, setError] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const [selectOption, setSelectOption] = useState("color");
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [selectedColor, setSelectedColor] = useState("first");
-  const [imageData, setImageData] = useState("");
 
   const handleSelectOption = (option) => {
     setSelectOption(option);
   };
-
   const handleChange = (e) => {
     const inputValue = e.target.value;
     setInputValue(inputValue);
+    // 입력된 텍스트가 있는 경우 에러 상태를 false로 변경
     if (inputValue.trim() !== "") {
       setError(false);
     }
   };
 
   const handleBlur = () => {
-    setIsFocused(false);
+    setIsFocused(false); // 포커스 뻐져나갔으므로 상태 변경
 
+    // 값이 비어있으면 에러 상태 변경
     if (inputValue.trim() === "") {
       setError(true);
     } else {
       setError(false);
     }
   };
-
-  const handleImageUpload = (imageName) => {
-    setSelectedImage(imageName);
-  };
-
-  const handleColorSelect = (color) => {
-    setSelectedColor(color);
-  };
-
-  const handleImageInputChange = (e) => {
-    const { files } = e.target;
-    const uploadFile = files[0];
-    const reader = new FileReader();
-    reader.readAsDataURL(uploadFile);
-    reader.onloadend = () => {
-      setImageData(reader.result);
-      console.log(imageData);
-    };
-  };
-
-  useEffect(() => {
-    console.log(imageData);
-  }, [imageData]);
 
   const renderInput = (error) => {
     if (error) {
@@ -90,21 +103,20 @@ function CreateRollingPage() {
     }
   };
 
-  useEffect((error) => {
-    renderInput(error);
-  }, []);
+  useEffect(
+    (error) => {
+      renderInput(error);
+    },
+    [error, isFocused]
+  );
 
   const errorInputRef = useRef(null);
   useEffect(() => {
+    // 에러 발생할 경우, 에러 input에 캐럿 위치하기 위해 포커스
     if (error) {
       errorInputRef.current.focus();
     }
   }, [error]);
-
-  const uploadeInputRef = useRef(null);
-  const onhandleClickInput = () => {
-    uploadeInputRef.current.click();
-  };
 
   return (
     <main className={styles.main}>
@@ -129,82 +141,36 @@ function CreateRollingPage() {
           </button>
           <button
             className={`${styles.optionButton} ${selectOption === "image" ? styles.image : ""}`}
-            onClick={() => {
-              handleSelectOption("image");
-              onhandleClickInput();
-            }}
+            onClick={() => handleSelectOption("image")}
           >
             이미지
-            <input
-              type="file"
-              accept="image/*"
-              className={styles.imageUpload}
-              ref={uploadeInputRef}
-              onChange={handleImageInputChange}
-            />
           </button>
         </div>
 
         {selectOption === "color" ? (
           <div className={styles.colorRollingSection}>
-            <button
-              type="button"
+            <div
               className={`${styles.firstColor} ${selectedColor === "first" ? styles.active : ""}`}
-              onClick={() => handleColorSelect("first")}
-            ></button>
-
-            <button
-              type="button"
+            ></div>
+            <div
               className={`${styles.secondColor} ${selectedColor === "second" ? styles.active : ""}`}
-              onClick={() => handleColorSelect("second")}
-            ></button>
-
-            <button
-              type="button"
+            ></div>
+            <div
               className={`${styles.thirdColor} ${selectedColor === "third" ? styles.active : ""}`}
-              onClick={() => handleColorSelect("third")}
-            ></button>
-
-            <button
-              type="button"
-              className={`${styles.fourColor} ${selectedColor === "fourth" ? styles.active : ""}`}
-              onClick={() => handleColorSelect("fourth")}
-            ></button>
+            ></div>
+            <div
+              className={`${styles.fourColor} ${selectedColor === "four" ? styles.active : ""}`}
+            ></div>
           </div>
         ) : (
           <div className={styles.imageRollingSection}>
-            <button
-              className={`${styles.firstImage} ${selectedImage === "image1.jpg" ? styles.active : ""}`}
-              type="button"
-              onClick={() => handleImageUpload("image1.jpg")}
-            >
-              이미지1
-            </button>
-            <button
-              className={`${styles.secondImage} ${selectedImage === "image2.jpg" ? styles.active : ""}`}
-              type="button"
-              onClick={() => handleImageUpload("image2.jpg")}
-            >
-              이미지2
-            </button>
-            <button
-              className={`${styles.thirdImage} ${selectedImage === "image3.jpg" ? styles.active : ""}`}
-              type="button"
-              onClick={() => handleImageUpload("image3.jpg")}
-            >
-              이미지3
-            </button>
-            <div className={styles.fourImage}>
-              <img src={imageData} alt="이미지4" />
-            </div>
+            {renderBackgroundImage()}
           </div>
         )}
       </section>
 
       <section className={styles.createRollingPage}>
-        <button type="button" className={styles.createRollingPageButton}>
-          생성하기
-        </button>
+        <button className={styles.createRollingPageButton}>생성하기</button>
       </section>
     </main>
   );
