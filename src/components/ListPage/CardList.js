@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./CardList.module.scss";
 import CountMessage from "components/common/CountMessage";
-import TopReaction from "components/common/TopReaction";
+import Reactions from "components/common/Reactions";
 import { LIST_PAGE } from "constants";
 
 function CardList({ slideItems }) {
@@ -36,7 +36,8 @@ function CardList({ slideItems }) {
           messageCount={messageCount}
           page={LIST_PAGE}
         />
-        <TopReaction topReactions={topReactions} />
+        <div className={styles.divider} />
+        <Reactions reactions={topReactions} />
       </Link>
     </div>
   );
