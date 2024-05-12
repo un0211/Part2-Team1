@@ -26,6 +26,7 @@ function RollingPaperPage() {
     style: null,
     messageCount: 0,
     messageProfiles: [],
+    topReactions: [],
   });
   const [messages, setMessages] = useState([]);
   const [loadingError, setLoadingError] = useState(null);
@@ -94,6 +95,7 @@ function RollingPaperPage() {
       backgroundImageURL,
       messageCount,
       recentMessages,
+      topReactions,
     } = postResult;
     setPostInfo({
       name,
@@ -106,6 +108,7 @@ function RollingPaperPage() {
         id: message.id,
         imgURL: message.profileImageURL,
       })),
+      topReactions,
     });
 
     const { results: newMessages } = messageResult;

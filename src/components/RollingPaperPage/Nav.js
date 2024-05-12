@@ -1,5 +1,6 @@
 import AddEmojiButton from "./AddReactionButton";
 import CountMessage from "components/common/CountMessage";
+import Reactions from "components/common/Reactions";
 import ShareDropDown from "./ShareDropDown";
 import { POST_PAGE } from "constants";
 import arrowDownIcon from "assets/icons/arrow_down.svg";
@@ -14,7 +15,7 @@ function Nav({
   onKakaoClick,
   onURLClick,
 }) {
-  const { name, messageCount, messageProfiles } = postInfo;
+  const { name, messageCount, messageProfiles, topReactions } = postInfo;
 
   return (
     <nav className={styles.nav}>
@@ -30,7 +31,7 @@ function Nav({
           </div>
           <div className={`${styles.divider} ${styles["PC-only"]}`}></div>
           <div className={styles.tools}>
-            <Emojis />
+            <Emojis topReactions={topReactions} />
             <Buttons
               name={name}
               isPickerHidden={isPickerHidden}
@@ -47,10 +48,10 @@ function Nav({
   );
 }
 
-function Emojis() {
+function Emojis({ topReactions }) {
   return (
     <div className={styles.emojis}>
-      <>이모지 목록</>
+      <Reactions reactions={topReactions} />
       <button type="button" className={styles["more-emoji-button"]}>
         <img src={arrowDownIcon} alt="반응 더보기" />
       </button>
