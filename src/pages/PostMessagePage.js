@@ -11,7 +11,7 @@ import { FONT_CLASS_NAME, MEMBER_CLASS_NAME } from "constants/postMessagePage";
 
 export default function PostMessageForm() {
   const [senderValue, setSenderValue] = useState("");
-  const [relationship, setRelationship] = useState(null);
+  const [relationship, setRelationship] = useState("");
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
   const [selectedFont, setSelectedFont] = useState(null);
   const [selectedProfile, setSelectedProfile] = useState(null);
@@ -22,6 +22,7 @@ export default function PostMessageForm() {
 
   const handleEditorChange = (state) => {
     setEditorState(state);
+    console.log(state.getCurrentContent().getPlainText('\n'));
   };
 
   const handleProfileSelect = (profile) => {

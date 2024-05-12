@@ -1,3 +1,5 @@
+@import "styles/fonts.scss";
+
 @mixin font-style($size, $weight) {
   font-size: $size;
   font-weight: $weight;
@@ -5,7 +7,7 @@
 
 .message-form {
   &-title {
-    @include font-24-24-24-bold;
+    @include font(20px);
     margin-bottom: 12px;
     margin-top: 50px;
     display: block;
@@ -22,7 +24,7 @@
   }
 
   &-profile-options-title {
-    @include font-14-14-14;
+    @include font(14px);
     line-height: 26px;
     color: var(--gray500);
   }
