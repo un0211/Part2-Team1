@@ -3,7 +3,13 @@ import styles from "./CreateRollingPaperPage.module.scss";
 import { BACKGROUND_COLOR } from "constants/createRollingPaper";
 
 export default function CreateRollingPaPer() {
-  const [selectBg, setSelectBg] = useState("color");
+  const [selectedBg, setSelectedBg] = useState("color");
+
+  // NOTE - 배경 컬러, 이미지 중 선택하는 함수
+  const handleBgSelect = (type) => {
+    setSelectedBg(type);
+  };
+
   return (
     <form className={styles.form}>
       <section className={styles["sender-container"]}>
@@ -24,27 +30,10 @@ export default function CreateRollingPaPer() {
             컬러를 선택하거나, 이미지를 선택할 수 있습니다.
           </span>
         </div>
-        <div className={styles["select-bg-container"]}>
-          <input type="radio" id="bgColor" name="select" />
-          <label htmlFor="bgColor" className={`font-16-16-16`}>
-            컬러
-          </label>
-          <input type="radio" id="bgImg" name="select" />
-          <label htmlFor="bgImg" className={`font-16-16-16`}>
-            이미지
-          </label>
-        </div>
+        <BackgroundButton onBgSelect={handleBgSelect} selectedBg={selectedBg} />
         <div className={styles["select-bg-input-container"]}>
           {BACKGROUND_COLOR.map((color) => (
-            <>
-              <input
-                type="radio"
-                name="color"
-                id={color}
-                className={styles["select-bg-input"]}
-              />
-              <label htmlFor={color} className={styles[color]}></label>
-            </>
+            <BackgroundColor color={color} />
           ))}
         </div>
       </section>
@@ -52,5 +41,46 @@ export default function CreateRollingPaPer() {
         생성하기
       </button>
     </form>
+  );
+}
+
+function BackgroundButton({ onBgSelect, selectedBg }) {
+  return (
+    <div className={styles["select-bg-container"]}>
+      <input
+        type="radio"
+        id="bgColor"
+        name="select"
+        checked={selectedBg === "color"}
+        onChange={() => onBgSelect("color")}
+      />
+      <label htmlFor="bgColor" className={`font-16-16-16`}>
+        컬러
+      </label>
+      <input
+        type="radio"
+        id="bgImg"
+        name="select"
+        checked={selectedBg === "image"}
+        onChange={() => onBgSelect("image")}
+      />
+      <label htmlFor="bgImg" className={`font-16-16-16`}>
+        이미지
+      </label>
+    </div>
+  );
+}
+
+function BackgroundColor({ color }) {
+  return (
+    <>
+      <input
+        type="radio"
+        name="color"
+        id={color}
+        className={styles["select-bg-input"]}
+      />
+      <label htmlFor={color} className={styles[color]}></label>
+    </>
   );
 }

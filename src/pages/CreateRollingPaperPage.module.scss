@@ -88,4 +88,10 @@
     border-radius: 8px;
     background-color: var(--gray100);
   }
+  input[type="radio"]:checked + label {
+    background-color: var(--white);
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    font-weight: var(--bold);
+  }
 }
