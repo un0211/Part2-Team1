@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./CreateRollingPaperPage.module.scss";
 import {
   BACKGROUND_COLOR,
@@ -9,6 +9,8 @@ import { createPaper } from "apis/createRollingPaperPage";
 
 export default function CreateRollingPaPer() {
   const [selectedBg, setSelectedBg] = useState("color");
+  const [isWriteName, setIsWriteName] = useState(true);
+
   const [backgroundColor, setBackgroundColor] = useState("beige");
   const [backgroundImg, setBackgroundImg] = useState(null);
   const [name, setName] = useState("");
@@ -40,6 +42,14 @@ export default function CreateRollingPaPer() {
   const handleName = (e) => {
     setName(e.target.value);
   };
+
+  useEffect(() => {
+    if (name) {
+      setIsWriteName(false);
+    } else {
+      setIsWriteName(true);
+    }
+  }, [name]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -98,7 +108,7 @@ export default function CreateRollingPaPer() {
           )}
         </div>
       </section>
-      <button className="button full" type="submit">
+      <button className="button full" type="submit" disabled={isWriteName}>
         생성하기
       </button>
     </form>
