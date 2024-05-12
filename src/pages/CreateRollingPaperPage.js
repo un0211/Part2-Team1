@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 export default function CreateRollingPaPer() {
   const [selectedBg, setSelectedBg] = useState("color");
   const [isWriteName, setIsWriteName] = useState(true);
+  const [isFocused, setIsFocused] = useState(false);
   const navigate = useNavigate();
   const [backgroundColor, setBackgroundColor] = useState("beige");
   const [backgroundImg, setBackgroundImg] = useState(null);
@@ -42,6 +43,15 @@ export default function CreateRollingPaPer() {
   // NOTE - name Input
   const handleName = (e) => {
     setName(e.target.value);
+    if (e.target.value.trim().length > 0) {
+      setIsFocused(false);
+    }
+  };
+
+  const handleFocusOut = () => {
+    if (name.trim() === "") {
+      setIsFocused(true);
+    }
   };
 
   useEffect(() => {
@@ -84,9 +94,17 @@ export default function CreateRollingPaPer() {
           name="sender"
           type="text"
           placeholder="받는 사람 이름을 입력해 주세요."
-          className={styles["sender-input"]}
+          className={`${styles["sender-input"]} ${
+            isFocused ? styles["sender-input-error"] : ""
+          }`}
           onChange={handleName}
+          onBlur={handleFocusOut}
         />
+        {isFocused && (
+          <span className={`${styles["sender-input-error-msg"]} font-14-14-14`}>
+            이름을 입력해주세요.
+          </span>
+        )}
       </section>
       <section className={styles["select-bg-section"]}>
         <div className={styles["select-bg-title"]}>
