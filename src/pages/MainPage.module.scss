@@ -1,3 +1,5 @@
+@import "styles/animate";
+
 .main {
   max-width: 1200px;
   width: 100%;
@@ -106,6 +108,7 @@
   }
 }
 .list-button {
+  @include btn-animate;
   margin-top: 18px;
   @media screen and (max-width: 1248px) {
     margin-top: 42px;

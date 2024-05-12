@@ -1,11 +1,19 @@
 import AddEmojiButton from "./AddReactionButton";
 import CountMessage from "components/common/CountMessage";
-import DropDown from "./DropDown";
+import ShareDropDown from "./ShareDropDown";
 import { POST_PAGE } from "constants";
 import arrowDownIcon from "assets/icons/arrow_down.svg";
 import styles from "./Nav.module.scss";
 
-function Nav({ postInfo, onURLClick }) {
+function Nav({
+  postInfo,
+  isPickerHidden,
+  isDropDownHidden,
+  onEmojiButtonClick,
+  onShareButtonClick,
+  onKakaoClick,
+  onURLClick,
+}) {
   const { name, messageCount, messageProfiles } = postInfo;
 
   return (
@@ -23,7 +31,15 @@ function Nav({ postInfo, onURLClick }) {
           <div className={`${styles.divider} ${styles["PC-only"]}`}></div>
           <div className={styles.tools}>
             <Emojis />
-            <Buttons name={name} onURLClick={onURLClick} />
+            <Buttons
+              name={name}
+              isPickerHidden={isPickerHidden}
+              isDropDownHidden={isDropDownHidden}
+              onEmojiButtonClick={onEmojiButtonClick}
+              onShareButtonClick={onShareButtonClick}
+              onKakaoClick={onKakaoClick}
+              onURLClick={onURLClick}
+            />
           </div>
         </div>
       </div>
@@ -42,12 +58,29 @@ function Emojis() {
   );
 }
 
-function Buttons({ name, onURLClick }) {
+function Buttons({
+  name,
+  isPickerHidden,
+  isDropDownHidden,
+  onEmojiButtonClick,
+  onShareButtonClick,
+  onKakaoClick,
+  onURLClick,
+}) {
   return (
     <div className={styles.buttons}>
-      <AddEmojiButton />
+      <AddEmojiButton
+        isPickerHidden={isPickerHidden}
+        onAddButtonClick={onEmojiButtonClick}
+      />
       <div className={styles.divider}></div>
-      <DropDown name={name} onURLClick={onURLClick} />
+      <ShareDropDown
+        name={name}
+        isDropDownHidden={isDropDownHidden}
+        onShareButtonClick={onShareButtonClick}
+        onKakaoClick={onKakaoClick}
+        onURLClick={onURLClick}
+      />
     </div>
   );
 }

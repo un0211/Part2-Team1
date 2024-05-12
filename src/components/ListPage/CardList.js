@@ -16,9 +16,10 @@ function CardList({ slideItems }) {
     recentMessages,
   } = slideItems;
 
-  const messageProfiles = recentMessages.map(
-    (message) => message.profileImageURL
-  );
+  const messageProfiles = recentMessages.map((message) => ({
+    id: message.id,
+    imgURL: message.profileImageURL,
+  }));
 
   const cardStyle = {
     backgroundColor: `var(--${backgroundColor}200)`,

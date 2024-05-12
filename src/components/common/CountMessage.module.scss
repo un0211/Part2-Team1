@@ -4,11 +4,12 @@
   height: 28px; // NOTE - 프로필 사진이 없는 경우 때문에 추가
 
   .profile {
-    border: 1px solid var(--white);
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    margin-right: 10px;
+    img {
+      border: 1px solid var(--white);
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+    }
   }
 
   .profile:nth-child(n + 2) {
