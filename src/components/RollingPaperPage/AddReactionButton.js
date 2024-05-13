@@ -7,17 +7,24 @@ import { postReaction } from "apis/rollingPaperPage";
 import addEmojiIcon from "assets/icons/add_emoji.svg";
 import styles from "./AddReactionButton.module.scss";
 
-function AddEmojiButton({ isPickerHidden, onAddButtonClick }) {
+function AddEmojiButton({ isPickerHidden, onEmojiClick, onAddButtonClick }) {
   const { postId } = useParams();
 
   const handleEmojiClick = useCallback(
-    ({ native }) => {
-      postReaction(postId, {
-        emoji: native,
-        type: "increase",
-      });
+    async ({ native }) => {
+      try {
+        await postReaction(postId, {
+          emoji: native,
+          type: "increase",
+        });
+      } catch (e) {
+        window.alert(e.message);
+        return;
+      }
+
+      onEmojiClick();
     },
-    [postId]
+    [postId, onEmojiClick]
   );
 
   useEffect(() => {

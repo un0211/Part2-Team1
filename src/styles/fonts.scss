@@ -24,7 +24,9 @@ $regular: 400;
     @include size(18px);
   }
 }
-
+.font-24-24-24-bold {
+  @include font(24px, $bold);
+}
 .font-24-24-18-bold {
   @include font(24px, $bold);
   @media screen and (max-width: 768px) {

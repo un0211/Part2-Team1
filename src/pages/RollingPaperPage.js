@@ -8,6 +8,7 @@ import {
   delPaper,
   getMessage,
   getPost,
+  getReaction,
 } from "apis/rollingPaperPage";
 import { TOAST_DEFAULT_SETTING } from "constants/rollingPaperPage";
 import ButtonList from "components/RollingPaperPage/ButtonList";
@@ -29,11 +30,15 @@ function RollingPaperPage() {
     messageProfiles: [],
   });
   const [messages, setMessages] = useState([]);
+  const [reactions, setReactions] = useState([]);
   const [loadingError, setLoadingError] = useState(null);
+  const [reactionLoadingError, setReactionLoadingError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+
   // NOTE - 삭제할 메세지 id 목록
   const [deleteMessageIds, setDeleteMessageIds] = useState([]);
-  // NOTE - 이모지 피커, 드롭다운 보여줄지 여부
+  // NOTE - 반응 목록, 이모지 피커, 드롭다운 보여줄지 여부
+  const [isReactionHidden, setIsReactionHidden] = useState(true);
   const [isDropDownHidden, setIsDropDownHidden] = useState(true);
   const [isPickerHidden, setIsPickerHidden] = useState(true);
 
@@ -77,15 +82,12 @@ function RollingPaperPage() {
     [messages]
   );
 
-  // NOTE - post, message, reaction 값 받아오는 함수
-  const handleLoad = useCallback(async () => {
+  // NOTE - post 값 받아오는 함수
+  const handlePostInfoLoad = useCallback(async () => {
     let postResult;
-    let messageResult;
     try {
-      setIsLoading(true);
       setLoadingError(null);
       postResult = await getPost(postId);
-      messageResult = await getMessage(postId);
     } catch (e) {
       setLoadingError(e);
       return;
@@ -110,10 +112,45 @@ function RollingPaperPage() {
         imgURL: message.profileImageURL,
       })),
     });
-    setIsLoading(false);
+  }, [postId]);
+
+  // NOTE - message 값 받아오는 함수
+  const handleMessageLoad = useCallback(async () => {
+    let messageResult;
+    try {
+      setLoadingError(null);
+      messageResult = await getMessage(postId);
+    } catch (e) {
+      setLoadingError(e);
+      return;
+    }
+
     const { results: newMessages } = messageResult;
     setMessages(newMessages);
   }, [postId]);
+
+  // NOTE - reaction 값 받아오는 함수
+  const handleReactionLoad = useCallback(async () => {
+    let reactionResult;
+    try {
+      setReactionLoadingError(null);
+      reactionResult = await getReaction(postId);
+    } catch (e) {
+      setReactionLoadingError(e);
+      return;
+    }
+
+    const { results: newReactions } = reactionResult;
+    setReactions(newReactions);
+  }, [postId]);
+
+  const handleInitialLoad = useCallback(async () => {
+    setIsLoading(true);
+    Promise.all([handlePostInfoLoad(), handleMessageLoad()]).then(() => {
+      setIsLoading(false);
+    });
+    handleReactionLoad();
+  }, [handlePostInfoLoad, handleMessageLoad, handleReactionLoad]);
 
   // NOTE - 메세지 삭제하는 함수
   const handleDeleteMessage = useCallback(async () => {
@@ -136,12 +173,12 @@ function RollingPaperPage() {
       return;
     }
     // NOTE - 삭제 후 데이터 다시 받아오는 작업
-    handleLoad();
+    handleMessageLoad();
     // NOTE - 삭제 후, 삭제할 메세지 배열 초기화
     setDeleteMessageIds([]);
     // NOTE - 삭제 후, 페이지 이동
     navigate(`/post/${postId}`);
-  }, [deleteMessageIds, handleLoad, navigate, postId]);
+  }, [deleteMessageIds, handleMessageLoad, navigate, postId]);
 
   // NOTE - 롤링페이퍼 삭제하는 함수
   const handleDeletePaper = useCallback(async () => {
@@ -164,25 +201,35 @@ function RollingPaperPage() {
   }, [navigate, postId, postInfo.name]);
 
   const handleDefaultClick = useCallback(() => {
+    setIsReactionHidden(true);
     setIsDropDownHidden(true);
     setIsPickerHidden(true);
   }, []);
 
+  const handleMoreReactionClick = useCallback((e) => {
+    e.stopPropagation();
+    setIsPickerHidden(true);
+    setIsDropDownHidden(true);
+    setIsReactionHidden((prevIsHidden) => !prevIsHidden);
+  }, []);
+
   const handleEmojiButtonClick = useCallback((e) => {
     e.stopPropagation();
+    setIsReactionHidden(true);
     setIsDropDownHidden(true);
     setIsPickerHidden((prevIsHidden) => !prevIsHidden);
   }, []);
 
   const handleDropDownClick = useCallback((e) => {
     e.stopPropagation();
+    setIsReactionHidden(true);
     setIsPickerHidden(true);
     setIsDropDownHidden((prevIsHidden) => !prevIsHidden);
   }, []);
 
   useEffect(() => {
-    handleLoad();
-  }, [handleLoad]);
+    handleInitialLoad();
+  }, [handleInitialLoad]);
 
   useEffect(() => {
     // NOTE - 페이지 이동할 때 deleteMessageIds를 초기화
@@ -199,8 +246,13 @@ function RollingPaperPage() {
     >
       <Nav
         postInfo={postInfo}
+        reactions={reactions}
+        isReactionHidden={isReactionHidden}
         isPickerHidden={isPickerHidden}
         isDropDownHidden={isDropDownHidden}
+        reactionLoadingError={reactionLoadingError}
+        onMoreReactionClick={handleMoreReactionClick}
+        onEmojiClick={() => handleReactionLoad()}
         onEmojiButtonClick={handleEmojiButtonClick}
         onShareButtonClick={handleDropDownClick}
         onKakaoClick={handleDefaultClick}
