@@ -7,8 +7,6 @@ import "styles/global.css";
 import "styles/button.scss";
 import CardList from "components/ListPage/CardList";
 import { Link } from "react-router-dom";
-import CardList from "components/ListPage/CardList";
-import { Link } from "react-router-dom";
 
 function ListPage() {
   const [bestItems, setBestItems] = useState([]);
@@ -39,48 +37,41 @@ function ListPage() {
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.track}>
-        <div className={styles.top}>
-        <h1 className={`font-28-bold ${styles["title"]}`}>인기 롤링 페이퍼🔥</h1>
-        <Link
-        to="/post"
-        className={`button width-92 font-18 ${styles["all-post-button"]}`}
-        >전체 보기</Link>
-        </div>
-        <div className={styles.carousel}>
-          <Carousel slideItems={bestItems} isLoading={isLoading}/>
-        </div>
-        <div className={styles.empty}></div>
-        <div className={`${styles["vertical-scroll"]} ${styles["item-1"]}`}>
-          {bestItems?.map((item) => (
-            <CardList key={item.id} slideItems={item}/>
-          ))}
-        </div>
-        <h1 className={`font-28-bold ${styles["title"]}`}>최근에 만든 롤링 페이퍼⭐</h1>
-        <div className={styles.carousel}>
-          <Carousel slideItems={recentItems} isLoading={isLoading}/>
-        </div>
-        <div className={styles.empty}></div>
-        <div className={`${styles["vertical-scroll"]} ${styles["item-2"]}`}>
-          {recentItems?.map((item) => (
-            <CardList key={item.id} slideItems={item}/>
-          ))}
-        </div>
+    <div className={styles.track}>
+      <div className={styles.top}>
+      <h1 className={`font-28-bold ${styles["title"]}`}>인기 롤링 페이퍼🔥</h1>
+      <Link
+      to="/post"
+      className={`button width-92 font-18 ${styles["all-post-button"]}`}
+      >전체 보기</Link>
       </div>
-      <div className={`styles.["btn-box"]`}>
-          <Link
-            to="/post"
-            className={`button width-280 align-center font-18 ${styles["list-button"]}`}
-          >나도 만들어 보기</Link>
-          </div>
+      <div className={styles.carousel}>
+        <Carousel slideItems={bestItems} isLoading={isLoading}/>
       </div>
-      <div className={`styles.["btn-box"]`}>
-          <Link
-            to="/post"
-            className={`button width-280 align-center font-18 ${styles["list-button"]}`}
-          >나도 만들어 보기</Link>
-          </div>
+      <div className={styles.empty}></div>
+      <div className={`${styles["vertical-scroll"]} ${styles["item-1"]}`}>
+        {bestItems?.map((item) => (
+          <CardList key={item.id} slideItems={item}/>
+        ))}
+      </div>
+      <h1 className={`font-28-bold ${styles["title"]}`}>최근에 만든 롤링 페이퍼⭐</h1>
+      <div className={styles.carousel}>
+        <Carousel slideItems={recentItems} isLoading={isLoading}/>
+      </div>
+      <div className={styles.empty}></div>
+      <div className={`${styles["vertical-scroll"]} ${styles["item-2"]}`}>
+        {recentItems?.map((item) => (
+          <CardList key={item.id} slideItems={item}/>
+        ))}
+      </div>
     </div>
+    <div className={`styles.["btn-box"]`}>
+        <Link
+          to="/post"
+          className={`button width-280 align-center font-18 ${styles["list-button"]}`}
+        >나도 만들어 보기</Link>
+        </div>
+  </div>
   );
 }
 
