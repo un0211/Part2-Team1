@@ -10,7 +10,10 @@ import {
   getPost,
   getReaction,
 } from "apis/rollingPaperPage";
-import { TOAST_DEFAULT_SETTING } from "constants/rollingPaperPage";
+import {
+  TOAST_DEFAULT_SETTING,
+  MESSAGE_NUM_DEFAULT,
+} from "constants/rollingPaperPage";
 import ButtonList from "components/RollingPaperPage/ButtonList";
 import Card, { FirstCard } from "components/RollingPaperPage/Card";
 import Nav from "components/RollingPaperPage/Nav";
@@ -29,7 +32,11 @@ function RollingPaperPage() {
     messageCount: 0,
     messageProfiles: [],
   });
-  const [messages, setMessages] = useState([]);
+  const [messageInfo, setMessageInfo] = useState({
+    messages: [],
+    count: 0,
+    offset: 0,
+  });
   const [reactions, setReactions] = useState([]);
   const [loadingError, setLoadingError] = useState(null);
   const [reactionLoadingError, setReactionLoadingError] = useState(null);
@@ -74,12 +81,12 @@ function RollingPaperPage() {
   const handleCheckAll = useCallback(
     (e) => {
       if (e.target.checked) {
-        setDeleteMessageIds(messages.map((item) => item.id));
+        setDeleteMessageIds(messageInfo.messages.map((item) => item.id));
       } else {
         setDeleteMessageIds([]);
       }
     },
-    [messages]
+    [messageInfo.messages]
   );
 
   // NOTE - post 값 받아오는 함수
@@ -114,7 +121,7 @@ function RollingPaperPage() {
     });
   }, [postId]);
 
-  // NOTE - message 값 받아오는 함수
+  // NOTE - message 초기값 받아오는 함수
   const handleMessageLoad = useCallback(async () => {
     let messageResult;
     try {
@@ -125,9 +132,51 @@ function RollingPaperPage() {
       return;
     }
 
-    const { results: newMessages } = messageResult;
-    setMessages(newMessages);
+    const { results: newMessages, count } = messageResult;
+    setMessageInfo({
+      messages: newMessages,
+      count,
+      offset: newMessages.length, // NOTE - 다음에 여기부터 받으면 된다
+    });
   }, [postId]);
+
+  // NOTE - message 추가로 받아오는 함수
+  const handleMoreMessageLoad = useCallback(async () => {
+    let messageResult;
+    try {
+      setIsLoading(true);
+      setLoadingError(null);
+      messageResult = await getMessage(
+        postId,
+        messageInfo.offset,
+        MESSAGE_NUM_DEFAULT
+      );
+    } catch (e) {
+      setLoadingError(e);
+      return;
+    }
+
+    setIsLoading(false);
+    const { results: newMessages, count } = messageResult;
+    setMessageInfo((prevInfo) => {
+      const isNew = !prevInfo.messages.filter(
+        (message) => message.id === newMessages[0].id
+      ).length;
+      /* FIXME - 스크롤 중에 데이터 변동이 생기면 위험
+       * 추가된 경우, 하나라도 겹치면 바로 return하고 무한 호출할 수 있음
+       */
+      if (!isNew) {
+        return prevInfo;
+      }
+
+      const updatedMessages = [...prevInfo.messages, ...newMessages];
+      return {
+        messages: updatedMessages,
+        count,
+        offset: updatedMessages.length,
+      };
+    });
+  }, [postId, messageInfo.offset]);
 
   // NOTE - reaction 값 받아오는 함수
   const handleReactionLoad = useCallback(async () => {
@@ -227,6 +276,26 @@ function RollingPaperPage() {
     setIsDropDownHidden((prevIsHidden) => !prevIsHidden);
   }, []);
 
+  const handleObserver = useCallback(
+    (entries) => {
+      const target = entries[0];
+      if (messageInfo.offset === 0) {
+        // NOTE - 아직 초기값도 없다
+        return;
+      }
+      if (messageInfo.offset >= messageInfo.count) {
+        // NOTE - 더이상 불러올 메시지가 없다
+        return;
+      }
+
+      if (target.isIntersecting && !isLoading) {
+        // NOTE - 끝에 닿았으며, 로딩중이 아닐 때 새 메시지 로드
+        handleMoreMessageLoad();
+      }
+    },
+    [isLoading, messageInfo.count, messageInfo.offset, handleMoreMessageLoad]
+  );
+
   useEffect(() => {
     handleInitialLoad();
   }, [handleInitialLoad]);
@@ -237,6 +306,23 @@ function RollingPaperPage() {
       setDeleteMessageIds([]);
     };
   }, [location.pathname]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(handleObserver, {
+      threshold: 1, // NOTE - 1px이라도 보이면, 콜백이 실행
+    });
+
+    const observerTarget = document.getElementById("observer");
+    if (observerTarget) {
+      // NOTE - 관찰 시작
+      observer.observe(observerTarget);
+    }
+
+    return () => {
+      // NOTE - 관찰 끝
+      observer.unobserve(observerTarget);
+    };
+  }, [handleObserver]);
 
   return (
     <main
@@ -263,23 +349,20 @@ function RollingPaperPage() {
           isEdit={isEdit}
           onDeleteMessages={handleDeleteMessage}
           deleteMessageIds={deleteMessageIds}
-          messages={messages}
+          messages={messageInfo.messages}
           onCheckAll={handleCheckAll}
           navigate={navigate}
           onDeletePaper={handleDeletePaper}
           postId={postId}
         />
+        <CardList
+          isEdit={isEdit}
+          messages={messageInfo.messages}
+          onCheck={handleCheck}
+          deleteMessageIds={deleteMessageIds}
+        />
         {/* // NOTE - 로딩 중 스피너 */}
-        {isLoading ? (
-          <Loading />
-        ) : (
-          <CardList
-            isEdit={isEdit}
-            messages={messages}
-            onCheck={handleCheck}
-            deleteMessageIds={deleteMessageIds}
-          />
-        )}
+        {isLoading && <Loading />}
         {loadingError?.message ? <p>{loadingError.message}</p> : ""}
         <ToastContainer />
       </section>
@@ -290,23 +373,26 @@ function RollingPaperPage() {
 // NOTE - 기본 모드에서만 메세지 추가 카드가 보인다.
 function CardList({ isEdit, messages, onCheck, deleteMessageIds }) {
   return (
-    <ol className={styles["card-list"]}>
-      {!isEdit && (
-        <li>
-          <FirstCard />
-        </li>
-      )}
-      {messages.map((message) => (
-        <li key={message.id}>
-          <Card
-            message={message}
-            isEdit={isEdit}
-            onCheck={onCheck}
-            isChecked={deleteMessageIds.includes(message.id)}
-          />
-        </li>
-      ))}
-    </ol>
+    <>
+      <ol className={styles["card-list"]}>
+        {!isEdit && (
+          <li>
+            <FirstCard />
+          </li>
+        )}
+        {messages.map((message) => (
+          <li key={message.id}>
+            <Card
+              message={message}
+              isEdit={isEdit}
+              onCheck={onCheck}
+              isChecked={deleteMessageIds.includes(message.id)}
+            />
+          </li>
+        ))}
+      </ol>
+      <div id="observer" className={styles.observer} />
+    </>
   );
 }
 
