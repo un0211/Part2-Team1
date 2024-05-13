@@ -4,6 +4,7 @@ import Header from "components/common/Header";
 import MainPage from "pages/MainPage";
 import NotFoundPage from "pages/NotFoundPage";
 import RollingPaperPage from "pages/RollingPaperPage";
+import PostMessagePage from "pages/PostMessagePage";
 import ListPage from "pages/ListPage";
 import CreateRollingPage from "pages/CreateRollingPage";
 import CreateRollingPaPer from "pages/CreateRollingPaperPage";
@@ -24,7 +25,7 @@ function App() {
           <Route path=":postId" element={<CheckPostIdPage />}>
             <Route index element={<RollingPaperPage />} />
             <Route path="edit" element={<RollingPaperPage />} />
-            <Route path="message" element={<>message</>} />
+            <Route path="message" element={<PostMessagePage />} />
           </Route>
         </Route>
         <Route path="*" element={<NotFoundPage />} />
