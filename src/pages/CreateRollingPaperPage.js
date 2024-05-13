@@ -184,14 +184,21 @@ function Background({ backgrounds, name, onBackgroundSelect, checkedValue }) {
             htmlFor={background}
             className={`${styles[background]} ${styles["select-bg-label"]}`}
           >
-            <div className={styles["checked-container"]}>
+            <div
+              className={`${styles["checked-container"]} ${
+                checkedValue ===
+                (name === "color" ? background : BACKGROUND_IMAGE[background])
+                  ? styles["checked-background-opacity"]
+                  : ""
+              }`}
+            >
               <img
                 src={selected}
                 alt="선택 아이콘"
                 className={`${
                   checkedValue ===
                   (name === "color" ? background : BACKGROUND_IMAGE[background])
-                    ? styles["checked-background"]
+                    ? ""
                     : styles["none-checked-background"]
                 }`}
               />

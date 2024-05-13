@@ -53,19 +53,18 @@
         width: 168px;
         height: 168px;
         border-radius: 18px;
+        .checked-background-opacity {
+          background-color: #ffffff57;
+        }
         .checked-container {
           width: 100%;
           height: 100%;
           display: flex;
           justify-content: center;
           align-items: center;
-          .checked-background {
-          }
           .none-checked-background {
             display: none;
           }
-        }
-        .none-checked-container {
         }
       }
       .beige {
