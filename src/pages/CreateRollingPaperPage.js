@@ -3,7 +3,7 @@ import styles from "./CreateRollingPaperPage.module.scss";
 import {
   BACKGROUND_COLOR,
   BACKGROUND_IMAGE_NAME,
-} from "constants/createRollingPaper";
+} from "constants/createRollingPaperPage";
 import { createPaper } from "apis/createRollingPaperPage";
 import { useNavigate } from "react-router-dom";
 import Background from "components/CreateRollingPaperPage/Background";

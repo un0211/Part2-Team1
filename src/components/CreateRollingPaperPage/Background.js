@@ -1,4 +1,4 @@
-import { BACKGROUND_IMAGE } from "constants/createRollingPaper";
+import { BACKGROUND_IMAGE } from "constants/createRollingPaperPage";
 import selected from "assets/icons/selected.svg";
 import styles from "./Background.module.scss";
 
