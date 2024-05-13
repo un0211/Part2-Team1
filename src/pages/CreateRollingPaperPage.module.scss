@@ -1,12 +1,17 @@
+@import "styles/animate";
+
 .form {
+  transition: all 0.5s ease-out;
   max-width: 720px;
   width: 100%;
   margin: 57px auto 312px;
   @media screen and (max-width: 1248px) {
-    margin: 49px 24px 24px;
+    margin: 49px auto 24px;
   }
   @media screen and (max-width: 768px) {
-    margin: 50px 20px 24px;
+    width: 324px;
+    min-width: 324px;
+    margin: 30px auto 24px;
   }
   display: flex;
   flex-direction: column;
@@ -15,13 +20,19 @@
   .sender-container {
     display: flex;
     flex-direction: column;
-    gap: 12px;
 
     .sender-input {
       padding: 12px 16px;
       border-radius: 8px;
       border: 1px solid var(--gray300);
       outline: none;
+      margin-top: 12px;
+    }
+    .sender-input-error {
+      border: 1px solid var(--error-red);
+    }
+    .sender-input-error-msg {
+      color: var(--error-red);
     }
   }
 
@@ -37,64 +48,12 @@
     }
     .select-bg-input-container {
       display: flex;
+      flex-wrap: wrap;
       gap: 16px;
       margin-bottom: 19px;
-      .select-bg-input {
-        display: none;
-      }
-      .select-bg-label {
-        display: inline-block;
-        width: 168px;
-        height: 168px;
-        border-radius: 18px;
-      }
-      .beige {
-        background-color: var(--rolling-bg-beige);
-      }
-      .purple {
-        background-color: var(--rolling-bg-purple);
-      }
-      .blue {
-        background-color: var(--rolling-bg-blue);
-      }
-      .green {
-        background-color: var(--rolling-bg-green);
-      }
-      .first {
-        background-image: var(--first-url);
-      }
-      .second {
-        background-image: var(--second-url);
-      }
-      .third {
-        background-image: var(--third-url);
-      }
-      .fourth {
-        background-image: var(--fourth-url);
-      }
     }
   }
-}
-
-.select-bg-container {
-  display: flex;
-  margin: 24px 0 45px;
-  input {
-    display: none;
-  }
-  label {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 122px;
-    height: 40px;
-    border-radius: 8px;
-    background-color: var(--gray100);
-  }
-  input[type="radio"]:checked + label {
-    background-color: var(--white);
-    border: 2px solid var(--primary-color);
-    color: var(--primary-color);
-    font-weight: var(--bold);
+  .submit-button {
+    @include btn-animate;
   }
 }

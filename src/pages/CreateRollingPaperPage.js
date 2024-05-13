@@ -2,17 +2,21 @@ import { useEffect, useState } from "react";
 import styles from "./CreateRollingPaperPage.module.scss";
 import {
   BACKGROUND_COLOR,
-  BACKGROUND_IMAGE,
   BACKGROUND_IMAGE_NAME,
-} from "constants/createRollingPaper";
+} from "constants/createRollingPaperPage";
 import { createPaper } from "apis/createRollingPaperPage";
 import { useNavigate } from "react-router-dom";
+import Background from "components/CreateRollingPaperPage/Background";
+import BackgroundButton from "components/CreateRollingPaperPage/BackgroundButton";
 
 export default function CreateRollingPaPer() {
   const [selectedBg, setSelectedBg] = useState("color");
   const [isWriteName, setIsWriteName] = useState(true);
+  const [isFocused, setIsFocused] = useState(false);
   const navigate = useNavigate();
-  const [backgroundColor, setBackgroundColor] = useState("beige");
+
+  // NOTE - 리퀘스트할 데이터
+  const [backgroundColor, setBackgroundColor] = useState(BACKGROUND_COLOR[0]);
   const [backgroundImg, setBackgroundImg] = useState(null);
   const [name, setName] = useState("");
 
@@ -20,13 +24,9 @@ export default function CreateRollingPaPer() {
   const handleBgSelect = (type) => {
     setSelectedBg(type);
 
-    // NOTE - 배경 컬러인 경우 첫 번째 배경 색상으로 설정
+    // NOTE - 배경 컬러인 경우 backgroundImg 초기화
     if (type === "color") {
-      setBackgroundColor(BACKGROUND_COLOR[0]);
-    }
-    // NOTE - 배경 이미지인 경우 첫 번째 배경 이미지로 설정
-    else if (type === "image") {
-      setBackgroundImg(BACKGROUND_IMAGE.first);
+      setBackgroundImg(null);
     }
   };
 
@@ -42,6 +42,16 @@ export default function CreateRollingPaPer() {
   // NOTE - name Input
   const handleName = (e) => {
     setName(e.target.value);
+    // NOTE - 1글자 이상 입력 중 에러 메세지 사라지도록 처리
+    if (e.target.value.trim().length > 0) {
+      setIsFocused(false);
+    }
+  };
+
+  const handleFocusOut = () => {
+    if (name.trim() === "") {
+      setIsFocused(true);
+    }
   };
 
   useEffect(() => {
@@ -67,10 +77,6 @@ export default function CreateRollingPaPer() {
       return;
     }
     navigate(`/post/${result.id}`);
-
-    console.log("넘어가는 데이터 확인 : " + data.name);
-    console.log("넘어가는 데이터 확인 : " + data.backgroundColor);
-    console.log("넘어가는 데이터 확인 : " + data.backgroundImageURL);
   };
 
   return (
@@ -84,9 +90,17 @@ export default function CreateRollingPaPer() {
           name="sender"
           type="text"
           placeholder="받는 사람 이름을 입력해 주세요."
-          className={styles["sender-input"]}
+          className={`${styles["sender-input"]} ${
+            isFocused ? styles["sender-input-error"] : ""
+          }`}
           onChange={handleName}
+          onBlur={handleFocusOut}
         />
+        {isFocused && (
+          <span className={`${styles["sender-input-error-msg"]} font-14-14-14`}>
+            이름을 입력해주세요.
+          </span>
+        )}
       </section>
       <section className={styles["select-bg-section"]}>
         <div className={styles["select-bg-title"]}>
@@ -102,70 +116,25 @@ export default function CreateRollingPaPer() {
               backgrounds={BACKGROUND_COLOR}
               name="color"
               onBackgroundSelect={handleBackgroundSelect}
+              checkedValue={backgroundColor}
             />
           ) : (
             <Background
               backgrounds={BACKGROUND_IMAGE_NAME}
               name="image"
               onBackgroundSelect={handleBackgroundSelect}
+              checkedValue={backgroundImg}
             />
           )}
         </div>
       </section>
-      <button className="button full" type="submit" disabled={isWriteName}>
+      <button
+        className={`button full ${styles["submit-button"]}`}
+        type="submit"
+        disabled={isWriteName}
+      >
         생성하기
       </button>
     </form>
-  );
-}
-
-function BackgroundButton({ onBgSelect, selectedBg }) {
-  return (
-    <div className={styles["select-bg-container"]}>
-      <input
-        type="radio"
-        id="bgColor"
-        name="select"
-        checked={selectedBg === "color"}
-        onChange={() => onBgSelect("color")}
-      />
-      <label htmlFor="bgColor" className={`font-16-16-16`}>
-        컬러
-      </label>
-      <input
-        type="radio"
-        id="bgImg"
-        name="select"
-        checked={selectedBg === "image"}
-        onChange={() => onBgSelect("image")}
-      />
-      <label htmlFor="bgImg" className={`font-16-16-16`}>
-        이미지
-      </label>
-    </div>
-  );
-}
-
-function Background({ backgrounds, name, onBackgroundSelect }) {
-  return (
-    <>
-      {backgrounds.map((background, index) => (
-        <>
-          <input
-            type="radio"
-            name={name}
-            id={background}
-            value={name === "color" ? background : BACKGROUND_IMAGE[background]}
-            className={styles["select-bg-input"]}
-            onChange={onBackgroundSelect}
-            key={index}
-          />
-          <label
-            htmlFor={background}
-            className={`${styles[background]} ${styles["select-bg-label"]}`}
-          ></label>
-        </>
-      ))}
-    </>
   );
 }
