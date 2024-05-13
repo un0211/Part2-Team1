@@ -18,7 +18,13 @@ function CountMessage({ messageProfiles, messageCount, page }) {
         )}
       </ol>
       <div className={`${styles["message-count"]} font-16-16-14`}>
-        <span className={styles.bold}>{messageCount}</span>명이 작성했어요!
+        {messageCount ? (
+          <>
+            <span className={styles.bold}>{messageCount}</span>명이 작성했어요!
+          </>
+        ) : (
+          <>첫 메세지를 남겨보세요!</>
+        )}
       </div>
     </div>
   );
