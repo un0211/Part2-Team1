@@ -6,6 +6,11 @@ import {
 } from "constants";
 import { ACQUAINTANCE, FRIEND, COWORKER, FAMILY } from "constants";
 
+export const PC_REACTION_NUM = 4;
+export const NON_PC_REACTION_NUM = 3;
+
+export const MESSAGE_NUM_DEFAULT = 12;
+
 export const MESSAGE = "messages";
 export const REACTION = "reactions";
 

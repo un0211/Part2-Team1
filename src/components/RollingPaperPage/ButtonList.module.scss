@@ -29,6 +29,9 @@
     @media screen and (max-width: 768px) {
       width: 90px;
     }
+    &:hover {
+      cursor: pointer;
+    }
   }
 
   .go-back-button {

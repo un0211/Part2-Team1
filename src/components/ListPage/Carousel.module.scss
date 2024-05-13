@@ -2,30 +2,22 @@
   width: 1200px;
   margin: 0 auto;
   text-align: left;
-  position: relative;
-
-  h1 {
-    position: absolute;
-    margin-left: 20px;
-    margin-top: 28px;
-    color: #000000;
-    font-weight: 700;
-    line-height: 2;
-    font-size: 28px;
-    top: 0;
-    z-index: 2;
-  }  
 
   p {
     color: #555;
   }
 
   .slider {
-    padding-top: 50px;
-      border-radius: 16px;
-      cursor: pointer;
-      padding-left: 20px;
+    border-radius: 16px;
+    cursor: pointer;
+    margin-left: 20px;
+    margin-top: -25px;
+
+    @media screen and (max-width: 768px) {
+      // margin-top: -50px;
     }
+  }
+
 
     .slick-prev:before, .slick-next:before {
       display: none;

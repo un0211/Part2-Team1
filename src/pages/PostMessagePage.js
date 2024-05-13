@@ -80,6 +80,7 @@ export default function PostMessageForm() {
 
   return (
     <form onSubmit={handleSubmit}>
+
       <div
         className={`${styles["message-form"]} ${senderError ? "error" : ""}`}
       >
@@ -114,6 +115,7 @@ export default function PostMessageForm() {
             onSelect={(value) => setRelationship(value)}
           />
         </div>
+
         <div
           className={`${styles["message-form-content"]} ${
             editorError ? styles.error : ""
@@ -122,7 +124,6 @@ export default function PostMessageForm() {
           <label htmlFor="textarea" className={styles["message-form-title"]}>
             내용을 입력해 주세요
           </label>
-
           <Editor
             editorState={editorState}
             onEditorStateChange={handleEditorChange}
@@ -130,6 +131,7 @@ export default function PostMessageForm() {
             editorClassName={`${styles["message-form-text-editor"]} ${
               editorError ? styles.error : ""
             }`}
+
             toolbar={{
               options: ["inline", "textAlign", "emoji", "remove", "history"],
             }}
@@ -146,7 +148,6 @@ export default function PostMessageForm() {
             onSelect={(value) => setSelectedFont(value)}
           />
         </div>
-
         <button
           className={`${styles["message-form-submit"]}`}
           type="submit"
