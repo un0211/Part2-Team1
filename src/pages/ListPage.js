@@ -41,7 +41,7 @@ function ListPage() {
       <div className={styles.top}>
       <h1 className={`font-28-bold ${styles["title"]}`}>인기 롤링 페이퍼🔥</h1>
       <Link
-      to="/post"
+      to="/allpost"
       className={`button width-92 font-18 ${styles["all-post-button"]}`}
       >전체 보기</Link>
       </div>

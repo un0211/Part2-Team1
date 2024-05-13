@@ -20,7 +20,8 @@ function App() {
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="list" element={<ListPage />} />
-        <Route path="post" element={<AllPostPage />}>
+        <Route path="allpost" element={<AllPostPage />} />
+        <Route path="post">
           <Route index element={<CreateRollingPaPer />} />
           <Route path="create" element={<CreateRollingPage />} />
           <Route path=":postId" element={<CheckPostIdPage />}>
