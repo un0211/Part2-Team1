@@ -1,7 +1,6 @@
 import { TEAM_BASE_URL } from "constants";
 
-export async function getList(params = {}) {
-  const query = new URLSearchParams(params).toString();
+export async function getList() {
 
   try{
     const response = await fetch(

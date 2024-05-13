@@ -1,6 +1,10 @@
 .reaction-box {
   display: flex;
+  
   gap: 8px;
+  @media screen and (max-width: 768px) {
+    gap: 4px;
+  }
 
   .emoji-box {
     color: var(--white);
@@ -12,6 +16,14 @@
     display: flex;
     gap: 2px;
   }
+  .non-reacted{
+    margin-top: 10px;
+
+    @media screen and (max-width: 768px) {
+      margin-top: 2px;
+    }
+  }
+
 }
 
 .post {
