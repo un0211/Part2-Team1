@@ -34,6 +34,7 @@ function RollingPaperPage() {
   });
   const [messageInfo, setMessageInfo] = useState({
     messages: [],
+    ids: [],
     count: 0,
     offset: 0,
   });
@@ -135,6 +136,7 @@ function RollingPaperPage() {
     const { results: newMessages, count } = messageResult;
     setMessageInfo({
       messages: newMessages,
+      ids: newMessages.map((message) => message.id),
       count,
       offset: newMessages.length, // NOTE - 다음에 여기부터 받으면 된다
     });
@@ -159,19 +161,25 @@ function RollingPaperPage() {
     setIsLoading(false);
     const { results: newMessages, count } = messageResult;
     setMessageInfo((prevInfo) => {
-      const isNew = !prevInfo.messages.filter(
-        (message) => message.id === newMessages[0].id
-      ).length;
-      /* FIXME - 스크롤 중에 데이터 변동이 생기면 위험
-       * 추가된 경우, 하나라도 겹치면 바로 return하고 무한 호출할 수 있음
-       */
-      if (!isNew) {
-        return prevInfo;
+      const newIds = newMessages.map((message) => message.id);
+
+      // NOTE - 메세지 순서는 일정하므로 앞에서부터 같은만큼 찾는다
+      let idx = 0;
+      let sameIdIdx = prevInfo.ids.indexOf(newIds[idx]);
+      while (sameIdIdx >= 0 && idx++ < newIds.length) {
+        console.log(idx, newIds[idx]);
+        sameIdIdx = prevInfo.ids.indexOf(newIds[idx++]);
       }
 
-      const updatedMessages = [...prevInfo.messages, ...newMessages];
+      if (newIds.length === idx) {
+        // NOTE - 모두 일치하는 경우
+        return;
+      }
+
+      const updatedMessages = [...prevInfo.messages, ...newMessages.slice(idx)];
       return {
         messages: updatedMessages,
+        ids: [...prevInfo.ids, ...newIds.slice(idx)],
         count,
         offset: updatedMessages.length,
       };
