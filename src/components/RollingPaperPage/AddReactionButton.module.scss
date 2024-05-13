@@ -22,6 +22,10 @@ em-emoji-picker {
   top: 46px;
   right: 0px;
   background-color: black;
+
+  @media screen and (max-width: 768px) {
+    right: -90px;
+  }
 }
 
 .hidden {
