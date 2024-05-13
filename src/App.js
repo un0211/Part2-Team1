@@ -5,6 +5,7 @@ import MainPage from "pages/MainPage";
 import NotFoundPage from "pages/NotFoundPage";
 import RollingPaperPage from "pages/RollingPaperPage";
 import ListPage from "pages/ListPage";
+import AllPostPage from "pages/AllPostPage";
 import CreateRollingPage from "pages/CreateRollingPage";
 import CreateRollingPaPer from "pages/CreateRollingPaperPage";
 import CheckPostIdPage from "pages/CheckPostIdPage";
@@ -18,7 +19,7 @@ function App() {
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="list" element={<ListPage />} />
-        <Route path="post">
+        <Route path="post" element={<AllPostPage />}>
           <Route index element={<CreateRollingPaPer />} />
           <Route path="create" element={<CreateRollingPage />} />
           <Route path=":postId" element={<CheckPostIdPage />}>
