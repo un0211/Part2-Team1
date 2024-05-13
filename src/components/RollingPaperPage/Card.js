@@ -4,7 +4,7 @@ import { formatDateWithDot } from "utils/rollingPaperPage";
 import { FONT_CLASS_NAME } from "constants/rollingPaperPage";
 import CardModal from "./CardModal";
 import SenderInfo from "./SenderInfo";
-import PlusIcon from "assets/icons/plus.svg";
+import PlusIcon from "assets/icons/plus_white.svg";
 import styles from "./Card.module.scss";
 
 function Card({ message, isEdit, onCheck, isChecked }) {
