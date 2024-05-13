@@ -3,13 +3,8 @@ import { useParams, useLocation, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import {
-  delMessage,
-  delPaper,
-  getMessage,
-  getPost,
-  getReaction,
-} from "apis/rollingPaperPage";
+import { delPaper, getMessage, getPost, getReaction } from "apis/recipients";
+import { delMessage } from "apis/messages";
 import {
   TOAST_DEFAULT_SETTING,
   MESSAGE_NUM_DEFAULT,

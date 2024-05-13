@@ -9,7 +9,7 @@ import CustomDropdown from "components/CreateMessage/CustomDropdown";
 import ProfileSelect from "components/CreateMessage/ProfileSelect";
 import { FONT_CLASS_NAME, MEMBER_CLASS_NAME } from "constants/postMessagePage";
 import { useParams, useNavigate } from "react-router-dom";
-import { putMessage } from "apis/postMessagePage";
+import { putMessage } from "apis/messages";
 
 export default function PostMessageForm() {
   const [senderValue, setSenderValue] = useState("");
