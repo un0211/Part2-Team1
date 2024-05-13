@@ -1,70 +1,82 @@
-.CardList{
-  @media screen and (max-width: 768px) {
-  width: 208px;
-  height: 232px;
-}
-border-radius: 16px;
-width: 275px;
-height: 260px;
-:hover{
-  opacity: 0.8;
-}
-
-
-.bg-setting {
+.CardList {
+  width: 275px;
+  height: 260px;
   @media screen and (max-width: 768px) {
     width: 208px;
     height: 232px;
   }
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  background-repeat: no-repeat;
-  background-position: right bottom;
   border-radius: 16px;
-  color: var(--gray900);
 
-  &.bg-url{
-    background-color: rgba(0, 0, 0, 0.54);
-    border-radius: 16px;
-
-    h3{
-      color: var(--white);
-    }
-    
-    a{
-      color: var(--white);
-    }
+  :hover {
+    opacity: 0.8;
   }
 
-  &.bg-purple {
-    background-image: url("../../assets/images/pattern01.png");
-  }
-
-  &.bg-beige {
-    background-image: url("../../assets/images/pattern02.png");
-  }
-
-  &.bg-blue {
-    background-image: url("../../assets/images/pattern03.png");
-  }
-
-  &.bg-green {
-    background-image: url("../../assets/images/pattern04.png");
-  }
-}
-
-a{
-  display: block;
-  padding: 30px 24px 20px 24px;
-
-  .name{
+  .bg-setting {
+    width: 275px;
+    height: 260px;
     @media screen and (max-width: 768px) {
-      font-size: 18px;
-  }
-  }
-}
+      width: 208px;
+      height: 232px;
+    }
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background-repeat: no-repeat;
+    background-position: right bottom;
+    border-radius: 16px;
+    color: var(--gray900);
 
-h3{
-  color: var(--gray900);
-  margin: 0;
+    &.bg-url {
+      background-color: rgba(0, 0, 0, 0.54);
+      border-radius: 16px;
+
+      h3 {
+        color: var(--white);
+      }
+
+      a {
+        color: var(--white);
+      }
+    }
+
+    &.bg-purple {
+      background-image: url('../../assets/images/pattern01.png');
+    }
+
+    &.bg-beige {
+      background-image: url('../../assets/images/pattern02.png');
+    }
+
+    &.bg-blue {
+      background-image: url('../../assets/images/pattern03.png');
+    }
+
+    &.bg-green {
+      background-image: url('../../assets/images/pattern04.png');
+    }
+  }
+
+  a {
+    display: block;
+    padding: 30px 24px 20px 24px;
+
+    .name {
+      @media screen and (max-width: 768px) {
+        font-size: 18px;
+      }
+    }
+    h3 {
+      color: var(--gray900);
+      margin: 0;
+    }
+
+    .divider{
+      margin-top: 43px;
+      margin-bottom: 16px;
+      width: 100%;
+      border: solid 1px rgba(0, 0, 0, 0.12);
+
+      @media screen and (max-width: 768px) {
+        margin-bottom: 8px;
+    }
+  }
 }
 }

@@ -16,7 +16,11 @@
 
     .title{
       margin-top: 50px;
+      margin-left: 20px;
       
+      @media screen and (max-width: 1248px) {
+        margin-left: 0;
+    }
       @media screen and (max-width: 768px) {
           margin-top: 40px;
           font-size: 20px;

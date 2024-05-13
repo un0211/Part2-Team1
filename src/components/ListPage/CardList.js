@@ -29,8 +29,8 @@ function CardList({ slideItems }) {
   const backgroundClass = backgroundImageURL ? "bg-url" : `bg-${backgroundColor}`
 
   return (
-    <div className={styles.CardList} style={cardStyle}>
-      <div className={`${styles["bg-setting"]} ${styles[backgroundClass]}`}></div>
+    <div className={styles["CardList"]} style={cardStyle}>
+      <div className={`${styles["bg-setting"]} ${styles[backgroundClass]}`}>
       <Link to={`/post/${id}`} className={styles["bg-setting"]}>
       <h3 className={`font-24-bold ${styles["name"]}`}>To. {name}</h3>
         <CountMessage
@@ -41,6 +41,7 @@ function CardList({ slideItems }) {
         <div className={styles.divider} />
         <Reactions reactions={topReactions} page={LIST_PAGE} />
       </Link>
+    </div>
     </div>
   );
 }
