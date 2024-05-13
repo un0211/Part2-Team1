@@ -2,12 +2,10 @@ import { useEffect, useState } from "react";
 import styles from "./CreateRollingPaperPage.module.scss";
 import {
   BACKGROUND_COLOR,
-  BACKGROUND_IMAGE,
   BACKGROUND_IMAGE_NAME,
 } from "constants/createRollingPaper";
 import { createPaper } from "apis/createRollingPaperPage";
 import { useNavigate } from "react-router-dom";
-import selected from "assets/icons/selected.svg";
 import Background from "components/CreateRollingPaperPage/Background";
 import BackgroundButton from "components/CreateRollingPaperPage/BackgroundButton";
 
@@ -79,10 +77,6 @@ export default function CreateRollingPaPer() {
       return;
     }
     navigate(`/post/${result.id}`);
-
-    console.log("넘어가는 데이터 확인 : " + data.name);
-    console.log("넘어가는 데이터 확인 : " + data.backgroundColor);
-    console.log("넘어가는 데이터 확인 : " + data.backgroundImageURL);
   };
 
   return (
