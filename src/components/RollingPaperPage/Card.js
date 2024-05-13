@@ -89,13 +89,13 @@ function Card({ message, isEdit, onCheck, isChecked }) {
 
 export function FirstCard() {
   return (
-    <div className={`${styles.card} ${styles["card-first"]}`}>
-      <Link to="message">
+    <Link to="message">
+      <div className={`${styles.card} ${styles["card-first"]}`}>
         <div className={styles["add-button"]}>
           <img src={PlusIcon} alt="메세지 추가" />
         </div>
-      </Link>
-    </div>
+      </div>
+    </Link>
   );
 }
 
