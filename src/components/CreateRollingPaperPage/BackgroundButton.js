@@ -1,3 +1,5 @@
+import styles from "./BackgroundButton.module.scss";
+
 export default function BackgroundButton({ onBgSelect, selectedBg }) {
   return (
     <div className={styles["select-bg-container"]}>

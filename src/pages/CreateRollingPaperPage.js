@@ -8,6 +8,8 @@ import {
 import { createPaper } from "apis/createRollingPaperPage";
 import { useNavigate } from "react-router-dom";
 import selected from "assets/icons/selected.svg";
+import Background from "components/CreateRollingPaperPage/Background";
+import BackgroundButton from "components/CreateRollingPaperPage/BackgroundButton";
 
 export default function CreateRollingPaPer() {
   const [selectedBg, setSelectedBg] = useState("color");
@@ -140,76 +142,5 @@ export default function CreateRollingPaPer() {
         생성하기
       </button>
     </form>
-  );
-}
-
-function BackgroundButton({ onBgSelect, selectedBg }) {
-  return (
-    <div className={styles["select-bg-container"]}>
-      <input
-        type="radio"
-        id="bgColor"
-        name="select"
-        checked={selectedBg === "color"}
-        onChange={() => onBgSelect("color")}
-      />
-      <label htmlFor="bgColor" className={`font-16-16-16`}>
-        컬러
-      </label>
-      <input
-        type="radio"
-        id="bgImg"
-        name="select"
-        checked={selectedBg === "image"}
-        onChange={() => onBgSelect("image")}
-      />
-      <label htmlFor="bgImg" className={`font-16-16-16`}>
-        이미지
-      </label>
-    </div>
-  );
-}
-
-function Background({ backgrounds, name, onBackgroundSelect, checkedValue }) {
-  return (
-    <>
-      {backgrounds.map((background, index) => (
-        <>
-          <input
-            type="radio"
-            name={name}
-            id={background}
-            value={name === "color" ? background : BACKGROUND_IMAGE[background]}
-            className={styles["select-bg-input"]}
-            onChange={onBackgroundSelect}
-            key={index}
-          />
-          <label
-            htmlFor={background}
-            className={`${styles[background]} ${styles["select-bg-label"]}`}
-          >
-            <div
-              className={`${styles["checked-container"]} ${
-                checkedValue ===
-                (name === "color" ? background : BACKGROUND_IMAGE[background])
-                  ? styles["checked-background-opacity"]
-                  : ""
-              }`}
-            >
-              <img
-                src={selected}
-                alt="선택 아이콘"
-                className={`${
-                  checkedValue ===
-                  (name === "color" ? background : BACKGROUND_IMAGE[background])
-                    ? ""
-                    : styles["none-checked-background"]
-                }`}
-              />
-            </div>
-          </label>
-        </>
-      ))}
-    </>
   );
 }

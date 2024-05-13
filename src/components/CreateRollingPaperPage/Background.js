@@ -1,3 +1,7 @@
+import { BACKGROUND_IMAGE } from "constants/createRollingPaper";
+import selected from "assets/icons/selected.svg";
+import styles from "./Background.module.scss";
+
 export default function Background({
   backgrounds,
   name,
