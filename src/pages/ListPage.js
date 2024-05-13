@@ -59,10 +59,12 @@ function ListPage() {
           ))}
         </div>
       </div>
+      <div className={`styles.["btn-box"]`}>
           <Link
             to="/post"
             className={`button width-280 align-center font-18 ${styles["list-button"]}`}
           >나도 만들어 보기</Link>
+          </div>
     </div>
   );
 }
