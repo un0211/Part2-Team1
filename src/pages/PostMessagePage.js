@@ -7,16 +7,16 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import styles from "styles/PostMessagePage.module.scss";
 import CustomDropdown from "components/CreateMessage/CustomDropdown";
 import ProfileSelect from "components/CreateMessage/ProfileSelect";
-import { FONT_CLASS_NAME, MEMBER_CLASS_NAME } from "constants/postMessagePage";
+import { FONT_CLASS_NAME, MEMBER_CLASS_NAME, PROFILES } from "constants/postMessagePage";
 import { useParams, useNavigate } from "react-router-dom";
 import { putMessage } from "apis/postMessagePage";
 
 export default function PostMessageForm() {
   const [senderValue, setSenderValue] = useState("");
-  const [relationship, setRelationship] = useState("");
+  const [relationship, setRelationship] = useState("지인");
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
-  const [selectedFont, setSelectedFont] = useState(null);
-  const [selectedProfile, setSelectedProfile] = useState(null);
+  const [selectedFont, setSelectedFont] = useState("Noto Sans");
+  const [selectedProfile, setSelectedProfile] = useState(PROFILES[0]);
 
   // NOTE - id 받아오는 작업
   const { postId } = useParams();
@@ -35,8 +35,13 @@ export default function PostMessageForm() {
     setSelectedProfile(profile);
   };
 
-  const removePTags = (html) => {
-    return html.replace(/<p>/g, "").replace(/<\/p>/g, "");
+  const removeTags = (html) => {
+    return html
+      .replace(/<p>/g, "")
+      .replace(/<\/p>/g, "")
+      .replace(/<strong>/g, "")
+      .replace(/<\/strong>/g, "");
+
   };
 
   const handleSubmit = async (e) => {
@@ -46,7 +51,7 @@ export default function PostMessageForm() {
       recipientId: postId,
       sender: senderValue,
       relationship: relationship,
-      content: removePTags(stateToHTML(editorState.getCurrentContent())),
+      content: removeTags(stateToHTML(editorState.getCurrentContent())),
       font: selectedFont,
       profileImageURL: selectedProfile.src,
     };
@@ -63,12 +68,15 @@ export default function PostMessageForm() {
     <form onSubmit={handleSubmit}>
       <div className={styles["message-form"]}>
         <div className={styles["message-form-sender"]}>
-          <label htmlFor="nameInput" className={styles["message-form-title"]}>
+          <label
+            htmlFor="nameInput"
+            className={`${styles["message-form-title"]} ${styles["font-28-28-18-bold"]}`}
+          >
             From.
           </label>
           <input
             onChange={handleNameChange}
-            className={`${styles["message-form-inputs"]} ${styles["message-form-name-input"]}`}
+            className={`${styles["message-form-inputs"]} ${styles["message-form-name-input"]} ${styles["font-28-28-18-bold"]}`}
             id="nameInput"
             placeholder="이름을 입력해 주세요."
           />
