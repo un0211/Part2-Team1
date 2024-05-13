@@ -11,7 +11,7 @@ export default function Header() {
 
   useEffect(() => {
     const handleResize = () => {
-      if (isMobile && !["/", "/list"].includes(location.pathname)) {
+      if (isMobile && location.pathname.startsWith("/post")) {
         setIsHeaderVisible(false);
       } else {
         setIsHeaderVisible(true);
