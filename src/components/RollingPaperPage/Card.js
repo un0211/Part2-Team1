@@ -1,6 +1,5 @@
 import { useCallback, useState } from "react";
 import { Link } from "react-router-dom";
-
 import { formatDateWithDot } from "utils/rollingPaperPage";
 import { FONT_CLASS_NAME } from "constants/rollingPaperPage";
 import CardModal from "./CardModal";
