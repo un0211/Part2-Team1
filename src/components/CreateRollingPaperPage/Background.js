@@ -10,7 +10,7 @@ export default function Background({
 }) {
   return (
     <>
-      {backgrounds.map((background, index) => (
+      {backgrounds.map((background) => (
         <>
           <input
             type="radio"
@@ -19,7 +19,7 @@ export default function Background({
             value={name === "color" ? background : BACKGROUND_IMAGE[background]}
             className={styles["select-bg-input"]}
             onChange={onBackgroundSelect}
-            key={index}
+            key={background}
           />
           <label
             htmlFor={background}
