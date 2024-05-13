@@ -7,8 +7,10 @@ import RollingPaperPage from "pages/RollingPaperPage";
 import PostMessagePage from "pages/PostMessagePage";
 import ListPage from "pages/ListPage";
 import CreateRollingPage from "pages/CreateRollingPage";
-import CreateRollingPaPer from "pages/CreateRollingPaperPage";
-import CheckPostIdPage from "pages/CheckPostIdPage";
+import PostMessagePage from "pages/PostMessagePage";
+import Modal from "react-modal";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+
 
 Modal.setAppElement("#root");
 

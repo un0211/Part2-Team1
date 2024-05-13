@@ -10,17 +10,17 @@ import {
 } from "constants";
 
 export const MEMBER_CLASS_NAME = {
-  [ACQUAINTANCE]: 1,
-  [FRIEND]: 2,
-  [COWORKER]: 3,
-  [FAMILY]: 4,
+  [ACQUAINTANCE]: "지인",
+  [FRIEND]: "친구",
+  [COWORKER]: "동료",
+  [FAMILY]: "가족",
 };
 
 export const FONT_CLASS_NAME = {
-  [NOTO_SANS]: 1,
-  [PRETENDARD]: 2,
-  [NANUM_MYEONGJO]: 3,
-  [NANUM_HANDLETTER]: 4,
+  [NOTO_SANS]: "Noto Sans",
+  [PRETENDARD]:  "Pretendard",
+  [NANUM_MYEONGJO]: "나눔명조",
+  [NANUM_HANDLETTER]: "나눔손글씨 손편지체",
 };
 
 export const PROFILES = [
