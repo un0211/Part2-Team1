@@ -214,6 +214,7 @@ function RollingPaperPage() {
   }, []);
 
   const handleEmojiButtonClick = useCallback((e) => {
+    e.stopPropagation();
     setIsReactionHidden(true);
     setIsDropDownHidden(true);
     setIsPickerHidden((prevIsHidden) => !prevIsHidden);
