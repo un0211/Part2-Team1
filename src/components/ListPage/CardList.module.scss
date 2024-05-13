@@ -1,6 +1,7 @@
 .CardList {
   width: 275px;
   height: 260px;
+  margin-bottom: 5px;
   @media screen and (max-width: 768px) {
     width: 208px;
     height: 232px;
@@ -14,6 +15,7 @@
   .bg-setting {
     width: 275px;
     height: 260px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08), 0 2px 5px rgba(0, 0, 0, 0.1);
     @media screen and (max-width: 768px) {
       width: 208px;
       height: 232px;
@@ -38,19 +40,19 @@
     }
 
     &.bg-purple {
-      background-image: url('../../assets/images/pattern01.png');
+      background-image: url("../../assets/images/pattern01.png");
     }
 
     &.bg-beige {
-      background-image: url('../../assets/images/pattern02.png');
+      background-image: url("../../assets/images/pattern02.png");
     }
 
     &.bg-blue {
-      background-image: url('../../assets/images/pattern03.png');
+      background-image: url("../../assets/images/pattern03.png");
     }
 
     &.bg-green {
-      background-image: url('../../assets/images/pattern04.png');
+      background-image: url("../../assets/images/pattern04.png");
     }
   }
 
@@ -68,7 +70,7 @@
       margin: 0;
     }
 
-    .divider{
+    .divider {
       margin-top: 43px;
       margin-bottom: 16px;
       width: 100%;
@@ -76,7 +78,7 @@
 
       @media screen and (max-width: 768px) {
         margin-bottom: 8px;
+      }
     }
   }
-}
 }
