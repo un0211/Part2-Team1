@@ -132,7 +132,11 @@ export default function CreateRollingPaPer() {
           )}
         </div>
       </section>
-      <button className="button full" type="submit" disabled={isWriteName}>
+      <button
+        className={`button full ${styles["submit-button"]}`}
+        type="submit"
+        disabled={isWriteName}
+      >
         생성하기
       </button>
     </form>

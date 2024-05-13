@@ -1,3 +1,5 @@
+@import "styles/animate";
+
 .form {
   transition: all 0.5s ease-out;
   max-width: 720px;
@@ -56,6 +58,7 @@
         display: inline-block;
         width: 168px;
         height: 168px;
+        @include card-animate;
         @media screen and (max-width: 768px) {
           width: 154px;
           height: 154px;
@@ -101,6 +104,9 @@
         background-image: var(--fourth-url);
       }
     }
+  }
+  .submit-button {
+    @include btn-animate;
   }
 }
 
