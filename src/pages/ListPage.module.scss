@@ -13,16 +13,31 @@
   .track{
     margin: 20px auto;
     max-width: 1180px;
+    .top{
+      display: flex;
+      justify-content: space-between;
+      
+
+      .all-post-button{
+        margin-right: 20px;
+
+        @media screen and (max-width: 768px) {
+            margin-right: 0px;
+            font-size: 16px;
+            width: 92px;
+        }
+      }
+    }
 
     .title{
-      margin-top: 20px;
+      margin-top: 10px;
       margin-left: 20px;
       
       @media screen and (max-width: 1248px) {
         margin-left: 0;
     }
       @media screen and (max-width: 768px) {
-          margin-top: 40px;
+          // margin-top: 40px;
           font-size: 20px;
       }
     }
@@ -37,10 +52,12 @@
       white-space: nowrap;
       
       &.item-1{
-        top: 60px;
-
+        top: 100px;
         @media screen and (max-width: 768px) {
-          top: 40px;
+          top: 100px;
+        }
+        @media screen and (max-width: 768px) {
+          top: 100px;
         }
       }
 
@@ -48,7 +65,7 @@
         top: 450px;
 
         @media screen and (max-width: 768px) {
-          top: 345px;
+          top: 405px;
         }
       }
     }
@@ -84,7 +101,7 @@
     font-size: 20px;
   }
   .empty{
-    height: 232px;
+    height: 270px;
   }
   .wrapper .track .vertical-scroll {
     visibility: visible;

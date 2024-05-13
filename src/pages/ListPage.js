@@ -38,7 +38,13 @@ function ListPage() {
   return (
     <div className={styles.wrapper}>
       <div className={styles.track}>
+        <div className={styles.top}>
         <h1 className={`font-28-bold ${styles["title"]}`}>인기 롤링 페이퍼🔥</h1>
+        <Link
+        to="/postall"
+        className={`button width-92 font-18 ${styles["all-post-button"]}`}
+        >전체 보기</Link>
+        </div>
         <div className={styles.carousel}>
           <Carousel slideItems={bestItems} isLoading={isLoading}/>
         </div>
