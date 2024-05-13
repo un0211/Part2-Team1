@@ -16,7 +16,7 @@ export default function CreateRollingPaPer() {
   const navigate = useNavigate();
 
   // NOTE - 리퀘스트할 데이터
-  const [backgroundColor, setBackgroundColor] = useState("beige");
+  const [backgroundColor, setBackgroundColor] = useState(BACKGROUND_COLOR[0]);
   const [backgroundImg, setBackgroundImg] = useState(null);
   const [name, setName] = useState("");
 
@@ -24,9 +24,8 @@ export default function CreateRollingPaPer() {
   const handleBgSelect = (type) => {
     setSelectedBg(type);
 
-    // NOTE - 배경 컬러인 경우 첫 번째 배경 색상으로 설정
+    // NOTE - 배경 컬러인 경우 backgroundImg 초기화
     if (type === "color") {
-      setBackgroundColor(BACKGROUND_COLOR[0]);
       setBackgroundImg(null);
     }
   };
@@ -43,6 +42,7 @@ export default function CreateRollingPaPer() {
   // NOTE - name Input
   const handleName = (e) => {
     setName(e.target.value);
+    // NOTE - 1글자 이상 입력 중 에러 메세지 사라지도록 처리
     if (e.target.value.trim().length > 0) {
       setIsFocused(false);
     }
