@@ -20,7 +20,8 @@ function TopReaction({ topReactions }) {
           </div>
         ))
       ) : (
-        <div className="reaction">
+        <div className={styles["non-reacted"]}>
+          관심을 기다리는 중...
         </div>
       )}
     </div>
