@@ -2,14 +2,8 @@ import { useCallback, useEffect, useState } from "react";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
-import {
-  delMessage,
-  delPaper,
-  getMessage,
-  getPost,
-  getReaction,
-} from "apis/rollingPaperPage";
+import { delPaper, getMessage, getPost, getReaction } from "apis/recipients";
+import { delMessage } from "apis/messages";
 import {
   TOAST_DEFAULT_SETTING,
   MESSAGE_NUM_DEFAULT,
@@ -167,7 +161,6 @@ function RollingPaperPage() {
       let idx = 0;
       let sameIdIdx = prevInfo.ids.indexOf(newIds[idx]);
       while (sameIdIdx >= 0 && idx++ < newIds.length) {
-        console.log(idx, newIds[idx]);
         sameIdIdx = prevInfo.ids.indexOf(newIds[idx++]);
       }
 
@@ -230,6 +223,7 @@ function RollingPaperPage() {
       return;
     }
     // NOTE - 삭제 후 데이터 다시 받아오는 작업
+    handlePostInfoLoad();
     handleMessageLoad();
     // NOTE - 삭제 후, 삭제할 메세지 배열 초기화
     setDeleteMessageIds([]);

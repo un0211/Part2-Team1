@@ -6,11 +6,9 @@ import NotFoundPage from "pages/NotFoundPage";
 import RollingPaperPage from "pages/RollingPaperPage";
 import PostMessagePage from "pages/PostMessagePage";
 import ListPage from "pages/ListPage";
-import CreateRollingPage from "pages/CreateRollingPage";
-import PostMessagePage from "pages/PostMessagePage";
-import Modal from "react-modal";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-
+import AllPostPage from "pages/AllPostPage";
+import CreateRollingPaper from "pages/CreateRollingPaperPage";
+import CheckPostIdPage from "pages/CheckPostIdPage";
 
 Modal.setAppElement("#root");
 
@@ -21,9 +19,9 @@ function App() {
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="list" element={<ListPage />} />
+        <Route path="allpost" element={<AllPostPage />} />
         <Route path="post">
-          <Route index element={<CreateRollingPaPer />} />
-          <Route path="create" element={<CreateRollingPage />} />
+          <Route index element={<CreateRollingPaper />} />
           <Route path=":postId" element={<CheckPostIdPage />}>
             <Route index element={<RollingPaperPage />} />
             <Route path="edit" element={<RollingPaperPage />} />

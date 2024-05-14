@@ -74,7 +74,7 @@ function Emojis({
     window.innerWidth >= PC_MIN_WIDTH ? PC_REACTION_NUM : NON_PC_REACTION_NUM;
 
   return (
-    <div className={styles.reactions}>
+    <div className={`${styles.reactions} font-18-18-15`}>
       <Reactions reactions={topReactions} page={POST_PAGE} />
       <button
         type="button"

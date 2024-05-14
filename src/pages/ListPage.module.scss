@@ -1,33 +1,42 @@
 @import "styles/animate";
 
-.wrapper{
+.wrapper {
   width: 100%;
   position: relative;
   margin-bottom: 24px;
-  padding: 0px 20px;
+  padding: 20px 20px;
   @media screen and (max-width: 768px) {
     margin-bottom: 20px;
-    
-}
+  }
 
-  .track{
+  .track {
     margin: 20px auto;
     max-width: 1180px;
+    .top {
+      display: flex;
+      justify-content: space-between;
 
-    .title{
-      margin-top: 50px;
-      margin-left: 20px;
-      
-      @media screen and (max-width: 1248px) {
-        margin-left: 0;
-    }
-      @media screen and (max-width: 768px) {
-          margin-top: 40px;
-          font-size: 20px;
+      .all-post-button {
+        @media screen and (max-width: 768px) {
+          width: 92px;
+        }
       }
     }
-    
-    .vertical-scroll{
+
+    .title {
+      margin-top: 10px;
+      margin-left: 20px;
+
+      @media screen and (max-width: 1248px) {
+        margin-left: 0;
+      }
+      @media screen and (max-width: 768px) {
+        // margin-top: 40px;
+        font-size: 20px;
+      }
+    }
+
+    .vertical-scroll {
       visibility: hidden;
       position: absolute;
       display: flex;
@@ -35,35 +44,37 @@
       width: 100%;
       overflow: auto;
       white-space: nowrap;
-      
-      &.item-1{
-        top: 60px;
 
+      &.item-1 {
+        top: 100px;
         @media screen and (max-width: 768px) {
-          top: 40px;
+          top: 100px;
+        }
+        @media screen and (max-width: 768px) {
+          top: 100px;
         }
       }
 
-      &.item-2{
+      &.item-2 {
         top: 450px;
 
         @media screen and (max-width: 768px) {
-          top: 345px;
+          top: 405px;
         }
       }
     }
   }
-  .btn-box{
+  .btn-box {
     max-width: 100%;
     padding: 24px 20px;
   }
-  .list-button{
+  .list-button {
     @include btn-animate;
   }
 }
 
 @media screen and (max-width: 1248px) {
-  .empty{
+  .empty {
     height: 300px;
   }
 
@@ -71,29 +82,29 @@
     visibility: visible;
   }
 
-  .carousel{
+  .carousel {
     display: none;
   }
-  .list-button{
+  .list-button {
     margin-top: 156px;
   }
 }
 @media screen and (max-width: 768px) {
-  .title{
+  .title {
     margin-top: 40px;
     font-size: 20px;
   }
-  .empty{
-    height: 232px;
+  .empty {
+    height: 270px;
   }
   .wrapper .track .vertical-scroll {
     visibility: visible;
   }
-  
-  .carousel{
+
+  .carousel {
     display: none;
   }
-  .link-button{
+  .link-button {
     margin-top: 66px;
   }
 }

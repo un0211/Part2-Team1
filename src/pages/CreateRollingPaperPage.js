@@ -4,12 +4,12 @@ import {
   BACKGROUND_COLOR,
   BACKGROUND_IMAGE_NAME,
 } from "constants/createRollingPaperPage";
-import { createPaper } from "apis/createRollingPaperPage";
+import { postPaper } from "apis/recipients";
 import { useNavigate } from "react-router-dom";
 import Background from "components/CreateRollingPaperPage/Background";
 import BackgroundButton from "components/CreateRollingPaperPage/BackgroundButton";
 
-export default function CreateRollingPaPer() {
+export default function CreateRollingPaper() {
   const [selectedBg, setSelectedBg] = useState("color");
   const [isWriteName, setIsWriteName] = useState(true);
   const [isFocused, setIsFocused] = useState(false);
@@ -72,7 +72,7 @@ export default function CreateRollingPaPer() {
       backgroundImageURL: backgroundImg,
     };
     try {
-      result = await createPaper(data);
+      result = await postPaper(data);
     } catch (e) {
       return;
     }

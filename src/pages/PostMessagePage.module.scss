@@ -17,7 +17,6 @@
       width: 100%;
     }
     .form-error {
-      // .form-error 클래스 스타일 적용
       display: block;
       color: var(--error-red);
       font-size: 14px;
@@ -168,11 +167,11 @@
       cursor: not-allowed;
     }
 
-    &:hover {
+    &:hover:enabled {
       background-color: var(--hover-btn);
     }
 
-    &:active {
+    &:active:enabled {
       background-color: var(--pressed-btn);
     }
   }

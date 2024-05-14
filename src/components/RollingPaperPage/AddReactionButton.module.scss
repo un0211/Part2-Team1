@@ -1,5 +1,9 @@
 .add-emoji-container {
   position: relative;
+
+  @media screen and (max-width: 768px) {
+    position: static;
+  }
 }
 
 .add-emoji {
@@ -24,7 +28,8 @@ em-emoji-picker {
   background-color: black;
 
   @media screen and (max-width: 768px) {
-    right: -90px;
+    top: 102px;
+    left: 5px;
   }
 }
 

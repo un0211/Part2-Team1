@@ -11,9 +11,10 @@ import {
   MEMBER_CLASS_NAME,
   PROFILES,
   DEFUALT_PROFILE
+
 } from "constants/postMessagePage";
 import { useParams, useNavigate } from "react-router-dom";
-import { putMessage } from "apis/postMessagePage";
+import { postMessage } from "apis/recipients";
 
 export default function PostMessageForm() {
   const [senderValue, setSenderValue] = useState("");
@@ -61,8 +62,7 @@ export default function PostMessageForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // const profileImageURL = selectedProfile ? selectedProfile.src : "https://cdn.icon-icons.com/icons2/317/PNG/512/profile-icon_34378.png";
-
+    
     const formData = {
       team: "6-1",
       recipientId: postId,
@@ -74,7 +74,7 @@ export default function PostMessageForm() {
     };
 
     try {
-      await putMessage(postId, formData);
+      await postMessage(postId, formData);
       navigate(`/post/${postId}`); // NOTE 페이지 이동
     } catch (error) {
       console.error(error);
@@ -83,7 +83,6 @@ export default function PostMessageForm() {
 
   return (
     <form onSubmit={handleSubmit}>
-
       <div
         className={`${styles["message-form"]} ${senderError ? "error" : ""}`}
       >
@@ -134,7 +133,6 @@ export default function PostMessageForm() {
             editorClassName={`${styles["message-form-text-editor"]} ${
               editorError ? styles.error : ""
             }`}
-
             toolbar={{
               options: ["inline", "textAlign", "emoji", "remove", "history"],
             }}

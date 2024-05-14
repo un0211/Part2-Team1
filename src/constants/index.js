@@ -14,6 +14,7 @@ export const PRETENDARD = "Pretendard";
 export const NANUM_MYEONGJO = "나눔명조";
 export const NANUM_HANDLETTER = "나눔손글씨 손편지체";
 
+export const ALL_POST_PAGE = "allpost";
 export const POST_PAGE = "post";
 export const LIST_PAGE = "list";
 

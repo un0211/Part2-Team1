@@ -1,0 +1,53 @@
+.card-section {
+  position: relative;
+  max-width: 1200px;
+  padding: 64px 0;
+  margin: 0 auto;
+
+  @media screen and (max-width: 1248px) {
+    margin: 0 24px;
+    padding: 32px 0;
+  }
+
+  @media screen and (max-width: 768px) {
+    margin: 0 20px;
+  }
+
+  height: fit-content;
+  min-height: 1000px;
+}
+
+.card-list {
+  width: 1160px;
+  margin: 0 auto;
+
+  display: flex;
+  justify-content: space-between;
+  gap: 16px 0;
+  flex-flow: wrap;
+
+  @media screen and (max-width: 1248px) {
+    width: 860px;
+    gap: 12px 0;
+  }
+
+  @media screen and (max-width: 950px) {
+    width: 566px;
+    gap: 12px 0;
+  }
+
+  @media screen and (max-width: 768px) {
+    width: 430px;
+    gap: 8px 0;
+  }
+
+  @media screen and (max-width: 490px) {
+    width: 320px;
+    justify-content: center;
+  }
+}
+
+.observer {
+  height: 10px;
+  margin-top: 40px;
+}

@@ -1,6 +1,6 @@
 .reaction-box {
   display: flex;
-  
+
   gap: 8px;
   @media screen and (max-width: 768px) {
     gap: 4px;
@@ -16,20 +16,26 @@
     display: flex;
     gap: 2px;
   }
-  .non-reacted{
-    margin-top: 10px;
 
-    @media screen and (max-width: 768px) {
-      margin-top: 2px;
-    }
+  .non-reacted {
+    width: max-content;
   }
-
 }
 
 .post {
   .emoji-box {
     @media screen and (max-width: 768px) {
       padding: 4px 8px;
+    }
+  }
+}
+
+.list {
+  .non-reacted {
+    margin-top: 10px;
+
+    @media screen and (max-width: 768px) {
+      margin-top: 2px;
     }
   }
 }
