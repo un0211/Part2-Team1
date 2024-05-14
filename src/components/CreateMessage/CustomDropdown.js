@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ArrowIcon from "assets/icons/arrow_down.svg";
-import styles from "styles/PostMessagePage.module.scss";
+import styles from "pages/PostMessagePage.module.scss";
+
 
 export default function CustomDropdown({ props, onSelect }) {
   const [selected, setSelected] = useState(
