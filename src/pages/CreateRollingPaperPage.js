@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import styles from "./CreateRollingPaperPage.module.scss";
 import {
   BACKGROUND_COLOR,
+  BACKGROUND_IMAGE,
   BACKGROUND_IMAGE_NAME,
 } from "constants/createRollingPaperPage";
 import { createPaper } from "apis/createRollingPaperPage";
@@ -23,9 +24,11 @@ export default function CreateRollingPaPer() {
   // NOTE - 배경 컬러, 이미지 중 선택하는 함수
   const handleBgSelect = (type) => {
     setSelectedBg(type);
-
-    // NOTE - 배경 컬러인 경우 backgroundImg 초기화
-    if (type === "color") {
+    // NOTE - 컬러나 이미지 클릭 시 값 기본값으로 초기화
+    if (type === "image") {
+      setBackgroundImg(BACKGROUND_IMAGE.first);
+    } else {
+      setBackgroundColor(BACKGROUND_COLOR[0]);
       setBackgroundImg(null);
     }
   };
@@ -64,6 +67,10 @@ export default function CreateRollingPaPer() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // NOTE - 생성하기 버튼을 누를 때 선택된 값이 color일 경우 배경 이미지 null 해주어야 함
+    // if (selectedBg === "color") {
+    //   setBackgroundImg(null);
+    // }
     let result;
     const data = {
       team: "6-1",
