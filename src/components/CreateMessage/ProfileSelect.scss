@@ -6,8 +6,10 @@
 }
 
 .message-form {
+  width: 320px;
+  margin: 0 auto;
   &-title {
-    @include font(20px);
+    @include font(28px, $bold);
     margin-bottom: 12px;
     margin-top: 50px;
     display: block;

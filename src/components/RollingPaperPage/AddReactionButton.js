@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
 
-import { postReaction } from "apis/rollingPaperPage";
+import { postReaction } from "apis/recipients";
 import addEmojiIcon from "assets/icons/add_emoji.svg";
 import styles from "./AddReactionButton.module.scss";
 

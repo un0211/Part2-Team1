@@ -4,7 +4,7 @@ import {
   BACKGROUND_COLOR,
   BACKGROUND_IMAGE_NAME,
 } from "constants/createRollingPaperPage";
-import { createPaper } from "apis/createRollingPaperPage";
+import { createPaper } from "apis/recipients";
 import { useNavigate } from "react-router-dom";
 import Background from "components/CreateRollingPaperPage/Background";
 import BackgroundButton from "components/CreateRollingPaperPage/BackgroundButton";

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getList } from "apis/ListPage";
+import { getPost } from "apis/recipients";
 import styles from "./AllPostPage.module.scss";
 import "styles/global.css";
 import "styles/button.scss";
@@ -14,7 +14,7 @@ function AllPostPage(){
     const fetchData = async () => {
       try {
         setIsLoading(true);
-        const response = await getList();
+        const response = await getPost();
         const items = response.results;
         setAllItems = items;
 

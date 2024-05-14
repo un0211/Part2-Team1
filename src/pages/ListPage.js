@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getList } from "apis/ListPage";
+import { getList } from "apis/messages";
 import Carousel from "../components/ListPage/Carousel";
 import "./ListPage.module.scss";
 import styles from "./ListPage.module.scss";
