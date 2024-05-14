@@ -8,8 +8,12 @@ import {
   delPaper,
   getMessage,
   getPost,
+  getReaction,
 } from "apis/rollingPaperPage";
-import { TOAST_DEFAULT_SETTING } from "constants/rollingPaperPage";
+import {
+  TOAST_DEFAULT_SETTING,
+  MESSAGE_NUM_DEFAULT,
+} from "constants/rollingPaperPage";
 import ButtonList from "components/RollingPaperPage/ButtonList";
 import Card, { FirstCard } from "components/RollingPaperPage/Card";
 import Nav from "components/RollingPaperPage/Nav";
@@ -28,12 +32,21 @@ function RollingPaperPage() {
     messageCount: 0,
     messageProfiles: [],
   });
-  const [messages, setMessages] = useState([]);
+  const [messageInfo, setMessageInfo] = useState({
+    messages: [],
+    ids: [],
+    count: 0,
+    offset: 0,
+  });
+  const [reactions, setReactions] = useState([]);
   const [loadingError, setLoadingError] = useState(null);
+  const [reactionLoadingError, setReactionLoadingError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+
   // NOTE - 삭제할 메세지 id 목록
   const [deleteMessageIds, setDeleteMessageIds] = useState([]);
-  // NOTE - 이모지 피커, 드롭다운 보여줄지 여부
+  // NOTE - 반응 목록, 이모지 피커, 드롭다운 보여줄지 여부
+  const [isReactionHidden, setIsReactionHidden] = useState(true);
   const [isDropDownHidden, setIsDropDownHidden] = useState(true);
   const [isPickerHidden, setIsPickerHidden] = useState(true);
 
@@ -69,23 +82,20 @@ function RollingPaperPage() {
   const handleCheckAll = useCallback(
     (e) => {
       if (e.target.checked) {
-        setDeleteMessageIds(messages.map((item) => item.id));
+        setDeleteMessageIds(messageInfo.messages.map((item) => item.id));
       } else {
         setDeleteMessageIds([]);
       }
     },
-    [messages]
+    [messageInfo.messages]
   );
 
-  // NOTE - post, message, reaction 값 받아오는 함수
-  const handleLoad = useCallback(async () => {
+  // NOTE - post 값 받아오는 함수
+  const handlePostInfoLoad = useCallback(async () => {
     let postResult;
-    let messageResult;
     try {
-      setIsLoading(true);
       setLoadingError(null);
       postResult = await getPost(postId);
-      messageResult = await getMessage(postId);
     } catch (e) {
       setLoadingError(e);
       return;
@@ -110,10 +120,94 @@ function RollingPaperPage() {
         imgURL: message.profileImageURL,
       })),
     });
-    setIsLoading(false);
-    const { results: newMessages } = messageResult;
-    setMessages(newMessages);
   }, [postId]);
+
+  // NOTE - message 초기값 받아오는 함수
+  const handleMessageLoad = useCallback(async () => {
+    let messageResult;
+    try {
+      setLoadingError(null);
+      messageResult = await getMessage(postId);
+    } catch (e) {
+      setLoadingError(e);
+      return;
+    }
+
+    const { results: newMessages, count } = messageResult;
+    setMessageInfo({
+      messages: newMessages,
+      ids: newMessages.map((message) => message.id),
+      count,
+      offset: newMessages.length, // NOTE - 다음에 여기부터 받으면 된다
+    });
+  }, [postId]);
+
+  // NOTE - message 추가로 받아오는 함수
+  const handleMoreMessageLoad = useCallback(async () => {
+    let messageResult;
+    try {
+      setIsLoading(true);
+      setLoadingError(null);
+      messageResult = await getMessage(
+        postId,
+        messageInfo.offset,
+        MESSAGE_NUM_DEFAULT
+      );
+    } catch (e) {
+      setLoadingError(e);
+      return;
+    }
+
+    setIsLoading(false);
+    const { results: newMessages, count } = messageResult;
+    setMessageInfo((prevInfo) => {
+      const newIds = newMessages.map((message) => message.id);
+
+      // NOTE - 메세지 순서는 일정하므로 앞에서부터 같은만큼 찾는다
+      let idx = 0;
+      let sameIdIdx = prevInfo.ids.indexOf(newIds[idx]);
+      while (sameIdIdx >= 0 && idx++ < newIds.length) {
+        console.log(idx, newIds[idx]);
+        sameIdIdx = prevInfo.ids.indexOf(newIds[idx++]);
+      }
+
+      if (newIds.length === idx) {
+        // NOTE - 모두 일치하는 경우
+        return;
+      }
+
+      const updatedMessages = [...prevInfo.messages, ...newMessages.slice(idx)];
+      return {
+        messages: updatedMessages,
+        ids: [...prevInfo.ids, ...newIds.slice(idx)],
+        count,
+        offset: updatedMessages.length,
+      };
+    });
+  }, [postId, messageInfo.offset]);
+
+  // NOTE - reaction 값 받아오는 함수
+  const handleReactionLoad = useCallback(async () => {
+    let reactionResult;
+    try {
+      setReactionLoadingError(null);
+      reactionResult = await getReaction(postId);
+    } catch (e) {
+      setReactionLoadingError(e);
+      return;
+    }
+
+    const { results: newReactions } = reactionResult;
+    setReactions(newReactions);
+  }, [postId]);
+
+  const handleInitialLoad = useCallback(async () => {
+    setIsLoading(true);
+    Promise.all([handlePostInfoLoad(), handleMessageLoad()]).then(() => {
+      setIsLoading(false);
+    });
+    handleReactionLoad();
+  }, [handlePostInfoLoad, handleMessageLoad, handleReactionLoad]);
 
   // NOTE - 메세지 삭제하는 함수
   const handleDeleteMessage = useCallback(async () => {
@@ -136,12 +230,12 @@ function RollingPaperPage() {
       return;
     }
     // NOTE - 삭제 후 데이터 다시 받아오는 작업
-    handleLoad();
+    handleMessageLoad();
     // NOTE - 삭제 후, 삭제할 메세지 배열 초기화
     setDeleteMessageIds([]);
     // NOTE - 삭제 후, 페이지 이동
     navigate(`/post/${postId}`);
-  }, [deleteMessageIds, handleLoad, navigate, postId]);
+  }, [deleteMessageIds, handleMessageLoad, navigate, postId]);
 
   // NOTE - 롤링페이퍼 삭제하는 함수
   const handleDeletePaper = useCallback(async () => {
@@ -164,25 +258,55 @@ function RollingPaperPage() {
   }, [navigate, postId, postInfo.name]);
 
   const handleDefaultClick = useCallback(() => {
+    setIsReactionHidden(true);
     setIsDropDownHidden(true);
     setIsPickerHidden(true);
   }, []);
 
+  const handleMoreReactionClick = useCallback((e) => {
+    e.stopPropagation();
+    setIsPickerHidden(true);
+    setIsDropDownHidden(true);
+    setIsReactionHidden((prevIsHidden) => !prevIsHidden);
+  }, []);
+
   const handleEmojiButtonClick = useCallback((e) => {
     e.stopPropagation();
+    setIsReactionHidden(true);
     setIsDropDownHidden(true);
     setIsPickerHidden((prevIsHidden) => !prevIsHidden);
   }, []);
 
   const handleDropDownClick = useCallback((e) => {
     e.stopPropagation();
+    setIsReactionHidden(true);
     setIsPickerHidden(true);
     setIsDropDownHidden((prevIsHidden) => !prevIsHidden);
   }, []);
 
+  const handleObserver = useCallback(
+    (entries) => {
+      const target = entries[0];
+      if (messageInfo.offset === 0) {
+        // NOTE - 아직 초기값도 없다
+        return;
+      }
+      if (messageInfo.offset >= messageInfo.count) {
+        // NOTE - 더이상 불러올 메시지가 없다
+        return;
+      }
+
+      if (target.isIntersecting && !isLoading) {
+        // NOTE - 끝에 닿았으며, 로딩중이 아닐 때 새 메시지 로드
+        handleMoreMessageLoad();
+      }
+    },
+    [isLoading, messageInfo.count, messageInfo.offset, handleMoreMessageLoad]
+  );
+
   useEffect(() => {
-    handleLoad();
-  }, [handleLoad]);
+    handleInitialLoad();
+  }, [handleInitialLoad]);
 
   useEffect(() => {
     // NOTE - 페이지 이동할 때 deleteMessageIds를 초기화
@@ -190,6 +314,23 @@ function RollingPaperPage() {
       setDeleteMessageIds([]);
     };
   }, [location.pathname]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(handleObserver, {
+      threshold: 1, // NOTE - 1px이라도 보이면, 콜백이 실행
+    });
+
+    const observerTarget = document.getElementById("observer");
+    if (observerTarget) {
+      // NOTE - 관찰 시작
+      observer.observe(observerTarget);
+    }
+
+    return () => {
+      // NOTE - 관찰 끝
+      observer.unobserve(observerTarget);
+    };
+  }, [handleObserver]);
 
   return (
     <main
@@ -199,8 +340,13 @@ function RollingPaperPage() {
     >
       <Nav
         postInfo={postInfo}
+        reactions={reactions}
+        isReactionHidden={isReactionHidden}
         isPickerHidden={isPickerHidden}
         isDropDownHidden={isDropDownHidden}
+        reactionLoadingError={reactionLoadingError}
+        onMoreReactionClick={handleMoreReactionClick}
+        onEmojiClick={() => handleReactionLoad()}
         onEmojiButtonClick={handleEmojiButtonClick}
         onShareButtonClick={handleDropDownClick}
         onKakaoClick={handleDefaultClick}
@@ -211,23 +357,20 @@ function RollingPaperPage() {
           isEdit={isEdit}
           onDeleteMessages={handleDeleteMessage}
           deleteMessageIds={deleteMessageIds}
-          messages={messages}
+          messages={messageInfo.messages}
           onCheckAll={handleCheckAll}
           navigate={navigate}
           onDeletePaper={handleDeletePaper}
           postId={postId}
         />
+        <CardList
+          isEdit={isEdit}
+          messages={messageInfo.messages}
+          onCheck={handleCheck}
+          deleteMessageIds={deleteMessageIds}
+        />
         {/* // NOTE - 로딩 중 스피너 */}
-        {isLoading ? (
-          <Loading />
-        ) : (
-          <CardList
-            isEdit={isEdit}
-            messages={messages}
-            onCheck={handleCheck}
-            deleteMessageIds={deleteMessageIds}
-          />
-        )}
+        {isLoading && <Loading />}
         {loadingError?.message ? <p>{loadingError.message}</p> : ""}
         <ToastContainer />
       </section>
@@ -238,23 +381,26 @@ function RollingPaperPage() {
 // NOTE - 기본 모드에서만 메세지 추가 카드가 보인다.
 function CardList({ isEdit, messages, onCheck, deleteMessageIds }) {
   return (
-    <ol className={styles["card-list"]}>
-      {!isEdit && (
-        <li>
-          <FirstCard />
-        </li>
-      )}
-      {messages.map((message) => (
-        <li key={message.id}>
-          <Card
-            message={message}
-            isEdit={isEdit}
-            onCheck={onCheck}
-            isChecked={deleteMessageIds.includes(message.id)}
-          />
-        </li>
-      ))}
-    </ol>
+    <>
+      <ol className={styles["card-list"]}>
+        {!isEdit && (
+          <li>
+            <FirstCard />
+          </li>
+        )}
+        {messages.map((message) => (
+          <li key={message.id}>
+            <Card
+              message={message}
+              isEdit={isEdit}
+              onCheck={onCheck}
+              isChecked={deleteMessageIds.includes(message.id)}
+            />
+          </li>
+        ))}
+      </ol>
+      <div id="observer" className={styles.observer} />
+    </>
   );
 }
 

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ArrowIcon from "assets/icons/arrow_down.svg";
 import styles from "pages/PostMessagePage.module.scss";
 
+
 export default function CustomDropdown({ props, onSelect }) {
   const [selected, setSelected] = useState(
     props && props.length ? props[0] : "No items available"

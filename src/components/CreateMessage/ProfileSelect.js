@@ -3,7 +3,7 @@ import "./ProfileSelect.scss";
 import { DEFUALT_PROFILE, PROFILES } from "constants/postMessagePage";
 
 const ProfileSelect = ({ onProfileSelect, selectedProfile }) => {
-
+  
   return (
     <div className="message-form-profile">
       <span className="message-form-title">프로필 이미지</span>
