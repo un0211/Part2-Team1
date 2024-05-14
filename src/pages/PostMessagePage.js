@@ -12,7 +12,7 @@ import {
   PROFILES,
 } from "constants/postMessagePage";
 import { useParams, useNavigate } from "react-router-dom";
-import { putMessage } from "apis/postMessagePage";
+import { putMessage } from "apis/messages";
 
 export default function PostMessageForm() {
   const [senderValue, setSenderValue] = useState("");

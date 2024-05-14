@@ -47,18 +47,21 @@ export async function postReaction(postId, data) {
   });
 }
 
-/* DELETE */
-// NOTE - 메세지 삭제
-export async function delMessage(messageId) {
-  const response = await fetch(`${TEAM_BASE_URL}messages/${messageId}/`, {
-    method: "DELETE",
+// NOTE - 롤링페이퍼 생성
+export async function createPaper(data) {
+  const response = await fetch(`${TEAM_BASE_URL}recipients/`, {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: { "Content-Type": "application/json" },
   });
   if (!response.ok) {
-    throw new Error("메세지를 삭제하는 데 실패했습니다");
+    throw new Error("롤링페이퍼를 생성하는 데 실패했습니다.");
   }
-  // TODO - 리팩토링
+  const body = await response.json();
+  return body;
 }
 
+/* DELETE */
 // NOTE - 롤링페이퍼 삭제
 export async function delPaper(postId) {
   const response = await fetch(`${TEAM_BASE_URL}recipients/${postId}/`, {
