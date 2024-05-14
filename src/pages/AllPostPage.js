@@ -57,7 +57,6 @@ function AllPostPage() {
       let idx = 0;
       let sameIdIdx = prevInfo.ids.indexOf(newIds[idx]);
       while (sameIdIdx >= 0 && idx++ < newIds.length) {
-        console.log(idx, newIds[idx]);
         sameIdIdx = prevInfo.ids.indexOf(newIds[idx++]);
       }
 
@@ -67,7 +66,6 @@ function AllPostPage() {
       }
 
       const updatedItems = [...prevInfo.items, ...newItems.slice(idx)];
-      console.log(updatedItems);
       return {
         items: updatedItems,
         ids: [...prevInfo.ids, ...newIds.slice(idx)],
