@@ -7,9 +7,8 @@ import RollingPaperPage from "pages/RollingPaperPage";
 import PostMessagePage from "pages/PostMessagePage";
 import ListPage from "pages/ListPage";
 import AllPostPage from "pages/AllPostPage";
-import CreateRollingPage from "pages/CreateRollingPage";
-import CheckPostIdPage from 'pages/CheckPostIdPage';
-
+import CreateRollingPaper from "pages/CreateRollingPaperPage";
+import CheckPostIdPage from "pages/CheckPostIdPage";
 
 Modal.setAppElement("#root");
 
@@ -22,8 +21,7 @@ function App() {
         <Route path="list" element={<ListPage />} />
         <Route path="allpost" element={<AllPostPage />} />
         <Route path="post">
-          <Route index element={<CreateRollingPage />} />
-          <Route path="create" element={<CreateRollingPage />} />
+          <Route index element={<CreateRollingPaper />} />
           <Route path=":postId" element={<CheckPostIdPage />}>
             <Route index element={<RollingPaperPage />} />
             <Route path="edit" element={<RollingPaperPage />} />
