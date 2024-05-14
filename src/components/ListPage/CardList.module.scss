@@ -82,3 +82,12 @@
     }
   }
 }
+
+@media screen and (max-width: 490px) {
+  .allpost {
+    &.CardList,
+    .bg-setting {
+      width: 300px;
+    }
+  }
+}
