@@ -12,7 +12,7 @@ import {
   PROFILES,
 } from "constants/postMessagePage";
 import { useParams, useNavigate } from "react-router-dom";
-import { putMessage } from "apis/messages";
+import { postMessage } from "apis/recipients";
 
 export default function PostMessageForm() {
   const [senderValue, setSenderValue] = useState("");
@@ -71,7 +71,7 @@ export default function PostMessageForm() {
     };
 
     try {
-      await putMessage(postId, formData);
+      await postMessage(postId, formData);
       navigate(`/post/${postId}`); // NOTE 페이지 이동
     } catch (error) {
       console.error(error);
@@ -80,7 +80,6 @@ export default function PostMessageForm() {
 
   return (
     <form onSubmit={handleSubmit}>
-
       <div
         className={`${styles["message-form"]} ${senderError ? "error" : ""}`}
       >
@@ -131,7 +130,6 @@ export default function PostMessageForm() {
             editorClassName={`${styles["message-form-text-editor"]} ${
               editorError ? styles.error : ""
             }`}
-
             toolbar={{
               options: ["inline", "textAlign", "emoji", "remove", "history"],
             }}
