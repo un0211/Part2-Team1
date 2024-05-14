@@ -1,14 +1,8 @@
 import React, { useState } from "react";
 import "./ProfileSelect.scss";
-import { PROFILES } from "constants/postMessagePage";
+import { DEFUALT_PROFILE, PROFILES } from "constants/postMessagePage";
 
-const ProfileSelect = ({ onProfileSelect }) => {
-  const [selectedImg, setSelectedImg] = useState(null);
-
-  const handleProfileClick = (profile) => {
-    setSelectedImg(profile || { src: "https://cdn.icon-icons.com/icons2/1879/PNG/512/iconfinder-3-avatar-2754579_120516.png" });
-    onProfileSelect(profile);
-  };
+const ProfileSelect = ({ onProfileSelect, selectedProfile }) => {
 
   return (
     <div className="message-form-profile">
@@ -16,7 +10,7 @@ const ProfileSelect = ({ onProfileSelect }) => {
       <div className="message-form-profile-container">
         <img
           className="message-form-profile-selected"
-          src={selectedImg ? selectedImg.src : "https://cdn.icon-icons.com/icons2/317/PNG/512/profile-icon_34378.png"}
+          src={selectedProfile} 
           alt="선택된 프로필 이미지"
         />
         <div className="message-form-profile-options">
@@ -30,7 +24,7 @@ const ProfileSelect = ({ onProfileSelect }) => {
                 className="message-form-profile-preview"
                 src={profile.src}
                 alt={profile.alt}
-                onClick={() => handleProfileClick(profile)}
+                onClick={() => onProfileSelect(profile.src)}
               />
             ))}
           </div>
