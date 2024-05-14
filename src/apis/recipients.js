@@ -6,8 +6,8 @@ const messageUrl = (postId) => `${TEAM_BASE_URL}recipients/${postId}/messages/`;
 
 /* GET */
 // NOTE - 포스트 목록 받기
-export async function getList(offset = 0, limit = 12) {
-  const query = `?offset=${offset}&limit=${limit}`;
+export async function getList(limit = 12) {
+  const query = `?&limit=${limit}`;
   try {
     const response = await fetch(`${TEAM_BASE_URL}recipients/${query}`);
     if (!response.ok) {

@@ -15,21 +15,26 @@ function ListPage() {
 
   useEffect(() => {
     const fetchData = async () => {
+      let responseRecent;
+      let responseAll;
       try {
         setIsLoading(true);
-        const response = await getList();
-        const items = response.results;
-        const sortedBest = items
-          .slice()
-          .sort((a, b) => b.messageCount - a.messageCount);
-        const sortedRecent = items
-          .slice()
-          .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-        setBestItems(sortedBest);
-        setRecentItems(sortedRecent);
+        responseRecent = await getList();
+        const count = responseRecent?.count;
+        responseAll =
+          count <= 12 ? responseRecent : await getList(responseRecent?.count);
       } catch (error) {
         console.error("Error fetching slide items:", error);
       }
+
+      const sortedBest = responseAll.results
+        .slice()
+        .sort((a, b) => b.messageCount - a.messageCount);
+      const sortedRecent = responseRecent.results
+        .slice()
+        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+      setBestItems(sortedBest);
+      setRecentItems(sortedRecent);
       setIsLoading(false);
     };
     fetchData();
