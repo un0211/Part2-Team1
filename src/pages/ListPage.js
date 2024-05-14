@@ -22,7 +22,9 @@ function ListPage() {
         responseRecent = await getList();
         const count = responseRecent?.count;
         responseAll =
-          count <= 12 ? responseRecent : await getList(responseRecent?.count);
+          count <= 12
+            ? responseRecent
+            : await getList(0, responseRecent?.count);
       } catch (error) {
         console.error("Error fetching slide items:", error);
       }
