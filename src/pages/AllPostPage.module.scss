@@ -40,6 +40,11 @@
     width: 430px;
     gap: 8px 0;
   }
+
+  @media screen and (max-width: 490px) {
+    width: 320px;
+    justify-content: center;
+  }
 }
 
 .observer {

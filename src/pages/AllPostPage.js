@@ -1,8 +1,9 @@
 import { useEffect, useState, useCallback } from "react";
 import { getList } from "apis/recipients";
 import CardList from "components/ListPage/CardList";
-import styles from "./AllPostPage.module.scss";
 import Loading from "components/common/Loading";
+import { ALL_POST_PAGE } from "constants";
+import styles from "./AllPostPage.module.scss";
 
 function AllPostPage() {
   const [itemInfo, setItemInfo] = useState({
@@ -122,7 +123,7 @@ function AllPostPage() {
         <ol className={styles["card-list"]}>
           {itemInfo.items.map((item) => (
             <li key={item.id}>
-              <CardList slideItems={item} />
+              <CardList slideItems={item} page={ALL_POST_PAGE} />
             </li>
           ))}
         </ol>

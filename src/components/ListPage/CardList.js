@@ -5,7 +5,7 @@ import CountMessage from "components/common/CountMessage";
 import Reactions from "components/common/Reactions";
 import { LIST_PAGE } from "constants";
 
-function CardList({ slideItems }) {
+function CardList({ slideItems, page = LIST_PAGE }) {
   const {
     id,
     name,
@@ -26,22 +26,24 @@ function CardList({ slideItems }) {
     backgroundImage: `url(${backgroundImageURL})`,
   };
 
-  const backgroundClass = backgroundImageURL ? "bg-url" : `bg-${backgroundColor}`
+  const backgroundClass = backgroundImageURL
+    ? "bg-url"
+    : `bg-${backgroundColor}`;
 
   return (
-    <div className={styles["CardList"]} style={cardStyle}>
+    <div className={`${styles["CardList"]} ${styles[page]}`} style={cardStyle}>
       <div className={`${styles["bg-setting"]} ${styles[backgroundClass]}`}>
-      <Link to={`/post/${id}`} className={styles["bg-setting"]}>
-      <h3 className={`font-24-bold ${styles["name"]}`}>To. {name}</h3>
-        <CountMessage
-          messageProfiles={messageProfiles}
-          messageCount={messageCount}
-          page={LIST_PAGE}
-        />
-        <div className={styles.divider} />
-        <Reactions reactions={topReactions} page={LIST_PAGE} />
-      </Link>
-    </div>
+        <Link to={`/post/${id}`} className={styles["bg-setting"]}>
+          <h3 className={`font-24-bold ${styles["name"]}`}>To. {name}</h3>
+          <CountMessage
+            messageProfiles={messageProfiles}
+            messageCount={messageCount}
+            page={[LIST_PAGE]}
+          />
+          <div className={styles.divider} />
+          <Reactions reactions={topReactions} page={LIST_PAGE} />
+        </Link>
+      </div>
     </div>
   );
 }
