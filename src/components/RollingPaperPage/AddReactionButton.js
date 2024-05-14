@@ -7,7 +7,12 @@ import { postReaction } from "apis/recipients";
 import addEmojiIcon from "assets/icons/add_emoji.svg";
 import styles from "./AddReactionButton.module.scss";
 
-function AddEmojiButton({ isPickerHidden, onEmojiClick, onAddButtonClick }) {
+function AddEmojiButton({
+  isDarkMode,
+  isPickerHidden,
+  onEmojiClick,
+  onAddButtonClick,
+}) {
   const { postId } = useParams();
 
   const handleEmojiClick = useCallback(
@@ -38,7 +43,7 @@ function AddEmojiButton({ isPickerHidden, onEmojiClick, onAddButtonClick }) {
     <div className={styles["add-emoji-container"]}>
       <button
         type="button"
-        className={styles["add-emoji"]}
+        className={`${styles["add-emoji"]} ${isDarkMode ? "dark" : ""}`}
         onClick={onAddButtonClick}
       >
         <img src={addEmojiIcon} alt="반응 추가" />

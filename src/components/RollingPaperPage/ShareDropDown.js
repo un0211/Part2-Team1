@@ -9,6 +9,7 @@ const KAKAO_BUTTON_NAME = "kakaotalk-sharing-btn";
 
 function ShareDropDown({
   name,
+  isDarkMode,
   isDropDownHidden,
   onShareButtonClick,
   onKakaoClick,
@@ -55,7 +56,11 @@ function ShareDropDown({
 
   return (
     <div className={styles["drop-down"]}>
-      <button type="button" onClick={onShareButtonClick}>
+      <button
+        type="button"
+        className={isDarkMode ? "dark" : ""}
+        onClick={onShareButtonClick}
+      >
         <img src={shareIcon} alt="공유" />
       </button>
       <ul

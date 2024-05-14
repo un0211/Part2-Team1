@@ -9,6 +9,10 @@ import {
 } from "constants/rollingPaperPage";
 import arrowDownIcon from "assets/icons/arrow_down.svg";
 import styles from "./Nav.module.scss";
+import { useEffect, useState } from "react";
+
+const checkDarkMode = () =>
+  window.matchMedia("(prefers-color-scheme: dark)").matches;
 
 function Nav({
   postInfo,
@@ -24,7 +28,12 @@ function Nav({
   onKakaoClick,
   onURLClick,
 }) {
+  const [isDarkMode, setIsDarkMode] = useState(false);
   const { name, messageCount, messageProfiles } = postInfo;
+
+  useEffect(() => {
+    setIsDarkMode(checkDarkMode);
+  }, []);
 
   return (
     <nav className={styles.nav}>
@@ -41,6 +50,7 @@ function Nav({
           <div className={`${styles.divider} ${styles["PC-only"]}`}></div>
           <div className={styles.tools}>
             <Emojis
+              isDarkMode={isDarkMode}
               reactions={reactions}
               loadingError={reactionLoadingError}
               isReactionHidden={isReactionHidden}
@@ -48,6 +58,7 @@ function Nav({
             />
             <Buttons
               name={name}
+              isDarkMode={isDarkMode}
               isPickerHidden={isPickerHidden}
               isDropDownHidden={isDropDownHidden}
               onEmojiClick={onEmojiClick}
@@ -64,6 +75,7 @@ function Nav({
 }
 
 function Emojis({
+  isDarkMode,
   reactions,
   loadingError,
   isReactionHidden,
@@ -78,7 +90,9 @@ function Emojis({
       <Reactions reactions={topReactions} page={POST_PAGE} />
       <button
         type="button"
-        className={styles["more-reaction-button"]}
+        className={`${styles["more-reaction-button"]} ${
+          isDarkMode ? "dark" : ""
+        }`}
         onClick={onMoreReactionClick}
       >
         <img src={arrowDownIcon} alt="반응 더보기" />
@@ -113,6 +127,7 @@ function Emojis({
 
 function Buttons({
   name,
+  isDarkMode,
   isPickerHidden,
   isDropDownHidden,
   onEmojiClick,
@@ -124,6 +139,7 @@ function Buttons({
   return (
     <div className={styles.buttons}>
       <AddEmojiButton
+        isDarkMode={isDarkMode}
         isPickerHidden={isPickerHidden}
         onEmojiClick={onEmojiClick}
         onAddButtonClick={onEmojiButtonClick}
@@ -131,6 +147,7 @@ function Buttons({
       <div className={styles.divider}></div>
       <ShareDropDown
         name={name}
+        isDarkMode={isDarkMode}
         isDropDownHidden={isDropDownHidden}
         onShareButtonClick={onShareButtonClick}
         onKakaoClick={onKakaoClick}
