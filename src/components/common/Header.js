@@ -38,7 +38,7 @@ export default function Header() {
           <img src={logo} className={styles.logo} alt="로고" />
           <h1 className={styles["logo-text"]}>Ro1ling</h1>
         </Link>
-        {(location.pathname === "/" || location.pathname === "/list") && (
+        {!location.pathname.startsWith("/post") && (
           <Link to="/post" className={`${styles["post-button"]} font-16-16-16`}>
             롤링 페이퍼 만들기
           </Link>

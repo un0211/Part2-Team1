@@ -224,6 +224,7 @@ function RollingPaperPage() {
       return;
     }
     // NOTE - 삭제 후 데이터 다시 받아오는 작업
+    handlePostInfoLoad();
     handleMessageLoad();
     // NOTE - 삭제 후, 삭제할 메세지 배열 초기화
     setDeleteMessageIds([]);
