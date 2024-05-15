@@ -31,18 +31,18 @@ a {
 
 /* 컬러 팔레트 */
 :root {
-  --primary-color: #9935ff;
+  --primary-color: #a8afd6;
   --error-red: #dc3a3a;
   --black: #000000;
   --white: #ffffff;
-  --surface: #f6f8ff;
+  --surface: #f2f4fd;
   --shadow: #00000014;
 
   /* button */
-  --enabled-btn: #9935ff;
+  --enabled-btn: #a8afd6;
   --disabled-btn: #cccccc;
-  --hover-btn: #861dee;
-  --pressed-btn: #6e0ad1;
+  --hover-btn: #848ebc;
+  --pressed-btn: #5c93aa;
 
   /* rollin-paper background color */
   --rolling-bg-purple: #ecd9ff;
