@@ -1,12 +1,11 @@
 import logo from "assets/icons/logo.svg";
 import styles from "./Header.module.scss";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 
 export default function Header() {
   const location = useLocation();
-  const { postId } = useParams();
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
   const isMobile = useMediaQuery({ maxWidth: 768 });
 
