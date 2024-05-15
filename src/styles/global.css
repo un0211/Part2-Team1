@@ -32,7 +32,8 @@ a {
 /* 컬러 팔레트 */
 :root {
   --primary-color: #b57edc;
-  --error-red: #e985a4;
+  --delete-btn-color: #e985a4;
+  --error-red: #dc3a3a;
   --black: #000000;
   --white: #ffffff;
   --surface: #fff6ffcc;

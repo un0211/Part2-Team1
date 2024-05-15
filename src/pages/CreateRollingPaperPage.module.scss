@@ -29,10 +29,10 @@
       margin-top: 12px;
     }
     .sender-input-error {
-      border: 1px solid #dc3a3a;
+      border: 1px solid var(--error-red);
     }
     .sender-input-error-msg {
-      color: #dc3a3a;
+      color: var(--error-red);
     }
   }
 
