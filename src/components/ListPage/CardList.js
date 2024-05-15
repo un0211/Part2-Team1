@@ -20,9 +20,8 @@ function CardList({ slideItems, page = LIST_PAGE }) {
     id: message.id,
     imgURL: message.profileImageURL,
   }));
-
   const cardStyle = {
-    backgroundColor: `var(--${backgroundColor}200)`,
+    backgroundColor: `var(--rolling-bg-${backgroundColor})`,
     backgroundImage: `url(${backgroundImageURL})`,
   };
 

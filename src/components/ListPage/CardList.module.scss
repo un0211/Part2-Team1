@@ -41,19 +41,19 @@
     }
 
     &.bg-purple {
-      background-color: var(--rolling-bg-purple);
+      background-image: url("../../assets/images/purple.png");
     }
-
+    
     &.bg-beige {
-      background-color: var(--rolling-bg-beige);
+      background-image: url("../../assets/images/beige.png");
     }
-
+    
     &.bg-blue {
-      background-color: var(--rolling-bg-blue);
+      background-image: url("../../assets/images/blue.png");
     }
-
+    
     &.bg-green {
-      background-color: var(--rolling-bg-green);
+      background-image: url("../../assets/images/green.png");
     }
   }
 
