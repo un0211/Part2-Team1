@@ -45,3 +45,32 @@
   height: 10px;
   margin-top: 40px;
 }
+.search-form {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+  input {
+    outline: none;
+    border: 1px solid var(--gray300);
+    padding: 12px 20px;
+    border-radius: 8px 0 0 8px;
+    width: 500px;
+    min-width: 236px;
+    transition: all 0.5s ease-out;
+    @media screen and (max-width: 768px) {
+      width: 236px;
+    }
+  }
+  .search-button {
+    padding: 12px 12px;
+    border-radius: 0 8px 8px 0;
+    &:focus,
+    &:active {
+      background-color: var(--enabled-btn);
+    }
+    img {
+      width: 30px;
+      height: 30px;
+    }
+  }
+}
