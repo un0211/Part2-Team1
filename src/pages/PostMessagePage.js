@@ -42,7 +42,9 @@ export default function PostMessageForm() {
     setEditorState(state);
     const html = draftToHtml(convertToRaw(state.getCurrentContent()));
     setEditorContent(html);
-    console.log(">>>>>>>>>>>" + html);
+
+    const isEmpty = !state.getCurrentContent().hasText();
+    setEditorError(isEmpty);
   };
 
   const isButtonDisabled =
