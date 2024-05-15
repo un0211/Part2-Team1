@@ -6,6 +6,7 @@ $regular: 400;
  * font-weight: 기본값 regular이므로 bold일 때만 명시)
  */
 @mixin font($size, $weight: $regular) {
+  font: inherit;
   font-size: $size;
   font-weight: $weight;
   line-height: 1.5;

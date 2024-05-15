@@ -2,6 +2,7 @@
   width: 275px;
   height: 260px;
   margin-bottom: 5px;
+  background-size: cover;
   @media screen and (max-width: 768px) {
     width: 208px;
     height: 232px;
@@ -27,7 +28,7 @@
     color: var(--gray900);
 
     &.bg-url {
-      background-color: rgba(0, 0, 0, 0.54);
+      background-color: rgba(0, 0, 0, 0.05);
       border-radius: 16px;
 
       h3 {
@@ -40,19 +41,19 @@
     }
 
     &.bg-purple {
-      background-image: url("../../assets/images/pattern01.png");
+      background-image: url("../../assets/images/purple.png");
     }
-
+    
     &.bg-beige {
-      background-image: url("../../assets/images/pattern02.png");
+      background-image: url("../../assets/images/beige.png");
     }
-
+    
     &.bg-blue {
-      background-image: url("../../assets/images/pattern03.png");
+      background-image: url("../../assets/images/blue.png");
     }
-
+    
     &.bg-green {
-      background-image: url("../../assets/images/pattern04.png");
+      background-image: url("../../assets/images/green.png");
     }
   }
 

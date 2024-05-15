@@ -50,9 +50,8 @@ export default function CardModal({ isOpen, message, onModalClose }) {
       <main className={styles["content-wrapper"]}>
         <p
           className={`${styles.content} font-18-18-18 ${FONT_CLASS_NAME[font]}`}
-        >
-          {content}
-        </p>
+          dangerouslySetInnerHTML={{ __html: content }}
+        ></p>
       </main>
       <footer className={styles["button-wrapper"]}>
         <button

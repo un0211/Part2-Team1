@@ -69,9 +69,10 @@ function Card({ message, isEdit, onCheck, isChecked }) {
           )}
         </header>
         <div className={styles.divider}></div>
-        <main className={`font-18-18-15 ${FONT_CLASS_NAME[font]}`}>
-          {content}
-        </main>
+        <main
+          className={`font-18-18-15 ${FONT_CLASS_NAME[font]}`}
+          dangerouslySetInnerHTML={{ __html: content }}
+        ></main>
         <footer className="font-12-12-12">
           {formatDateWithDot(createdAt)}
         </footer>
