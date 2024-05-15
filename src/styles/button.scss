@@ -52,7 +52,7 @@
 }
 
 @mixin btn-red {
-  background-color: var(--error-red);
+  background-color: var(--delete-btn-color);
 
   &:hover {
     background-color: #ec6a93;

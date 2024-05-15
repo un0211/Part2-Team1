@@ -19,7 +19,7 @@
     }
     .form-error {
       display: block;
-      color: #dc3a3a;
+      color: var(--error-red);
       font-size: 14px;
       margin-top: 4px;
     }
@@ -48,7 +48,7 @@
     cursor: pointer;
     user-select: none;
     &.error {
-      border: 1px solid #dc3a3a;
+      border: 1px solid var(--error-red);
     }
   }
 
@@ -57,7 +57,7 @@
     margin-bottom: 20px; // 예시로 추가한 스타일
     .form-error {
       display: block;
-      color: #dc3a3a;
+      color: var(--error-red);
       font-size: 14px;
       margin-top: 4px;
     }
@@ -70,7 +70,7 @@
     padding: 8px;
     min-height: 300px;
     &.error {
-      border: 1px solid #dc3a3a;
+      border: 1px solid var(--error-red);
     }
     &--wrapper {
       position: relative;
@@ -179,7 +179,7 @@
 
 .form-error {
   display: block;
-  color: #dc3a3a;
+  color: var(--error-red);
   font-size: 14px;
   margin-top: 4px;
 }
