@@ -4,6 +4,7 @@ import CardList from "components/ListPage/CardList";
 import Loading from "components/common/Loading";
 import { ALL_POST_PAGE } from "constants";
 import styles from "./AllPostPage.module.scss";
+import search from "assets/icons/search.svg";
 
 function AllPostPage() {
   const [itemInfo, setItemInfo] = useState({
@@ -96,6 +97,8 @@ function AllPostPage() {
     [isLoading, itemInfo.count, itemInfo.offset, handleMoreLoad]
   );
 
+  const handleSubmit = () => {};
+
   useEffect(() => {
     handleInitLoad();
   }, [handleInitLoad]);
@@ -120,6 +123,16 @@ function AllPostPage() {
   return (
     <main>
       <section className={styles["card-section"]}>
+        <form onSubmit={handleSubmit} className={styles["search-form"]}>
+          <input
+            name="keyword"
+            placeholder="롤링페이퍼를 검색해보세요"
+            className="font-20-20-18"
+          />
+          <button className={`${styles["search-button"]} button`}>
+            <img src={search} alt="검색 아이콘" />
+          </button>
+        </form>
         <ol className={styles["card-list"]}>
           {itemInfo.items.map((item) => (
             <li key={item.id}>
