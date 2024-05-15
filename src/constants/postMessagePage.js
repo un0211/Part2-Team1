@@ -23,6 +23,8 @@ export const FONT_CLASS_NAME = {
   [NANUM_HANDLETTER]: "나눔손글씨 손편지체",
 };
 
+export const DEFUALT_PROFILE = "https://cdn.icon-icons.com/icons2/317/PNG/512/profile-icon_34378.png";
+
 export const PROFILES = [
   {
     src: "https://cdn.icon-icons.com/icons2/1879/PNG/512/iconfinder-3-avatar-2754579_120516.png",
