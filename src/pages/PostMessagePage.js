@@ -10,6 +10,8 @@ import {
   FONT_CLASS_NAME,
   MEMBER_CLASS_NAME,
   PROFILES,
+  DEFUALT_PROFILE
+
 } from "constants/postMessagePage";
 import { useParams, useNavigate } from "react-router-dom";
 import { postMessage } from "apis/recipients";
@@ -22,7 +24,7 @@ export default function PostMessageForm() {
 
   const [editorError, setEditorError] = useState(false);
   const [selectedFont, setSelectedFont] = useState("Noto Sans");
-  const [selectedProfile, setSelectedProfile] = useState(PROFILES[0]);
+  const [selectedProfile, setSelectedProfile] = useState(DEFUALT_PROFILE);
   const [editorContent, setEditorContent] = useState("");
   const [senderContent, setSenderContent] = useState("");
 
@@ -47,13 +49,15 @@ export default function PostMessageForm() {
   const isButtonDisabled =
     !editorState || !senderContent || senderError || editorError;
 
-  const handleProfileSelect = (profile) => {
-    setSelectedProfile(profile);
+  const handleProfileSelect = (src) => {
+    setSelectedProfile(src);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     console.log(">> 보내는 데이터 : " + editorContent);
+
     const formData = {
       team: "6-1",
       recipientId: postId,
@@ -61,7 +65,7 @@ export default function PostMessageForm() {
       relationship: relationship,
       content: editorContent,
       font: selectedFont,
-      profileImageURL: selectedProfile.src,
+      profileImageURL: selectedProfile,
     };
 
     try {
@@ -97,7 +101,7 @@ export default function PostMessageForm() {
           )}{" "}
         </div>
 
-        <ProfileSelect onProfileSelect={handleProfileSelect} />
+        <ProfileSelect onProfileSelect={handleProfileSelect} selectedProfile={selectedProfile}/>
 
         <div className={styles["message-form-relationship"]}>
           <label htmlFor="select" className={styles["message-form-title"]}>

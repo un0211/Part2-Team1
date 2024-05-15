@@ -18,32 +18,26 @@
 }
 
 .card-list {
-  width: 1160px;
-  margin: 0 auto;
+  width: 100%;
 
-  display: flex;
-  justify-content: space-between;
-  gap: 16px 0;
-  flex-flow: wrap;
+  display: grid;
+  gap: 28px 24px;
+  grid-template-columns: repeat(4, 1fr);
 
   @media screen and (max-width: 1248px) {
-    width: 860px;
-    gap: 12px 0;
-  }
-
-  @media screen and (max-width: 950px) {
-    width: 566px;
-    gap: 12px 0;
+    gap: 28px 24px;
+    grid-template-columns: repeat(3, 1fr);
   }
 
   @media screen and (max-width: 768px) {
-    width: 430px;
-    gap: 8px 0;
+    gap: 28px 24px;
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  @media screen and (max-width: 490px) {
-    width: 320px;
-    justify-content: center;
+  @media screen and (max-width: 520px) {
+    width: 300px;
+    margin: 0 auto;
+    grid-template-columns: repeat(1, 1fr);
   }
 }
 
