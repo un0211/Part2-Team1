@@ -51,8 +51,8 @@
   }
 }
 
-@mixin btn-red {
-  background-color: var(--error-red);
+@mixin btn-pink {
+  background-color: var(--delete-btn-color);
 
   &:hover {
     background-color: #ec6a93;

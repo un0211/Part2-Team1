@@ -14,6 +14,7 @@ import {
 } from "constants/postMessagePage";
 import { useParams, useNavigate } from "react-router-dom";
 import { postMessage } from "apis/recipients";
+import { useEffect } from "react";
 
 export default function PostMessageForm() {
   const [senderValue, setSenderValue] = useState("");
@@ -25,7 +26,6 @@ export default function PostMessageForm() {
   const [selectedFont, setSelectedFont] = useState("Noto Sans");
   const [selectedProfile, setSelectedProfile] = useState(DEFUALT_PROFILE);
   const [editorContent, setEditorContent] = useState("");
-  const [senderContent, setSenderContent] = useState("");
 
   // NOTE - id 받아오는 작업
   const { postId } = useParams();
@@ -34,27 +34,36 @@ export default function PostMessageForm() {
   const handleNameChange = (e) => {
     const name = e.target.value.trim(); //NOTE 공백을 제거하여 입력값 확인
     setSenderValue(name);
-    setSenderContent(name); //NOTE 보낸이 내용을 상태에 업데이트
-    setSenderError(name === ""); //NOTE 공백이면 에러 상태를 true로 설정
+    // NOTE - 1글자 이상 입력 중 에러 메세지 사라지도록 처리
+    if (name.length > 0) {
+      setSenderError(false);
+    }
   };
 
   const handleEditorChange = (state) => {
     setEditorState(state);
     const html = draftToHtml(convertToRaw(state.getCurrentContent()));
     setEditorContent(html);
-    console.log(">>>>>>>>>>>" + html);
+
+    const isEmpty = !state.getCurrentContent().hasText();
+    setEditorError(isEmpty);
   };
 
-  const isButtonDisabled =
-    !editorState || !senderContent || senderError || editorError;
+  const handleSenderFocusOut = () => {
+    if (senderValue.trim() === "") {
+      setSenderError(true);
+    }
+  };
 
   const handleProfileSelect = (src) => {
     setSelectedProfile(src);
   };
 
+  const isButtonDisabled =
+    !editorContent || !senderValue || senderError || editorError;
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(">> 보내는 데이터 : " + editorContent);
 
     const formData = {
       team: "6-1",
@@ -88,6 +97,7 @@ export default function PostMessageForm() {
           </label>
           <input
             onChange={handleNameChange}
+            onBlur={handleSenderFocusOut}
             className={`${styles["message-form-inputs"]} ${
               styles["message-form-name-input"]
             } ${senderError ? styles.error : ""}`}
