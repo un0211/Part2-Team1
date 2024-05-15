@@ -27,7 +27,7 @@
     color: var(--gray900);
 
     &.bg-url {
-      background-color: rgba(0, 0, 0, 0.54);
+      background-color: rgba(0, 0, 0, 0.05);
       border-radius: 16px;
 
       h3 {
@@ -40,19 +40,19 @@
     }
 
     &.bg-purple {
-      background-image: url("../../assets/images/pattern01.png");
+      background-color: var(--rolling-bg-purple);
     }
 
     &.bg-beige {
-      background-image: url("../../assets/images/pattern02.png");
+      background-color: var(--rolling-bg-beige);
     }
 
     &.bg-blue {
-      background-image: url("../../assets/images/pattern03.png");
+      background-color: var(--rolling-bg-blue);
     }
 
     &.bg-green {
-      background-image: url("../../assets/images/pattern04.png");
+      background-color: var(--rolling-bg-green);
     }
   }
 
