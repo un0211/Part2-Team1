@@ -12,6 +12,7 @@ function ListPage() {
   const [bestItems, setBestItems] = useState([]);
   const [recentItems, setRecentItems] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [allItem, setAllItem] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,6 +29,7 @@ function ListPage() {
       } catch (error) {
         console.error("Error fetching slide items:", error);
       }
+      setAllItem(responseAll.results);
 
       const sortedBest = responseAll.results
         .slice()
@@ -51,6 +53,7 @@ function ListPage() {
           </h1>
           <Link
             to="/allpost"
+            state={allItem}
             className={`button width-92 font-16-16-16 ${styles["all-post-button"]}`}
           >
             전체 보기

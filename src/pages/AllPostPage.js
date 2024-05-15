@@ -5,6 +5,7 @@ import Loading from "components/common/Loading";
 import { ALL_POST_PAGE } from "constants";
 import styles from "./AllPostPage.module.scss";
 import search from "assets/icons/search.svg";
+import { useSearchParams } from "react-router-dom";
 
 function AllPostPage() {
   const [itemInfo, setItemInfo] = useState({
@@ -15,6 +16,66 @@ function AllPostPage() {
   });
   const [isLoading, setIsLoading] = useState(false);
   const [loadingError, setLoadingError] = useState(null);
+  const [searchParam, setSearchParam] = useSearchParams();
+  const initKeyword = searchParam.get("keyword");
+  const [keyword, setKeyword] = useState(initKeyword || "");
+  const [allItem, setAllItem] = useState([]);
+
+  const handleChangeKeyword = (e) => {
+    setKeyword(e.target.value);
+  };
+
+  useEffect(() => {
+    // NOTE - 페이지가 새로고침될 때 URL에서 검색어 제거
+    if (!keyword) {
+      setSearchParam({});
+    }
+  }, [keyword, setSearchParam]);
+
+  useEffect(() => {
+    setKeyword("");
+    const fetchData = async () => {
+      let responseRecent;
+      let responseAll;
+      try {
+        setIsLoading(true);
+        responseRecent = await getList();
+        const count = responseRecent?.count;
+        responseAll =
+          count <= 12
+            ? responseRecent
+            : await getList(0, responseRecent?.count);
+      } catch (e) {
+        setLoadingError(e);
+        return;
+      } finally {
+        setIsLoading(false);
+      }
+      setAllItem(responseAll.results);
+    };
+    fetchData();
+  }, []);
+
+  const handleSubmit = (e) => {
+    if (keyword.trim() === "") {
+      alert("검색어를 입력해주세요");
+      e.preventDefault();
+      return;
+    }
+    e.preventDefault();
+    setSearchParam(keyword ? { keyword } : {});
+
+    const filteredItems = allItem.filter((item) =>
+      item.name.includes(keyword.toLowerCase())
+    );
+
+    setItemInfo({
+      items: filteredItems,
+      ids: filteredItems.map((item) => item.id),
+      count: filteredItems.length,
+      offset: filteredItems.length,
+    });
+  };
 
   // NOTE - 초기 롤링페이퍼를 받아오는 함수
   const handleInitLoad = useCallback(async () => {
@@ -97,8 +158,6 @@ function AllPostPage() {
     [isLoading, itemInfo.count, itemInfo.offset, handleMoreLoad]
   );
 
-  const handleSubmit = () => {};
-
   useEffect(() => {
     handleInitLoad();
   }, [handleInitLoad]);
@@ -126,6 +185,8 @@ function AllPostPage() {
         <form onSubmit={handleSubmit} className={styles["search-form"]}>
           <input
             name="keyword"
+            value={keyword}
+            onChange={handleChangeKeyword}
             placeholder="롤링페이퍼를 검색해보세요"
             className="font-20-20-18"
           />
