@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { EditorState } from "draft-js";
+import { EditorState, convertToRaw } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
-import { stateToHTML } from "draft-js-export-html";
+import draftToHtml from "draftjs-to-html";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import styles from "pages/PostMessagePage.module.scss";
 import CustomDropdown from "components/CreateMessage/CustomDropdown";
@@ -10,6 +10,7 @@ import {
   FONT_CLASS_NAME,
   MEMBER_CLASS_NAME,
   PROFILES,
+  DEFUALT_PROFILE,
 } from "constants/postMessagePage";
 import { useParams, useNavigate } from "react-router-dom";
 import { postMessage } from "apis/recipients";
@@ -19,9 +20,10 @@ export default function PostMessageForm() {
   const [senderError, setSenderError] = useState(false);
   const [relationship, setRelationship] = useState("지인");
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
+
   const [editorError, setEditorError] = useState(false);
   const [selectedFont, setSelectedFont] = useState("Noto Sans");
-  const [selectedProfile, setSelectedProfile] = useState(PROFILES[0]);
+  const [selectedProfile, setSelectedProfile] = useState(DEFUALT_PROFILE);
   const [editorContent, setEditorContent] = useState("");
   const [senderContent, setSenderContent] = useState("");
 
@@ -38,36 +40,30 @@ export default function PostMessageForm() {
 
   const handleEditorChange = (state) => {
     setEditorState(state);
-    const content = state.getCurrentContent().getPlainText("\n");
-    setEditorContent(content); //NOTE 에디터 내용을 상태에 업데이트
-    setEditorError(content.trim() === "");
+    const html = draftToHtml(convertToRaw(state.getCurrentContent()));
+    setEditorContent(html);
+    console.log(">>>>>>>>>>>" + html);
   };
 
   const isButtonDisabled =
-    !editorContent.trim() || !senderContent || senderError || editorError;
+    !editorState || !senderContent || senderError || editorError;
 
-  const handleProfileSelect = (profile) => {
-    setSelectedProfile(profile);
-  };
-
-  const removeTags = (html) => {
-    return html
-      .replace(/<p>/g, "")
-      .replace(/<\/p>/g, "")
-      .replace(/<strong>/g, "")
-      .replace(/<\/strong>/g, "");
+  const handleProfileSelect = (src) => {
+    setSelectedProfile(src);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(">> 보내는 데이터 : " + editorContent);
+
     const formData = {
       team: "6-1",
       recipientId: postId,
       sender: senderValue,
       relationship: relationship,
-      content: removeTags(stateToHTML(editorState.getCurrentContent())),
+      content: editorContent,
       font: selectedFont,
-      profileImageURL: selectedProfile.src,
+      profileImageURL: selectedProfile,
     };
 
     try {
@@ -103,7 +99,10 @@ export default function PostMessageForm() {
           )}{" "}
         </div>
 
-        <ProfileSelect onProfileSelect={handleProfileSelect} />
+        <ProfileSelect
+          onProfileSelect={handleProfileSelect}
+          selectedProfile={selectedProfile}
+        />
 
         <div className={styles["message-form-relationship"]}>
           <label htmlFor="select" className={styles["message-form-title"]}>
@@ -131,7 +130,7 @@ export default function PostMessageForm() {
               editorError ? styles.error : ""
             }`}
             toolbar={{
-              options: ["inline", "textAlign", "emoji", "remove", "history"],
+              options: ["inline", "textAlign", "history"],
             }}
           />
           {editorError && (
