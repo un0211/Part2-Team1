@@ -22,7 +22,7 @@
   justify-content: space-between;
 
   .delete-paper-button {
-    @include btn-red;
+    @include btn-pink;
     @include btn-small;
     color: var(--white);
     width: 100px;
