@@ -31,24 +31,24 @@ a {
 
 /* 컬러 팔레트 */
 :root {
-  --primary-color: #a8afd6;
-  --error-red: #dc3a3a;
+  --primary-color: #b57edc;
+  --error-red: #eb8db5;
   --black: #000000;
   --white: #ffffff;
-  --surface: #f2f4fd;
+  --surface: #fff6ffcc;
   --shadow: #00000014;
 
   /* button */
-  --enabled-btn: #a8afd6;
+  --enabled-btn: #b57edc;
   --disabled-btn: #cccccc;
-  --hover-btn: #848ebc;
-  --pressed-btn: #5c93aa;
+  --hover-btn: #9a69bf;
+  --pressed-btn: #7f4ca5;
 
   /* rollin-paper background color */
-  --rolling-bg-purple: #ecd9ff;
-  --rolling-bg-beige: #ffe2ad;
-  --rolling-bg-blue: #b1e4ff;
-  --rolling-bg-green: #d0f5c3;
+  --rolling-bg-purple: #fce1e4;
+  --rolling-bg-beige: #fcfaf2;
+  --rolling-bg-blue: #daeaf6;
+  --rolling-bg-green: #ddedea;
 
   --gray900: #181818;
   --gray800: #2b2b2b;
