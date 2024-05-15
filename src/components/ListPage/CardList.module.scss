@@ -83,11 +83,9 @@
   }
 }
 
-@media screen and (max-width: 490px) {
-  .allpost {
-    &.CardList,
-    .bg-setting {
-      width: 300px;
-    }
+.allpost {
+  &.CardList,
+  .bg-setting {
+    width: 100%;
   }
 }
