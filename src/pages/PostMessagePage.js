@@ -130,7 +130,7 @@ export default function PostMessageForm() {
               editorError ? styles.error : ""
             }`}
             toolbar={{
-              options: ["inline"],
+              options: ["inline", "textAlign", "history"],
             }}
           />
           {editorError && (
