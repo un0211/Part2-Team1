@@ -1,4 +1,3 @@
-import { useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
@@ -31,6 +30,10 @@ export default function TextEditor({ placeholder, onChange }) {
     },
   };
 
+  const styles = {
+    height: "210px",
+    marginBottom: "20px",
+  };
   // NOTE - content, delta, source 사용하지 않아도 지우면 작동하지 않습니다.
   const handleEditorChange = (content, delta, source, editor) => {
     onChange(editor.getHTML()); // 부모 컴포넌트에 HTML 콘텐츠 전달
@@ -43,6 +46,7 @@ export default function TextEditor({ placeholder, onChange }) {
         formats={formats}
         placeholder={placeholder}
         onChange={handleEditorChange}
+        style={styles}
       />
     </>
   );

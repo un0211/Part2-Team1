@@ -1,7 +1,4 @@
 import React, { useState } from "react";
-import { EditorState, convertToRaw } from "draft-js";
-import { Editor } from "react-draft-wysiwyg";
-import draftToHtml from "draftjs-to-html";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import styles from "pages/PostMessagePage.module.scss";
 import CustomDropdown from "components/CreateMessage/CustomDropdown";
@@ -9,12 +6,10 @@ import ProfileSelect from "components/CreateMessage/ProfileSelect";
 import {
   FONT_CLASS_NAME,
   MEMBER_CLASS_NAME,
-  PROFILES,
   DEFUALT_PROFILE,
 } from "constants/postMessagePage";
 import { useParams, useNavigate } from "react-router-dom";
 import { postMessage } from "apis/recipients";
-import { useEffect } from "react";
 import TextEditor from "components/CreateMessage/TextEditor";
 
 export default function PostMessageForm() {
@@ -129,7 +124,7 @@ export default function PostMessageForm() {
             editorError ? styles.error : ""
           }`}
         >
-          <label htmlFor="textarea" className={styles["message-form-title"]}>
+          <label htmlFor="content" className={styles["message-form-title"]}>
             내용을 입력해 주세요
           </label>
           <TextEditor
