@@ -7,7 +7,6 @@ export default function TextEditor({ placeholder, onChange }) {
     [{ header: [1, 2, 3, false] }],
     ["bold", "italic", "underline", "strike"],
     [{ color: [] }, { background: [] }],
-    [{ align: [] }],
   ];
   const formats = [
     "header",
@@ -17,7 +16,6 @@ export default function TextEditor({ placeholder, onChange }) {
     "italic",
     "underline",
     "strike",
-    "align",
     "indent",
     "background",
     "color",
