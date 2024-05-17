@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import styles from "pages/PostMessagePage.module.scss";
 import CustomDropdown from "components/CreateMessage/CustomDropdown";
 import ProfileSelect from "components/CreateMessage/ProfileSelect";
