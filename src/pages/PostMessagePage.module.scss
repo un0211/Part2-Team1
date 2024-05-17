@@ -61,8 +61,11 @@
     .form-error {
       display: block;
       color: var(--error-red);
-      font-size: 14px;
-      margin-top: 4px;
+      position: absolute;
+      bottom: -62px;
+      @media screen and (max-width: 767px) {
+        bottom: -88px;
+      }
     }
   }
 

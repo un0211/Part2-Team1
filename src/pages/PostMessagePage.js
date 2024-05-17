@@ -3,14 +3,19 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import styles from "pages/PostMessagePage.module.scss";
 import CustomDropdown from "components/CreateMessage/CustomDropdown";
 import ProfileSelect from "components/CreateMessage/ProfileSelect";
+import "react-quill/dist/quill.snow.css";
 import {
   FONT_CLASS_NAME,
   MEMBER_CLASS_NAME,
-  DEFUALT_PROFILE,
+  DEFAULT_PROFILE,
+  FORMATS,
+  MODULES,
+  EDITOR_STYLES,
 } from "constants/postMessagePage";
 import { useParams, useNavigate } from "react-router-dom";
 import { postMessage } from "apis/recipients";
-import TextEditor from "components/CreateMessage/TextEditor";
+import ReactQuill from "react-quill";
+import { useRef } from "react";
 
 export default function PostMessageForm() {
   const [senderValue, setSenderValue] = useState("");
@@ -19,8 +24,10 @@ export default function PostMessageForm() {
 
   const [editorError, setEditorError] = useState(false);
   const [selectedFont, setSelectedFont] = useState("Noto Sans");
-  const [selectedProfile, setSelectedProfile] = useState(DEFUALT_PROFILE);
+  const [selectedProfile, setSelectedProfile] = useState(DEFAULT_PROFILE);
   const [editorContent, setEditorContent] = useState("");
+
+  const quillRef = useRef(null);
 
   // NOTE - id 받아오는 작업
   const { postId } = useParams();
@@ -35,8 +42,15 @@ export default function PostMessageForm() {
     }
   };
 
-  const handleEditorChange = (content) => {
-    setEditorContent(content);
+  const handleEditorChange = (content, delta, source, editor) => {
+    const currentContent = editor.getHTML();
+    setEditorContent(currentContent);
+    const currentContentText = editor.getText().trim();
+    if (currentContentText === "") {
+      setEditorError(true);
+    } else {
+      setEditorError(false);
+    }
   };
 
   const handleSenderFocusOut = () => {
@@ -45,8 +59,12 @@ export default function PostMessageForm() {
     }
   };
   const handleContentFocusOut = () => {
-    if (editorContent.trim() === "") {
+    const editor = quillRef.current.getEditor();
+    const currentContent = editor.getText().trim();
+    if (currentContent === "") {
       setEditorError(true);
+    } else {
+      setEditorError(false);
     }
   };
 
@@ -127,10 +145,14 @@ export default function PostMessageForm() {
           <label htmlFor="content" className={styles["message-form-title"]}>
             내용을 입력해 주세요
           </label>
-          <TextEditor
+          <ReactQuill
+            modules={MODULES}
+            formats={FORMATS}
+            style={EDITOR_STYLES}
             onChange={handleEditorChange}
             onBlur={handleContentFocusOut}
             placeholder="내용을 입력해주세요"
+            ref={quillRef}
           />
           {editorError && (
             <p className={styles["form-error"]}>값을 입력해주세요.</p>

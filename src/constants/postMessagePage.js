@@ -18,12 +18,13 @@ export const MEMBER_CLASS_NAME = {
 
 export const FONT_CLASS_NAME = {
   [NOTO_SANS]: "Noto Sans",
-  [PRETENDARD]:  "Pretendard",
+  [PRETENDARD]: "Pretendard",
   [NANUM_MYEONGJO]: "나눔명조",
   [NANUM_HANDLETTER]: "나눔손글씨 손편지체",
 };
 
-export const DEFUALT_PROFILE = "https://cdn.icon-icons.com/icons2/317/PNG/512/profile-icon_34378.png";
+export const DEFAULT_PROFILE =
+  "https://cdn.icon-icons.com/icons2/317/PNG/512/profile-icon_34378.png";
 
 export const PROFILES = [
   {
@@ -67,3 +68,33 @@ export const PROFILES = [
     filename: "avatar10.png",
   },
 ];
+
+export const TOOLBAR_OPTION = [
+  ["link"],
+  [{ header: [1, 2, 3, false] }],
+  ["bold", "italic", "underline", "strike"],
+  [{ color: [] }, { background: [] }],
+];
+export const FORMATS = [
+  "header",
+  "font",
+  "size",
+  "bold",
+  "italic",
+  "underline",
+  "strike",
+  "indent",
+  "background",
+  "color",
+  "link",
+  "width",
+];
+export const MODULES = {
+  toolbar: {
+    container: TOOLBAR_OPTION,
+  },
+};
+
+export const EDITOR_STYLES = {
+  height: "210px",
+};
