@@ -1,31 +1,33 @@
 import React, { useState } from "react";
-import { EditorState, convertToRaw } from "draft-js";
-import { Editor } from "react-draft-wysiwyg";
-import draftToHtml from "draftjs-to-html";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import styles from "pages/PostMessagePage.module.scss";
 import CustomDropdown from "components/CreateMessage/CustomDropdown";
 import ProfileSelect from "components/CreateMessage/ProfileSelect";
+import "react-quill/dist/quill.snow.css";
 import {
   FONT_CLASS_NAME,
   MEMBER_CLASS_NAME,
-  PROFILES,
-  DEFUALT_PROFILE,
+  DEFAULT_PROFILE,
+  FORMATS,
+  MODULES,
+  EDITOR_STYLES,
 } from "constants/postMessagePage";
 import { useParams, useNavigate } from "react-router-dom";
 import { postMessage } from "apis/recipients";
-import { useEffect } from "react";
+import ReactQuill from "react-quill";
+import { useRef } from "react";
 
 export default function PostMessageForm() {
   const [senderValue, setSenderValue] = useState("");
   const [senderError, setSenderError] = useState(false);
   const [relationship, setRelationship] = useState("지인");
-  const [editorState, setEditorState] = useState(EditorState.createEmpty());
 
   const [editorError, setEditorError] = useState(false);
   const [selectedFont, setSelectedFont] = useState("Noto Sans");
-  const [selectedProfile, setSelectedProfile] = useState(DEFUALT_PROFILE);
+  const [selectedProfile, setSelectedProfile] = useState(DEFAULT_PROFILE);
   const [editorContent, setEditorContent] = useState("");
+
+  const quillRef = useRef(null);
 
   // NOTE - id 받아오는 작업
   const { postId } = useParams();
@@ -40,18 +42,29 @@ export default function PostMessageForm() {
     }
   };
 
-  const handleEditorChange = (state) => {
-    setEditorState(state);
-    const html = draftToHtml(convertToRaw(state.getCurrentContent()));
-    setEditorContent(html);
-
-    const isEmpty = !state.getCurrentContent().hasText();
-    setEditorError(isEmpty);
+  const handleEditorChange = (content, delta, source, editor) => {
+    const currentContent = editor.getHTML();
+    setEditorContent(currentContent);
+    const currentContentText = editor.getText().trim();
+    if (currentContentText === "") {
+      setEditorError(true);
+    } else {
+      setEditorError(false);
+    }
   };
 
   const handleSenderFocusOut = () => {
     if (senderValue.trim() === "") {
       setSenderError(true);
+    }
+  };
+  const handleContentFocusOut = () => {
+    const editor = quillRef.current.getEditor();
+    const currentContent = editor.getText().trim();
+    if (currentContent === "") {
+      setEditorError(true);
+    } else {
+      setEditorError(false);
     }
   };
 
@@ -129,19 +142,17 @@ export default function PostMessageForm() {
             editorError ? styles.error : ""
           }`}
         >
-          <label htmlFor="textarea" className={styles["message-form-title"]}>
+          <label htmlFor="content" className={styles["message-form-title"]}>
             내용을 입력해 주세요
           </label>
-          <Editor
-            editorState={editorState}
-            onEditorStateChange={handleEditorChange}
-            wrapperClassName={styles["message-form-text-editor-wrapper"]}
-            editorClassName={`${styles["message-form-text-editor"]} ${
-              editorError ? styles.error : ""
-            }`}
-            toolbar={{
-              options: ["inline", "textAlign", "history"],
-            }}
+          <ReactQuill
+            modules={MODULES}
+            formats={FORMATS}
+            style={EDITOR_STYLES}
+            onChange={handleEditorChange}
+            onBlur={handleContentFocusOut}
+            placeholder="내용을 입력해주세요"
+            ref={quillRef}
           />
           {editorError && (
             <p className={styles["form-error"]}>값을 입력해주세요.</p>
