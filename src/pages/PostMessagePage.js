@@ -15,12 +15,12 @@ import {
 import { useParams, useNavigate } from "react-router-dom";
 import { postMessage } from "apis/recipients";
 import { useEffect } from "react";
+import TextEditor from "components/CreateMessage/TextEditor";
 
 export default function PostMessageForm() {
   const [senderValue, setSenderValue] = useState("");
   const [senderError, setSenderError] = useState(false);
   const [relationship, setRelationship] = useState("지인");
-  const [editorState, setEditorState] = useState(EditorState.createEmpty());
 
   const [editorError, setEditorError] = useState(false);
   const [selectedFont, setSelectedFont] = useState("Noto Sans");
@@ -40,18 +40,18 @@ export default function PostMessageForm() {
     }
   };
 
-  const handleEditorChange = (state) => {
-    setEditorState(state);
-    const html = draftToHtml(convertToRaw(state.getCurrentContent()));
-    setEditorContent(html);
-
-    const isEmpty = !state.getCurrentContent().hasText();
-    setEditorError(isEmpty);
+  const handleEditorChange = (content) => {
+    setEditorContent(content);
   };
 
   const handleSenderFocusOut = () => {
     if (senderValue.trim() === "") {
       setSenderError(true);
+    }
+  };
+  const handleContentFocusOut = () => {
+    if (editorContent.trim() === "") {
+      setEditorError(true);
     }
   };
 
@@ -132,16 +132,10 @@ export default function PostMessageForm() {
           <label htmlFor="textarea" className={styles["message-form-title"]}>
             내용을 입력해 주세요
           </label>
-          <Editor
-            editorState={editorState}
-            onEditorStateChange={handleEditorChange}
-            wrapperClassName={styles["message-form-text-editor-wrapper"]}
-            editorClassName={`${styles["message-form-text-editor"]} ${
-              editorError ? styles.error : ""
-            }`}
-            toolbar={{
-              options: ["inline", "textAlign", "history"],
-            }}
+          <TextEditor
+            onChange={handleEditorChange}
+            onBlur={handleContentFocusOut}
+            placeholder="내용을 입력해주세요"
           />
           {editorError && (
             <p className={styles["form-error"]}>값을 입력해주세요.</p>
