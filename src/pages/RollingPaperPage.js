@@ -346,7 +346,7 @@ function RollingPaperPage() {
         onKakaoClick={handleDefaultClick}
         onURLClick={notifyURLCopy}
       />
-      <section className={styles["card-section"]}>
+      <div className={styles["card-section"]}>
         <ButtonList
           isEdit={isEdit}
           onDeleteMessages={handleDeleteMessage}
@@ -367,7 +367,7 @@ function RollingPaperPage() {
         {isLoading && <Loading />}
         {loadingError?.message ? <p>{loadingError.message}</p> : ""}
         <ToastContainer />
-      </section>
+      </div>
     </main>
   );
 }

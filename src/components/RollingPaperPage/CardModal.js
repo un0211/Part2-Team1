@@ -3,6 +3,7 @@ import { formatDateWithDot } from "utils/rollingPaperPage";
 import { FONT_CLASS_NAME } from "constants/rollingPaperPage";
 import SenderInfo from "./SenderInfo";
 import styles from "./CardModal.module.scss";
+import DOMPurify from "dompurify";
 
 export default function CardModal({ isOpen, message, onModalClose }) {
   const { content, createdAt, profileImageURL, relationship, sender, font } =
@@ -50,7 +51,7 @@ export default function CardModal({ isOpen, message, onModalClose }) {
       <main className={styles["content-wrapper"]}>
         <p
           className={`${styles.content} font-18-18-18 ${FONT_CLASS_NAME[font]}`}
-          dangerouslySetInnerHTML={{ __html: content }}
+          dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content) }}
         ></p>
       </main>
       <footer className={styles["button-wrapper"]}>
