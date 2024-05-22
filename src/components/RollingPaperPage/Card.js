@@ -6,6 +6,7 @@ import CardModal from "./CardModal";
 import SenderInfo from "./SenderInfo";
 import PlusIcon from "assets/icons/plus_white.svg";
 import styles from "./Card.module.scss";
+import DOMPurify from "dompurify";
 
 function Card({ message, isEdit, onCheck, isChecked }) {
   const {
@@ -71,7 +72,7 @@ function Card({ message, isEdit, onCheck, isChecked }) {
         <div className={styles.divider}></div>
         <main
           className={`font-18-18-15 ${FONT_CLASS_NAME[font]}`}
-          dangerouslySetInnerHTML={{ __html: content }}
+          dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content) }}
         ></main>
         <footer className="font-12-12-12">
           {formatDateWithDot(createdAt)}

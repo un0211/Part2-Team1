@@ -71,7 +71,7 @@ export const PROFILES = [
 
 export const TOOLBAR_OPTION = [
   ["link"],
-  [{ header: [1, 2, 3, false] }],
+  [{ header: [3, false] }],
   ["bold", "italic", "underline", "strike"],
   [{ color: [] }, { background: [] }],
 ];
