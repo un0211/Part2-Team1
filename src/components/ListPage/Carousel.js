@@ -3,8 +3,8 @@ import Slider from "react-slick";
 import styles from "./Carousel.module.scss";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import image_prev from "assets/icons/arrow_prev.png";
-import image_next from "assets/icons/arrow_next.png";
+import image_prev from "assets/icons/arrow_prev.webp";
+import image_next from "assets/icons/arrow_next.webp";
 import CardList from "./CardList";
 import Loading from "components/common/Loading";
 
