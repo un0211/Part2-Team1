@@ -28,7 +28,7 @@
 | <img src="https://github.com/un0211/ro1ling/assets/24778465/02020c58-7cff-443f-a5ef-be2554e0b17e" width="150" height="150"> | <img src="https://github.com/un0211/ro1ling/assets/24778465/210cb608-2418-4ad5-8bbe-16c7cd3cf640" width="150" height="150"> | <img src="https://github.com/un0211/ro1ling/assets/24778465/3774744a-0343-412f-91df-ef82d41c06b3" width="150" height="150"> | <img src="https://github.com/un0211/ro1ling/assets/24778465/55f24950-a5e3-4ea5-84f7-fd972f18d7b6" width="150" height="150"> | <img src="https://github.com/un0211/ro1ling/assets/24778465/0dbff6b1-8910-4ae3-afae-30faf1ac903d" width="150" height="150"> |
 |                                           [@ssseeo0](https://github.com/ssseeo0)                                            |                                          [@sermain2](https://github.com/sermain2)                                           |                                            [@un0211](https://github.com/un0211)                                             |                                            [@Ik5606](https://github.com/Ik5606)                                             |                                         [@hongseoha](https://github.com/hongseoha)                                          |
 
-// REVIEW - ALL: 역할 분담 여기 쓸까요? 아니면 따로 섹션 만들까요?
+// TODO - 혜원: 역할 분담
 
 ## 개발 환경
 
@@ -60,10 +60,10 @@ Git, npm, Netlify, Figma
 
 // TODO - 서하님: 원하시면 이미지 추가
 
-- 사전 작업: 2024.04.24 ~ 2024.04.30  
+- 사전 작업: 2024.04.24 ~ 2024.04.30
   ㄴ 기술 스택 선정, 역할 배분, 규칙 정리(팀 규칙, 코드 컨벤션, 커밋 컨벤션 등)
 - 페이지 구현: 2024.05.01 ~ 2024.05.10
-- 추가 작업: 2024.05.11 ~ 2024.05.15  
+- 추가 작업: 2024.05.11 ~ 2024.05.15
   ㄴ 버그 해결, 추가 기능 구현
 - 발표준비: 2024.05.14 ~ 2024.05.15
 
@@ -113,9 +113,31 @@ ro1ling
 
 ## 페이지별 기능
 
-// TODO - ALL: 각자 기능 적기
+### 메인페이지
+// TODO: 서영님
 
-### [메세지 삭제] 
+### 롤링페이퍼 목록 페이지
+// TODO: 서하님
+
+### 롤링페이퍼 전체보기 페이지
+
+// TODO: 혜원
+
+#### [롤링페이퍼 검색]
+<p align="center">
+<img src="https://github.com/un0211/ro1ling/assets/135966211/d5845626-dbbc-45d5-a8ea-84cd928cb3f3">
+</p>
+
+- 롤링페이퍼 전체보기 페이지에서의 검색 기능입니다.
+- 롤링페이퍼 이름에 해당하는 롤링페이퍼가 조회됩니다.
+
+### 롤링페이퍼 생성 페이지
+// TODO: 익재님
+
+### 롤링페이퍼 페이지
+// TODO: 혜원
+
+#### [메세지 삭제]
 <p align="center">
 <img src="https://github.com/un0211/ro1ling/assets/135966211/abdffbd2-8ca1-4937-95c8-351efb9a0293">
 </p>
@@ -126,7 +148,7 @@ ro1ling
 - 메세지 삭제 후 해당 롤링페이퍼 페이지로 이동합니다.
 
 
-### [롤링페이퍼 삭제] 
+#### [롤링페이퍼 삭제]
 <p align="center">
 <img src="https://github.com/un0211/ro1ling/assets/135966211/8ffa6b9e-e46f-4ad3-8e99-46d1d5675300">
 </p>
@@ -134,24 +156,18 @@ ro1ling
 - 별도의 로그인 기능이 없어 누구나 삭제할 수 있습니다.
 - 롤링페이퍼 삭제 후 롤링페이퍼 리스트 페이지로 이동합니다.
 
-### [메세지 상세 보기] 
+#### [메세지 상세 보기]
 <p align="center">
 <img src="https://github.com/un0211/ro1ling/assets/135966211/8ac46036-f543-4b12-acac-335da37f9648">
 </p>
 
 - 메세지 카드를 클릭하면 모달을 통해 메세지를 상세 조회할 수 있습니다.
-- 모달 외 영역과, 확인 버튼을 클릭하면 모달창이 닫힙니다. 
+- 모달 외 영역과, 확인 버튼을 클릭하면 모달창이 닫힙니다.
 
+### 메시지 생성 페이지
+// TODO: 세민님
 
-### [롤링페이퍼 검색]
-<p align="center">
-<img src="https://github.com/un0211/ro1ling/assets/135966211/d5845626-dbbc-45d5-a8ea-84cd928cb3f3">
-</p>
-
-- 롤링페이퍼 전체보기 페이지에서의 검색 기능입니다.
-- 롤링페이퍼 이름에 해당하는 롤링페이퍼가 조회됩니다. 
-
-## 개선 사항
+### 404 페이지
 
 ## 개선 사항
 
@@ -162,8 +178,20 @@ ro1ling
 // TODO - ALL: 있으면 적기
 
 ## 프로젝트 후기
+### 김서영
+// TODO: 서영님
 
-// TODO - ALL: 각자 후기 적기
+### 김세민
+// TODO: 세민님
+
+### 류혜원
+// TODO: 혜원
+
+### 장익재
+// TODO: 익재님
+
+### 홍서하
+// TODO: 서하님
 
 ---
 
