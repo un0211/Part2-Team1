@@ -114,10 +114,12 @@ ro1ling
   <p align="center">
     <img src="https://github.com/un0211/ro1ling/assets/122506809/082f5614-3a6a-4635-a944-848ea547e8bb">
 </p>
+
 - 모니터 환경에서는 캐러셀로 페이지를 확인하실 수 있습니다.
   <p align="center">
     <img src="https://github.com/un0211/ro1ling/assets/122506809/e8f7c820-8ab3-40f6-b1ce-4ba660c659e8">
 </p>
+
 - 태블릿 환경에서는 슬라이드로 페이지를 확인하실 수 있습니다.
 
 ### 3. 롤링페이퍼 전체보기 페이지
