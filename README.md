@@ -35,13 +35,8 @@
 
 ### 프론트엔드
 
-// TODO - 서하님: 로고 이미지로 or 글씨와 이미지 적절히 (아래 예시)
+![image](https://github.com/un0211/ro1ling/assets/122506809/2c3bc906-eccd-4e11-927d-41d5b8b89e54)
 
-<img src="https://github.com/un0211/ro1ling/assets/24778465/6f16eb65-6e77-4e6c-8a88-d42a2c041315" width="80" height="80" alt="html" >
-<img src="https://github.com/un0211/ro1ling/assets/24778465/fe977869-fc3f-4dff-ab81-93c0744b6705" width="80" height="80" alt="css" >
-<img src="https://github.com/un0211/ro1ling/assets/24778465/8c1d57dd-74ef-4375-a546-0a04ca2d50d6" width="80" height="80" alt="js" >
-
-HTML, JavaScript, SCSS + CSS Module, React
 
 ### 백엔드
 
@@ -58,8 +53,6 @@ Git, npm, Netlify, Figma
 ## 개발 기간 및 작업 관리
 
 ### 개발 기간 (2024.04.30 ~ 2024.05.15)
-
-// TODO - 서하님: 원하시면 이미지 추가
 
 - 사전 작업: 2024.04.24 ~ 2024.04.30
   ㄴ 기술 스택 선정, 역할 배분, 규칙 정리(팀 규칙, 코드 컨벤션, 커밋 컨벤션 등)
@@ -118,7 +111,14 @@ ro1ling
 // TODO: 서영님
 
 ### 2. 롤링페이퍼 목록 페이지
-// TODO: 서하님
+  <p align="center">
+    <img src="https://github.com/un0211/ro1ling/assets/122506809/082f5614-3a6a-4635-a944-848ea547e8bb">
+</p>
+- 모니터 환경에서는 캐러셀로 페이지를 확인하실 수 있습니다.
+  <p align="center">
+    <img src="https://github.com/un0211/ro1ling/assets/122506809/e8f7c820-8ab3-40f6-b1ce-4ba660c659e8">
+</p>
+- 태블릿 환경에서는 슬라이드로 페이지를 확인하실 수 있습니다.
 
 ### 3. 롤링페이퍼 전체보기 페이지
 <p align="center">
@@ -268,8 +268,7 @@ ro1ling
 - 이번 롤링페이퍼 홈페이지 팀 프로젝트를 통해 웹개발의 기본을 익히는 동시에 팀워크의 중요성을 깨달았습니다. 혼자 해결하려다 작업이 지연되어 팀원들에게 피해를 끼쳤지만, 팀원들의 도움 덕분에 문제를 해결할 수 있었습니다. 이 경험을 통해 협력과 소통의 중요성을 깊이 느꼈고, 앞으로는 더 효율적으로 시간 관리를 하며 팀과 적극적으로 소통하겠습니다.
 
 ### 홍서하
-// TODO: 서하님
-
+- 혼자 작업할 때보다 훨씬 즐거웠습니다. 초반에 구현하고자 하는 요구사항에 그치지 않고, 개선할 부분을 계속해서 찾고자 노력하고 어느정도 구현했다는 부분이 만족스러웠습니다. 문제 해결을 위해 다방면으로 알아보고 노력하는 것도 물론 좋지만, 함께 기간을 정해두고 작업하는 것이므로, 고민하고 있는 부분이 다른 사람에게 있어서는 금방 해결할 수 있는 것이라면 시간을 낭비하지 않고 도움을 청하는 게 훨씬 도움이 된다고 느꼈습니다.
 ---
 
 리드미 구성 참고: https://github.com/likelion-project-README/README
