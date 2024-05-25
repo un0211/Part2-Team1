@@ -44,11 +44,13 @@
 
 ### 협업
 
-GitHub, Discord, Notion
+![image](https://github.com/un0211/ro1ling/assets/122506809/268a3ffd-2dff-4dd6-88b7-090292a403d5)
+
 
 ### 기타
 
-Git, npm, Netlify, Figma
+![image](https://github.com/un0211/ro1ling/assets/122506809/98879260-1276-4f28-b36d-1cc7d0439b0a)
+
 
 ## 개발 기간 및 작업 관리
 
