@@ -44,7 +44,8 @@
 
 ### 협업
 
-![image](https://github.com/un0211/ro1ling/assets/122506809/268a3ffd-2dff-4dd6-88b7-090292a403d5)
+![image](https://github.com/un0211/ro1ling/assets/122506809/66b664b7-69d3-40a7-858b-84698f141aee)
+
 
 
 ### 기타
