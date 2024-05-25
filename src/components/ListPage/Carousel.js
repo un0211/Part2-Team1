@@ -7,9 +7,9 @@ import image_prev from "assets/icons/arrow_prev.png";
 import image_next from "assets/icons/arrow_next.png";
 import CardList from "./CardList";
 import Loading from "components/common/Loading";
+import ListSkeleton from "./Skeleton";
 
-
-function Carousel({slideItems, isLoading }) {
+function Carousel({ slideItems, isLoading }) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const length = slideItems.length;
 
@@ -35,7 +35,7 @@ function Carousel({slideItems, isLoading }) {
   return (
     <div className={styles.container}>
       {isLoading ? (
-        <Loading />
+        <ListSkeleton />
       ) : (
         <Slider {...settings} className={styles.slider}>
           {slideItems?.map((item) => (
@@ -61,10 +61,7 @@ function NextArrow({ custom, styles, onClick, currentSlide, length }) {
         borderRadius: "50%",
         position: "relative",
         visibility:
-
-          length > 4 && currentSlide + 4 < length
-            ? "visible"
-            : "hidden",
+          length > 4 && currentSlide + 4 < length ? "visible" : "hidden",
       }}
       onClick={onClick}
     >
