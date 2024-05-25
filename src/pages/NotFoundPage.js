@@ -1,5 +1,5 @@
 import styles from "./NotFoundPage.module.scss";
-import NotFoundImage from "assets/images/404.png";
+import NotFoundImage from "assets/images/404.webp";
 
 function NotFoundPage() {
   return (

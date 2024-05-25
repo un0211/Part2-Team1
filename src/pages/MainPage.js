@@ -1,6 +1,6 @@
 import styles from "./MainPage.module.scss";
-import rollingExample from "assets/images/rolling_example.png";
-import reactionExample from "assets/images/reaction_example.png";
+import rollingExample from "assets/images/rolling_example.webp";
+import reactionExample from "assets/images/reaction_example.webp";
 import { Link } from "react-router-dom";
 
 function Section({
