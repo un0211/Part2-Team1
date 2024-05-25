@@ -109,9 +109,10 @@ ro1ling
 
 ### 1. 메인페이지
   <p align="center">
-    <img src="https://github.com/un0211/ro1ling/assets/135966211/a7df5252-a665-4f8a-a41e-9e90d7df2d16" width="900px">
+    <img src="https://github.com/un0211/ro1ling/assets/135966211/d5755c6c-08f0-4116-b08d-89c8e8342d1d" width="1000px">
 </p>
 
+- 구경해보기 버튼을 클릭하면 롤링페이퍼 목록 페이지로 이동합니다.
 
 ### 2. 롤링페이퍼 목록 페이지
   <p align="center">
