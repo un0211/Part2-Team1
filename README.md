@@ -108,7 +108,10 @@ ro1ling
 ## 페이지별 기능
 
 ### 1. 메인페이지
-// TODO: 서영님
+  <p align="center">
+    <img src="https://github.com/un0211/ro1ling/assets/135966211/a7df5252-a665-4f8a-a41e-9e90d7df2d16" width="900px">
+</p>
+
 
 ### 2. 롤링페이퍼 목록 페이지
   <p align="center">
